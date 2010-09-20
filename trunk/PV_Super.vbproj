@@ -66,12 +66,14 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\clsCaja.vb" />
     <Compile Include="Clases\clsComprobante.vb" />
     <Compile Include="Clases\clsDetalleComprobante.vb" />
     <Compile Include="Clases\clsFamilia.vb" />
     <Compile Include="Clases\clsProducto.vb" />
     <Compile Include="Clases\clsRubro.vb" />
     <Compile Include="Clases\clsUnidadProducto.vb" />
+    <Compile Include="Clases\DAO\clsCajaDAO.vb" />
     <Compile Include="Clases\DAO\clsComprobanteDAO.vb" />
     <Compile Include="Clases\DAO\clsDetalleComprobanteDAO.vb" />
     <Compile Include="Clases\DAO\clsFamiliaDAO.vb" />
@@ -123,6 +125,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Base de Datos\Script Creación Datos Iniciales.sql" />
+    <None Include="Base de Datos\Script Creación Tablas.sql" />
+    <None Include="Base de Datos\Script Creación Stores.sql" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
