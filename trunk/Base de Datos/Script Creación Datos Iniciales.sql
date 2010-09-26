@@ -8,6 +8,22 @@ exec str_nuevo_unidad 0,'Unidad','Uni.',1
 exec str_nuevo_unidad 0,'Paquete','Paq.',1
 
 
+-- CARGA DE RUBROS
+
+exec str_nuevo_RUBRO 0,'Limpieza','Limpieza',1
+exec str_nuevo_RUBRO 0,'Almacén','Almacén',1
+exec str_nuevo_RUBRO 0,'Perfumeria','Perfumeria',1
+exec str_nuevo_RUBRO 0,'Bazar','Bazar',1
+exec str_nuevo_RUBRO 0,'Carnicería','Carnicería',1
+exec str_nuevo_RUBRO 0,'Fiambreria','Fiambreria',1
+exec str_nuevo_RUBRO 0,'Lacteos','Lacteos',1
+exec str_nuevo_RUBRO 0,'Panificados','Panificados',1
+exec str_nuevo_RUBRO 0,'Verdulería','Verdulería',1
+exec str_nuevo_RUBRO 0,'Congelados','Congelados',1
+exec str_nuevo_RUBRO 0,'Pastas','Pastas',1
+exec str_nuevo_RUBRO 0,'Bebidas','Bebidas',1
+
+
 -- CARGA DE IMPUESTO AL VALOR AGREGADO (IVA)
 
 exec str_nuevo_impuestoiva 0,'10.50',10.5,2,1
@@ -118,18 +134,3 @@ exec str_nuevo_familia 0,'Sidras y frizantes','Sidras y frizantes',12,1
 exec str_nuevo_familia 0,'Vinos','Vinos',12,1
 exec str_nuevo_familia 0,'Wiskies','Wiskies',12,1
 
-
--- CARGA DE RUBROS
-
-exec str_nuevo_RUBRO 0,'Limpieza','Limpieza',1
-exec str_nuevo_RUBRO 0,'Almacén','Almacén',1
-exec str_nuevo_RUBRO 0,'Perfumeria','Perfumeria',1
-exec str_nuevo_RUBRO 0,'Bazar','Bazar',1
-exec str_nuevo_RUBRO 0,'Carnicería','Carnicería',1
-exec str_nuevo_RUBRO 0,'Fiambreria','Fiambreria',1
-exec str_nuevo_RUBRO 0,'Lacteos','Lacteos',1
-exec str_nuevo_RUBRO 0,'Panificados','Panificados',1
-exec str_nuevo_RUBRO 0,'Verdulería','Verdulería',1
-exec str_nuevo_RUBRO 0,'Congelados','Congelados',1
-exec str_nuevo_RUBRO 0,'Pastas','Pastas',1
-exec str_nuevo_RUBRO 0,'Bebidas','Bebidas',1
