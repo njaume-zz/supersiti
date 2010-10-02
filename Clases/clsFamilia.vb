@@ -4,8 +4,22 @@
     Private _codigo As String
     Private _nombre As String
     Private _descripcion As String
+    Private _rub_id As Integer
     Private _estado As Integer
 
+    Public Sub New()
+
+    End Sub
+
+    Public Sub New(ByVal id As Integer, ByVal codigo As String, ByVal nombre As String, _
+                   ByVal descripcion As String, ByVal rub_id As Integer, ByVal estado As Integer)
+        _id = id
+        _codigo = codigo
+        _nombre = nombre
+        _descripcion = descripcion
+        _rub_id = rub_id
+        _estado = estado
+    End Sub
 
     Public Property ID() As Integer
         Get
@@ -40,6 +54,15 @@
         End Get
         Set(ByVal value As String)
             _descripcion = value
+        End Set
+    End Property
+
+    Public Property Rub_Id() As Integer
+        Get
+            Return _rub_id
+        End Get
+        Set(ByVal value As Integer)
+            _rub_id = value
         End Set
     End Property
 

@@ -1,21 +1,19 @@
-﻿Public Class clsRubro
+﻿
+Public Class clsTasaIva
 
-    Private _id As Integer
-    Private _codigo As String
-    Private _nombre As String
-    Private _descripcion As String
-    Private _estado As Integer
+    private _id as integer
+    private _nombre as string 
+    private _tasa as double 
+    private _estado as integer
 
     Public Sub New()
 
     End Sub
 
-    Public Sub New(ByVal id As Integer, ByVal codigo As String, ByVal nombre As String, _
-                    ByVal descripcion As String, ByVal estado As String)
+    Public Sub New(ByVal id As Integer, ByVal nombre As String, ByVal tasa As Double, ByVal estado As Integer)
         _id = id
-        _codigo = codigo
         _nombre = nombre
-        _descripcion = descripcion
+        _tasa = tasa
         _estado = estado
     End Sub
 
@@ -28,15 +26,6 @@
         End Set
     End Property
 
-    Public Property Codigo() As String
-        Get
-            Return _codigo
-        End Get
-        Set(ByVal value As String)
-            _codigo = value
-        End Set
-    End Property
-
     Public Property Nombre() As String
         Get
             Return _nombre
@@ -46,12 +35,12 @@
         End Set
     End Property
 
-    Public Property Descripcion() As String
+    Public Property Tasa() As Double
         Get
-            Return _descripcion
+            Return _tasa
         End Get
-        Set(ByVal value As String)
-            _descripcion = value
+        Set(ByVal value As Double)
+            _tasa = value
         End Set
     End Property
 
