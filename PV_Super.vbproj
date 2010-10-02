@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{73933D06-5A60-4E47-873E-1CE489AD7AF2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -72,13 +72,18 @@
     <Compile Include="Clases\clsFamilia.vb" />
     <Compile Include="Clases\clsProducto.vb" />
     <Compile Include="Clases\clsRubro.vb" />
+    <Compile Include="Clases\clsTasaIva.vb" />
     <Compile Include="Clases\clsUnidadProducto.vb" />
+    <Compile Include="Clases\clsUsuario.vb" />
     <Compile Include="Clases\DAO\clsCajaDAO.vb" />
     <Compile Include="Clases\DAO\clsComprobanteDAO.vb" />
+    <Compile Include="Clases\DAO\clsConexion.vb" />
     <Compile Include="Clases\DAO\clsDetalleComprobanteDAO.vb" />
     <Compile Include="Clases\DAO\clsFamiliaDAO.vb" />
     <Compile Include="Clases\DAO\clsProductoDAO.vb" />
     <Compile Include="Clases\DAO\clsRubroDAO.vb" />
+    <Compile Include="Clases\DAO\clsTasaIvaDAO.vb" />
+    <Compile Include="Clases\DAO\clsUnidadProductoDAO.vb" />
     <Compile Include="frmBuscaProducto.Designer.vb">
       <DependentUpon>frmBuscaProducto.vb</DependentUpon>
     </Compile>
@@ -137,6 +142,14 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\DAO\.svn\prop-base\" />
+    <Folder Include="Clases\DAO\.svn\props\" />
+    <Folder Include="Clases\DAO\.svn\text-base\" />
+    <Folder Include="Clases\DAO\.svn\tmp\prop-base\" />
+    <Folder Include="Clases\DAO\.svn\tmp\props\" />
+    <Folder Include="Clases\DAO\.svn\tmp\text-base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

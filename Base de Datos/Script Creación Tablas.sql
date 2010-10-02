@@ -1,5 +1,5 @@
 --CREATE DATABASE DES_SUPER
---USE DES_SUPER
+USE DEV_SUPER
 -- V:Ventas, C:Comercialización, A:Tablas auxiliares
 
 CREATE TABLE [dbo].[V_CAJA_ESTADO](

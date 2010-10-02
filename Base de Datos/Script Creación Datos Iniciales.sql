@@ -1,4 +1,4 @@
---USE DES_SUPER
+USE DEv_SUPER
 
 -- CARGA DE UNIDADES
 exec str_nuevo_unidad 0,'Kilogramo','Kg.',1
