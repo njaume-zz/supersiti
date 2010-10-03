@@ -12,7 +12,7 @@ Public Class clsFamiliaDAO
         Dim conecto As Boolean
         Dim salida As New DataTable
 
-        Conexion = New clsConexion.Conectar
+        Conexion = clsConexion.Conectar
         Try
             Conexion.Open()
             conecto = True
