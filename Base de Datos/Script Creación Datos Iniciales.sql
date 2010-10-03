@@ -134,3 +134,38 @@ exec str_nuevo_familia 0,'Sidras y frizantes','Sidras y frizantes',12,1
 exec str_nuevo_familia 0,'Vinos','Vinos',12,1
 exec str_nuevo_familia 0,'Wiskies','Wiskies',12,1
 
+
+-- =====CREACION DE USUARIO, ROLES Y MODULOS =============
+
+--Padre de los siguientes 3 parrafos
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','PRODUCTOS','',1,0,1
+
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','PRODUCTOS|ALTAS','~/Comercializacion/ProductoABM.aspx',1,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','PRODUCTOS|MODIFICACIONES','~/Comercializacion/ProductoABM.aspx',2,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','PRODUCTOS|BAJAS','~/Comercializacion/ProductoABM.aspx',3,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','PRODUCTOS|LISTADOS','~/Comercializacion/Productos.aspx',4,1,1
+
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','RUBROS|ALTAS','~/Comercializacion/RubroABM.aspx',1,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','RUBROS|MODIFICACIONES','~/Comercializacion/RubroABM.aspx',2,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','RUBROS|BAJAS','~/Comercializacion/RubroABM.aspx',3,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','RUBROS|LISTADOS','~/Comercializacion/Rubros.aspx',4,1,1
+
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','FAMILIAS|ALTAS','~/Comercializacion/FamiliaABM.aspx',1,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','FAMILIAS|MODIFICACIONES','~/Comercializacion/FamiliaABM.aspx',2,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','FAMILIAS|BAJAS','~/Comercializacion/FamiliaABM.aspx',3,1,1
+exec str_nuevo_modulo 0,'Comercializacion','Comercialización de Productos, junto a sus rubros y familias','FAMILIAS|LISTADOS','~/Comercializacion/Familias.aspx',4,1,1
+
+
+-- Tomar el valor del modulo Gestión Usuarios para los siguientes permisos
+exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema','USUARIOS','',1,0,1
+-- select * from s_modulo where mod_tipo = 'usuarios'
+exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema','USUARIOS|ALTAS','~/Usuario/UsuarioABM.aspx',1,14,1
+exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema','USUARIOS|MODIFICACIONES','~/Usuario/UsuarioABM.aspx',1,14,1
+exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema','USUARIOS|BAJAS','~/Usuario/UsuarioABM.aspx',1,14,1
+exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema','USUARIOS|LISTADOS','~/Usuario/Usuarios.aspx',1,14,1
+
+
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS','',1,0,1
+
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS/ALTAS','',1,19,1
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS/LISTADOS','',1,19,1
