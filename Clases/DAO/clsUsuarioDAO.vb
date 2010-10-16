@@ -150,7 +150,7 @@ Public Class clsUsuarioDAO
                 dt.Load(.ExecuteReader)
             End With
 
-            If dt.Rows.Count > 0 Then
+            If Not dt.Rows.Count > 0 Then
                 dt = Nothing
             End If
             clsConexion.Desconectar(cn)

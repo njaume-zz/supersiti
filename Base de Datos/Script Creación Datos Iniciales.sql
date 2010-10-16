@@ -167,5 +167,111 @@ exec str_nuevo_modulo 0,'Gestión Usuarios','Gestión de los usuarios del sistema'
 
 exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS','',1,0,1
 
-exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS/ALTAS','',1,19,1
-exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS/LISTADOS','',1,19,1
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS|ALTAS','',1,19,1
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS|LISTADOS','',1,19,1
+exec str_nuevo_modulo 0,'Ventas','Gestión de Ventas','VENTAS|MODIFICACIONES','',1,19,1
+
+exec str_nuevo_modulo 0,'Cajas','Gestión de Cajas como Puntos de Ventas','CAJAS','',1,0,1
+
+exec str_nuevo_modulo 0,'Cajas','Gestión de Cajas como Puntos de Ventas','CAJAS|APERTURA','',1,23,1
+exec str_nuevo_modulo 0,'Cajas','Gestión de Cajas como Puntos de Ventas','CAJAS|CIERRE','',1,23,1
+exec str_nuevo_modulo 0,'Cajas','Gestión de Cajas como Puntos de Ventas','CAJAS|CIERRE Z','',1,23,1
+exec str_nuevo_modulo 0,'Cajas','Gestión de Cajas como Puntos de Ventas','CAJAS|RETIROS','',1,23,1
+
+
+-- Ingreso de Roles
+exec str_nuevo_rol 0,'Administrador',1
+exec str_nuevo_rol 0,'Supervisor',1
+exec str_nuevo_rol 0,'Cajero',1
+
+-- Ingresos de Rol-Modulo
+-- Ingreso de Administrador
+exec str_nuevo_rol_modulo 0,1,1,1
+exec str_nuevo_rol_modulo 0,1,1,2
+exec str_nuevo_rol_modulo 0,1,1,3
+exec str_nuevo_rol_modulo 0,1,1,4
+exec str_nuevo_rol_modulo 0,1,1,5
+exec str_nuevo_rol_modulo 0,1,1,6
+exec str_nuevo_rol_modulo 0,1,1,7
+exec str_nuevo_rol_modulo 0,1,1,8
+exec str_nuevo_rol_modulo 0,1,1,9
+exec str_nuevo_rol_modulo 0,1,1,10
+exec str_nuevo_rol_modulo 0,1,1,11
+exec str_nuevo_rol_modulo 0,1,1,12
+exec str_nuevo_rol_modulo 0,1,1,13
+exec str_nuevo_rol_modulo 0,1,1,14
+exec str_nuevo_rol_modulo 0,1,1,15
+exec str_nuevo_rol_modulo 0,1,1,16
+exec str_nuevo_rol_modulo 0,1,1,17
+exec str_nuevo_rol_modulo 0,1,1,18
+exec str_nuevo_rol_modulo 0,1,1,19
+exec str_nuevo_rol_modulo 0,1,1,20
+exec str_nuevo_rol_modulo 0,1,1,21
+exec str_nuevo_rol_modulo 0,1,1,22
+exec str_nuevo_rol_modulo 0,1,1,23
+exec str_nuevo_rol_modulo 0,1,1,24
+exec str_nuevo_rol_modulo 0,1,1,25
+exec str_nuevo_rol_modulo 0,1,1,26
+exec str_nuevo_rol_modulo 0,1,1,27
+
+-- Ingreso de supervisor
+exec str_nuevo_rol_modulo 0,1,2,1
+exec str_nuevo_rol_modulo 0,1,2,2
+exec str_nuevo_rol_modulo 0,1,2,3
+exec str_nuevo_rol_modulo 0,1,2,4
+exec str_nuevo_rol_modulo 0,1,2,5
+exec str_nuevo_rol_modulo 0,1,2,6
+exec str_nuevo_rol_modulo 0,1,2,7
+exec str_nuevo_rol_modulo 0,1,2,8
+exec str_nuevo_rol_modulo 0,1,2,9
+exec str_nuevo_rol_modulo 0,1,2,10
+exec str_nuevo_rol_modulo 0,1,2,11
+exec str_nuevo_rol_modulo 0,1,2,12
+exec str_nuevo_rol_modulo 0,1,2,13
+exec str_nuevo_rol_modulo 0,1,2,14
+exec str_nuevo_rol_modulo 0,1,2,15
+exec str_nuevo_rol_modulo 0,1,2,16
+exec str_nuevo_rol_modulo 0,1,2,17
+exec str_nuevo_rol_modulo 0,1,2,18
+exec str_nuevo_rol_modulo 0,1,2,19
+exec str_nuevo_rol_modulo 0,1,2,20
+exec str_nuevo_rol_modulo 0,1,2,21
+exec str_nuevo_rol_modulo 0,1,2,22
+exec str_nuevo_rol_modulo 0,1,2,23
+exec str_nuevo_rol_modulo 0,1,2,24
+exec str_nuevo_rol_modulo 0,1,2,25
+exec str_nuevo_rol_modulo 0,1,2,26
+exec str_nuevo_rol_modulo 0,1,2,27
+
+-- Ingreso de Cajero
+exec str_nuevo_rol_modulo 0,1,3,1
+exec str_nuevo_rol_modulo 0,0,3,2
+exec str_nuevo_rol_modulo 0,0,3,3
+exec str_nuevo_rol_modulo 0,0,3,4
+exec str_nuevo_rol_modulo 0,1,3,5
+exec str_nuevo_rol_modulo 0,0,3,6
+exec str_nuevo_rol_modulo 0,0,3,7
+exec str_nuevo_rol_modulo 0,0,3,8
+exec str_nuevo_rol_modulo 0,1,3,9
+exec str_nuevo_rol_modulo 0,0,3,10
+exec str_nuevo_rol_modulo 0,0,3,11
+exec str_nuevo_rol_modulo 0,0,3,12
+exec str_nuevo_rol_modulo 0,1,3,13
+exec str_nuevo_rol_modulo 0,0,3,14
+exec str_nuevo_rol_modulo 0,0,3,15
+exec str_nuevo_rol_modulo 0,0,3,16
+exec str_nuevo_rol_modulo 0,0,3,17
+exec str_nuevo_rol_modulo 0,0,3,18
+exec str_nuevo_rol_modulo 0,1,3,19
+exec str_nuevo_rol_modulo 0,1,3,20
+exec str_nuevo_rol_modulo 0,1,3,21
+exec str_nuevo_rol_modulo 0,0,3,22
+exec str_nuevo_rol_modulo 0,1,3,23
+exec str_nuevo_rol_modulo 0,1,3,24
+exec str_nuevo_rol_modulo 0,1,3,25
+exec str_nuevo_rol_modulo 0,0,3,26
+exec str_nuevo_rol_modulo 0,0,3,27
+
+-- Ingreso de usuarios
+
+exec str_nuevo_usuario 0,'Admin','9874123','maxiadad@gmail.com',1,1

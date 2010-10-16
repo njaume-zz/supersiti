@@ -95,6 +95,12 @@
     <Compile Include="frmBuscaProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmIngreso.Designer.vb">
+      <DependentUpon>frmIngreso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIngreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmVentas.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     <EmbeddedResource Include="frmBuscaProducto.resx">
       <DependentUpon>frmBuscaProducto.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIngreso.resx">
+      <DependentUpon>frmIngreso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentas.resx">
       <DependentUpon>frmVentas.vb</DependentUpon>

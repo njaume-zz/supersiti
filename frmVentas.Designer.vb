@@ -74,6 +74,7 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.mnCargador = New System.Windows.Forms.MenuStrip
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SSTInformaUsuario.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -306,7 +307,7 @@ Partial Class frmVentas
         'MenuStrip1
         '
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministraciónToolStripMenuItem, Me.BúsquedasToolStripMenuItem, Me.ReportesToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 24)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
         Me.MenuStrip1.TabIndex = 11
@@ -402,13 +403,13 @@ Partial Class frmVentas
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
         '
         'lblFecha
@@ -466,6 +467,14 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(132, 17)
         Me.ToolStripStatusLabel10.Text = "Quitar Producto=[Supr]"
         '
+        'mnCargador
+        '
+        Me.mnCargador.Location = New System.Drawing.Point(0, 0)
+        Me.mnCargador.Name = "mnCargador"
+        Me.mnCargador.Size = New System.Drawing.Size(800, 24)
+        Me.mnCargador.TabIndex = 14
+        Me.mnCargador.Text = "MenuPersonalizado"
+        '
         'frmVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -484,6 +493,7 @@ Partial Class frmVentas
         Me.Controls.Add(Me.txtProductoBarra)
         Me.Controls.Add(Me.SSTInformaUsuario)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.mnCargador)
         Me.Controls.Add(Me.DataGridView1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmVentas"
@@ -553,5 +563,6 @@ Partial Class frmVentas
     Friend WithEvents ToolStripStatusLabel9 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripStatusLabel10 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents mnCargador As System.Windows.Forms.MenuStrip
 
 End Class
