@@ -1,5 +1,18 @@
 ﻿Public Class frmVentas
 
+#Region "Variables Locales"
+    Dim ol_dt As DataTable
+    Public ol_dtUsr As DataTable
+#End Region
+
+
+#Region "Eventos"
+
+    Private Sub frmVentas_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        If MsgBox("Está seguro de cerrar la Aplicación?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, ". : : ATENCION : : .") = MsgBoxResult.Yes Then
+            CerrarAplicacion()
+        End If
+    End Sub
     Private Sub frmVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F2 Then
             frmBuscaProducto.Show()
@@ -16,13 +29,6 @@
     Private Sub frmVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.lblFecha.Text = Format(Date.Now, "dd/MM/yyyy")
         IniciaStrip()
-    End Sub
-
-    Public Sub IniciaStrip()
-        SSTInformaUsuario.Items("TSSUsuario").Text = "Maxi"
-        SSTInformaUsuario.Items("TSSFecha").Text = FormatDateTime(Now, DateFormat.ShortDate)
-        SSTInformaUsuario.Items("TSSPtoVta").Text = "0001"
-        SSTInformaUsuario.Items("TSSPC").Text = "Maxi"
     End Sub
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
@@ -54,18 +60,47 @@
         End If
     End Sub
 
+#End Region
+
+#Region "Métodos"
+
+    Public Sub IniciaStrip()
+        SSTInformaUsuario.Items("TSSUsuario").Text = ol_dtUsr.Rows(0).Item("USU_NOMBRE").ToString
+        SSTInformaUsuario.Items("TSSFecha").Text = FormatDateTime(Now, DateFormat.ShortDate)
+        SSTInformaUsuario.Items("TSSPtoVta").Text = "0001"
+        SSTInformaUsuario.Items("TSSPC").Text = Funciones.NombrePC
+    End Sub
+
+    Private Sub CerrarAplicacion()
+        BorrarDT(ol_dt)
+        End
+    End Sub
+
+
+    Public Sub CargarMenu(ByVal po_dt As DataTable)
+        'Dim o_item As MenuItem
+        'Dim o_men As MenuStrip
+
+        'For Each dr As DataRow In po_dt.Rows
+        '    o_men = New MenuStrip
+
+        'Next
+
+    End Sub
+#End Region
+
+
 #Region "Creación de métodos auxiliares"
 
     Private Sub CrearDTItems()
-        Dim dt As New DataTable
-
-        dt.Columns.Add("FAC_id", GetType(Integer))
-        dt.Columns.Add("FAC_Nombre", GetType(String))
-        dt.Columns.Add("FAC_Codigo", GetType(Integer))
-        dt.Columns.Add("FAC_PcioUnitario", GetType(Double))
-        dt.Columns.Add("FAC_Cantidad", GetType(Integer))
-        dt.Columns.Add("FAC_PcioTotal", GetType(Double))
-        dt.Columns.Add("FAC_Pesable", GetType(Integer))
+        ol_dt = New DataTable
+        ol_dt.Columns.Add("FAC_id", GetType(Integer))
+        ol_dt.Columns.Add("FAC_Nombre", GetType(String))
+        ol_dt.Columns.Add("FAC_Codigo", GetType(Integer))
+        ol_dt.Columns.Add("FAC_PcioUnitario", GetType(Double))
+        ol_dt.Columns.Add("FAC_Cantidad", GetType(Integer))
+        ol_dt.Columns.Add("FAC_PcioTotal", GetType(Double))
+        ol_dt.Columns.Add("FAC_Pesable", GetType(Integer))
 
     End Sub
 
@@ -94,7 +129,7 @@
     End Function
 
     Private Sub BorrarDT(ByRef dt As DataTable)
-        dt.Clear()
+        'dt.Clear()
         dt = Nothing
     End Sub
 #End Region
