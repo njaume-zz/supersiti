@@ -23,11 +23,6 @@ Partial Class frmVentas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.Codigo_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Descripcion_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Cantidad_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PrecioUnitario_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PrecioTotal_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.SSTInformaUsuario = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
         Me.TSSUsuario = New System.Windows.Forms.ToolStripStatusLabel
@@ -86,42 +81,11 @@ Partial Class frmVentas
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Codigo_prd, Me.Descripcion_prd, Me.Cantidad_prd, Me.PrecioUnitario_prd, Me.PrecioTotal_prd})
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 121)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 118)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(545, 420)
+        Me.DataGridView1.Size = New System.Drawing.Size(545, 423)
         Me.DataGridView1.TabIndex = 0
-        '
-        'Codigo_prd
-        '
-        Me.Codigo_prd.HeaderText = "Código"
-        Me.Codigo_prd.Name = "Codigo_prd"
-        Me.Codigo_prd.ReadOnly = True
-        '
-        'Descripcion_prd
-        '
-        Me.Descripcion_prd.HeaderText = "Descripción"
-        Me.Descripcion_prd.Name = "Descripcion_prd"
-        Me.Descripcion_prd.ReadOnly = True
-        '
-        'Cantidad_prd
-        '
-        Me.Cantidad_prd.HeaderText = "Cantidad"
-        Me.Cantidad_prd.Name = "Cantidad_prd"
-        Me.Cantidad_prd.ReadOnly = True
-        '
-        'PrecioUnitario_prd
-        '
-        Me.PrecioUnitario_prd.HeaderText = "Precio Unit."
-        Me.PrecioUnitario_prd.Name = "PrecioUnitario_prd"
-        Me.PrecioUnitario_prd.ReadOnly = True
-        '
-        'PrecioTotal_prd
-        '
-        Me.PrecioTotal_prd.HeaderText = "Precio Total"
-        Me.PrecioTotal_prd.Name = "PrecioTotal_prd"
-        Me.PrecioTotal_prd.ReadOnly = True
         '
         'SSTInformaUsuario
         '
@@ -534,11 +498,6 @@ Partial Class frmVentas
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents Codigo_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PrecioUnitario_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PrecioTotal_prd As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents AdministraciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
