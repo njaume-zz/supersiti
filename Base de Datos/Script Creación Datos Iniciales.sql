@@ -275,3 +275,6 @@ exec str_nuevo_rol_modulo 0,0,3,27
 -- Ingreso de usuarios
 
 exec str_nuevo_usuario 0,'Admin','9874123','maxiadad@gmail.com',1,1
+
+
+exec str_valida_ingreso 'Admin','9874123'

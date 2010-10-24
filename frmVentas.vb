@@ -64,8 +64,7 @@ Public Class frmVentas
                 'ds.Tables.Add(AgregarItemDT(ol_dt, o_Detalle))
                 Me.DataGridView1.DataSource = AgregarItemDT(ol_dt, o_Detalle) 'ds
 
-                MsgBox("Agregar Items")
-
+                
             End If
         End If
     End Sub
@@ -164,6 +163,5 @@ Public Class frmVentas
         dt = Nothing
     End Sub
 #End Region
-
 
 End Class

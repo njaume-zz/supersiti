@@ -367,13 +367,13 @@ Partial Class frmVentas
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
         '
         'lblFecha
