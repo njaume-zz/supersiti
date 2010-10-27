@@ -37,7 +37,7 @@ Public Class frmVentas
     End Sub
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
-        If e.KeyCode = Keys.F2 Then
+        If Chr(e.KeyCode) = Chr(Keys.F2) Then
             frmBuscaProducto.Show()
         End If
         If e.KeyCode = Keys.Enter Then
