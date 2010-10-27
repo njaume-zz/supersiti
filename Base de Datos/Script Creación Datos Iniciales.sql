@@ -1,5 +1,12 @@
 USE DEv_SUPER
 
+-- CARGA DE CAJA ESATDO
+
+exec str_nuevo_caja_estado 0,'Apertura',1
+exec str_nuevo_caja_estado 0,'Retiro',1
+exec str_nuevo_caja_estado 0,'Cierre X',1
+exec str_nuevo_caja_estado 0,'Cierre Z',1
+
 -- CARGA DE UNIDADES
 exec str_nuevo_unidad 0,'Kilogramo','Kg.',1
 exec str_nuevo_unidad 0,'Gramo','Gr.',1
@@ -83,7 +90,6 @@ exec str_nuevo_familia 0,'Postres, flanes, bizcochuelos y budines','Postres, fla
 exec str_nuevo_familia 0,'Repostería','Repostería',2,1
 exec str_nuevo_familia 0,'Sales','Sales',2,1
 exec str_nuevo_familia 0,'Sopas y caldos','Sopas y caldos',2,1
-
 exec str_nuevo_familia 0,'Desodorantes y perfumes','Desodorantes y perfumes',3,1
 exec str_nuevo_familia 0,'Dentífricos','Dentífricos',3,1
 exec str_nuevo_familia 0,'Cepillos de dientes','Cepillos de dientes',3,1
@@ -93,38 +99,29 @@ exec str_nuevo_familia 0,'Pañales','Pañales',3,1
 exec str_nuevo_familia 0,'Jabón de tocador','Jabón de tocador',3,1
 exec str_nuevo_familia 0,'Cremas','Cremas',3,1
 exec str_nuevo_familia 0,'Shampoo y acondicionadores','Shampoo y acondicionadores',3,1
-
 exec str_nuevo_familia 0,'Abrelatas','Abrelatas',4,1
 exec str_nuevo_familia 0,'Bowls','Bowls',4,1
 exec str_nuevo_familia 0,'Manga decoradora','Manga decoradora',4,1
-
 exec str_nuevo_familia 0,'','',5,1
-
-exec str_nuevo_familia 0,'Fiambres y envasados','Fiambres y envasados',6,1
+Exec str_nuevo_familia 0,'Fiambres y envasados','Fiambres y envasados',6,1
 exec str_nuevo_familia 0,'Quesos','Quesos',6,1
 exec str_nuevo_familia 0,'Tapas y pascualinas','Tapas y pascualinas',6,1
-
 exec str_nuevo_familia 0,'Crema de leche','Crema de leche',7,1
 exec str_nuevo_familia 0,'Leches','Leches',7,1
 exec str_nuevo_familia 0,'Mantecas','Mantecas',7,1
 exec str_nuevo_familia 0,'Postres frescos','Postres frescos',7,1
 exec str_nuevo_familia 0,'Queso Untable','Queso Untable',7,1
 exec str_nuevo_familia 0,'Yogures','Yogures',7,1
-
 exec str_nuevo_familia 0,'Galletitas','Galletitas',8,1
 exec str_nuevo_familia 0,'Pan dulce','Pan dulce',8,1
 exec str_nuevo_familia 0,'Pan rallado y rebozador','Pan rallado y rebozador',8,1
 exec str_nuevo_familia 0,'Panes','Panes',8,1
-
 exec str_nuevo_familia 0,'Frutas','Frutas',9,1
 exec str_nuevo_familia 0,'Verduras y hortalizas','Verduras y hortalizas',9,1
-
 exec str_nuevo_familia 0,'Comidas rápidas','Comidas rápidas',10,1
 exec str_nuevo_familia 0,'Helados','Helados',10,1
 exec str_nuevo_familia 0,'Verduras y hortalizas','Verduras y hortalizas',10,1
-
 exec str_nuevo_familia 0,'','',11,1
-
 exec str_nuevo_familia 0,'Aperitivos','Aperitivos',12,1
 exec str_nuevo_familia 0,'Cervezas','Cervezas',12,1
 exec str_nuevo_familia 0,'Espumantes','Espumantes',12,1
@@ -133,7 +130,6 @@ exec str_nuevo_familia 0,'Licores','Licores',12,1
 exec str_nuevo_familia 0,'Sidras y frizantes','Sidras y frizantes',12,1
 exec str_nuevo_familia 0,'Vinos','Vinos',12,1
 exec str_nuevo_familia 0,'Wiskies','Wiskies',12,1
-
 
 -- =====CREACION DE USUARIO, ROLES Y MODULOS =============
 
