@@ -24,7 +24,7 @@ Public Class frmVentas
 
     Private Sub frmVentas_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
         If e.KeyChar = ChrW(13) Then
-            frmBuscaProducto.Show()
+            frmBuscaProducto.ShowDialog()
         End If
     End Sub
 
@@ -37,7 +37,7 @@ Public Class frmVentas
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
         If Not Me.txtProductoBarra.Text = "" Then
             If Chr(e.KeyCode) = Chr(Keys.F2) Then
-                frmBuscaProducto.Show()
+                frmBuscaProducto.ShowDialog()
             End If
             If e.KeyCode = Keys.Enter Then
                 'Buscar en la base y completar una Clase detalle
@@ -70,7 +70,7 @@ Public Class frmVentas
 
     Private Sub txtProductoBarra_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProductoBarra.KeyPress
         If e.KeyChar = ChrW(Keys.F2) Then
-            frmBuscaProducto.Show()
+            frmBuscaProducto.ShowDialog()
         End If
 
     End Sub
@@ -92,7 +92,7 @@ Public Class frmVentas
     Private Sub ToolStripMenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem4.Click
         frmAdministraCaja.lblOperacion.Text = "Retiro"
         frmAdministraCaja.lblOperacion.ForeColor = Color.DarkGreen
-        frmAdministraCaja.Show()
+        frmAdministraCaja.ShowDialog()
     End Sub
 
     ''' <summary>
@@ -104,7 +104,7 @@ Public Class frmVentas
     Private Sub ToolStripMenuItem5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem5.Click
         frmAdministraCaja.lblOperacion.Text = "Apertura"
         frmAdministraCaja.lblOperacion.ForeColor = Color.Blue
-        frmAdministraCaja.Show()
+        frmAdministraCaja.ShowDialog()
     End Sub
 
     ''' <summary>
@@ -116,7 +116,7 @@ Public Class frmVentas
     Private Sub ToolStripMenuItem6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem6.Click
         frmAdministraCaja.lblOperacion.Text = "Cierre X"
         frmAdministraCaja.lblOperacion.ForeColor = Color.DarkRed
-        frmAdministraCaja.Show()
+        frmAdministraCaja.ShowDialog()
     End Sub
 
     ''' <summary>
@@ -128,7 +128,7 @@ Public Class frmVentas
     Private Sub ToolStripMenuItem7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem7.Click
         frmAdministraCaja.lblOperacion.Text = "Cierre Z"
         frmAdministraCaja.lblOperacion.ForeColor = Color.Red
-        frmAdministraCaja.Show()
+        frmAdministraCaja.ShowDialog()
     End Sub
 
     Private Sub SalirDelSistemaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirDelSistemaToolStripMenuItem.Click

@@ -23,6 +23,8 @@ Partial Class frmAdministraCaja
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.grpApertura = New System.Windows.Forms.GroupBox
+        Me.txtImporteRetiro = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
         Me.lblOperacion = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtFecha = New System.Windows.Forms.TextBox
@@ -50,6 +52,8 @@ Partial Class frmAdministraCaja
         '
         'grpApertura
         '
+        Me.grpApertura.Controls.Add(Me.txtImporteRetiro)
+        Me.grpApertura.Controls.Add(Me.Label9)
         Me.grpApertura.Controls.Add(Me.lblOperacion)
         Me.grpApertura.Controls.Add(Me.Label8)
         Me.grpApertura.Controls.Add(Me.txtFecha)
@@ -59,10 +63,28 @@ Partial Class frmAdministraCaja
         Me.grpApertura.Controls.Add(Me.Label1)
         Me.grpApertura.Location = New System.Drawing.Point(13, 13)
         Me.grpApertura.Name = "grpApertura"
-        Me.grpApertura.Size = New System.Drawing.Size(505, 108)
+        Me.grpApertura.Size = New System.Drawing.Size(505, 143)
         Me.grpApertura.TabIndex = 0
         Me.grpApertura.TabStop = False
         Me.grpApertura.Text = "Datos de Apertura"
+        '
+        'txtImporteRetiro
+        '
+        Me.txtImporteRetiro.Location = New System.Drawing.Point(155, 106)
+        Me.txtImporteRetiro.Name = "txtImporteRetiro"
+        Me.txtImporteRetiro.Size = New System.Drawing.Size(112, 20)
+        Me.txtImporteRetiro.TabIndex = 22
+        Me.txtImporteRetiro.Text = "0.00"
+        Me.txtImporteRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(30, 109)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(73, 13)
+        Me.Label9.TabIndex = 21
+        Me.Label9.Text = "Importe Retiro"
         '
         'lblOperacion
         '
@@ -120,7 +142,7 @@ Partial Class frmAdministraCaja
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(30, 81)
+        Me.Label1.Location = New System.Drawing.Point(30, 82)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(100, 13)
         Me.Label1.TabIndex = 0
@@ -140,9 +162,9 @@ Partial Class frmAdministraCaja
         Me.grpCaja.Controls.Add(Me.Label2)
         Me.grpCaja.Controls.Add(Me.btnConfirmar)
         Me.grpCaja.Controls.Add(Me.btnCancelar)
-        Me.grpCaja.Location = New System.Drawing.Point(13, 135)
+        Me.grpCaja.Location = New System.Drawing.Point(13, 162)
         Me.grpCaja.Name = "grpCaja"
-        Me.grpCaja.Size = New System.Drawing.Size(505, 214)
+        Me.grpCaja.Size = New System.Drawing.Size(505, 231)
         Me.grpCaja.TabIndex = 1
         Me.grpCaja.TabStop = False
         Me.grpCaja.Text = "Gestión de Caja"
@@ -214,7 +236,7 @@ Partial Class frmAdministraCaja
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(24, 88)
+        Me.Label4.Location = New System.Drawing.Point(24, 87)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(98, 13)
         Me.Label4.TabIndex = 7
@@ -223,7 +245,7 @@ Partial Class frmAdministraCaja
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 61)
+        Me.Label3.Location = New System.Drawing.Point(24, 60)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(90, 13)
         Me.Label3.TabIndex = 6
@@ -258,7 +280,7 @@ Partial Class frmAdministraCaja
         '
         'btnSalir
         '
-        Me.btnSalir.Location = New System.Drawing.Point(443, 355)
+        Me.btnSalir.Location = New System.Drawing.Point(443, 399)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(75, 23)
         Me.btnSalir.TabIndex = 8
@@ -269,7 +291,7 @@ Partial Class frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 388)
+        Me.ClientSize = New System.Drawing.Size(530, 434)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
@@ -304,4 +326,6 @@ Partial Class frmAdministraCaja
     Friend WithEvents txtOperador As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lblOperacion As System.Windows.Forms.Label
+    Friend WithEvents txtImporteRetiro As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 End Class

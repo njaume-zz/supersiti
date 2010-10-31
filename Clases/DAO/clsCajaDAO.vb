@@ -30,9 +30,6 @@ Public Class clsCajaDAO
                     .CommandType = CommandType.StoredProcedure
                     With .Parameters
                         .AddWithValue("@CAJ_NUMERO", pCaja.Numero)
-                        .AddWithValue("@CAE_ID", pCaja.CajaEstado)
-                        .AddWithValue("@CAJ_FECHAAPERTURA", pCaja.FechaApertura)
-                        .AddWithValue("@CAJ_FECHACIERRE", pCaja.FechaCierre)
                         .AddWithValue("@CAJ_ESTADO", pCaja.Estado)
                         .Add("@CAJ_ID", SqlDbType.Int).Direction = ParameterDirection.Output
                     End With
@@ -67,6 +64,7 @@ Public Class clsCajaDAO
         Dim conecto As Boolean
         Dim salida As Integer
         Dim dt As DataTable
+
         Try
             Conexion.Open()
             conecto = True
@@ -84,9 +82,6 @@ Public Class clsCajaDAO
                     With .Parameters
                         .AddWithValue("@CAJ_ID", pCaja.ID)
                         .AddWithValue("@CAJ_NUMERO", pCaja.Numero)
-                        .AddWithValue("@CAE_ID", pCaja.CajaEstado)
-                        .AddWithValue("@CAJ_FECHAAPERTURA", pCaja.FechaApertura)
-                        .AddWithValue("@CAJ_FECHACIERRE", pCaja.FechaCierre)
                         .AddWithValue("@CAJ_ESTADO", pCaja.Estado)
                     End With
                     dt.Load(.ExecuteReader)
@@ -265,8 +260,8 @@ Public Class clsCajaDAO
         Return salida
     End Function
 
-    Public Shared Function ValidaAccionesCaja(ByVal cae_id As Integer, ByVal usu_id As Integer) As Boolean
-        Dim strSql As String = "STR_VERIFICA_CAJA_ACCIONES"
+    Public Shared Function ValidaMovimientosCaja(ByVal cae_id As Integer, ByVal usu_id As Integer) As Boolean
+        Dim strSql As String = "STR_VERIFICA_CAJA_MOVIMIENTOS"
         Dim Conexion As SqlConnection
         Dim cmd As New SqlCommand
         Dim conecto As Boolean
@@ -310,4 +305,53 @@ Public Class clsCajaDAO
         Return salida
     End Function
 
+    Public Shared Function InsertaCajaMovimientos(ByVal pCajaMovimiento As clsCajaMovimientos)
+        Dim strSql As String = "STR_NUEVO_CAJA_MOVIMIENTOS"
+        Dim Conexion As SqlConnection
+        Dim cmd As New SqlCommand
+        Dim conecto As Boolean
+        Dim salida As Integer
+
+        Try
+            Conexion = clsConexion.Conectar()
+            conecto = True
+        Catch ex As Exception
+            conecto = False
+        End Try
+        'MsgBox(RUB_ID & "-" & FAM_DESCRIPCION & "-" & FAM_ESTADO & "-" & FAM_ID & "-" & FAM_NOMBRE)
+        Try
+            If conecto Then
+                With cmd
+                    .Connection = Conexion
+                    .CommandText = strSql
+                    .CommandType = CommandType.StoredProcedure
+                    With .Parameters
+                        .Add("@CAM_ID", SqlDbType.Int).Direction = ParameterDirection.Output
+                        .AddWithValue("@CAM_IMPORTE", pCajaMovimiento.CAM_IMPORTE)
+                        .AddWithValue("@CAM_FECHA", pCajaMovimiento.CAM_FECHA)
+                        .AddWithValue("@CAE_ID", pCajaMovimiento.CAE_ID)
+                        .AddWithValue("@USU_ID", pCajaMovimiento.USU_ID)
+                        .AddWithValue("@CAM_ESTADO", pCajaMovimiento.CAM_ESTADO)
+                    End With
+                    .ExecuteNonQuery()
+                End With
+                salida = cmd.Parameters.Item("@CAM_ID").Value
+                'If salida > 0 Then
+                '    salida = 1
+                'Else
+                '    salida = -1
+                'End If
+            Else
+                salida = -1
+            End If
+            Conexion.Close()
+        Catch ex As Exception
+            salida = -1
+            MsgBox(ex.Message)
+        Finally
+            cmd = Nothing
+            Conexion = Nothing
+        End Try
+        Return salida
+    End Function
 End Class

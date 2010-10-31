@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\clsCaja.vb" />
+    <Compile Include="Clases\clsCajaMovimientos.vb" />
+    <Compile Include="Clases\clsCajaTipoMovimiento.vb" />
     <Compile Include="Clases\clsComprobante.vb" />
     <Compile Include="Clases\clsDetalleComprobante.vb" />
     <Compile Include="Clases\clsFamilia.vb" />
