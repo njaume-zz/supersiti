@@ -1,4 +1,4 @@
--- USE DEv_SUPER
+-- USE DES_SUPER
 
 -- ============================================================================
 -- SITUACIONES FRENTE A IVA
@@ -37,10 +37,10 @@ exec fn_savetipocomprob ('12','REMITO','REMITO','A','+');
 */
 -- CARGA DE CAJA ESATDO
 
-exec str_nuevo_caja_estado 0,'Apertura',1
-exec str_nuevo_caja_estado 0,'Retiro',1
-exec str_nuevo_caja_estado 0,'Cierre X',1
-exec str_nuevo_caja_estado 0,'Cierre Z',1
+exec str_nuevo_caja_tipo_movimiento 0,'Apertura',1
+exec str_nuevo_caja_tipo_movimiento 0,'Retiro',1
+exec str_nuevo_caja_tipo_movimiento 0,'Cierre X',1
+exec str_nuevo_caja_tipo_movimiento 0,'Cierre Z',1
 
 -- CARGA DE UNIDADES
 exec str_nuevo_unidad 0,'Kilogramo','Kg.',1
@@ -48,7 +48,7 @@ exec str_nuevo_unidad 0,'Gramo','Gr.',1
 exec str_nuevo_unidad 0,'Pack','Pack',1
 exec str_nuevo_unidad 0,'Unidad','Uni.',1
 exec str_nuevo_unidad 0,'Paquete','Paq.',1
-
+exec str_nuevo_unidad 0,'Caja','Caja',1
 
 -- CARGA DE RUBROS
 
@@ -308,4 +308,4 @@ exec str_nuevo_rol_modulo 0,0,3,27
 exec str_nuevo_usuario 0,'Admin','9874123','maxiadad@gmail.com',1,1
 
 
-exec str_valida_ingreso 'Admin','9874123'
+-- exec str_valida_ingreso 'Admin','9874123'

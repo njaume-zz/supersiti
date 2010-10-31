@@ -35,28 +35,28 @@
     Private Function VerificarApertura() As Boolean
         Dim ok As Boolean
         Dim idUsr As Integer = CInt(frmVentas.SSTInformaUsuario.Items("TSSIdUsuario").Text)
-        ok = clsCajaDAO.ValidaAccionesCaja(1, idUsr)  ' 1 = Apertura
+        ok = clsCajaDAO.ValidaMovimientosCaja(1, idUsr)  ' 1 = Apertura
         Return ok
     End Function
 
     Private Function VerificarRetiro() As Boolean
         Dim ok As Boolean
         Dim idUsr As Integer = CInt(frmVentas.SSTInformaUsuario.Items("TSSIdUsuario").Text)
-        ok = clsCajaDAO.ValidaAccionesCaja(2, idUsr) ' 2 = Retiro
+        ok = clsCajaDAO.ValidaMovimientosCaja(2, idUsr) ' 2 = Retiro
         Return ok
     End Function
 
     Private Function VerificarCierreX() As Boolean
         Dim ok As Boolean
         Dim idUsr As Integer = CInt(frmVentas.SSTInformaUsuario.Items("TSSIdUsuario").Text)
-        ok = clsCajaDAO.ValidaAccionesCaja(3, idUsr) ' 3 = Cierre X
+        ok = clsCajaDAO.ValidaMovimientosCaja(3, idUsr) ' 3 = Cierre X
         Return ok
     End Function
 
     Private Function VerificarCierreZ() As Boolean
         Dim ok As Boolean
         Dim idUsr As Integer = CInt(frmVentas.SSTInformaUsuario.Items("TSSIdUsuario").Text)
-        ok = clsCajaDAO.ValidaAccionesCaja(4, idUsr) '4 = Cierre Z
+        ok = clsCajaDAO.ValidaMovimientosCaja(4, idUsr) '4 = Cierre Z
         Return ok
     End Function
 
@@ -82,18 +82,22 @@
             Else
                 Select Case Me.lblOperacion.Text
                     Case "Apertura"  'CAE_ID = 1
-                        Dim caja As New clsCaja(0, frmVentas.TSSPtoVta.Text, 1, Now, "1900/01/01", 1)
-                        Estado = clsCajaDAO.InsertaCaja(caja)
+                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                               1, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
 
                     Case "Retiro"    'CAE_ID = 2
-                        Dim caja As New clsCaja(0, frmVentas.TSSPtoVta.Text, 2, Now, "1900/01/01", 1)
-                        Estado = clsCajaDAO.InsertaCaja(caja)
+                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                               2, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                     Case "Cierre X"  'CAE_ID = 3
-                        Dim caja As New clsCaja(0, frmVentas.TSSPtoVta.Text, 3, Now, "1900/01/01", 1)
-                        Estado = clsCajaDAO.InsertaCaja(caja)
+                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                               3, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                     Case "Cierre Z"  'CAE_ID = 4
-                        Dim caja As New clsCaja(0, frmVentas.TSSPtoVta.Text, 4, Now, "1900/01/01", 1)
-                        Estado = clsCajaDAO.InsertaCaja(caja)
+                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                               4, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                 End Select
                 If Estado = -1 Then
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " falló y no pudo guardarse.-", ".:: ERROR EN CAJAS ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -122,12 +126,13 @@
                 'acá se llama a los métodos para determinar si no hay aperturas pendientes
                 ' para este usuario 
                 If VerificarApertura() Then
-                    MessageBox.Show("Existe una APERTURA PENDIENTE para el Usuario: " & frmVentas.TSSUsuario.Text & _
-                                    ". Debe realizar el Cierre X, primero.", ".:: Caja con Apertura ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    MessageBox.Show("Existe una APERTURA PENDIENTE para el Usuario: " & frmVentas.TSSUsuario.Text & "." & _
+                                    ControlChars.CrLf & " Debe realizar el Cierre X, primero.", ".:: Caja con Apertura ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Me.Close()
                 End If
             Case "Retiro"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
+                ' se debe recuperar el importe de apertura y los retiros hechos por el usuario.
                 VerificarRetiro()
             Case "Cierre X"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
@@ -219,7 +224,21 @@
         CalcularTotal()
     End Sub
 
-#End Region
+    Private Sub txtImporteRetiro_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtImporteRetiro.KeyPress
+        If Not ValidaNumerico(e.KeyChar) Then
+            e.Handled = True
+        Else
+            e.Handled = False
+        End If
+    End Sub
 
+    Private Sub txtImporteRetiro_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtImporteRetiro.LostFocus
+        If Me.txtImporteRetiro.Text = "" Then
+            Me.txtImporteRetiro.Text = "0.00"
+        End If
+        Me.txtImporteRetiro.Text = Convert.ToDouble(Me.txtImporteRetiro.Text)
+        CalcularTotal()
+    End Sub
+#End Region
 
 End Class

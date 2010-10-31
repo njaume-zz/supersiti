@@ -34,3 +34,4 @@ D:\Documentos\Proyectos\Super\PV_Super\obj\Debug\PV_Super.frmIngreso.resources
 E:\Proyectos\NET\Super\PV_Super\obj\Debug\PV_Super.frmAdministraCaja.resources
 E:\Proyectos\NET\Super\PV_Super\obj\Debug\PV_Super.frmBuscaProducto.resources
 E:\Proyectos\NET\Super\PV_Super\obj\Debug\PV_Super.frmIngreso.resources
+D:\Documentos\Proyectos\Super\PV_Super\obj\Debug\PV_Super.frmAdministraCaja.resources
