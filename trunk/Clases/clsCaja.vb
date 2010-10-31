@@ -7,6 +7,20 @@
     Private _fechacierre As Date
     Private _estado As Integer
 
+    Public Sub New()
+
+    End Sub
+
+    Public Sub New(ByVal id As Integer, ByVal numero As Integer, ByVal cajaestado As Integer, _
+                    ByVal fechaapertura As Date, ByVal fechacierre As Date, ByVal estado As Integer)
+        _id = id
+        _numero = numero
+        _cajaestado = cajaestado
+        _fechaapertura = fechaapertura
+        _fechacierre = fechacierre
+        _estado = estado
+    End Sub
+
     Public Property ID() As Integer
         Get
             Return _id
