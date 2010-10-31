@@ -1,5 +1,40 @@
-USE DEv_SUPER
+-- USE DEv_SUPER
 
+-- ============================================================================
+-- SITUACIONES FRENTE A IVA
+-- ============================================================================
+/*
+exec  fn_saveSituacion('01', 'Responsable Inscripto', 'RSI');
+exec fn_saveSituacion('02', 'Responsable No Inscripto', 'RNI');
+exec fn_saveSituacion('03', 'No Responsable', 'NRS');
+exec fn_saveSituacion('04', 'Exento', 'EXT');
+exec fn_saveSituacion('05', 'Consumidor Final', 'CNF');
+exec fn_saveSituacion('06', 'No Categorizado', 'NC');
+exec fn_saveSituacion('07', 'Monotributo', 'MON');
+*/
+-- ===========================================================================
+-- TIPOS DE DOCUMENTOS
+-- ===========================================================================
+/*
+exec fn_saveTipoDoc(1, 'LE');
+exec fn_saveTipoDoc(2, 'LC');
+exec fn_saveTipoDoc(3, 'DNI');
+*/
+-- ===========================================================================
+-- COMPROBANTES DE VENTA
+-- ===========================================================================
+/*
+exec fn_savetipocomprob ('01','FACTURA','FACT','A','+');
+exec fn_savetipocomprob ('02','NOTA DE DEBITO','ND','A','+');
+exec fn_savetipocomprob ('03','NOTA DE CREDITO','NC','A','-');
+exec fn_savetipocomprob ('04','RECIBO','REC','A','+');
+exec fn_savetipocomprob ('06','FACTURA','FACT','B','+');
+exec fn_savetipocomprob ('07','NOTA DE DEBITO','ND','B','+');
+exec fn_savetipocomprob ('08','NOTA DE CREDITO','NC','B','-');
+exec fn_savetipocomprob ('09','RECIBO','REC','B','+');
+exec fn_savetipocomprob ('12','REMITO','REMITO','A','+');
+
+*/
 -- CARGA DE CAJA ESATDO
 
 exec str_nuevo_caja_estado 0,'Apertura',1

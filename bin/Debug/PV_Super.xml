@@ -6,6 +6,91 @@ PV_Super
 </name>
 </assembly>
 <members>
-
+<member name="M:PV_Super.frmVentas.ToolStripMenuItem4_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un retiro de plata de la caja
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem5_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar una apertura de caja
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem6_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un Cierre de Caja por operador
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem7_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un Cierre Z, un cierre completo de las ventas
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.Funciones.ControlarCadena(System.Char)">
+	<summary>
+ Controla el ingreso de caracter distinto de comilla simple o doble.
+ </summary>
+	<param name="pcKeyChar">Caracter a validar</param>
+	<returns>Caracter validado o cadena vacia si es comilla simple o doble</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.Funciones.ControlarEnteroPositivo(System.Char)">
+	<summary>
+ Controla el ingreso de caracter numérico.
+ </summary>
+	<param name="pcKeyChar">Caracter a validar</param>
+	<returns>Caracter validado o cadena vacia si no es numérico</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+	<summary>
+ Función que inserta una caja nueva
+ </summary>
+	<param name="pCaja"></param>
+	<returns>entero que determina si tuvo éxito o no</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.ModificaCaja(PV_Super.clsCaja)">
+	<summary>
+ Modificación de Caja
+ </summary>
+	<param name="pCaja"></param>
+	<returns>Entero que determina si modificó bien o no</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCaja(System.Int32,System.String,System.DateTime,System.DateTime)">
+	<summary>
+ Función parametrizada que tiene como fin recuperar los datos necesario
+ de la tabla de Cajas
+ </summary>
+	<param name="CAJ_ID"></param>
+	<param name="CAJ_NUMERO"></param>
+	<param name="CAJ_FECHAAPERTURA"></param>
+	<param name="CAJ_FECHACIERRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaEstado(System.Int32,System.String)">
+	<summary>
+ Función que devuelve los estados de la caja
+ </summary>
+	<param name="CAE_ID"></param>
+	<param name="CAE_NOMBRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaAcciones(System.Int32,System.DateTime,System.Int32,System.Int32)">
+	<summary>
+ Lista las ACciones realizadas en las cajas, aperturas, retiro, etc.
+ </summary>
+	<param name="CAA_ID"></param>
+	<param name="CAA_FECHA"></param>
+	<param name="CAE_ID"></param>
+	<param name="USU_ID"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member>
 </members>
 </doc>
