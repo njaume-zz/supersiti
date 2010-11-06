@@ -34,6 +34,20 @@ PV_Super
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:PV_Super.Funciones.ControlarCadena(System.Char)">
+	<summary>
+ Controla el ingreso de caracter distinto de comilla simple o doble.
+ </summary>
+	<param name="pcKeyChar">Caracter a validar</param>
+	<returns>Caracter validado o cadena vacia si es comilla simple o doble</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.Funciones.ControlarEnteroPositivo(System.Char)">
+	<summary>
+ Controla el ingreso de caracter numérico.
+ </summary>
+	<param name="pcKeyChar">Caracter a validar</param>
+	<returns>Caracter validado o cadena vacia si no es numérico</returns>
+	<remarks></remarks>
 </member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
 	<summary>
  Función que inserta una caja nueva
@@ -76,20 +90,6 @@ PV_Super
 	<param name="CAE_ID"></param>
 	<param name="USU_ID"></param>
 	<returns>Datatable</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.Funciones.ControlarCadena(System.Char)">
-	<summary>
- Controla el ingreso de caracter distinto de comilla simple o doble.
- </summary>
-	<param name="pcKeyChar">Caracter a validar</param>
-	<returns>Caracter validado o cadena vacia si es comilla simple o doble</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.Funciones.ControlarEnteroPositivo(System.Char)">
-	<summary>
- Controla el ingreso de caracter numérico.
- </summary>
-	<param name="pcKeyChar">Caracter a validar</param>
-	<returns>Caracter validado o cadena vacia si no es numérico</returns>
 	<remarks></remarks>
 </member>
 </members>

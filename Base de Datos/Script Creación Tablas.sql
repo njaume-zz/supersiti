@@ -1,7 +1,8 @@
+
 --CREATE DATABASE DES_SUPER
 -- USE DES_SUPER
 -- V:Ventas, C:Comercialización, A:Tablas auxiliares
-
+-- S:Sistema
 -- =============================================================================================
 --                      USUARIO, MODULOS Y ROLES DEL SISTEMA
 -- =============================================================================================
@@ -97,38 +98,8 @@ CREATE TABLE [dbo].[V_CAJA_CIERRES](
 )
 go
 
-/*
-CREATE TABLE ComprobanteVta (
-   CV_CodigoINTEGER (2),
-   CV_Descrip VARCHAR(30),
-   CV_Sigla VARCHAR (10),
-   CV_Letra VARCHAR (1),
-   CV_Signo VARCHAR(1),
-   CV_UltimoNro varchar(),  -- ultimo numero entregado al cliente.
-   PRIMARY KEY (CV_Codigo)
-)
 
--- go
 
-CREATE TABLE PtoDeVta (
-  PV_idPtoVta int identity (1,1) not null,
-  PV_Codigo VARCHAR(4),
-  PV_Nombre VARCHAR(50),
-  PV_Descrip VARCHAR(250),
-  PV_Sigla VARCHAR(8),
-  PRIMARY KEY (PV_idPtoVta)
-)
--- go
-
-CREATE TABLE situacion (
-  SFI_IdSit INT identity (1,1 )NOT NULL ,
-  SFI_Clave_Iva varchar(2) NOT NULL,
-  SFI_Descrip varchar(45) NOT NULL,
-  SFI_Sigla varchar(5) NOT NULL,
-  PRIMARY KEY  (SFI_IdSit)
-)
--- go
-*/
 /*CREATE TABLE AUD_AUDITORIA(
 	
 )
@@ -200,6 +171,11 @@ CREATE TABLE [dbo].[C_PRODUCTO](
 	CONSTRAINT [PK_PRODUCTO_FAMILIA] FOREIGN KEY ([FAM_ID]) REFERENCES [C_FAMILIA] ([FAM_ID])
 )
 go
+
+
+/*
+	========================= TABLAS AUXILIARES ==========================
+*/
 --IMPUESTO IVA SERÁ EL PORCENTAJE DE IVA, CATEGORÍA IVA SERÁ, POR EJEMPLO, RESPONSABLE INSCRIPTO
 CREATE TABLE [dbo].[A_IMPUESTOIVA](
 	[IVA_ID] [INT] IDENTITY (1,1) NOT NULL,
@@ -211,3 +187,39 @@ CREATE TABLE [dbo].[A_IMPUESTOIVA](
 	PRIMARY KEY ([IVA_ID])
 )
 go
+
+
+
+CREATE TABLE [dbo].[A_COMPROBANTES_VENTA] (
+    [COV_ID] [INT] IDENTITY (1,1) NOT NULL,
+	[COV_CODIGO] [INT],
+    [COV_DESCRIPCION] [VARCHAR](30),
+    [COV_SIGLA] [VARCHAR] (10),
+    [COV_Letra] [VARCHAR] (1),
+    [COV_Signo] [VARCHAR] (1),
+    [COV_UltimoNro] [VARCHAR](13),  -- ultimo numero entregado al cliente.
+    PRIMARY KEY ([COV_ID])
+)
+
+ go
+
+CREATE TABLE [dbo].[A_PUNTO_VENTA] (
+  [PTV_ID] [INT] IDENTITY(1,1) NOT NULL,
+  [PTV_CODIGO] [VARCHAR](4),
+  [PTV_NOMBRE] [VARCHAR](50),
+  [PTV_DESCRIPCION] [VARCHAR](250),
+  [PTV_SIGLA] [VARCHAR](8),
+  PRIMARY KEY ([PTV_ID])
+)
+
+go
+
+CREATE TABLE [dbo].[A_SITUACION_IMPOSITIVA] (
+  [SII_ID] [INT] identity (1,1 )NOT NULL ,
+  [SII_CLAVE] [varchar](2) NOT NULL,
+  [SII_DESCRIPCION][varchar](45) NOT NULL,
+  [SII_SIGLA] [varchar](5) NOT NULL,
+  PRIMARY KEY  ([SII_ID])
+)
+
+ go
