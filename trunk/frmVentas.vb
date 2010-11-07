@@ -148,7 +148,7 @@ Public Class frmVentas
     End Sub
 
     Private Sub CerrarAplicacion()
-        If MsgBox("Está seguro que desea cerrar la aplcación?", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, ".::CIERRE DE APLICACION::.") = MsgBoxResult.Yes Then
+        If MsgBox("¿Está seguro que desea cerrar la Aplicación?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CIERRE DE APLICACIÓN ::.") = MsgBoxResult.Yes Then
             BorrarDT(ol_dt)
             End
         End If
