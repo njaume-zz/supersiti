@@ -90,12 +90,12 @@ Partial Class frmAdministraCaja
         'lblOperacion
         '
         Me.lblOperacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOperacion.Location = New System.Drawing.Point(273, 28)
+        Me.lblOperacion.Location = New System.Drawing.Point(281, 6)
         Me.lblOperacion.Name = "lblOperacion"
         Me.lblOperacion.Size = New System.Drawing.Size(224, 66)
         Me.lblOperacion.TabIndex = 6
         Me.lblOperacion.Text = "lblOperacion"
-        Me.lblOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblOperacion.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label8
         '
