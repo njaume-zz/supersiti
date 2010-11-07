@@ -44,15 +44,17 @@ Partial Class frmIngreso
         'LogoPictureBox
         '
         Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"), System.Drawing.Image)
-        Me.LogoPictureBox.Location = New System.Drawing.Point(2, 0)
+        Me.LogoPictureBox.ImageLocation = ""
+        Me.LogoPictureBox.Location = New System.Drawing.Point(2, 4)
         Me.LogoPictureBox.Name = "LogoPictureBox"
-        Me.LogoPictureBox.Size = New System.Drawing.Size(230, 229)
+        Me.LogoPictureBox.Size = New System.Drawing.Size(228, 234)
+        Me.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.LogoPictureBox.TabIndex = 0
         Me.LogoPictureBox.TabStop = False
         '
         'UsernameLabel
         '
-        Me.UsernameLabel.Location = New System.Drawing.Point(236, 55)
+        Me.UsernameLabel.Location = New System.Drawing.Point(236, 51)
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(220, 23)
         Me.UsernameLabel.TabIndex = 0
@@ -61,7 +63,7 @@ Partial Class frmIngreso
         '
         'PasswordLabel
         '
-        Me.PasswordLabel.Location = New System.Drawing.Point(236, 112)
+        Me.PasswordLabel.Location = New System.Drawing.Point(236, 108)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(220, 23)
         Me.PasswordLabel.TabIndex = 2
@@ -85,7 +87,8 @@ Partial Class frmIngreso
         '
         'OK
         '
-        Me.OK.Location = New System.Drawing.Point(261, 192)
+        Me.OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.OK.Location = New System.Drawing.Point(251, 192)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(94, 23)
         Me.OK.TabIndex = 4
@@ -93,8 +96,9 @@ Partial Class frmIngreso
         '
         'Cancel
         '
+        Me.Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(364, 192)
+        Me.Cancel.Location = New System.Drawing.Point(354, 192)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 23)
         Me.Cancel.TabIndex = 5
@@ -115,6 +119,7 @@ Partial Class frmIngreso
         Me.Controls.Add(Me.UsernameLabel)
         Me.Controls.Add(Me.LogoPictureBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmIngreso"

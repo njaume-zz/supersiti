@@ -22,6 +22,7 @@ Partial Class frmBuscaProducto
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuscaProducto))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView
         Me.Codigo_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Descripcion_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
@@ -74,7 +75,7 @@ Partial Class frmBuscaProducto
         '
         'txtDescripcionProd
         '
-        Me.txtDescripcionProd.Location = New System.Drawing.Point(121, 25)
+        Me.txtDescripcionProd.Location = New System.Drawing.Point(121, 23)
         Me.txtDescripcionProd.Name = "txtDescripcionProd"
         Me.txtDescripcionProd.Size = New System.Drawing.Size(180, 20)
         Me.txtDescripcionProd.TabIndex = 1
@@ -82,7 +83,7 @@ Partial Class frmBuscaProducto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(52, 28)
+        Me.Label1.Location = New System.Drawing.Point(52, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 2
@@ -106,6 +107,7 @@ Partial Class frmBuscaProducto
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtDescripcionProd)
         Me.Controls.Add(Me.DataGridView1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmBuscaProducto"
         Me.Text = "Buscar Productos"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()

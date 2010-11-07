@@ -22,6 +22,7 @@ Partial Class frmAdministraCaja
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdministraCaja))
         Me.grpApertura = New System.Windows.Forms.GroupBox
         Me.txtImporteRetiro = New System.Windows.Forms.TextBox
         Me.Label9 = New System.Windows.Forms.Label
@@ -70,7 +71,7 @@ Partial Class frmAdministraCaja
         '
         'txtImporteRetiro
         '
-        Me.txtImporteRetiro.Location = New System.Drawing.Point(155, 106)
+        Me.txtImporteRetiro.Location = New System.Drawing.Point(154, 106)
         Me.txtImporteRetiro.Name = "txtImporteRetiro"
         Me.txtImporteRetiro.Size = New System.Drawing.Size(112, 20)
         Me.txtImporteRetiro.TabIndex = 22
@@ -80,7 +81,7 @@ Partial Class frmAdministraCaja
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(30, 109)
+        Me.Label9.Location = New System.Drawing.Point(32, 109)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(73, 13)
         Me.Label9.TabIndex = 21
@@ -99,7 +100,7 @@ Partial Class frmAdministraCaja
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(30, 28)
+        Me.Label8.Location = New System.Drawing.Point(32, 28)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(37, 13)
         Me.Label8.TabIndex = 5
@@ -107,7 +108,7 @@ Partial Class frmAdministraCaja
         '
         'txtFecha
         '
-        Me.txtFecha.Location = New System.Drawing.Point(155, 25)
+        Me.txtFecha.Location = New System.Drawing.Point(154, 25)
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.ReadOnly = True
         Me.txtFecha.Size = New System.Drawing.Size(112, 20)
@@ -115,7 +116,7 @@ Partial Class frmAdministraCaja
         '
         'txtOperador
         '
-        Me.txtOperador.Location = New System.Drawing.Point(155, 52)
+        Me.txtOperador.Location = New System.Drawing.Point(154, 52)
         Me.txtOperador.Name = "txtOperador"
         Me.txtOperador.ReadOnly = True
         Me.txtOperador.Size = New System.Drawing.Size(112, 20)
@@ -124,7 +125,7 @@ Partial Class frmAdministraCaja
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(30, 55)
+        Me.Label7.Location = New System.Drawing.Point(32, 55)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(51, 13)
         Me.Label7.TabIndex = 2
@@ -132,7 +133,7 @@ Partial Class frmAdministraCaja
         '
         'txtImporteApertura
         '
-        Me.txtImporteApertura.Location = New System.Drawing.Point(155, 78)
+        Me.txtImporteApertura.Location = New System.Drawing.Point(154, 78)
         Me.txtImporteApertura.Name = "txtImporteApertura"
         Me.txtImporteApertura.Size = New System.Drawing.Size(112, 20)
         Me.txtImporteApertura.TabIndex = 0
@@ -142,7 +143,7 @@ Partial Class frmAdministraCaja
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(30, 82)
+        Me.Label1.Location = New System.Drawing.Point(32, 82)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(100, 13)
         Me.Label1.TabIndex = 0
@@ -171,7 +172,7 @@ Partial Class frmAdministraCaja
         '
         'txtCredito
         '
-        Me.txtCredito.Location = New System.Drawing.Point(155, 111)
+        Me.txtCredito.Location = New System.Drawing.Point(154, 111)
         Me.txtCredito.Name = "txtCredito"
         Me.txtCredito.Size = New System.Drawing.Size(100, 20)
         Me.txtCredito.TabIndex = 4
@@ -180,7 +181,7 @@ Partial Class frmAdministraCaja
         '
         'txtTarjetas
         '
-        Me.txtTarjetas.Location = New System.Drawing.Point(155, 84)
+        Me.txtTarjetas.Location = New System.Drawing.Point(154, 84)
         Me.txtTarjetas.Name = "txtTarjetas"
         Me.txtTarjetas.Size = New System.Drawing.Size(100, 20)
         Me.txtTarjetas.TabIndex = 3
@@ -190,7 +191,7 @@ Partial Class frmAdministraCaja
         'txtBonos
         '
         Me.txtBonos.AutoCompleteCustomSource.AddRange(New String() {"0.00", "00.00", "000.00"})
-        Me.txtBonos.Location = New System.Drawing.Point(155, 58)
+        Me.txtBonos.Location = New System.Drawing.Point(154, 58)
         Me.txtBonos.Name = "txtBonos"
         Me.txtBonos.Size = New System.Drawing.Size(100, 20)
         Me.txtBonos.TabIndex = 2
@@ -199,7 +200,7 @@ Partial Class frmAdministraCaja
         '
         'txtEfectivo
         '
-        Me.txtEfectivo.Location = New System.Drawing.Point(155, 32)
+        Me.txtEfectivo.Location = New System.Drawing.Point(154, 32)
         Me.txtEfectivo.Name = "txtEfectivo"
         Me.txtEfectivo.Size = New System.Drawing.Size(100, 20)
         Me.txtEfectivo.TabIndex = 1
@@ -208,7 +209,7 @@ Partial Class frmAdministraCaja
         '
         'txtTotalCaja
         '
-        Me.txtTotalCaja.Location = New System.Drawing.Point(155, 156)
+        Me.txtTotalCaja.Location = New System.Drawing.Point(154, 156)
         Me.txtTotalCaja.Name = "txtTotalCaja"
         Me.txtTotalCaja.Size = New System.Drawing.Size(100, 20)
         Me.txtTotalCaja.TabIndex = 5
@@ -218,7 +219,7 @@ Partial Class frmAdministraCaja
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(95, 158)
+        Me.Label6.Location = New System.Drawing.Point(100, 159)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(31, 13)
         Me.Label6.TabIndex = 9
@@ -227,7 +228,7 @@ Partial Class frmAdministraCaja
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(24, 114)
+        Me.Label5.Location = New System.Drawing.Point(32, 114)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(93, 13)
         Me.Label5.TabIndex = 8
@@ -236,7 +237,7 @@ Partial Class frmAdministraCaja
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(24, 87)
+        Me.Label4.Location = New System.Drawing.Point(32, 87)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(98, 13)
         Me.Label4.TabIndex = 7
@@ -245,7 +246,7 @@ Partial Class frmAdministraCaja
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 60)
+        Me.Label3.Location = New System.Drawing.Point(32, 60)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(90, 13)
         Me.Label3.TabIndex = 6
@@ -254,7 +255,7 @@ Partial Class frmAdministraCaja
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(24, 33)
+        Me.Label2.Location = New System.Drawing.Point(32, 33)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(99, 13)
         Me.Label2.TabIndex = 5
@@ -262,7 +263,7 @@ Partial Class frmAdministraCaja
         '
         'btnConfirmar
         '
-        Me.btnConfirmar.Location = New System.Drawing.Point(341, 187)
+        Me.btnConfirmar.Location = New System.Drawing.Point(340, 195)
         Me.btnConfirmar.Name = "btnConfirmar"
         Me.btnConfirmar.Size = New System.Drawing.Size(75, 23)
         Me.btnConfirmar.TabIndex = 6
@@ -271,7 +272,7 @@ Partial Class frmAdministraCaja
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(422, 187)
+        Me.btnCancelar.Location = New System.Drawing.Point(421, 195)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 7
@@ -295,6 +296,7 @@ Partial Class frmAdministraCaja
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmAdministraCaja"
         Me.Text = "Administración de Cajas"
         Me.grpApertura.ResumeLayout(False)
