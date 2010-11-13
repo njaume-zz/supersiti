@@ -166,6 +166,9 @@ exec str_nuevo_familia 0,'Sidras y frizantes','Sidras y frizantes',12,1
 exec str_nuevo_familia 0,'Vinos','Vinos',12,1
 exec str_nuevo_familia 0,'Wiskies','Wiskies',12,1
 
+
+EXEC STR_NUEVO_C_TIPOS_PRECIOS 0,'LSTPRE1','Lista de Precio de Venta',NULL,1
+
 -- =====CREACION DE USUARIO, ROLES Y MODULOS =============
 
 --Padre de los siguientes 3 parrafos
