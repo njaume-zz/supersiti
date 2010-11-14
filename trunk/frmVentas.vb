@@ -77,7 +77,7 @@ Public Class frmVentas
 
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = Keys.Delete Then
-            If MsgBox("Está seguro de Quitar este Item de la venta?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, ". : : ADVERTENCIA : : .") = MsgBoxResult.Yes Then
+            If MsgBox("¿Está seguro de quitar este Item de la venta?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = MsgBoxResult.Yes Then
                 QuitarItemDT(ol_dt, Me.DataGridView1.CurrentCell.RowIndex)
             End If
         End If
