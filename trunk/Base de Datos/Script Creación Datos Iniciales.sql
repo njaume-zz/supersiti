@@ -1,4 +1,4 @@
--- USE DES_SUPER
+USE DES_SUPER
 
 -- ============================================================================
 -- SITUACIONES FRENTE A IVA

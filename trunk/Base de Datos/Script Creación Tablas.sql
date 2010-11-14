@@ -1,6 +1,6 @@
 
---CREATE DATABASE DES_SUPER
--- USE DES_SUPER
+-- CREATE DATABASE DES_SUPER
+--	USE DES_SUPER
 -- V:Ventas, C:Comercialización, A:Tablas auxiliares
 -- S:Sistema
 -- =============================================================================================
