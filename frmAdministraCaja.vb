@@ -77,7 +77,7 @@
         Try
 
             If Not Validar() Then
-                MsgBox("No se puede confirmar la operación porque faltan datos.-", MsgBoxStyle.Exclamation, ".::OPERACION FALLIDA")
+                MsgBox("No se puede confirmar la operación porque faltan datos.-", MsgBoxStyle.Exclamation, ".:: OPERACION FALLIDA ::.")
                 LimiparCampos()
             Else
                 Select Case Me.lblOperacion.Text
@@ -100,7 +100,7 @@
                         Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                 End Select
                 If Estado = -1 Then
-                    MessageBox.Show("La operación " & Me.lblOperacion.Text & " falló y no pudo guardarse.-", ".:: ERROR EN CAJAS ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show("La operación " & Me.lblOperacion.Text & " falló y no pudo guardarse.-", ".:: ERROR EN CAJAS ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     'GUARDAR EN ARCHIVO LOG
                 Else
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " se realizó con éxito.-", ".:: Operación Exitosa ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
