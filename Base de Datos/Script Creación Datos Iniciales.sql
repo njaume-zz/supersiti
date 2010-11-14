@@ -48,16 +48,17 @@ exec str_nuevo_unidad 0,'Gramo','Gr.',1
 exec str_nuevo_unidad 0,'Pack','Pack',1
 exec str_nuevo_unidad 0,'Unidad','Uni.',1
 exec str_nuevo_unidad 0,'Paquete','Paq.',1
+exec str_nuevo_unidad 0,'Botella','Bot.',1
 exec str_nuevo_unidad 0,'Caja','Caja',1
 
 -- CARGA DE RUBROS
 
 exec str_nuevo_RUBRO 0,'Limpieza','Limpieza',1
 exec str_nuevo_RUBRO 0,'Almacén','Almacén',1
-exec str_nuevo_RUBRO 0,'Perfumeria','Perfumeria',1
+exec str_nuevo_RUBRO 0,'Perfumería','Perfumería',1
 exec str_nuevo_RUBRO 0,'Bazar','Bazar',1
 exec str_nuevo_RUBRO 0,'Carnicería','Carnicería',1
-exec str_nuevo_RUBRO 0,'Fiambreria','Fiambreria',1
+exec str_nuevo_RUBRO 0,'Fiambrería','Fiambrería',1
 exec str_nuevo_RUBRO 0,'Lacteos','Lacteos',1
 exec str_nuevo_RUBRO 0,'Panificados','Panificados',1
 exec str_nuevo_RUBRO 0,'Verdulería','Verdulería',1
