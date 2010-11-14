@@ -37,7 +37,7 @@ exec fn_savetipocomprob ('12','REMITO','REMITO','A','+');
 */
 -- CARGA DE CAJA ESATDO
 
-exec str_nuevo_caja_tipo_movimiento 0,'Apertura',1
+exec STR_NUEVO_CAJA_TIPO_MOVIMIENTO 0,'Apertura',1
 exec str_nuevo_caja_tipo_movimiento 0,'Retiro',1
 exec str_nuevo_caja_tipo_movimiento 0,'Cierre X',1
 exec str_nuevo_caja_tipo_movimiento 0,'Cierre Z',1
@@ -164,7 +164,7 @@ exec str_nuevo_familia 0,'Vinos','Vinos',12,1
 exec str_nuevo_familia 0,'Wiskies','Wiskies',12,1
 
 
-EXEC STR_NUEVO_C_TIPOS_PRECIOS 0,'LSTPRE1','Lista de Precio de Venta',NULL,1
+EXEC STR_NUEVO_C_TIPOS_PRECIOS 0,'LSTPRE2','Lista de Precio de Promociones',NULL,1
 
 -- =====CREACION DE USUARIO, ROLES Y MODULOS =============
 
