@@ -137,6 +137,7 @@ exec str_nuevo_familia 0,'Shampoo y acondicionadores','Shampoo y acondicionadore
 exec str_nuevo_familia 0,'Abrelatas','Abrelatas',4,1
 exec str_nuevo_familia 0,'Bowls','Bowls',4,1
 exec str_nuevo_familia 0,'Manga decoradora','Manga decoradora',4,1
+exec str_nuevo_familia 0,'Carnes Varias','Carnes Varias',5,1
 Exec str_nuevo_familia 0,'Fiambres y envasados','Fiambres y envasados',6,1
 exec str_nuevo_familia 0,'Quesos','Quesos',6,1
 exec str_nuevo_familia 0,'Tapas y pascualinas','Tapas y pascualinas',6,1
@@ -155,6 +156,8 @@ exec str_nuevo_familia 0,'Verduras y hortalizas','Verduras y hortalizas',9,1
 exec str_nuevo_familia 0,'Comidas rápidas','Comidas rápidas',10,1
 exec str_nuevo_familia 0,'Helados','Helados',10,1
 exec str_nuevo_familia 0,'Verduras y hortalizas','Verduras y hortalizas',10,1
+exec str_nuevo_familia 0,'Pastas secas','Pastas secas',11,1
+exec str_nuevo_familia 0,'Pastas frescas','Pastas frescas',11,1
 exec str_nuevo_familia 0,'Aperitivos','Aperitivos',12,1
 exec str_nuevo_familia 0,'Cervezas','Cervezas',12,1
 exec str_nuevo_familia 0,'Espumantes','Espumantes',12,1
