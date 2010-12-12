@@ -6,35 +6,7 @@ PV_Super
 </name>
 </assembly>
 <members>
-<member name="M:PV_Super.frmVentas.ToolStripMenuItem4_Click(System.Object,System.EventArgs)">
-	<summary>
- Item del menú que solicita realizar un retiro de plata de la caja
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem5_Click(System.Object,System.EventArgs)">
-	<summary>
- Item del menú que solicita realizar una apertura de caja
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem6_Click(System.Object,System.EventArgs)">
-	<summary>
- Item del menú que solicita realizar un Cierre de Caja por operador
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem7_Click(System.Object,System.EventArgs)">
-	<summary>
- Item del menú que solicita realizar un Cierre Z, un cierre completo de las ventas
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+<member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
 	<summary>
  Función que inserta una caja nueva
  </summary>
@@ -77,6 +49,34 @@ PV_Super
 	<param name="USU_ID"></param>
 	<returns>Datatable</returns>
 	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem4_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un retiro de plata de la caja
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem5_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar una apertura de caja
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem6_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un Cierre de Caja por operador
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem7_Click(System.Object,System.EventArgs)">
+	<summary>
+ Item del menú que solicita realizar un Cierre Z, un cierre completo de las ventas
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:PV_Super.Funciones.ControlarCadena(System.Char)">
 	<summary>
  Controla el ingreso de caracter distinto de comilla simple o doble.
@@ -90,6 +90,14 @@ PV_Super
  </summary>
 	<param name="pcKeyChar">Caracter a validar</param>
 	<returns>Caracter validado o cadena vacia si no es numérico</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.Funciones.ObtenerConfiguracion(System.String)">
+	<summary>
+ Recupera un atributo de configuración de la aplicación dentro
+ del archivo de configuración.
+ </summary>
+	<param name="pszAtributo">Atributo</param>
+	<returns>Valor del atributo</returns>
 	<remarks></remarks>
 </member>
 </members>
