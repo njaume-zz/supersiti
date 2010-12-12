@@ -23,55 +23,27 @@ Partial Class frmBuscaProducto
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuscaProducto))
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.Codigo_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Descripcion_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.UnidadVenta_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Pesable_prd = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.dgrProductos = New System.Windows.Forms.DataGridView
         Me.txtDescripcionProd = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.btnBuscar = New System.Windows.Forms.Button
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'DataGridView1
+        'dgrProductos
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Codigo_prd, Me.Descripcion_prd, Me.UnidadVenta_prd, Me.Pesable_prd})
-        Me.DataGridView1.Location = New System.Drawing.Point(1, 61)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(443, 437)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'Codigo_prd
-        '
-        Me.Codigo_prd.HeaderText = "Código"
-        Me.Codigo_prd.Name = "Codigo_prd"
-        Me.Codigo_prd.ReadOnly = True
-        '
-        'Descripcion_prd
-        '
-        Me.Descripcion_prd.HeaderText = "Descripción"
-        Me.Descripcion_prd.Name = "Descripcion_prd"
-        Me.Descripcion_prd.ReadOnly = True
-        '
-        'UnidadVenta_prd
-        '
-        Me.UnidadVenta_prd.HeaderText = "Unidad de Venta"
-        Me.UnidadVenta_prd.Name = "UnidadVenta_prd"
-        Me.UnidadVenta_prd.ReadOnly = True
-        '
-        'Pesable_prd
-        '
-        Me.Pesable_prd.HeaderText = "Pesable"
-        Me.Pesable_prd.Name = "Pesable_prd"
-        Me.Pesable_prd.ReadOnly = True
+        Me.dgrProductos.AllowUserToAddRows = False
+        Me.dgrProductos.AllowUserToDeleteRows = False
+        Me.dgrProductos.AllowUserToOrderColumns = True
+        Me.dgrProductos.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.dgrProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgrProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgrProductos.Location = New System.Drawing.Point(1, 51)
+        Me.dgrProductos.MultiSelect = False
+        Me.dgrProductos.Name = "dgrProductos"
+        Me.dgrProductos.ReadOnly = True
+        Me.dgrProductos.Size = New System.Drawing.Size(443, 447)
+        Me.dgrProductos.TabIndex = 0
         '
         'txtDescripcionProd
         '
@@ -106,20 +78,16 @@ Partial Class frmBuscaProducto
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtDescripcionProd)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.dgrProductos)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmBuscaProducto"
         Me.Text = "Buscar Productos"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents Codigo_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents UnidadVenta_prd As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Pesable_prd As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgrProductos As System.Windows.Forms.DataGridView
     Friend WithEvents txtDescripcionProd As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents btnBuscar As System.Windows.Forms.Button

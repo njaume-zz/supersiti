@@ -49,8 +49,8 @@ Partial Class frmVentas
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator
@@ -302,19 +302,19 @@ Partial Class frmVentas
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(248, 22)
         Me.ToolStripMenuItem2.Text = "Autorización Venta"
         '
-        'ToolStripMenuItem4
-        '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(248, 22)
-        Me.ToolStripMenuItem4.Text = "Retirar Efectivo"
-        '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
         Me.ToolStripMenuItem5.ShortcutKeys = System.Windows.Forms.Keys.F11
         Me.ToolStripMenuItem5.Size = New System.Drawing.Size(248, 22)
         Me.ToolStripMenuItem5.Text = "Apertura de Caja"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.ShortcutKeys = System.Windows.Forms.Keys.F12
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(248, 22)
+        Me.ToolStripMenuItem4.Text = "Retirar Efectivo"
         '
         'ToolStripMenuItem6
         '

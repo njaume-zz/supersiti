@@ -16,14 +16,14 @@ Public Class frmVentas
         CerrarAplicacion()
     End Sub
 
-    'Private Sub frmVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-    '    If e.KeyCode = Keys.F2 Then
-    '        frmBuscaProducto.Show()
-    '    End If
-    'End Sub
+    Private Sub frmVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            frmBuscaProducto.Show()
+        End If
+    End Sub
 
     Private Sub frmVentas_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
-        If e.KeyChar = ChrW(13) Then
+        If e.KeyChar = ChrW(Keys.F2) Then
             frmBuscaProducto.ShowDialog()
         End If
     End Sub
@@ -217,5 +217,7 @@ Public Class frmVentas
     End Sub
 #End Region
 
-
+    Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscarProductoXNombre.Click
+        frmBuscaProducto.ShowDialog()
+    End Sub
 End Class
