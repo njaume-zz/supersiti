@@ -195,7 +195,7 @@ Partial Class frmVentas
         Me.btnBuscarProductoXNombre.Name = "btnBuscarProductoXNombre"
         Me.btnBuscarProductoXNombre.Size = New System.Drawing.Size(75, 23)
         Me.btnBuscarProductoXNombre.TabIndex = 6
-        Me.btnBuscarProductoXNombre.Text = "Buscar [F2]"
+        Me.btnBuscarProductoXNombre.Text = "Buscar [F3]"
         Me.btnBuscarProductoXNombre.UseVisualStyleBackColor = True
         '
         'btnIngresaProducto
@@ -442,7 +442,7 @@ Partial Class frmVentas
         '
         Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
         Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(122, 17)
-        Me.ToolStripStatusLabel7.Text = "Buscar Producto=[F2]"
+        Me.ToolStripStatusLabel7.Text = "Buscar Producto=[F3]"
         '
         'ToolStripStatusLabel8
         '

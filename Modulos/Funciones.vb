@@ -264,7 +264,6 @@
         End Try
     End Function
 
-
     Public Function ObtenerConfiguracionDS(ByVal pszAtributo As String) As String
         Dim oFSO As System.IO.FileInfo
         Dim szValor As String = ""

@@ -34,36 +34,40 @@ Public Class frmVentas
         IniciaStrip()
     End Sub
 
-    Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
-        If Not Me.txtProductoBarra.Text = "" Then
-            If Chr(e.KeyCode) = Chr(Keys.F2) Then
-                frmBuscaProducto.ShowDialog()
-            End If
-            If e.KeyCode = Keys.Enter Then
-                'Buscar en la base y completar una Clase detalle
-                Me.txtCantidad.Focus()
-            End If
-        End If
-    End Sub
+    'Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
+    '    'If Not Me.txtProductoBarra.Text = "" Then
+    '    Try
+
+    '        If e.KeyCode = Keys.F2 Then
+    '            frmBuscaProducto.ShowDialog()
+    '        End If
+    '        If Not Me.txtProductoBarra.Text = "" Then
+    '            If e.KeyCode = Keys.Enter Then
+    '                'Buscar en la base y completar una Clase detalle
+    '                Me.txtCantidad.Focus()
+    '            End If
+    '        End If
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub txtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCantidad.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not Me.txtCantidad.Text = "" Then
+                BuscarProducto(Me.txtProductoBarra.Text)
+            End If
+        End If
+    End Sub
 
-                Dim o_Detalle As New clsDetalleComprobante
-                o_Detalle.Nombre = "Producto"
-                o_Detalle.ID = Me.DataGridView1.RowCount + 1
-                o_Detalle.Codigo = 123333 'txtProductoBarra.Text
-                o_Detalle.Cantidad = txtCantidad.Text
-                o_Detalle.PcioTotal = 0.0
-                o_Detalle.PcioUnitario = 0.0
-                o_Detalle.Pesable = 1
-                'AgregarItemDT(ol_dt, o_Detalle)
-                'Dim ds As New DataSet
-                'ds.Tables.Add(AgregarItemDT(ol_dt, o_Detalle))
-                Me.DataGridView1.DataSource = AgregarItemDT(ol_dt, o_Detalle) 'ds
-
-
+    Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
+        If e.KeyCode = Keys.F3 Then
+            frmBuscaProducto.ShowDialog()
+        End If
+        If Not Me.txtProductoBarra.Text = "" Then
+            If e.KeyCode = Keys.Enter Then
+                Me.txtCantidad.Focus()
             End If
         End If
     End Sub
@@ -135,9 +139,43 @@ Public Class frmVentas
         CerrarAplicacion()
     End Sub
 
+    Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscarProductoXNombre.Click
+        frmBuscaProducto.ShowDialog()
+    End Sub
 #End Region
 
 #Region "Métodos"
+
+    Private Sub BuscarProducto(ByVal pstrProducto As String)
+        Dim oDt As DataTable
+        Dim oDetalle As clsDetalleComprobante
+        Try
+            oDt = New DataTable
+            oDetalle = New clsDetalleComprobante
+
+            oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, pstrProducto)
+
+            If Not oDt Is Nothing Then
+                If oDt.Rows.Count > 1 Then
+                    frmBuscaProducto.Lista(oDt)
+                    frmBuscaProducto.ShowDialog()
+                Else
+                    oDetalle.ID = oDt.Rows(0).Item("PRO_ID")
+                    oDetalle.Nombre = oDt.Rows(0).Item("PRO_NOMBRE")
+                    oDetalle.Codigo = oDt.Rows(0).Item("PRO_CODIGO")
+                    oDetalle.PcioUnitario = Math.Round(oDt.Rows(0).Item("LPR_PRECIO"), 2)
+                    oDetalle.Cantidad = CInt(Me.txtCantidad.Text)
+                    oDetalle.PcioTotal = Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2)
+                    'oDetalle.Pesable = IIf(oDt.Rows(0).Item("PRO_PESABLE") = 1, "Si", "No")
+                    AgregarItemDT(oDt, oDetalle)
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            oDt = Nothing
+        End Try
+    End Sub
 
     Public Sub IniciaStrip()
         SSTInformaUsuario.Items("TSSUsuario").Text = ol_dtUsr.Rows(0).Item("USU_NOMBRE").ToString
@@ -169,14 +207,16 @@ Public Class frmVentas
 #Region "Creación de métodos auxiliares"
 
     Private Sub CrearDTItems()
+        Dim oDet As New clsDetalleComprobante
         ol_dt = New DataTable
-        ol_dt.Columns.Add("ID", GetType(Integer))
-        ol_dt.Columns.Add("Nombre", GetType(String))
-        ol_dt.Columns.Add("Codigo", GetType(Integer))
-        ol_dt.Columns.Add("PcioUnitario", GetType(Double))
-        ol_dt.Columns.Add("Cantidad", GetType(Integer))
-        ol_dt.Columns.Add("PcioTotal", GetType(Double))
-        ol_dt.Columns.Add("Pesable", GetType(Char))
+
+        ol_dt.Columns.Add(oDet.ID.ToString, GetType(Integer))
+        ol_dt.Columns.Add(oDet.Nombre.ToString, GetType(String))
+        ol_dt.Columns.Add(oDet.Codigo.ToString, GetType(Integer))
+        ol_dt.Columns.Add(oDet.PcioUnitario.ToString, GetType(Double))
+        ol_dt.Columns.Add(oDet.Cantidad.ToString, GetType(Integer))
+        ol_dt.Columns.Add(oDet.PcioTotal.ToString, GetType(Double))
+        ol_dt.Columns.Add(oDet.Pesable.ToString, GetType(Char))
 
     End Sub
 
@@ -186,13 +226,13 @@ Public Class frmVentas
             Dim dr As DataRow = dt.NewRow()
 
             'dr = dt.NewRow()
-            dr.Item("ID") = campos.ID
-            dr.Item("Nombre") = campos.Nombre
-            dr.Item("Codigo") = campos.Codigo
-            dr.Item("PcioUnitario") = campos.PcioUnitario
-            dr.Item("Cantidad") = campos.Cantidad
-            dr.Item("PcioTotal") = campos.PcioTotal
-            dr.Item("Pesable") = IIf(campos.Pesable = 1, "S", "N")
+            dr.Item(campos.ID.ToString) = campos.ID
+            dr.Item(campos.Nombre.ToString) = campos.Nombre
+            dr.Item(campos.Codigo.ToString) = campos.Codigo
+            dr.Item(campos.PcioUnitario.ToString) = campos.PcioUnitario
+            dr.Item(campos.Cantidad.ToString) = campos.Cantidad
+            dr.Item(campos.PcioTotal.ToString) = campos.PcioTotal
+            dr.Item(campos.Pesable.ToString) = IIf(campos.Pesable = 1, "S", "N")
             'dr.AcceptChanges()
 
             dt.Rows.Add(dr)
@@ -217,7 +257,4 @@ Public Class frmVentas
     End Sub
 #End Region
 
-    Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscarProductoXNombre.Click
-        frmBuscaProducto.ShowDialog()
-    End Sub
 End Class

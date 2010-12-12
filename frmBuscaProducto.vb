@@ -18,7 +18,6 @@
         End If
     End Sub
 
-
     Private Sub frmBuscaProducto_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         strBuscar = ""
         o_dt = Nothing
@@ -27,7 +26,6 @@
     Private Sub frmBuscaProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ListarProductos()
     End Sub
-
 
     Private Sub dgrProductos_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dgrProductos.KeyPress
         Dim wo_Dt As DataTable
@@ -91,12 +89,17 @@
 
 #Region "Métodos"
 
+    Public Sub Lista(ByVal pDt As DataTable)
+        Me.dgrProductos.DataSource = pDt
+        ConfigurarGrilla()
+    End Sub
+
     Private Sub ListarProductos()
 
         Try
 
             o_dt = New DataTable
-            o_dt = clsProductoDAO.getProducto(0, "", "", "", 0, 0)
+            o_dt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, "")
             Me.dgrProductos.DataSource = o_dt
             ConfigurarGrilla()
 

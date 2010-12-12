@@ -6,7 +6,8 @@ Public Class clsProductoDAO
 
     Public Shared Function getProducto(ByVal PRO_ID As Integer, ByVal PRO_NOMBRE As String, _
                                        ByVal PRO_CODIGO As String, ByVal PRO_MARCA As String, _
-                                       ByVal RUB_ID As Integer, ByVal FAM_ID As Integer) As DataTable
+                                       ByVal RUB_ID As Integer, ByVal FAM_ID As Integer, _
+                                       ByVal PRO_CODIGO_BARRA As String) As DataTable
         Dim strSql As String = "STR_CONSULTA_PRODUCTO"
         Dim Conexion As SqlConnection '= New SqlConnection(ConfigurationManager.ConnectionStrings("sqlConexion2").ConnectionString)
         Dim cmd As New SqlCommand
@@ -33,6 +34,7 @@ Public Class clsProductoDAO
                         .AddWithValue("@PRO_MARCA", PRO_MARCA)
                         .AddWithValue("@RUB_ID", RUB_ID)
                         .AddWithValue("@FAM_ID", FAM_ID)
+                        .AddWithValue("@PRO_CODIGO_BARRA", PRO_CODIGO_BARRA)
                     End With
                     salida.Load(.ExecuteReader)
                 End With
@@ -200,89 +202,5 @@ Public Class clsProductoDAO
         End Try
         Return salida
     End Function
-
-
-    'Public Shared Function InsertaProducto(ByVal PRO_ID As Integer, ByVal PRO_NOMBRE As String, _
-    '                               ByVal PRO_CODIGO As String, ByVal PRO_MARCA As String, _
-    '                               ByVal RUB_ID As Integer, ByVal FAM_ID As Integer) As Integer
-
-    '    Dim strSql As String = "STR_NUEVO_PRODUCTO"
-    '    Dim Conexion As SqlConnection = New SqlConnection(ConfigurationManager.ConnectionStrings("sqlConexion").ConnectionString)
-    '    Dim cmd As New SqlCommand
-    '    Dim conecto As Boolean
-    '    Dim salida As Integer
-
-    '    Try
-    '        Conexion.Open()
-    '        conecto = True
-    '    Catch ex As Exception
-    '        conecto = False
-    '    End Try
-
-    '    Try
-    '        If conecto Then
-    '            With cmd
-    '                .Connection = Conexion
-    '                .CommandText = strSql
-    '                .CommandType = CommandType.StoredProcedure
-    '                With .Parameters
-    '                    .AddWithValue("@PRO_ID", PRO_ID)
-    '                    .AddWithValue("@PRO_NOMBRE", PRO_NOMBRE)
-    '                    .AddWithValue("@PRO_CODIGO", PRO_CODIGO)
-    '                    .AddWithValue("@PRO_MARCA", PRO_MARCA)
-    '                    .AddWithValue("@RUB_ID", RUB_ID)
-    '                    .AddWithValue("@FAM_ID", FAM_ID)
-    '                End With
-    '                .ExecuteNonQuery()
-    '            End With
-    '        Else
-    '            salida = -1
-    '        End If
-    '    Catch ex As Exception
-    '        salida = -1
-    '    End Try
-
-    'End Function
-
-    'Public Shared Function ModificaProducto(ByVal PRO_ID As Integer, ByVal PRO_NOMBRE As String, _
-    '                               ByVal PRO_CODIGO As String, ByVal PRO_MARCA As String, _
-    '                               ByVal RUB_ID As Integer, ByVal FAM_ID As Integer) As Integer
-    '    Dim strSql As String = "STR_MODIFICA_PRODUCTO"
-    '    Dim Conexion As SqlConnection = New SqlConnection(ConfigurationManager.ConnectionStrings("sqlConexion").ConnectionString)
-    '    Dim cmd As New SqlCommand
-    '    Dim conecto As Boolean
-    '    Dim salida As Integer
-
-    '    Try
-    '        Conexion.Open()
-    '        conecto = True
-    '    Catch ex As Exception
-    '        conecto = False
-    '    End Try
-
-    '    Try
-    '        If conecto Then
-    '            With cmd
-    '                .Connection = Conexion
-    '                .CommandText = strSql
-    '                .CommandType = CommandType.StoredProcedure
-    '                With .Parameters
-    '                    .AddWithValue("")
-    '                    .AddWithValue("")
-    '                    .AddWithValue("")
-    '                    .AddWithValue("")
-    '                    .AddWithValue("")
-    '                    .AddWithValue("")
-    '                End With
-    '                .ExecuteNonQuery()
-    '            End With
-    '        Else
-    '            salida = -1
-    '        End If
-    '    Catch ex As Exception
-    '        salida = -1
-    '    End Try
-
-    'End Function
 
 End Class
