@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{73933D06-5A60-4E47-873E-1CE489AD7AF2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -172,6 +172,108 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\PV_Super.exe" />
+    <Content Include="bin\Debug\PV_Super.pdb" />
+    <Content Include="bin\Debug\PV_Super.vshost.exe" />
+    <Content Include="bin\Debug\PV_Super.xml" />
+    <Content Include="Iconos\124.png" />
+    <Content Include="Iconos\152.png" />
+    <Content Include="Iconos\155.png" />
+    <Content Include="Iconos\167.png" />
+    <Content Include="Iconos\168.png" />
+    <Content Include="Iconos\253.png" />
+    <Content Include="Iconos\259.png" />
+    <Content Include="Iconos\260.png" />
+    <Content Include="Iconos\277.png" />
+    <Content Include="Iconos\289.png" />
+    <Content Include="Iconos\345.png" />
+    <Content Include="Iconos\350.png" />
+    <Content Include="Iconos\354.png" />
+    <Content Include="Iconos\371.png" />
+    <Content Include="Iconos\374.png" />
+    <Content Include="Iconos\390.png" />
+    <Content Include="Iconos\486.png" />
+    <Content Include="Iconos\487.png" />
+    <Content Include="Iconos\508.png" />
+    <Content Include="Iconos\509.png" />
+    <Content Include="Imagenes\071.png" />
+    <Content Include="Imagenes\072.png" />
+    <Content Include="Imagenes\073.png" />
+    <Content Include="Imagenes\074.png" />
+    <Content Include="Imagenes\127.png" />
+    <Content Include="Imagenes\128.png" />
+    <Content Include="Imagenes\152.png" />
+    <Content Include="Imagenes\167.png" />
+    <Content Include="Imagenes\168.png" />
+    <Content Include="Imagenes\173.png" />
+    <Content Include="Imagenes\174.png" />
+    <Content Include="Imagenes\175.png" />
+    <Content Include="Imagenes\176.png" />
+    <Content Include="Imagenes\229.png" />
+    <Content Include="Imagenes\259.png" />
+    <Content Include="Imagenes\260.png" />
+    <Content Include="Imagenes\261.png" />
+    <Content Include="Imagenes\262.png" />
+    <Content Include="Imagenes\265.png" />
+    <Content Include="Imagenes\267.png" />
+    <Content Include="Imagenes\277.png" />
+    <Content Include="Imagenes\289.png" />
+    <Content Include="Imagenes\314.png" />
+    <Content Include="Imagenes\337.png" />
+    <Content Include="Imagenes\338.png" />
+    <Content Include="Imagenes\354.png" />
+    <Content Include="Imagenes\492.png" />
+    <Content Include="Imagenes\508.png" />
+    <Content Include="Imagenes\509.png" />
+    <Content Include="Imagenes\advancedsettings.png" />
+    <Content Include="Imagenes\apply.png" />
+    <Content Include="Imagenes\back1.png" />
+    <Content Include="Imagenes\blogmarks.png" />
+    <Content Include="Imagenes\bookmark.png" />
+    <Content Include="Imagenes\build.png" />
+    <Content Include="Imagenes\business.png" />
+    <Content Include="Imagenes\button_cancel.png" />
+    <Content Include="Imagenes\button_ok.png" />
+    <Content Include="Imagenes\calculator.png" />
+    <Content Include="Imagenes\close.png" />
+    <Content Include="Imagenes\db_add.png" />
+    <Content Include="Imagenes\db_comit.png" />
+    <Content Include="Imagenes\db_remove.png" />
+    <Content Include="Imagenes\db_status.png" />
+    <Content Include="Imagenes\db_update.png" />
+    <Content Include="Imagenes\decrypted.png" />
+    <Content Include="Imagenes\delete1.png" />
+    <Content Include="Imagenes\demo.png" />
+    <Content Include="Imagenes\desktop_enhancements.png" />
+    <Content Include="Imagenes\down.png" />
+    <Content Include="Imagenes\editdelete.png" />
+    <Content Include="Imagenes\edit_add.png" />
+    <Content Include="Imagenes\edit_remove.png" />
+    <Content Include="Imagenes\gohome.png" />
+    <Content Include="Imagenes\info.png" />
+    <Content Include="Imagenes\khelpcenter.png" />
+    <Content Include="Imagenes\lock.png" />
+    <Content Include="Imagenes\ok.png" />
+    <Content Include="Imagenes\plus.png" />
+    <Content Include="Imagenes\reload.png" />
+    <Content Include="Imagenes\restart.png" />
+    <Content Include="Imagenes\scroll down.png" />
+    <Content Include="Imagenes\scroll left.png" />
+    <Content Include="Imagenes\scroll right.png" />
+    <Content Include="Imagenes\search.png" />
+    <Content Include="Imagenes\shutdown.png" />
+    <Content Include="Imagenes\sipphone.png" />
+    <Content Include="Imagenes\softwareD.png" />
+    <Content Include="Imagenes\stop.png" />
+    <Content Include="Imagenes\tab.png" />
+    <Content Include="Imagenes\tab_new.png" />
+    <Content Include="Imagenes\tab_remove.png" />
+    <Content Include="Imagenes\up.png" />
+    <Content Include="Imagenes\utilities.png" />
+    <Content Include="Imagenes\write 1.png" />
+    <Content Include="bin\Debug\XMLConfig.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

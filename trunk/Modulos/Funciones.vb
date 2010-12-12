@@ -230,36 +230,69 @@
     ''' <param name="pszAtributo">Atributo</param>
     ''' <returns>Valor del atributo</returns>
     ''' <remarks></remarks>
-    'Public Function ObtenerConfiguracion(ByVal pszAtributo As String) As String
-    '    Dim oDom As Xml.XmlDocument
-    '    Dim oFSO As System.IO.FileInfo
-    '    Dim szValor As String = ""
+    Public Function ObtenerConfiguracion(ByVal pszAtributo As String) As String
+        Dim oDom As Xml.XmlDocument
+        Dim oNodes As Xml.XmlNodeList
+        Dim oFSO As System.IO.FileInfo
+        Dim szValor As String = ""
 
-    '    Try
-    '        'Abro el archivo de configuración.
-    '        oFSO = New System.IO.FileInfo(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
-    '        If (oFSO.Exists) Then
-    '            oDom = New Xml.XmlDocument
-    '            oDom.Load(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
+        Try
+            'Abro el archivo de configuración.
+            oFSO = New System.IO.FileInfo(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
+            If (oFSO.Exists) Then
+                oDom = New Xml.XmlDocument
+                oDom.Load(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
+                oNodes = oDom.SelectNodes("/Configuracion/" & pszAtributo)
+                'Verifico si el nodo existe.
+                If (oDom.SelectSingleNode("/Configuracion").LastChild.Name = pszAtributo) Then
+                    szValor = Trim$(oNodes.Item("value").Value)
+                    szValor = Trim$(oDom.SelectSingleNode("/Configuracion/" & pszAtributo).InnerXml)
+                Else
+                    MsgBox("No se encuentra el nodo que se está especificando (" & pszAtributo & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
+                End If
+            Else
+                MsgBox("No se encuentra el archivo de configuración en la carpeta requerida (" & gszPath & cXMLConfig & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
+                Application.Exit()
+            End If
 
-    '            'Verifico si el nodo existe.
-    '            If Not (oDom.SelectSingleNode(pszAtributo) Is Nothing) Then
-    '                szValor = Trim$(oDom.SelectSingleNode(pszAtributo).InnerText)
-    '            Else
-    '                MsgBox("No se encuentra el nodo que se está especificando (" & pszAtributo & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
-    '            End If
-    '        Else
-    '            MsgBox("No se encuentra el archivo de configuración en la carpeta requerida (" & gszPath & cXMLConfig & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
-    '            Application.Exit()
-    '        End If
+            ObtenerConfiguracion = szValor
+        Catch ex As Exception
+            Throw (ex)
+        Finally
+            oDom = Nothing
+            oFSO = Nothing
+        End Try
+    End Function
 
-    '        ObtenerConfiguracion = szValor
-    '    Catch ex As Exception
-    '        Throw (ex)
-    '    Finally
-    '        oDom = Nothing
-    '        oFSO = Nothing
-    '    End Try
-    'End Function
 
+    Public Function ObtenerConfiguracionDS(ByVal pszAtributo As String) As String
+        Dim oFSO As System.IO.FileInfo
+        Dim szValor As String = ""
+        Dim ds As DataSet
+        Try
+            'Abro el archivo de configuración.
+            oFSO = New System.IO.FileInfo(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
+            If (oFSO.Exists) Then
+                ds = New DataSet
+                ds.ReadXml(oFSO.FullName)
+                'Tomo el valor de la conexion
+                If ds.Tables(1).Rows(0).Item(1) Is Nothing Then
+                    MsgBox("No se encontró la sección indicada en el archivo de configuración.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, ". : : ADVERTENCIA : : .")
+                    Application.Exit()
+                Else
+                    szValor = ds.Tables(1).Rows(0).Item(1)
+                End If
+
+            Else
+                MsgBox("No se encuentra el archivo de configuración en la carpeta requerida (" & gszPath & cXMLConfig & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
+                Application.Exit()
+            End If
+
+            ObtenerConfiguracionDS = szValor
+        Catch ex As Exception
+            Throw (ex)
+        Finally
+            oFSO = Nothing
+        End Try
+    End Function
 End Module

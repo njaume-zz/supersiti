@@ -10,10 +10,11 @@ Public Class clsConexion
 
     Public Shared Function Conectar() As SqlClient.SqlConnection
         Dim cadenaConexion As String
-        'cadenaConexion = "Data Source=MAXI-PC;Initial Catalog=DES_SUPER;Integrated Security=True"
         'cadenaConexion = "Data Source=PICHITOS-PC;Initial Catalog=DES_SUPER;Integrated Security=True"
         'cadenaConexion = "Data Source=LOSDIBERT-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True"
-        cadenaConexion = "Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True"
+        'cadenaConexion = "Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True"
+        cadenaConexion = ObtenerConfiguracionDS("Conexion")
+
         Dim cn As SqlConnection = New SqlConnection(cadenaConexion)
         cn.Open()
         Return cn
