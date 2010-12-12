@@ -14,7 +14,7 @@ Public Class clsProductoDAO
         Dim salida As New DataTable
 
         Try
-            Conexion.Open()
+            Conexion = clsConexion.Conectar
             conecto = True
         Catch ex As Exception
             conecto = False
