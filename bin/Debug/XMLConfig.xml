@@ -1,9 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Conexion>
-    <add name="sqlConexion" value="Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True"></add>
-    <!--<add name="sqlConexion" value="Data Source=PICHITOS-PC;Initial Catalog=DES_SUPER;Integrated Security=True"></add>-->
-    <!--<add name="sqlConexion" value="Data Source=LOSDIBERT-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True"></add>-->
-  </Conexion>  
-  <!-- Escribir despues de esta sección -->
+  <Conexion>Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>
 </Configuracion>

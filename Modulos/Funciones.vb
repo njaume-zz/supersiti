@@ -5,22 +5,38 @@
         Dim oDocumento As System.Xml.XmlDocument
         Dim oNodo1 As System.Xml.XmlNode
         Dim oNodo2 As System.Xml.XmlNode
-
+        Dim oFSO As System.IO.FileInfo
+        Dim szRuta As String
         Try
             oDocumento = New System.Xml.XmlDocument
-            oDocumento.Load(My.Application.Info.DirectoryPath & "\log.xml")
-            oNodo1 = oDocumento.CreateNode(Xml.XmlNodeType.Element, "Evento", "")
-            oDocumento.SelectSingleNode("Eventos").AppendChild(oNodo1)
-            oNodo2 = oDocumento.CreateNode(Xml.XmlNodeType.Element, "Excepcion", "")
-            oNodo2.InnerText = pex.Message
-            oNodo2 = oDocumento.CreateNode(Xml.XmlNodeType.Element, "Ubicacion", "")
-            oNodo2.InnerText = pDescripcion
-            oNodo2 = oDocumento.CreateNode(Xml.XmlNodeType.Element, "Fecha", "")
-            oNodo2.InnerText = Now.ToString("dd/MM/yyyy HH:mm:ss")
-            oNodo2 = oDocumento.CreateNode(Xml.XmlNodeType.Element, "Usuario", "")
-            oNodo2.InnerText = Now.ToString(pUsuario)
-            oDocumento.SelectSingleNode("Eventos").LastChild.AppendChild(oNodo2)
+            szRuta = System.IO.Path.Combine(My.Application.Info.DirectoryPath, "log.xml")
+            oFSO = New System.IO.FileInfo(szRuta)
+            If Not (oFSO.Exists) Then
+                CrearLogVacio()
+            End If
+            oDocumento.Load(szRuta)
+            oNodo1 = oDocumento.CreateElement("Eventos")
+            oDocumento.SelectSingleNode("XMLErrores").AppendChild(oNodo1)
+
+            oNodo1 = oDocumento.CreateElement("Excepcion")
+            oNodo1.InnerText = pex.Message.ToString
+            oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
+            
+            oNodo1 = oDocumento.CreateElement("Ubicacion")
+            oNodo1.InnerText = pDescripcion
+            oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
+            
+            oNodo1 = oDocumento.CreateElement("Fecha")
+            oNodo1.InnerText = Now.ToString("dd/MM/yyyy HH:mm:ss")
+            oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
+            
+            oNodo1 = oDocumento.CreateElement("Usuario")
+            oNodo1.InnerText = Now.ToString(pUsuario)
+            oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
+
+            oDocumento.SelectSingleNode("XMLErrores").AppendChild(oNodo1)
             oDocumento.Save(My.Application.Info.DirectoryPath & "\log.xml")
+
         Catch ex As Exception
             Throw ex
         Finally
@@ -29,6 +45,23 @@
             oNodo2 = Nothing
         End Try
 
+    End Sub
+
+    Private Sub CrearLogVacio()
+        Dim strXML As String
+        Dim oXML As New Xml.XmlDocument
+        'Dim oElemento As Xml.XmlElement
+
+        strXML = "<XMLErrores>" & vbNewLine & _
+                 "  <Eventos>" & vbNewLine & _
+                 "      <Excepcion></Excepcion>" & vbNewLine & _
+                 "      <Ubicacion></Ubicacion>" & vbNewLine & _
+                 "      <Fecha></Fecha>" & vbNewLine & _
+                 "      <Usuario></Usuario>" & vbNewLine & _
+                 "  </Eventos>" & vbNewLine & _
+                 "</XMLErrores>"
+        oXML.LoadXml(strXML)
+        oXML.Save(System.IO.Path.Combine(My.Application.Info.DirectoryPath, "log.xml"))
     End Sub
 
     Public Sub Manejador_Errores(ByVal Lugar As String, ByVal ex As Exception)
@@ -235,26 +268,29 @@
         Dim oNodes As Xml.XmlNodeList
         Dim oFSO As System.IO.FileInfo
         Dim szValor As String = ""
-
+        Dim szRuta As String
         Try
+            szRuta = System.IO.Path.Combine(My.Application.Info.DirectoryPath, cXMLConfig)
             'Abro el archivo de configuración.
-            oFSO = New System.IO.FileInfo(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
+            oFSO = New System.IO.FileInfo(szRuta)
             If (oFSO.Exists) Then
-                oDom = New Xml.XmlDocument
-                oDom.Load(My.Application.Info.DirectoryPath & "\" & cXMLConfig)
-                oNodes = oDom.SelectNodes("/Configuracion/" & pszAtributo)
+                oDom = New System.Xml.XmlDocument
+                oDom.Load(szRuta)
+
                 'Verifico si el nodo existe.
-                If (oDom.SelectSingleNode("/Configuracion").LastChild.Name = pszAtributo) Then
-                    szValor = Trim$(oNodes.Item("value").Value)
-                    szValor = Trim$(oDom.SelectSingleNode("/Configuracion/" & pszAtributo).InnerXml)
+                If Not (oDom.SelectSingleNode("/Configuracion/" & pszAtributo) Is Nothing) Then
+                    szValor = Trim$(oDom.SelectSingleNode("/Configuracion/" & pszAtributo).InnerText)
                 Else
                     MsgBox("No se encuentra el nodo que se está especificando (" & pszAtributo & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
+                    ObtenerConfiguracion = Nothing
+                    Exit Function
                 End If
             Else
-                MsgBox("No se encuentra el archivo de configuración en la carpeta requerida (" & gszPath & cXMLConfig & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
-                Application.Exit()
+                MsgBox("No se encuentra el archivo de configuración en la carpeta requerida (" & szRuta & cXMLConfig & ").", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Advertencia")
+                'Application.Exit()
+                ObtenerConfiguracion = Nothing
+                Exit Function
             End If
-
             ObtenerConfiguracion = szValor
         Catch ex As Exception
             Throw (ex)

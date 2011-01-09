@@ -8,6 +8,9 @@ Public Class frmVentas
     'en todo momento y poder validar los permisos. Además de utilizarlos en el
     'Status Strip Tools
     Public ol_dtUsr As DataTable
+    'Creo la variable ol_DtProducto, sólo para no realizar 2 accesos a la base
+    ' y mantener en memoria los datos necesarios para ingresar en la grilla
+    Dim ol_DtProducto As DataTable
 #End Region
 
 #Region "Eventos"
@@ -56,7 +59,12 @@ Public Class frmVentas
     Private Sub txtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCantidad.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not Me.txtCantidad.Text = "" Then
-                BuscarProducto(Me.txtProductoBarra.Text)
+                If Not ol_DtProducto Is Nothing Then
+                    AgregarAGrilla(ol_DtProducto)
+                Else
+                    'el 2º parámetro me indica que lo busco y agrego a la grilla
+                    BuscarProducto(Me.txtProductoBarra.Text, "agregar")
+                End If
             End If
         End If
     End Sub
@@ -67,6 +75,8 @@ Public Class frmVentas
         End If
         If Not Me.txtProductoBarra.Text = "" Then
             If e.KeyCode = Keys.Enter Then
+                ' el 2º parámetro me indica que lo mantengo en memoria hasta ingresar la cantidad.
+                BuscarProducto(Me.txtProductoBarra.Text, "buscar")
                 Me.txtCantidad.Focus()
             End If
         End If
@@ -146,28 +156,36 @@ Public Class frmVentas
 
 #Region "Métodos"
 
-    Private Sub BuscarProducto(ByVal pstrProducto As String)
+    Private Sub AgregarAGrilla(ByVal poDT As DataTable)
+        Dim oDetalle As New clsDetalleComprobante
+
+        oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
+        oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
+        oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
+        oDetalle.PcioUnitario = Math.Round(poDT.Rows(0).Item("LPR_PRECIO"), 2)
+        oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
+        oDetalle.PcioTotal = Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2)
+        oDetalle.Pesable = IIf(poDT.Rows(0).Item("PRO_PESABLE") = 1, "Si", "No")
+        AgregarItemDT(poDT, oDetalle)
+    End Sub
+
+    Private Sub BuscarProducto(ByVal pstrProducto As String, ByVal accion As String)
         Dim oDt As DataTable
-        Dim oDetalle As clsDetalleComprobante
+
         Try
             oDt = New DataTable
-            oDetalle = New clsDetalleComprobante
-
-            oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, pstrProducto)
+            oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, pstrProducto, 0)
 
             If Not oDt Is Nothing Then
                 If oDt.Rows.Count > 1 Then
                     frmBuscaProducto.Lista(oDt)
                     frmBuscaProducto.ShowDialog()
                 Else
-                    oDetalle.ID = oDt.Rows(0).Item("PRO_ID")
-                    oDetalle.Nombre = oDt.Rows(0).Item("PRO_NOMBRE")
-                    oDetalle.Codigo = oDt.Rows(0).Item("PRO_CODIGO")
-                    oDetalle.PcioUnitario = Math.Round(oDt.Rows(0).Item("LPR_PRECIO"), 2)
-                    oDetalle.Cantidad = CInt(Me.txtCantidad.Text)
-                    oDetalle.PcioTotal = Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2)
-                    'oDetalle.Pesable = IIf(oDt.Rows(0).Item("PRO_PESABLE") = 1, "Si", "No")
-                    AgregarItemDT(oDt, oDetalle)
+                    If accion = "buscar" Then
+                        ol_DtProducto = oDt
+                    Else
+                        AgregarAGrilla(oDt)
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -206,17 +224,30 @@ Public Class frmVentas
 
 #Region "Creación de métodos auxiliares"
 
+    Private Function DefinirColumna(ByVal pszNombre As String) As DataColumn
+        Dim wDcol As New DataColumn
+
+        wDcol.DataType = System.Type.GetType("System.String")
+        wDcol.ColumnName = pszNombre
+        wDcol.DefaultValue = pszNombre
+
+        Return wDcol
+    End Function
+
     Private Sub CrearDTItems()
         Dim oDet As New clsDetalleComprobante
         ol_dt = New DataTable
 
-        ol_dt.Columns.Add(oDet.ID.ToString, GetType(Integer))
-        ol_dt.Columns.Add(oDet.Nombre.ToString, GetType(String))
-        ol_dt.Columns.Add(oDet.Codigo.ToString, GetType(Integer))
-        ol_dt.Columns.Add(oDet.PcioUnitario.ToString, GetType(Double))
-        ol_dt.Columns.Add(oDet.Cantidad.ToString, GetType(Integer))
-        ol_dt.Columns.Add(oDet.PcioTotal.ToString, GetType(Double))
-        ol_dt.Columns.Add(oDet.Pesable.ToString, GetType(Char))
+        With ol_dt.Columns
+            .Add(DefinirColumna("id"))
+            .Add(DefinirColumna("Nombre"))
+            .Add(DefinirColumna("Codigo"))
+            .Add(DefinirColumna("PcioUnitario"))
+            .Add(DefinirColumna("Cantidad"))
+            .Add(DefinirColumna("PcioTotal"))
+            .Add(DefinirColumna("Pesable"))
+        End With
+        
 
     End Sub
 
