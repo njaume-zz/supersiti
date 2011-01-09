@@ -2,6 +2,8 @@
     Private _id As Integer
     Private _rub_id As Integer
     Private _codigo As String
+    Private _codigo_barra As String
+    Private _codigo_proveedor As String
     Private _idpadre As Integer
     Private _nombre As String
     Private _marca As String
@@ -15,25 +17,27 @@
     Private _impuestointerno As Double
     Private _maximo As Integer ' Máximo a reponer
     Private _minimo As Integer ' Minimo a Reponer
-    Private _tiemporeposicion As Integer ' Tiempo de reposición
     Private _fam_id As Integer
     Private _estado As Integer
     Private _prd_asociados As Integer
     Private _alerta As Integer
+    Private _pesable As Integer
 
     Public Sub New()
 
     End Sub
 
-    Public Sub New(ByVal id As Integer, ByVal rub_id As Integer, ByVal codigo As String, ByVal idpadre As Integer, _
-                    ByVal nombre As String, ByVal marca As String, ByVal descripcion As String, ByVal nombreetiqueta As String, _
-                    ByVal univ_id As Integer, ByVal unic_id As Integer, ByVal pciocompra As Double, ByVal iva As Double, _
-                    ByVal pciocosto As Double, ByVal impuestointerno As Double, ByVal maximo As Integer, ByVal minimo As Integer, _
-                    ByVal tiemporeposicion As Integer, ByVal fam_id As Integer, ByVal estado As Integer, _
-                    ByVal prd_asociado As Integer, ByVal alerta As Integer)
+    Public Sub New(ByVal id As Integer, ByVal rub_id As Integer, ByVal codigo As String, ByVal codbarra As String, _
+                    ByVal codprov As String, ByVal idpadre As Integer, ByVal nombre As String, ByVal marca As String, _
+                    ByVal descripcion As String, ByVal nombreetiqueta As String, ByVal univ_id As Integer, ByVal unic_id As Integer, _
+                    ByVal pciocompra As Double, ByVal iva As Double, ByVal pciocosto As Double, ByVal impuestointerno As Double, _
+                    ByVal maximo As Integer, ByVal minimo As Integer, ByVal fam_id As Integer, _
+                    ByVal estado As Integer, ByVal prd_asociado As Integer, ByVal alerta As Integer, ByVal pesable As Integer)
         _id = id
         _rub_id = rub_id
         _codigo = codigo
+        _codigo_barra = codbarra
+        _codigo_proveedor = codprov
         _idpadre = idpadre
         _nombre = nombre
         _marca = marca
@@ -47,11 +51,11 @@
         _impuestointerno = impuestointerno
         _maximo = maximo
         _minimo = minimo
-        _tiemporeposicion = tiemporeposicion
         _fam_id = fam_id
         _estado = estado
         _prd_asociados = prd_asociado
         _alerta = alerta
+        _pesable = pesable
     End Sub
 
     Public Property ID() As Integer
@@ -78,6 +82,24 @@
         End Get
         Set(ByVal value As String)
             _codigo = value
+        End Set
+    End Property
+
+    Public Property CodigoBarra() As String
+        Get
+            Return _codigo_barra
+        End Get
+        Set(ByVal value As String)
+            _codigo_barra = value
+        End Set
+    End Property
+
+    Public Property CodigoProveedor() As String
+        Get
+            Return _codigo_proveedor
+        End Get
+        Set(ByVal value As String)
+            _codigo_proveedor = value
         End Set
     End Property
 
@@ -198,15 +220,6 @@
         End Set
     End Property
 
-    Public Property TiempoReposicion() As Integer
-        Get
-            Return _tiemporeposicion
-        End Get
-        Set(ByVal value As Integer)
-            _tiemporeposicion = value
-        End Set
-    End Property
-
     Public Property Fam_Id() As Integer
         Get
             Return _fam_id
@@ -240,6 +253,15 @@
         End Get
         Set(ByVal value As Integer)
             _alerta = value
+        End Set
+    End Property
+
+    Public Property Pesable() As Integer
+        Get
+            Return _pesable
+        End Get
+        Set(ByVal value As Integer)
+            _pesable = value
         End Set
     End Property
 End Class
