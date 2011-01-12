@@ -48,3 +48,16 @@ C:\Users\Los Di Bert\Desktop\SuperSiTi\PV_Super\obj\Debug\PV_Super.vbproj.Genera
 C:\Users\Los Di Bert\Desktop\SuperSiTi\PV_Super\obj\Debug\PV_Super.exe
 C:\Users\Los Di Bert\Desktop\SuperSiTi\PV_Super\obj\Debug\PV_Super.xml
 C:\Users\Los Di Bert\Desktop\SuperSiTi\PV_Super\obj\Debug\PV_Super.pdb
+E:\Proyectos\PV_Super\obj\Debug\ResolveAssemblyReference.cache
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmAdministraCaja.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmBuscaProducto.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmIngreso.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmVentas.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.Resources.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.vbproj.GenerateResource.Cache
+E:\Proyectos\PV_Super\bin\Debug\PV_Super.exe
+E:\Proyectos\PV_Super\bin\Debug\PV_Super.pdb
+E:\Proyectos\PV_Super\bin\Debug\PV_Super.xml
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.exe
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.xml
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.pdb

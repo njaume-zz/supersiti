@@ -1,0 +1,32 @@
+<XMLErrores>
+  <Eventos>
+    <Excepcion>
+    </Excepcion>
+    <Ubicacion>
+    </Ubicacion>
+    <Fecha>
+    </Fecha>
+    <Usuario>
+    </Usuario>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>09/01/2011 17:24:34</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>09/01/2011 17:28:32</Fecha>
+    <Excepcion>Column 'PRO_NOMBRE' does not allow nulls.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>09/01/2011 20:59:12</Fecha>
+    <Excepcion>Column 'PRO_ID' does not belong to table .</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>09/01/2011 21:00:58</Fecha>
+  </Eventos>
+  <Eventos />
+  <Usuario>A924in</Usuario>
+  <Eventos />
+  <Usuario>A928in</Usuario>
+  <Eventos />
+  <Usuario>A959in</Usuario>
+  <Eventos />
+  <Usuario>A90in</Usuario>
+</XMLErrores>

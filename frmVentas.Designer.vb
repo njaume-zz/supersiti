@@ -22,6 +22,7 @@ Partial Class frmVentas
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVentas))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView
         Me.SSTInformaUsuario = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
@@ -42,9 +43,11 @@ Partial Class frmVentas
         Me.btnIngresaNegro = New System.Windows.Forms.Button
         Me.lblProductoNombre = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.TextBox3 = New System.Windows.Forms.TextBox
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.txtSubTotal = New System.Windows.Forms.TextBox
+        Me.txtPcioProducto = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.txtPcioTotal = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -93,9 +96,9 @@ Partial Class frmVentas
         'SSTInformaUsuario
         '
         Me.SSTInformaUsuario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.TSSUsuario, Me.ToolStripStatusLabel2, Me.TSSFecha, Me.ToolStripStatusLabel3, Me.TSSPtoVta, Me.ToolStripStatusLabel4, Me.TSSPC, Me.TSSIdUsuario})
-        Me.SSTInformaUsuario.Location = New System.Drawing.Point(0, 573)
+        Me.SSTInformaUsuario.Location = New System.Drawing.Point(0, 587)
         Me.SSTInformaUsuario.Name = "SSTInformaUsuario"
-        Me.SSTInformaUsuario.Size = New System.Drawing.Size(800, 22)
+        Me.SSTInformaUsuario.Size = New System.Drawing.Size(831, 22)
         Me.SSTInformaUsuario.TabIndex = 1
         Me.SSTInformaUsuario.Text = "StatusStrip1"
         '
@@ -227,25 +230,53 @@ Partial Class frmVentas
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.txtSubTotal)
+        Me.GroupBox1.Controls.Add(Me.txtPcioProducto)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.txtPcioTotal)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(551, 375)
+        Me.GroupBox1.Location = New System.Drawing.Point(552, 296)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(236, 163)
+        Me.GroupBox1.Size = New System.Drawing.Size(236, 245)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Importes"
         '
-        'TextBox3
+        'Label3
         '
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(107, 45)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 26)
-        Me.TextBox3.TabIndex = 5
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(7, 95)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(93, 24)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "SubTotal"
+        '
+        'txtSubTotal
+        '
+        Me.txtSubTotal.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.txtSubTotal.Location = New System.Drawing.Point(107, 95)
+        Me.txtSubTotal.MaxLength = 8
+        Me.txtSubTotal.Name = "txtSubTotal"
+        Me.txtSubTotal.ReadOnly = True
+        Me.txtSubTotal.Size = New System.Drawing.Size(123, 29)
+        Me.txtSubTotal.TabIndex = 6
+        Me.txtSubTotal.Text = "0.00"
+        Me.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPcioProducto
+        '
+        Me.txtPcioProducto.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.txtPcioProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPcioProducto.Location = New System.Drawing.Point(107, 45)
+        Me.txtPcioProducto.MaxLength = 8
+        Me.txtPcioProducto.Name = "txtPcioProducto"
+        Me.txtPcioProducto.ReadOnly = True
+        Me.txtPcioProducto.Size = New System.Drawing.Size(123, 26)
+        Me.txtPcioProducto.TabIndex = 5
+        Me.txtPcioProducto.Text = "0.00"
+        Me.txtPcioProducto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
         '
@@ -257,22 +288,25 @@ Partial Class frmVentas
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "Producto"
         '
-        'TextBox1
+        'txtPcioTotal
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(107, 100)
-        Me.TextBox1.MaximumSize = New System.Drawing.Size(100, 45)
-        Me.TextBox1.MaxLength = 8
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 35)
-        Me.TextBox1.TabIndex = 2
+        Me.txtPcioTotal.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.txtPcioTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPcioTotal.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtPcioTotal.Location = New System.Drawing.Point(107, 185)
+        Me.txtPcioTotal.MaxLength = 8
+        Me.txtPcioTotal.Name = "txtPcioTotal"
+        Me.txtPcioTotal.ReadOnly = True
+        Me.txtPcioTotal.Size = New System.Drawing.Size(123, 35)
+        Me.txtPcioTotal.TabIndex = 2
+        Me.txtPcioTotal.Text = "0.00"
+        Me.txtPcioTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(6, 100)
+        Me.Label4.Location = New System.Drawing.Point(6, 185)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(73, 29)
         Me.Label4.TabIndex = 1
@@ -283,7 +317,7 @@ Partial Class frmVentas
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministraciónToolStripMenuItem, Me.BúsquedasToolStripMenuItem, Me.ReportesToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(831, 24)
         Me.MenuStrip1.TabIndex = 11
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -420,9 +454,9 @@ Partial Class frmVentas
         '
         Me.SSTDescripciones.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.SSTDescripciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9, Me.ToolStripStatusLabel10})
-        Me.SSTDescripciones.Location = New System.Drawing.Point(0, 551)
+        Me.SSTDescripciones.Location = New System.Drawing.Point(0, 565)
         Me.SSTDescripciones.Name = "SSTDescripciones"
-        Me.SSTDescripciones.Size = New System.Drawing.Size(800, 22)
+        Me.SSTDescripciones.Size = New System.Drawing.Size(831, 22)
         Me.SSTDescripciones.TabIndex = 13
         Me.SSTDescripciones.Text = "StatusStrip2"
         '
@@ -466,9 +500,8 @@ Partial Class frmVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(800, 595)
+        Me.AutoScroll = True
+        Me.ClientSize = New System.Drawing.Size(831, 609)
         Me.Controls.Add(Me.SSTDescripciones)
         Me.Controls.Add(Me.lblFecha)
         Me.Controls.Add(Me.GroupBox1)
@@ -484,6 +517,7 @@ Partial Class frmVentas
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.DataGridView1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmVentas"
         Me.Text = "Administración de Ventas"
@@ -520,9 +554,9 @@ Partial Class frmVentas
     Friend WithEvents lblProductoNombre As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtPcioTotal As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents txtPcioProducto As System.Windows.Forms.TextBox
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents AdministraciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
@@ -551,5 +585,7 @@ Partial Class frmVentas
     Friend WithEvents ToolStripMenuItem6 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem7 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TSSIdUsuario As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents txtSubTotal As System.Windows.Forms.TextBox
 
 End Class

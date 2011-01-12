@@ -1,4 +1,6 @@
-﻿Module Funciones
+﻿Imports System.Globalization
+
+Module Funciones
 
     Public Sub LogError(ByVal pex As Exception, ByVal pDescripcion As String, _
                               ByVal pUsuario As String)
@@ -21,15 +23,15 @@
             oNodo1 = oDocumento.CreateElement("Excepcion")
             oNodo1.InnerText = pex.Message.ToString
             oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
-            
+
             oNodo1 = oDocumento.CreateElement("Ubicacion")
             oNodo1.InnerText = pDescripcion
             oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
-            
+
             oNodo1 = oDocumento.CreateElement("Fecha")
             oNodo1.InnerText = Now.ToString("dd/MM/yyyy HH:mm:ss")
             oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
-            
+
             oNodo1 = oDocumento.CreateElement("Usuario")
             oNodo1.InnerText = Now.ToString(pUsuario)
             oDocumento.SelectSingleNode("XMLErrores/Eventos").AppendChild(oNodo1)
@@ -138,7 +140,7 @@
 
     Public Function ObtieneUsuario() As String
         Dim str As String
-        
+
         Try
             str = frmVentas.TSSUsuario.Text
 
@@ -149,6 +151,10 @@
         Return str
     End Function
 
+    Public Function FormatoMoneda(ByVal pstrValor As String) As String
+        FormatoMoneda = Format(pstrValor, "{0:C2}")
+        'FormatoMoneda = pstrValor.ToString()
+    End Function
 
     ''' <summary>
     ''' Controla el ingreso de caracter distinto de comilla simple o doble.

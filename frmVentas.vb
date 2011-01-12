@@ -3,6 +3,7 @@
 Public Class frmVentas
 
 #Region "Variables Locales"
+    'Esta variable contiene los elementos necesarios para ingresar en la grilla.
     Dim ol_dt As DataTable
     'Declaro esta variable como s, para poder obtener los datos del Usuario
     'en todo momento y poder validar los permisos. Además de utilizarlos en el
@@ -10,7 +11,7 @@ Public Class frmVentas
     Public ol_dtUsr As DataTable
     'Creo la variable ol_DtProducto, sólo para no realizar 2 accesos a la base
     ' y mantener en memoria los datos necesarios para ingresar en la grilla
-    Dim ol_DtProducto As DataTable
+    Public ol_DtProducto As DataTable
 #End Region
 
 #Region "Eventos"
@@ -89,10 +90,16 @@ Public Class frmVentas
 
     End Sub
 
+    Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
+        If Me.txtProductoBarra.Text <> "" Then
+            BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+        End If
+    End Sub
+
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = Keys.Delete Then
             If MsgBox("¿Está seguro de quitar este Item de la venta?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = MsgBoxResult.Yes Then
-                QuitarItemDT(ol_dt, Me.DataGridView1.CurrentCell.RowIndex)
+                QuitarItemDT(ol_DtProducto, Me.DataGridView1.CurrentCell.RowIndex)
             End If
         End If
     End Sub
@@ -155,19 +162,44 @@ Public Class frmVentas
 #End Region
 
 #Region "Métodos"
+    Private Sub RealizarCalculos(ByVal poDetalle As clsDetalleComprobante)
+        Me.txtPcioProducto.Text = FormatoMoneda(CStr(poDetalle.PcioUnitario))
+        Me.txtSubTotal.Text = FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad))
+        Me.txtPcioTotal.Text = FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad), 2))
+    End Sub
 
-    Private Sub AgregarAGrilla(ByVal poDT As DataTable)
+    ''' <summary>
+    ''' Método que relaciona el DataTable a la grilla de venta.
+    ''' </summary>
+    ''' <param name="poDT"></param>
+    ''' <remarks></remarks>
+    Public Sub AgregarAGrilla(ByVal poDT As DataTable)
         Dim oDetalle As New clsDetalleComprobante
+        Dim wstrPrecio As String
+        'Dim wiRow As Integer = Me.DataGridView1.CurrentCell.RowIndex
+        'Dim wiCol As Integer = Me.DataGridView1.CurrentCell.ColumnIndex
+
+        wstrPrecio = IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO"))
 
         oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
         oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
         oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
-        oDetalle.PcioUnitario = Math.Round(poDT.Rows(0).Item("LPR_PRECIO"), 2)
+        oDetalle.PcioUnitario = Math.Round(CDbl(wstrPrecio), 2)
         oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
         oDetalle.PcioTotal = Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2)
-        oDetalle.Pesable = IIf(poDT.Rows(0).Item("PRO_PESABLE") = 1, "Si", "No")
-        AgregarItemDT(poDT, oDetalle)
+        oDetalle.Pesable = poDT.Rows(0).Item("PRO_PESABLE")
+        ol_dt = AgregarItemDT(oDetalle)
+
+        
+        Me.DataGridView1.DataSource = ol_dt
+        Me.DataGridView1.Columns.Item("id").Visible = False
+        Me.txtProductoBarra.Text = ""
+        Me.txtCantidad.Text = ""
+        Me.txtProductoBarra.Focus()
+        'wstrPrecio = IIf(IsDBNull(ol_dt.Rows(0).Item("PcioUnitario")), "0", ol_dt.Rows(0).Item("PcioUnitario"))
+        RealizarCalculos(oDetalle)
     End Sub
+
 
     Private Sub BuscarProducto(ByVal pstrProducto As String, ByVal accion As String)
         Dim oDt As DataTable
@@ -251,26 +283,28 @@ Public Class frmVentas
 
     End Sub
 
-    Private Function AgregarItemDT(ByRef dt As DataTable, ByVal campos As clsDetalleComprobante) As DataTable
+    Public Function AgregarItemDT(ByVal campos As clsDetalleComprobante) As DataTable
+        'ByRef dt As DataTable, 
         Try
 
-            Dim dr As DataRow = dt.NewRow()
-
-            'dr = dt.NewRow()
-            dr.Item(campos.ID.ToString) = campos.ID
-            dr.Item(campos.Nombre.ToString) = campos.Nombre
-            dr.Item(campos.Codigo.ToString) = campos.Codigo
-            dr.Item(campos.PcioUnitario.ToString) = campos.PcioUnitario
-            dr.Item(campos.Cantidad.ToString) = campos.Cantidad
-            dr.Item(campos.PcioTotal.ToString) = campos.PcioTotal
-            dr.Item(campos.Pesable.ToString) = IIf(campos.Pesable = 1, "S", "N")
+            Dim dr As DataRow ' = dt.NewRow()
+            '=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+            'chequear que si existe en la lista, se actualice la cantidad y el precio.
+            dr = ol_dt.NewRow()
+            dr.Item("id") = campos.ID
+            dr.Item("Nombre") = campos.Nombre
+            dr.Item("Codigo") = campos.Codigo
+            dr.Item("PcioUnitario") = campos.PcioUnitario
+            dr.Item("Cantidad") = campos.Cantidad
+            dr.Item("PcioTotal") = campos.PcioTotal
+            dr.Item("Pesable") = campos.Pesable
             'dr.AcceptChanges()
 
-            dt.Rows.Add(dr)
-            Return dt
+            ol_dt.Rows.Add(dr)
+            Return ol_dt
 
         Catch ex As Exception
-            Throw ex
+            'Throw ex
         End Try
     End Function
 
