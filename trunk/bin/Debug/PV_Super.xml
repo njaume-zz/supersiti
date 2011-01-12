@@ -77,6 +77,12 @@ PV_Super
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.AgregarAGrilla(System.Data.DataTable)">
+	<summary>
+ Método que relaciona el DataTable a la grilla de venta.
+ </summary>
+	<param name="poDT"></param>
+	<remarks></remarks>
 </member><member name="M:PV_Super.Funciones.ControlarCadena(System.Char)">
 	<summary>
  Controla el ingreso de caracter distinto de comilla simple o doble.

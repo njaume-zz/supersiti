@@ -79,6 +79,7 @@ Partial Class frmBuscaProducto
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtDescripcionProd)
         Me.Controls.Add(Me.dgrProductos)
+        Me.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmBuscaProducto"
         Me.Text = "Buscar Productos"

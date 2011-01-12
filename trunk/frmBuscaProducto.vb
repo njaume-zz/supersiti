@@ -39,7 +39,7 @@
         Dim rta As VariantType
         Try
             wo_Dt = New DataTable
-
+            wo_Dt = o_dt.Clone()
             If e.KeyChar = ChrW(Keys.Enter) Then
                 'muestra el item seleccionado
                 item = Me.dgrProductos.CurrentRow.Index
@@ -48,6 +48,39 @@
                 'MsgBox("Agregar el Producto: " & dgrProductos.Item(0, item).Value)
                 If rta = vbYes Then
                     MsgBox("Agregar el Producto: " & dgrProductos.Item(4, item).Value)
+                    Dim oDr As DataRow = wo_Dt.NewRow
+
+                    'Agrego los datos al datatable
+                    oDr.Item("PRO_ID") = dgrProductos.Item(0, item).Value
+                    oDr.Item("PRO_NOMBRE") = dgrProductos.Item(4, item).Value
+                    oDr.Item("PRO_CODIGO") = dgrProductos.Item(1, item).Value
+                    oDr.Item("LPR_PRECIO") = dgrProductos.Item(8, item).Value
+                    oDr.Item("PRO_PESABLE") = dgrProductos.Item(15, item).Value
+                    oDr.Item("PRO_CODIGO_BARRA") = dgrProductos.Item(2, item).Value
+                    oDr.Item("IVA_TASA") = 0.0
+                    oDr.Item("IVA_NOMBRE") = ""
+                    oDr.Item("RUB_ID") = 0
+                    oDr.Item("FAM_NOMBRE") = ""
+                    oDr.Item("RUB_NOMBRE") = ""
+                    oDr.Item("PRO_ALERTA") = 0
+                    oDr.Item("PRO_MAXIMO") = 0
+                    oDr.Item("PRO_MINIMO") = 0
+                    oDr.Item("PRO_IDPADRE") = 0
+                    oDr.Item("PRO_IMPUESTOINTERNO") = 0
+                    oDr.Item("PRO_PRECIOCOMPRA") = 0.0
+                    oDr.Item("PRO_PRECIOCOSTO") = 0.0
+                    oDr.Item("PRO_CODIGO_PROVEEDOR") = 0
+                    oDr.Item("PRO_DESCRIPCION") = ""
+                    oDr.Item("PRO_NOMBREETIQUETA") = ""
+                    wo_Dt.Rows.Add(oDr)
+                    'lo dejo en memoria del actual datatable de Ventas
+                    frmVentas.ol_DtProducto = wo_Dt
+                    'Agrego los datos al formulario para que ingrese cantidad
+                    With frmVentas
+                        .txtProductoBarra.Text = oDr.Item("PRO_CODIGO_BARRA")
+                        .txtCantidad.Focus()
+                    End With
+                    oDr = Nothing
                     'Debo pasar los valores a un datatable y llevarlo al formulario de ventas
                 End If
             ElseIf e.KeyChar = ChrW(Keys.Escape) Or e.KeyChar = ChrW(Keys.Back) Then
@@ -55,13 +88,15 @@
                 wo_Dt = o_dt
             Else
                 strBuscar = strBuscar & e.KeyChar.ToString
-                wo_Dt = o_dt.Clone()
+
+                Dim o_dr As DataRow
+
                 For Each wo_DR As DataRow In o_dt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
-                    Dim o_dr As DataRow = wo_Dt.NewRow()
+                    o_dr = wo_Dt.NewRow()
 
                     o_dr.Item("PRO_ID") = wo_DR.Item("PRO_ID")
-                    o_dr.Item("PRO_CODIGO") = wo_DR.Item("PRO_CODIGO")
-                    o_dr.Item("PRO_NOMBRE") = wo_DR.Item("PRO_NOMBRE")
+                    o_dr.Item("PRO_CODIGO") = wo_DR.Item("PRO_CODIGO") & ""
+                    o_dr.Item("PRO_NOMBRE") = wo_DR.Item("PRO_NOMBRE") & ""
                     o_dr.Item("LPR_PRECIO") = wo_DR.Item("LPR_PRECIO")
                     o_dr.Item("IVA_TASA") = wo_DR.Item("IVA_TASA")
                     o_dr.Item("IVA_NOMBRE") = wo_DR.Item("IVA_NOMBRE")
@@ -81,15 +116,18 @@
                     o_dr.Item("PRO_DESCRIPCION") = wo_DR.Item("PRO_DESCRIPCION")
                     o_dr.Item("PRO_NOMBREETIQUETA") = wo_DR.Item("PRO_NOMBREETIQUETA")
                     wo_Dt.Rows.Add(o_dr)
-
+                    o_dr = Nothing
                 Next
 
             End If
             Me.dgrProductos.DataSource = wo_Dt
             ConfigurarGrilla()
-
+            Me.Close()
         Catch ex As Exception
             Funciones.LogError(ex, "dgrProductos_KeyPress", Funciones.ObtieneUsuario)
+        Finally
+            wo_Dt = Nothing
+
         End Try
     End Sub
 
