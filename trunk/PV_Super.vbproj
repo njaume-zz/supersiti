@@ -107,6 +107,12 @@
     <Compile Include="frmBuscaProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFormasPagos.Designer.vb">
+      <DependentUpon>frmFormasPagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFormasPagos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmIngreso.Designer.vb">
       <DependentUpon>frmIngreso.vb</DependentUpon>
     </Compile>
@@ -146,6 +152,9 @@
     <EmbeddedResource Include="frmBuscaProducto.resx">
       <DependentUpon>frmBuscaProducto.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFormasPagos.resx">
+      <DependentUpon>frmFormasPagos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIngreso.resx">
       <DependentUpon>frmIngreso.vb</DependentUpon>
@@ -237,10 +246,13 @@
     <Content Include="Imagenes\blogmarks.png" />
     <Content Include="Imagenes\bookmark.png" />
     <Content Include="Imagenes\build.png" />
+    <None Include="Imagenes\buscar_x_19.png" />
     <Content Include="Imagenes\business.png" />
     <Content Include="Imagenes\button_cancel.png" />
     <Content Include="Imagenes\button_ok.png" />
     <Content Include="Imagenes\calculator.png" />
+    <None Include="Imagenes\cancel_x_19.png" />
+    <None Include="Imagenes\Cancelar_x_19.png" />
     <Content Include="Imagenes\close.png" />
     <Content Include="Imagenes\db_add.png" />
     <Content Include="Imagenes\db_comit.png" />
@@ -257,9 +269,12 @@
     <Content Include="Imagenes\edit_remove.png" />
     <Content Include="Imagenes\gohome.png" />
     <Content Include="Imagenes\info.png" />
+    <None Include="Imagenes\Ingreso_x_19.png" />
     <Content Include="Imagenes\khelpcenter.png" />
     <Content Include="Imagenes\lock.png" />
     <Content Include="Imagenes\ok.png" />
+    <None Include="Imagenes\ok_x_19.png" />
+    <Content Include="Imagenes\ok_x_38.png" />
     <Content Include="Imagenes\plus.png" />
     <Content Include="Imagenes\reload.png" />
     <Content Include="Imagenes\restart.png" />

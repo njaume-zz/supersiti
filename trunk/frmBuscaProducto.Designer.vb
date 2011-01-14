@@ -51,6 +51,7 @@ Partial Class frmBuscaProducto
         Me.txtDescripcionProd.Name = "txtDescripcionProd"
         Me.txtDescripcionProd.Size = New System.Drawing.Size(180, 20)
         Me.txtDescripcionProd.TabIndex = 1
+        Me.txtDescripcionProd.Visible = False
         '
         'Label1
         '
@@ -60,6 +61,7 @@ Partial Class frmBuscaProducto
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Descripción"
+        Me.Label1.Visible = False
         '
         'btnBuscar
         '
@@ -69,6 +71,7 @@ Partial Class frmBuscaProducto
         Me.btnBuscar.TabIndex = 3
         Me.btnBuscar.Text = "&Buscar"
         Me.btnBuscar.UseVisualStyleBackColor = True
+        Me.btnBuscar.Visible = False
         '
         'frmBuscaProducto
         '

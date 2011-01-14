@@ -1,6 +1,16 @@
 ﻿Imports System.Globalization
+Imports System.Threading
 
 Module Funciones
+
+    Public Sub InicializarConfiguracion()
+        System.Threading.Thread.CurrentThread.CurrentCulture = New System.Globalization.CultureInfo("es-AR")
+        System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy"
+        System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator = "."
+        System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyGroupSeparator = ","
+        System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = "."
+        System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator = ","
+    End Sub
 
     Public Sub LogError(ByVal pex As Exception, ByVal pDescripcion As String, _
                               ByVal pUsuario As String)
@@ -151,9 +161,49 @@ Module Funciones
         Return str
     End Function
 
+    ''' <summary>
+    ''' Convierto a decimal, tomando la configuración local y 
+    ''' poder determinar el separador decimal para una
+    ''' correcta conversion
+    ''' </summary>
+    ''' <param name="pszValor"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function ConvertirDecimal(ByVal pszValor) As Decimal
+        Dim oSeparadorDecimal As String
+        Dim oSeparadorStr As String
+        Dim wdSalida As Decimal
+        Dim wiIndexComa, wiIndexPunto As Integer
+        'Obtenego el separador decimal del sistema
+        oSeparadorDecimal = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator()
+        'Obtengo el separador decimal del string recuperado
+        'Se debe tener en cuenta que se cuentan 2 posiciones (Ej: "34." ), ya que se
+        'quitó el signo negativo (-)
+        pszValor = Replace(pszValor, "-", "")
+        wiIndexComa = pszValor.ToString.IndexOf(",")
+        wiIndexPunto = pszValor.ToString.IndexOf(".")
+        If pszValor <> 0 Then
+            If wiIndexComa = -1 Then
+                oSeparadorStr = pszValor.ToString.Substring(wiIndexPunto, 1)
+            Else
+                oSeparadorStr = pszValor.ToString.Substring(wiIndexComa, 1)
+            End If
+        End If
+        wdSalida = Convert.ToDecimal(Replace(pszValor, oSeparadorStr, oSeparadorDecimal))
+
+        Return wdSalida
+    End Function
+
+    ''' <summary>
+    ''' Función que convierte un String a Formato de Moneda. Previamente se debe convertir
+    ''' a decimal para que acepte los decimales despues de la coma.
+    ''' </summary>
+    ''' <param name="pstrValor"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function FormatoMoneda(ByVal pstrValor As String) As String
-        FormatoMoneda = Format(pstrValor, "{0:C2}")
-        'FormatoMoneda = pstrValor.ToString()
+        pstrValor = ConvertirDecimal(CDbl(pstrValor))
+        FormatoMoneda = Microsoft.VisualBasic.Mid(FormatCurrency(pstrValor, 2), 3)
     End Function
 
     ''' <summary>

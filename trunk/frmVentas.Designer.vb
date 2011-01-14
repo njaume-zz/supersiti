@@ -38,7 +38,6 @@ Partial Class frmVentas
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtCantidad = New System.Windows.Forms.TextBox
-        Me.btnBuscarProductoXNombre = New System.Windows.Forms.Button
         Me.btnIngresaProducto = New System.Windows.Forms.Button
         Me.btnIngresaNegro = New System.Windows.Forms.Button
         Me.lblProductoNombre = New System.Windows.Forms.Label
@@ -76,6 +75,7 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.btnBuscarProductoXNombre = New System.Windows.Forms.Button
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SSTInformaUsuario.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -192,29 +192,20 @@ Partial Class frmVentas
         Me.txtCantidad.Size = New System.Drawing.Size(47, 20)
         Me.txtCantidad.TabIndex = 5
         '
-        'btnBuscarProductoXNombre
-        '
-        Me.btnBuscarProductoXNombre.Location = New System.Drawing.Point(307, 76)
-        Me.btnBuscarProductoXNombre.Name = "btnBuscarProductoXNombre"
-        Me.btnBuscarProductoXNombre.Size = New System.Drawing.Size(75, 23)
-        Me.btnBuscarProductoXNombre.TabIndex = 6
-        Me.btnBuscarProductoXNombre.Text = "Buscar [F3]"
-        Me.btnBuscarProductoXNombre.UseVisualStyleBackColor = True
-        '
         'btnIngresaProducto
         '
-        Me.btnIngresaProducto.Location = New System.Drawing.Point(388, 76)
+        Me.btnIngresaProducto.Location = New System.Drawing.Point(374, 76)
         Me.btnIngresaProducto.Name = "btnIngresaProducto"
-        Me.btnIngresaProducto.Size = New System.Drawing.Size(75, 23)
+        Me.btnIngresaProducto.Size = New System.Drawing.Size(75, 30)
         Me.btnIngresaProducto.TabIndex = 7
         Me.btnIngresaProducto.Text = "Enter [F4]"
         Me.btnIngresaProducto.UseVisualStyleBackColor = True
         '
         'btnIngresaNegro
         '
-        Me.btnIngresaNegro.Location = New System.Drawing.Point(469, 76)
+        Me.btnIngresaNegro.Location = New System.Drawing.Point(455, 76)
         Me.btnIngresaNegro.Name = "btnIngresaNegro"
-        Me.btnIngresaNegro.Size = New System.Drawing.Size(75, 23)
+        Me.btnIngresaNegro.Size = New System.Drawing.Size(75, 30)
         Me.btnIngresaNegro.TabIndex = 8
         Me.btnIngresaNegro.Text = "Enter [F8]"
         Me.btnIngresaNegro.UseVisualStyleBackColor = True
@@ -495,6 +486,18 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel10.Name = "ToolStripStatusLabel10"
         Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(132, 17)
         Me.ToolStripStatusLabel10.Text = "Quitar Producto=[Supr]"
+        '
+        'btnBuscarProductoXNombre
+        '
+        Me.btnBuscarProductoXNombre.Image = Global.PV_Super.My.Resources.Resources.buscar_x_19
+        Me.btnBuscarProductoXNombre.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnBuscarProductoXNombre.Location = New System.Drawing.Point(280, 76)
+        Me.btnBuscarProductoXNombre.Name = "btnBuscarProductoXNombre"
+        Me.btnBuscarProductoXNombre.Size = New System.Drawing.Size(88, 30)
+        Me.btnBuscarProductoXNombre.TabIndex = 6
+        Me.btnBuscarProductoXNombre.Text = "Buscar [F3]"
+        Me.btnBuscarProductoXNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscarProductoXNombre.UseVisualStyleBackColor = True
         '
         'frmVentas
         '

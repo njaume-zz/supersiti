@@ -14,7 +14,7 @@
             item = Me.dgrProductos.CurrentRow.Index
             Me.dgrProductos.FirstDisplayedScrollingRowIndex = item
             rta = MsgBox("Está seguro que desea seleccionar el producto: " & dgrProductos.Item(0, item).Value & "?", MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.")
-            'MsgBox("Agregar el Producto: " & dgrProductos.Item(0, item).Value)
+
             If rta = vbYes Then
                 MsgBox("Agregar el Producto: " & dgrProductos.Item(4, item).Value)
             End If
@@ -135,13 +135,21 @@
 
 #Region "Métodos"
 
+    ''' <summary>
+    ''' Método que enlaza la Grilla con el DataTable pasado por parámetro
+    ''' </summary>
+    ''' <param name="pDt">DataTable a enlazar con la grilla</param>
+    ''' <remarks></remarks>
     Public Sub Lista(ByVal pDt As DataTable)
         Me.dgrProductos.DataSource = pDt
         ConfigurarGrilla()
     End Sub
 
+    ''' <summary>
+    ''' Método que recupera de la base de datos los productos según un filtro.
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ListarProductos()
-
         Try
 
             o_dt = New DataTable
@@ -150,6 +158,7 @@
                 Me.dgrProductos.DataSource = o_dt
                 ConfigurarGrilla()
             End If
+
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message, ". : E R R O R : .", MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
             Funciones.LogError(ex, "ListarProductos", Funciones.ObtieneUsuario)
@@ -157,6 +166,10 @@
 
     End Sub
 
+    ''' <summary>
+    ''' Método que configura la visualización de la grilla y asigna la cabecera
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ConfigurarGrilla()
         Me.dgrProductos.Columns.Item("PRO_ID").Visible = False
         Me.dgrProductos.Columns.Item("IVA_TASA").Visible = False
@@ -182,6 +195,7 @@
         Me.dgrProductos.Columns.Item("LPR_PRECIO").HeaderText = "Precio"
         Me.dgrProductos.Columns.Item("PRO_MARCA").HeaderText = "Marca"
     End Sub
+
 #End Region
 
 End Class
