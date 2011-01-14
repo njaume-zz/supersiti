@@ -31,26 +31,15 @@ Partial Class frmIngreso
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmIngreso))
-        Me.LogoPictureBox = New System.Windows.Forms.PictureBox
         Me.UsernameLabel = New System.Windows.Forms.Label
         Me.PasswordLabel = New System.Windows.Forms.Label
         Me.txtUsuario = New System.Windows.Forms.TextBox
         Me.txtPassword = New System.Windows.Forms.TextBox
         Me.OK = New System.Windows.Forms.Button
         Me.Cancel = New System.Windows.Forms.Button
+        Me.LogoPictureBox = New System.Windows.Forms.PictureBox
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LogoPictureBox
-        '
-        Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"), System.Drawing.Image)
-        Me.LogoPictureBox.ImageLocation = ""
-        Me.LogoPictureBox.Location = New System.Drawing.Point(2, 4)
-        Me.LogoPictureBox.Name = "LogoPictureBox"
-        Me.LogoPictureBox.Size = New System.Drawing.Size(228, 234)
-        Me.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.LogoPictureBox.TabIndex = 0
-        Me.LogoPictureBox.TabStop = False
         '
         'UsernameLabel
         '
@@ -88,21 +77,38 @@ Partial Class frmIngreso
         'OK
         '
         Me.OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.OK.Location = New System.Drawing.Point(251, 192)
+        Me.OK.Image = Global.PV_Super.My.Resources.Resources.Ingreso_x_19
+        Me.OK.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.OK.Location = New System.Drawing.Point(239, 192)
         Me.OK.Name = "OK"
-        Me.OK.Size = New System.Drawing.Size(94, 23)
+        Me.OK.Size = New System.Drawing.Size(75, 30)
         Me.OK.TabIndex = 4
-        Me.OK.Text = "&OK"
+        Me.OK.Text = "&Ingresar"
+        Me.OK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Cancel
         '
         Me.Cancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(354, 192)
+        Me.Cancel.Image = Global.PV_Super.My.Resources.Resources.Cancelar_x_19
+        Me.Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Cancel.Location = New System.Drawing.Point(386, 192)
         Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(94, 23)
+        Me.Cancel.Size = New System.Drawing.Size(70, 30)
         Me.Cancel.TabIndex = 5
         Me.Cancel.Text = "&Cancel"
+        Me.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LogoPictureBox
+        '
+        Me.LogoPictureBox.Image = CType(resources.GetObject("LogoPictureBox.Image"), System.Drawing.Image)
+        Me.LogoPictureBox.ImageLocation = ""
+        Me.LogoPictureBox.Location = New System.Drawing.Point(2, 4)
+        Me.LogoPictureBox.Name = "LogoPictureBox"
+        Me.LogoPictureBox.Size = New System.Drawing.Size(228, 234)
+        Me.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.LogoPictureBox.TabIndex = 0
+        Me.LogoPictureBox.TabStop = False
         '
         'frmIngreso
         '

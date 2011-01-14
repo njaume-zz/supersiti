@@ -33,6 +33,7 @@ Public Class frmVentas
     End Sub
 
     Private Sub frmVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Funciones.InicializarConfiguracion()
         Me.lblFecha.Text = Format(Date.Now, "dd/MM/yyyy")
         CrearDTItems()
         IniciaStrip()
@@ -68,6 +69,12 @@ Public Class frmVentas
                 End If
             End If
         End If
+        If e.KeyCode = Keys.F5 Then
+            If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
+                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") Then
+                CompletarFormaPago()
+            End If
+        End If
     End Sub
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
@@ -79,6 +86,12 @@ Public Class frmVentas
                 ' el 2º parámetro me indica que lo mantengo en memoria hasta ingresar la cantidad.
                 BuscarProducto(Me.txtProductoBarra.Text, "buscar")
                 Me.txtCantidad.Focus()
+            End If
+        End If
+        If e.KeyCode = Keys.F5 Then
+            If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
+                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") = MsgBoxResult.Yes Then
+                CompletarFormaPago()
             End If
         End If
     End Sub
@@ -162,10 +175,17 @@ Public Class frmVentas
 #End Region
 
 #Region "Métodos"
+    Private Sub CompletarFormaPago()
+        If Me.DataGridView1.RowCount > 0 Then
+            frmFormasPagos.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtPcioTotal.Text)
+            frmFormasPagos.ShowDialog()
+        End If
+    End Sub
+
     Private Sub RealizarCalculos(ByVal poDetalle As clsDetalleComprobante)
-        Me.txtPcioProducto.Text = FormatoMoneda(CStr(poDetalle.PcioUnitario))
-        Me.txtSubTotal.Text = FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad))
-        Me.txtPcioTotal.Text = FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad), 2))
+        Me.txtPcioProducto.Text = Funciones.FormatoMoneda(CStr(poDetalle.PcioUnitario))
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad))
+        Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad), 2))
     End Sub
 
     ''' <summary>
@@ -176,27 +196,24 @@ Public Class frmVentas
     Public Sub AgregarAGrilla(ByVal poDT As DataTable)
         Dim oDetalle As New clsDetalleComprobante
         Dim wstrPrecio As String
-        'Dim wiRow As Integer = Me.DataGridView1.CurrentCell.RowIndex
-        'Dim wiCol As Integer = Me.DataGridView1.CurrentCell.ColumnIndex
 
-        wstrPrecio = IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO"))
+        wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
 
         oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
         oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
         oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
-        oDetalle.PcioUnitario = Math.Round(CDbl(wstrPrecio), 2)
+        oDetalle.PcioUnitario = Funciones.FormatoMoneda(wstrPrecio)
         oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
-        oDetalle.PcioTotal = Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2)
+        oDetalle.PcioTotal = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2))
         oDetalle.Pesable = poDT.Rows(0).Item("PRO_PESABLE")
         ol_dt = AgregarItemDT(oDetalle)
 
-        
+
         Me.DataGridView1.DataSource = ol_dt
         Me.DataGridView1.Columns.Item("id").Visible = False
         Me.txtProductoBarra.Text = ""
         Me.txtCantidad.Text = ""
         Me.txtProductoBarra.Focus()
-        'wstrPrecio = IIf(IsDBNull(ol_dt.Rows(0).Item("PcioUnitario")), "0", ol_dt.Rows(0).Item("PcioUnitario"))
         RealizarCalculos(oDetalle)
     End Sub
 
@@ -256,6 +273,12 @@ Public Class frmVentas
 
 #Region "Creación de métodos auxiliares"
 
+    ''' <summary>
+    ''' Método que define las columnas necesarias para un datatable
+    ''' </summary>
+    ''' <param name="pszNombre">Nombre del Campo</param>
+    ''' <returns>DataColumn</returns>
+    ''' <remarks></remarks>
     Private Function DefinirColumna(ByVal pszNombre As String) As DataColumn
         Dim wDcol As New DataColumn
 
@@ -266,6 +289,10 @@ Public Class frmVentas
         Return wDcol
     End Function
 
+    ''' <summary>
+    ''' Inicializa el DataTable que será utilizado para el formulario Ventas
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub CrearDTItems()
         Dim oDet As New clsDetalleComprobante
         ol_dt = New DataTable
@@ -283,24 +310,38 @@ Public Class frmVentas
 
     End Sub
 
+    ''' <summary>
+    ''' Método que agrega un ítem al DataTable que será utilizado para Ventas
+    ''' </summary>
+    ''' <param name="campos">Clase del Detalle de Comprobantes</param>
+    ''' <returns>DataTable</returns>
+    ''' <remarks></remarks>
     Public Function AgregarItemDT(ByVal campos As clsDetalleComprobante) As DataTable
-        'ByRef dt As DataTable, 
         Try
-
+            Dim obRepetido As Boolean = False
             Dim dr As DataRow ' = dt.NewRow()
-            '=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-            'chequear que si existe en la lista, se actualice la cantidad y el precio.
-            dr = ol_dt.NewRow()
-            dr.Item("id") = campos.ID
-            dr.Item("Nombre") = campos.Nombre
-            dr.Item("Codigo") = campos.Codigo
-            dr.Item("PcioUnitario") = campos.PcioUnitario
-            dr.Item("Cantidad") = campos.Cantidad
-            dr.Item("PcioTotal") = campos.PcioTotal
-            dr.Item("Pesable") = campos.Pesable
-            'dr.AcceptChanges()
 
-            ol_dt.Rows.Add(dr)
+            For Each odrVerifica As DataRow In ol_dt.Select("id = " & campos.ID & "")
+                If Not odrVerifica.Item("id") Is Nothing Then
+                    obRepetido = True
+                    odrVerifica.Item("Cantidad") = odrVerifica.Item("Cantidad") + campos.Cantidad
+                    odrVerifica.Item("PcioTotal") = Funciones.FormatoMoneda(campos.PcioTotal)
+                    Exit For
+                End If
+            Next
+            If obRepetido = False Then
+                dr = ol_dt.NewRow()
+                dr.Item("id") = campos.ID
+                dr.Item("Nombre") = campos.Nombre
+                dr.Item("Codigo") = campos.Codigo
+                dr.Item("PcioUnitario") = Funciones.FormatoMoneda(campos.PcioUnitario)
+                dr.Item("Cantidad") = campos.Cantidad
+                dr.Item("PcioTotal") = Funciones.FormatoMoneda(campos.PcioTotal)
+                dr.Item("Pesable") = campos.Pesable
+
+                ol_dt.Rows.Add(dr)
+            End If
+
             Return ol_dt
 
         Catch ex As Exception
@@ -308,6 +349,13 @@ Public Class frmVentas
         End Try
     End Function
 
+    ''' <summary>
+    ''' Se quita el elemento indicado del DataTable
+    ''' </summary>
+    ''' <param name="dt">DataTable</param>
+    ''' <param name="indice">Indice a eliminar</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function QuitarItemDT(ByVal dt As DataTable, ByVal indice As Integer) As DataTable
 
         dt.Rows(indice).Delete()
@@ -316,6 +364,11 @@ Public Class frmVentas
         Return dt
     End Function
 
+    ''' <summary>
+    ''' Elimina el DataTable creado para usarse en este formulario.
+    ''' </summary>
+    ''' <param name="dt">Se pasa el DataTable declarado de manera global</param>
+    ''' <remarks></remarks>
     Private Sub BorrarDT(ByRef dt As DataTable)
         'dt.Clear()
         dt = Nothing

@@ -239,6 +239,14 @@
         Me.txtImporteRetiro.Text = Convert.ToDouble(Me.txtImporteRetiro.Text)
         CalcularTotal()
     End Sub
+
+
+    Private Sub btnSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSalir.Click
+        If MsgBox("¿Está seguro que desea cerrar la Administración de Cajas?", _
+                  MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CIERRE DE ADMINISTRACION DE CAJA ::.") = MsgBoxResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
 #End Region
 
 End Class

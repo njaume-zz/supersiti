@@ -263,29 +263,38 @@ Partial Class frmAdministraCaja
         '
         'btnConfirmar
         '
+        Me.btnConfirmar.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
+        Me.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnConfirmar.Location = New System.Drawing.Point(340, 195)
         Me.btnConfirmar.Name = "btnConfirmar"
-        Me.btnConfirmar.Size = New System.Drawing.Size(75, 23)
+        Me.btnConfirmar.Size = New System.Drawing.Size(75, 30)
         Me.btnConfirmar.TabIndex = 6
         Me.btnConfirmar.Text = "Con&firmar"
+        Me.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnConfirmar.UseVisualStyleBackColor = True
         '
         'btnCancelar
         '
+        Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.cancel_x_19
+        Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnCancelar.Location = New System.Drawing.Point(421, 195)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
         Me.btnCancelar.TabIndex = 7
         Me.btnCancelar.Text = "&Cancelar"
+        Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
         'btnSalir
         '
-        Me.btnSalir.Location = New System.Drawing.Point(443, 399)
+        Me.btnSalir.Image = Global.PV_Super.My.Resources.Resources.Cancelar_x_19
+        Me.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSalir.Location = New System.Drawing.Point(444, 399)
         Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(75, 23)
+        Me.btnSalir.Size = New System.Drawing.Size(65, 30)
         Me.btnSalir.TabIndex = 8
-        Me.btnSalir.Text = "&Salir"
+        Me.btnSalir.Text = "&S a l i r"
+        Me.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSalir.UseVisualStyleBackColor = True
         '
         'frmAdministraCaja

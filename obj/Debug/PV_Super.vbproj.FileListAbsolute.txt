@@ -61,3 +61,4 @@ E:\Proyectos\PV_Super\bin\Debug\PV_Super.xml
 E:\Proyectos\PV_Super\obj\Debug\PV_Super.exe
 E:\Proyectos\PV_Super\obj\Debug\PV_Super.xml
 E:\Proyectos\PV_Super\obj\Debug\PV_Super.pdb
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmFormasPagos.resources
