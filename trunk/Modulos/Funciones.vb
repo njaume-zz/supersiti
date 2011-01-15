@@ -184,11 +184,15 @@ Module Funciones
         wiIndexPunto = pszValor.ToString.IndexOf(".")
         If pszValor <> 0 Then
             If wiIndexComa = -1 Then
-                oSeparadorStr = pszValor.ToString.Substring(wiIndexPunto, 1)
+                If wiIndexPunto = -1 Then
+                    oSeparadorStr = pszValor.ToString.Substring(1, 1)
+                Else
+                    oSeparadorStr = pszValor.ToString.Substring(wiIndexPunto, 1)
+                End If
             Else
                 oSeparadorStr = pszValor.ToString.Substring(wiIndexComa, 1)
             End If
-        End If
+            End If
         wdSalida = Convert.ToDecimal(Replace(pszValor, oSeparadorStr, oSeparadorDecimal))
 
         Return wdSalida
