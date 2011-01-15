@@ -74,7 +74,7 @@ Partial Class frmAdministraCaja
         Me.txtImporteRetiro.Location = New System.Drawing.Point(154, 106)
         Me.txtImporteRetiro.Name = "txtImporteRetiro"
         Me.txtImporteRetiro.Size = New System.Drawing.Size(112, 20)
-        Me.txtImporteRetiro.TabIndex = 22
+        Me.txtImporteRetiro.TabIndex = 3
         Me.txtImporteRetiro.Text = "0.00"
         Me.txtImporteRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -112,7 +112,7 @@ Partial Class frmAdministraCaja
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.ReadOnly = True
         Me.txtFecha.Size = New System.Drawing.Size(112, 20)
-        Me.txtFecha.TabIndex = 19
+        Me.txtFecha.TabIndex = 0
         '
         'txtOperador
         '
@@ -120,7 +120,7 @@ Partial Class frmAdministraCaja
         Me.txtOperador.Name = "txtOperador"
         Me.txtOperador.ReadOnly = True
         Me.txtOperador.Size = New System.Drawing.Size(112, 20)
-        Me.txtOperador.TabIndex = 20
+        Me.txtOperador.TabIndex = 1
         '
         'Label7
         '
@@ -136,7 +136,7 @@ Partial Class frmAdministraCaja
         Me.txtImporteApertura.Location = New System.Drawing.Point(154, 78)
         Me.txtImporteApertura.Name = "txtImporteApertura"
         Me.txtImporteApertura.Size = New System.Drawing.Size(112, 20)
-        Me.txtImporteApertura.TabIndex = 0
+        Me.txtImporteApertura.TabIndex = 2
         Me.txtImporteApertura.Text = "0.00"
         Me.txtImporteApertura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -175,7 +175,7 @@ Partial Class frmAdministraCaja
         Me.txtCredito.Location = New System.Drawing.Point(154, 111)
         Me.txtCredito.Name = "txtCredito"
         Me.txtCredito.Size = New System.Drawing.Size(100, 20)
-        Me.txtCredito.TabIndex = 4
+        Me.txtCredito.TabIndex = 7
         Me.txtCredito.Text = "0.00"
         Me.txtCredito.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -184,7 +184,7 @@ Partial Class frmAdministraCaja
         Me.txtTarjetas.Location = New System.Drawing.Point(154, 84)
         Me.txtTarjetas.Name = "txtTarjetas"
         Me.txtTarjetas.Size = New System.Drawing.Size(100, 20)
-        Me.txtTarjetas.TabIndex = 3
+        Me.txtTarjetas.TabIndex = 6
         Me.txtTarjetas.Text = "0.00"
         Me.txtTarjetas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -194,7 +194,7 @@ Partial Class frmAdministraCaja
         Me.txtBonos.Location = New System.Drawing.Point(154, 58)
         Me.txtBonos.Name = "txtBonos"
         Me.txtBonos.Size = New System.Drawing.Size(100, 20)
-        Me.txtBonos.TabIndex = 2
+        Me.txtBonos.TabIndex = 5
         Me.txtBonos.Text = "0.00"
         Me.txtBonos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -203,7 +203,7 @@ Partial Class frmAdministraCaja
         Me.txtEfectivo.Location = New System.Drawing.Point(154, 32)
         Me.txtEfectivo.Name = "txtEfectivo"
         Me.txtEfectivo.Size = New System.Drawing.Size(100, 20)
-        Me.txtEfectivo.TabIndex = 1
+        Me.txtEfectivo.TabIndex = 4
         Me.txtEfectivo.Text = "0.00"
         Me.txtEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -212,7 +212,7 @@ Partial Class frmAdministraCaja
         Me.txtTotalCaja.Location = New System.Drawing.Point(154, 156)
         Me.txtTotalCaja.Name = "txtTotalCaja"
         Me.txtTotalCaja.Size = New System.Drawing.Size(100, 20)
-        Me.txtTotalCaja.TabIndex = 5
+        Me.txtTotalCaja.TabIndex = 8
         Me.txtTotalCaja.Text = "0.00"
         Me.txtTotalCaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -268,7 +268,7 @@ Partial Class frmAdministraCaja
         Me.btnConfirmar.Location = New System.Drawing.Point(340, 195)
         Me.btnConfirmar.Name = "btnConfirmar"
         Me.btnConfirmar.Size = New System.Drawing.Size(75, 30)
-        Me.btnConfirmar.TabIndex = 6
+        Me.btnConfirmar.TabIndex = 9
         Me.btnConfirmar.Text = "Con&firmar"
         Me.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnConfirmar.UseVisualStyleBackColor = True
@@ -280,7 +280,7 @@ Partial Class frmAdministraCaja
         Me.btnCancelar.Location = New System.Drawing.Point(421, 195)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
-        Me.btnCancelar.TabIndex = 7
+        Me.btnCancelar.TabIndex = 10
         Me.btnCancelar.Text = "&Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
@@ -292,7 +292,7 @@ Partial Class frmAdministraCaja
         Me.btnSalir.Location = New System.Drawing.Point(444, 399)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(65, 30)
-        Me.btnSalir.TabIndex = 8
+        Me.btnSalir.TabIndex = 11
         Me.btnSalir.Text = "&S a l i r"
         Me.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSalir.UseVisualStyleBackColor = True
