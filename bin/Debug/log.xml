@@ -20,6 +20,10 @@
     <Excepcion>Column 'PRO_ID' does not belong to table .</Excepcion>
     <Ubicacion>dgrProductos_KeyPress</Ubicacion>
     <Fecha>09/01/2011 21:00:58</Fecha>
+    <Excepcion>Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>14/01/2011 20:49:01</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -29,4 +33,6 @@
   <Usuario>A959in</Usuario>
   <Eventos />
   <Usuario>A90in</Usuario>
+  <Eventos />
+  <Usuario>A1449in</Usuario>
 </XMLErrores>

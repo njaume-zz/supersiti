@@ -6,28 +6,7 @@ PV_Super
 </name>
 </assembly>
 <members>
-<member name="M:PV_Super.frmFormasPagos.btnCancelar_Click(System.Object,System.EventArgs)">
-	<summary>
- Evento que consulta si se desea cancelar el comprobante de venta.-
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmFormasPagos.frmFormasPagos_Load(System.Object,System.EventArgs)">
-	<summary>
- Evento que inicializa valores del formulario Formas de Pago
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmFormasPagos.txtDescuento_LostFocus(System.Object,System.EventArgs)">
-	<summary>
- Se calcula el descuento sobre el Monto Total de la Venta
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+<member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
 	<summary>
  Función que inserta una caja nueva
  </summary>
@@ -152,6 +131,27 @@ PV_Super
 	<summary>
  Método que configura la visualización de la grilla y asigna la cabecera
  </summary>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmFormasPagos.btnCancelar_Click(System.Object,System.EventArgs)">
+	<summary>
+ Evento que consulta si se desea cancelar el comprobante de venta.-
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmFormasPagos.frmFormasPagos_Load(System.Object,System.EventArgs)">
+	<summary>
+ Evento que inicializa valores del formulario Formas de Pago
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmFormasPagos.txtDescuento_LostFocus(System.Object,System.EventArgs)">
+	<summary>
+ Se calcula el descuento sobre el Monto Total de la Venta
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:PV_Super.Funciones.ConvertirDecimal(System.Object)">
 	<summary>
