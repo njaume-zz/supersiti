@@ -77,6 +77,13 @@ PV_Super
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:PV_Super.frmVentas.ToolStripMenuItem2_Click(System.Object,System.EventArgs)">
+	<summary>
+ Método que invoca al formulario para validar si se autoriza o no una vento o decuento
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:PV_Super.frmVentas.AgregarAGrilla(System.Data.DataTable)">
 	<summary>
  Método que relaciona el DataTable a la grilla de venta.
@@ -153,7 +160,7 @@ PV_Super
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:PV_Super.Funciones.ConvertirDecimal(System.Object)">
+</member><member name="M:PV_Super.Funciones.ConvertirDecimal(System.String)">
 	<summary>
  Convierto a decimal, tomando la configuración local y 
  poder determinar el separador decimal para una

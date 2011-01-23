@@ -46,7 +46,6 @@ Partial Class frmAdministraCaja
         Me.Label2 = New System.Windows.Forms.Label
         Me.btnConfirmar = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
-        Me.btnSalir = New System.Windows.Forms.Button
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
         Me.SuspendLayout()
@@ -285,24 +284,11 @@ Partial Class frmAdministraCaja
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
-        'btnSalir
-        '
-        Me.btnSalir.Image = Global.PV_Super.My.Resources.Resources.Cancelar_x_19
-        Me.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnSalir.Location = New System.Drawing.Point(444, 399)
-        Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(65, 30)
-        Me.btnSalir.TabIndex = 11
-        Me.btnSalir.Text = "&S a l i r"
-        Me.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSalir.UseVisualStyleBackColor = True
-        '
         'frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 434)
-        Me.Controls.Add(Me.btnSalir)
+        Me.ClientSize = New System.Drawing.Size(530, 399)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -321,7 +307,6 @@ Partial Class frmAdministraCaja
     Friend WithEvents grpCaja As System.Windows.Forms.GroupBox
     Friend WithEvents btnConfirmar As System.Windows.Forms.Button
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
-    Friend WithEvents btnSalir As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label

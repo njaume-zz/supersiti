@@ -82,6 +82,19 @@ Module Funciones
         'Grabar log de errores
     End Sub
 
+    Public Function AutorizarMovimientos(ByVal pszUsuario As String, ByVal pszPass As String) As Boolean
+        Dim oDt = New DataTable
+
+        oDt = frmVentas.ol_dtUsr
+        If oDt Is Nothing Then oDt = clsUsuarioDAO.ValidaUsuario(pszUsuario, pszPass)
+
+        oDt.Select("ROL_NOMBRE = 'Admnistrador' OR ROL_NOMBRE = 'Supervisor'")
+        If oDt.Rows.Count > 0 Then
+            AutorizarMovimientos = True
+        Else
+            AutorizarMovimientos = False
+        End If
+    End Function
     'Public Function ValorNumerico(ByVal _char As Char) As String
     '    Dim str As String
     '    If (Asc(_char) < 48 Or Asc(_char) > 57) And Asc(_char) <> 8 Then
@@ -169,9 +182,9 @@ Module Funciones
     ''' <param name="pszValor"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function ConvertirDecimal(ByVal pszValor) As Decimal
-        Dim oSeparadorDecimal As String
-        Dim oSeparadorStr As String
+    Public Function ConvertirDecimal(ByVal pszValor As String) As Decimal
+        Dim oSeparadorDecimal As Char
+        Dim oSeparadorStr As Char
         Dim wdSalida As Decimal
         Dim wiIndexComa, wiIndexPunto As Integer
         'Obtenego el separador decimal del sistema
@@ -179,7 +192,7 @@ Module Funciones
         'Obtengo el separador decimal del string recuperado
         'Se debe tener en cuenta que se cuentan 2 posiciones (Ej: "34." ), ya que se
         'quitó el signo negativo (-)
-        pszValor = Replace(pszValor, "-", "")
+        'pszValor = Replace(pszValor, "-", "")
         wiIndexComa = pszValor.ToString.IndexOf(",")
         wiIndexPunto = pszValor.ToString.IndexOf(".")
         If pszValor <> 0 Then
@@ -192,7 +205,7 @@ Module Funciones
             Else
                 oSeparadorStr = pszValor.ToString.Substring(wiIndexComa, 1)
             End If
-            End If
+        End If
         wdSalida = Convert.ToDecimal(Replace(pszValor, oSeparadorStr, oSeparadorDecimal))
 
         Return wdSalida

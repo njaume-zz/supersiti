@@ -44,7 +44,10 @@
                     frmVentas.Show()
 
                 End If
-
+            Else
+                Me.txtUsuario.Text = ""
+                Me.txtPassword.Text = ""
+                Me.txtUsuario.Focus()
             End If
 
         Catch ex As Exception
@@ -57,12 +60,21 @@
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         If MsgBox("¿Está seguro que desea cerrar la Aplicación?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CIERRE DE APLICACIÓN ::.") = MsgBoxResult.Yes Then
-
             Me.Close()
-
         End If
     End Sub
 
+    Private Sub txtPassword_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtPassword.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Call OK_Click(sender, e)
+        End If
+    End Sub
+
+    Private Sub txtUsuario_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtUsuario.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Me.txtPassword.Focus()
+        End If
+    End Sub
 #End Region
 
 End Class

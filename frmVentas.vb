@@ -79,7 +79,7 @@ Public Class frmVentas
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
         If e.KeyCode = Keys.F3 Then
-            frmBuscaProducto.ShowDialog()
+            frmBuscaProducto.Show()
         End If
         If Not Me.txtProductoBarra.Text = "" Then
             If e.KeyCode = Keys.Enter Then
@@ -172,10 +172,21 @@ Public Class frmVentas
     Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscarProductoXNombre.Click
         frmBuscaProducto.ShowDialog()
     End Sub
+
+    ''' <summary>
+    ''' Método que invoca al formulario para validar si se autoriza o no una vento o decuento
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem2.Click
+        frmAutorizacion.pAccionPosterior = Definiciones.gcAccionAutorizaVenta
+        frmAutorizacion.ShowDialog(Me)
+    End Sub
 #End Region
 
 #Region "Métodos"
-    Private Sub CompletarFormaPago()
+    Public Sub CompletarFormaPago()
         If Me.DataGridView1.RowCount > 0 Then
             frmFormasPagos.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtPcioTotal.Text)
             frmFormasPagos.ShowDialog()
@@ -197,24 +208,26 @@ Public Class frmVentas
         Dim oDetalle As New clsDetalleComprobante
         Dim wstrPrecio As String
 
-        wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
+        If poDT.Rows.Count > 0 Then
+            wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
 
-        oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
-        oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
-        oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
-        oDetalle.PcioUnitario = Funciones.FormatoMoneda(wstrPrecio)
-        oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
-        oDetalle.PcioTotal = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2))
-        oDetalle.Pesable = poDT.Rows(0).Item("PRO_PESABLE")
-        ol_dt = AgregarItemDT(oDetalle)
+            oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
+            oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
+            oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
+            oDetalle.PcioUnitario = Funciones.FormatoMoneda(wstrPrecio)
+            oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
+            oDetalle.PcioTotal = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2))
+            oDetalle.Pesable = poDT.Rows(0).Item("PRO_PESABLE")
+            ol_dt = AgregarItemDT(oDetalle)
 
 
-        Me.DataGridView1.DataSource = ol_dt
-        Me.DataGridView1.Columns.Item("id").Visible = False
-        Me.txtProductoBarra.Text = ""
-        Me.txtCantidad.Text = ""
-        Me.txtProductoBarra.Focus()
-        RealizarCalculos(oDetalle)
+            Me.DataGridView1.DataSource = ol_dt
+            'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
+            Me.txtProductoBarra.Text = ""
+            Me.txtCantidad.Text = ""
+            Me.txtProductoBarra.Focus()
+            RealizarCalculos(oDetalle)
+        End If
     End Sub
 
 
@@ -226,14 +239,15 @@ Public Class frmVentas
             oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, pstrProducto, 0)
 
             If Not oDt Is Nothing Then
-                If oDt.Rows.Count > 1 Then
-                    frmBuscaProducto.Lista(oDt)
-                    frmBuscaProducto.ShowDialog()
-                Else
-                    If accion = "buscar" Then
+                If accion = "buscar" Then
+                    If oDt.Rows.Count = 0 Then
+                        frmBuscaProducto.Show()
+                    ElseIf oDt.Rows.Count = 1 Then
                         ol_DtProducto = oDt
-                    Else
-                        AgregarAGrilla(oDt)
+                        Me.txtCantidad.Focus()
+                    ElseIf oDt.Rows.Count > 1 Then
+                        frmBuscaProducto.Lista(oDt)
+                        frmBuscaProducto.ShowDialog()
                     End If
                 End If
             End If
