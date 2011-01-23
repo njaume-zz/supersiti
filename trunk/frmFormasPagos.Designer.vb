@@ -25,6 +25,8 @@ Partial Class frmFormasPagos
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFormasPagos))
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.txtSubTotal = New System.Windows.Forms.TextBox
+        Me.Label7 = New System.Windows.Forms.Label
         Me.btnAceptarVenta = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
         Me.txtVuelto = New System.Windows.Forms.TextBox
@@ -37,8 +39,6 @@ Partial Class frmFormasPagos
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.txtSubTotal = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,6 +77,26 @@ Partial Class frmFormasPagos
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Importes y Formas de Pago"
         '
+        'txtSubTotal
+        '
+        Me.txtSubTotal.BackColor = System.Drawing.SystemColors.Window
+        Me.txtSubTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSubTotal.Location = New System.Drawing.Point(196, 116)
+        Me.txtSubTotal.Name = "txtSubTotal"
+        Me.txtSubTotal.Size = New System.Drawing.Size(144, 26)
+        Me.txtSubTotal.TabIndex = 2
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(6, 122)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(81, 20)
+        Me.Label7.TabIndex = 12
+        Me.Label7.Text = "SubTotal"
+        '
         'btnAceptarVenta
         '
         Me.btnAceptarVenta.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
@@ -84,7 +104,7 @@ Partial Class frmFormasPagos
         Me.btnAceptarVenta.Location = New System.Drawing.Point(64, 321)
         Me.btnAceptarVenta.Name = "btnAceptarVenta"
         Me.btnAceptarVenta.Size = New System.Drawing.Size(71, 25)
-        Me.btnAceptarVenta.TabIndex = 11
+        Me.btnAceptarVenta.TabIndex = 6
         Me.btnAceptarVenta.Text = "&Aceptar"
         Me.btnAceptarVenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAceptarVenta.UseVisualStyleBackColor = True
@@ -96,7 +116,7 @@ Partial Class frmFormasPagos
         Me.btnCancelar.Location = New System.Drawing.Point(268, 321)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(73, 25)
-        Me.btnCancelar.TabIndex = 10
+        Me.btnCancelar.TabIndex = 7
         Me.btnCancelar.Text = "&Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
@@ -110,7 +130,7 @@ Partial Class frmFormasPagos
         Me.txtVuelto.Location = New System.Drawing.Point(197, 266)
         Me.txtVuelto.Name = "txtVuelto"
         Me.txtVuelto.Size = New System.Drawing.Size(144, 28)
-        Me.txtVuelto.TabIndex = 9
+        Me.txtVuelto.TabIndex = 5
         '
         'Label6
         '
@@ -130,7 +150,7 @@ Partial Class frmFormasPagos
         Me.txtTotalEnTarjeta.Location = New System.Drawing.Point(196, 203)
         Me.txtTotalEnTarjeta.Name = "txtTotalEnTarjeta"
         Me.txtTotalEnTarjeta.Size = New System.Drawing.Size(144, 26)
-        Me.txtTotalEnTarjeta.TabIndex = 7
+        Me.txtTotalEnTarjeta.TabIndex = 4
         '
         'txtTotalEnEfectivo
         '
@@ -140,7 +160,7 @@ Partial Class frmFormasPagos
         Me.txtTotalEnEfectivo.Location = New System.Drawing.Point(196, 158)
         Me.txtTotalEnEfectivo.Name = "txtTotalEnEfectivo"
         Me.txtTotalEnEfectivo.Size = New System.Drawing.Size(144, 26)
-        Me.txtTotalEnEfectivo.TabIndex = 6
+        Me.txtTotalEnEfectivo.TabIndex = 3
         '
         'txtDescuento
         '
@@ -150,7 +170,7 @@ Partial Class frmFormasPagos
         Me.txtDescuento.Location = New System.Drawing.Point(196, 75)
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(144, 26)
-        Me.txtDescuento.TabIndex = 5
+        Me.txtDescuento.TabIndex = 1
         '
         'txtTotalAPagar
         '
@@ -161,7 +181,7 @@ Partial Class frmFormasPagos
         Me.txtTotalAPagar.Location = New System.Drawing.Point(196, 36)
         Me.txtTotalAPagar.Name = "txtTotalAPagar"
         Me.txtTotalAPagar.Size = New System.Drawing.Size(144, 19)
-        Me.txtTotalAPagar.TabIndex = 4
+        Me.txtTotalAPagar.TabIndex = 0
         '
         'Label5
         '
@@ -202,26 +222,6 @@ Partial Class frmFormasPagos
         Me.Label2.Size = New System.Drawing.Size(118, 20)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Total A Pagar"
-        '
-        'txtSubTotal
-        '
-        Me.txtSubTotal.BackColor = System.Drawing.SystemColors.Window
-        Me.txtSubTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSubTotal.Location = New System.Drawing.Point(196, 116)
-        Me.txtSubTotal.Name = "txtSubTotal"
-        Me.txtSubTotal.Size = New System.Drawing.Size(144, 26)
-        Me.txtSubTotal.TabIndex = 13
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(6, 122)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(81, 20)
-        Me.Label7.TabIndex = 12
-        Me.Label7.Text = "SubTotal"
         '
         'frmFormasPagos
         '

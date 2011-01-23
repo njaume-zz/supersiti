@@ -1,0 +1,18 @@
+
+MODIFICAR TABLA SQL!!!!
+
+-- Si no existe el campo creado, se crea con valor nulo   
+
+IF NOT EXISTS (SELECT *
+
+                        FROM SYSCOLUMNS
+
+                     WHERE ID = OBJECT_ID('NVDetalle') AND NAME='NVDETMoneda'
+
+                    )
+
+                    ALTER TABLE NVDetalle ADD NVDETMoneda CHAR(8) NULL
+
+GO
+
+ 

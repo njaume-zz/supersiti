@@ -3,6 +3,13 @@
 #Region "Constantes"
     Public cXMLConfig = "XMLConfig.xml"
     Public gszPath = ""
+
+    'Constantes que definen las acciones posteriores a la selección
+    ' de autorización de: Venta/Descuento/Tarjeta, etc.
+    Public Const gcAccionAutorizaVenta = 1
+    Public Const gcAccionAutorizaDescuento = 2
+    Public Const gcAccionAutorizaTarjeta = 3
+
 #End Region
 
 #Region "Variables"

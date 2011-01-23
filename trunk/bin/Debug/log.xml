@@ -24,6 +24,117 @@
 Parameter name: index</Excepcion>
     <Ubicacion>dgrProductos_KeyPress</Ubicacion>
     <Fecha>14/01/2011 20:49:01</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:51</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:51</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:54</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:54</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:55</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:55</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:56</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:56</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:01:56</Fecha>
+    <Excepcion>This row already belongs to another table.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:11:02</Fecha>
+    <Excepcion>This row already belongs to another table.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:13:04</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:04</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:05</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:05</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:05</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:05</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:05</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:21</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:22</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:22</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:22</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:22</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:24</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:24</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:24</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:24</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:21:24</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:23:53</Fecha>
+    <Excepcion>Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>22/01/2011 14:23:55</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:23:57</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:23:58</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:23:59</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:24:00</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:24:01</Fecha>
+    <Excepcion>There is no row at position 0.</Excepcion>
+    <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
+    <Fecha>22/01/2011 14:33:26</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -35,4 +146,74 @@ Parameter name: index</Excepcion>
   <Usuario>A90in</Usuario>
   <Eventos />
   <Usuario>A1449in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A221in</Usuario>
+  <Eventos />
+  <Usuario>A2211in</Usuario>
+  <Eventos />
+  <Usuario>A2213in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2221in</Usuario>
+  <Eventos />
+  <Usuario>A2223in</Usuario>
+  <Eventos />
+  <Usuario>A2223in</Usuario>
+  <Eventos />
+  <Usuario>A2223in</Usuario>
+  <Eventos />
+  <Usuario>A2223in</Usuario>
+  <Eventos />
+  <Usuario>A2223in</Usuario>
+  <Eventos />
+  <Usuario>A2224in</Usuario>
+  <Eventos />
+  <Usuario>A2224in</Usuario>
+  <Eventos />
+  <Usuario>A2233in</Usuario>
 </XMLErrores>

@@ -10,13 +10,15 @@
         Dim item As Integer
         Try
 
-            item = Me.dgrProductos.CurrentRow.Index - 1
+            item = Me.dgrProductos.CurrentRow.Index
             Me.dgrProductos.FirstDisplayedScrollingRowIndex = item
 
             If MsgBox("Está seguro que desea seleccionar el producto: " & _
                         dgrProductos.Item(0, item).Value & "?", _
                         MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
                 MsgBox("Se agregó el Producto: " & dgrProductos.Item(4, item).Value)
+                AsignaSeleccion(o_dt, dgrProductos.Item(0, item).Value)
+                Me.Close()
             End If
 
         Catch ex As Exception
@@ -36,93 +38,34 @@
     Private Sub dgrProductos_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dgrProductos.KeyPress
         Dim wo_Dt As DataTable
         Dim item As Integer
-        Dim rta As VariantType
+
         Try
             wo_Dt = New DataTable
             wo_Dt = o_dt.Clone()
-            'If e.KeyChar = ChrW(Keys.Enter) Then
             Select Case e.KeyChar
-                Case ChrW(Keys.Enter)
-
+                Case ChrW(Keys.Enter) ' se confirma la selección
                     'muestra el item seleccionado
-                    item = Me.dgrProductos.CurrentRow.Index - 1
+                    item = Me.dgrProductos.CurrentRow.Index
                     'Me.dgrProductos.FirstDisplayedScrollingRowIndex = item
 
                     If MsgBox("Está seguro que desea seleccionar el producto: " & _
                             dgrProductos.Item(4, item).Value & "?", _
                             MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
                         MsgBox("Se agregó el Producto: " & dgrProductos.Item(4, item).Value)
-                        Dim oDr As DataRow = wo_Dt.NewRow
-
-                        'Agrego los datos al datatable
-                        oDr.Item("PRO_ID") = dgrProductos.Item(0, item).Value
-                        oDr.Item("PRO_NOMBRE") = dgrProductos.Item(4, item).Value
-                        oDr.Item("PRO_CODIGO") = dgrProductos.Item(1, item).Value
-                        oDr.Item("LPR_PRECIO") = dgrProductos.Item(8, item).Value
-                        oDr.Item("PRO_PESABLE") = dgrProductos.Item(15, item).Value
-                        oDr.Item("PRO_CODIGO_BARRA") = dgrProductos.Item(2, item).Value
-                        oDr.Item("IVA_TASA") = 0.0
-                        oDr.Item("IVA_NOMBRE") = ""
-                        oDr.Item("RUB_ID") = 0
-                        oDr.Item("FAM_NOMBRE") = ""
-                        oDr.Item("RUB_NOMBRE") = ""
-                        oDr.Item("PRO_ALERTA") = 0
-                        oDr.Item("PRO_MAXIMO") = 0
-                        oDr.Item("PRO_MINIMO") = 0
-                        oDr.Item("PRO_IDPADRE") = 0
-                        oDr.Item("PRO_IMPUESTOINTERNO") = 0
-                        oDr.Item("PRO_PRECIOCOMPRA") = 0.0
-                        oDr.Item("PRO_PRECIOCOSTO") = 0.0
-                        oDr.Item("PRO_CODIGO_PROVEEDOR") = 0
-                        oDr.Item("PRO_DESCRIPCION") = ""
-                        oDr.Item("PRO_NOMBREETIQUETA") = ""
-                        wo_Dt.Rows.Add(oDr)
-                        'lo dejo en memoria del actual datatable de Ventas
-                        frmVentas.ol_DtProducto = wo_Dt
-                        'Agrego los datos al formulario para que ingrese cantidad
-                        With frmVentas
-                            .txtProductoBarra.Text = oDr.Item("PRO_CODIGO_BARRA")
-                            .txtCantidad.Focus()
-                        End With
-                        oDr = Nothing
+                        AsignaSeleccion(o_dt, dgrProductos.Item(0, item).Value)
                         'Debo pasar los valores a un datatable y llevarlo al formulario de ventas
+                        Me.Close()
                     End If
-                Case ChrW(Keys.Escape) ', ChrW(Keys.Back)
+                Case ChrW(Keys.Escape) 'Se cierra el formulario actual
                     strBuscar = ""
                     wo_Dt = o_dt
                     Me.Close()
+                Case ChrW(Keys.Back) ' borro la última letra escrita
+                    strBuscar = Microsoft.VisualBasic.Left(strBuscar, strBuscar.Length - 1)
+                    wo_Dt = AplicarFiltro(o_dt, strBuscar)
                 Case Else
                     strBuscar = strBuscar & e.KeyChar.ToString
-
-                    Dim o_dr As DataRow
-
-                    For Each wo_DR As DataRow In o_dt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
-                        o_dr = wo_Dt.NewRow()
-
-                        o_dr.Item("PRO_ID") = wo_DR.Item("PRO_ID")
-                        o_dr.Item("PRO_CODIGO") = wo_DR.Item("PRO_CODIGO") & ""
-                        o_dr.Item("PRO_NOMBRE") = wo_DR.Item("PRO_NOMBRE") & ""
-                        o_dr.Item("LPR_PRECIO") = wo_DR.Item("LPR_PRECIO")
-                        o_dr.Item("IVA_TASA") = wo_DR.Item("IVA_TASA")
-                        o_dr.Item("IVA_NOMBRE") = wo_DR.Item("IVA_NOMBRE")
-                        o_dr.Item("RUB_ID") = wo_DR.Item("RUB_ID")
-                        o_dr.Item("FAM_NOMBRE") = wo_DR.Item("FAM_NOMBRE")
-                        o_dr.Item("RUB_NOMBRE") = wo_DR.Item("RUB_NOMBRE")
-                        o_dr.Item("PRO_ALERTA") = wo_DR.Item("PRO_ALERTA")
-                        o_dr.Item("PRO_PESABLE") = wo_DR.Item("PRO_PESABLE")
-                        o_dr.Item("PRO_MAXIMO") = wo_DR.Item("PRO_MAXIMO")
-                        o_dr.Item("PRO_MINIMO") = wo_DR.Item("PRO_MINIMO")
-                        o_dr.Item("PRO_IDPADRE") = wo_DR.Item("PRO_IDPADRE")
-                        o_dr.Item("PRO_IMPUESTOINTERNO") = wo_DR.Item("PRO_IMPUESTOINTERNO")
-                        o_dr.Item("PRO_PRECIOCOMPRA") = wo_DR.Item("PRO_PRECIOCOMPRA")
-                        o_dr.Item("PRO_PRECIOCOSTO") = wo_DR.Item("PRO_PRECIOCOSTO")
-                        o_dr.Item("PRO_CODIGO_PROVEEDOR") = wo_DR.Item("PRO_CODIGO_PROVEEDOR")
-                        o_dr.Item("PRO_CODIGO_BARRA") = wo_DR.Item("PRO_CODIGO_BARRA")
-                        o_dr.Item("PRO_DESCRIPCION") = wo_DR.Item("PRO_DESCRIPCION")
-                        o_dr.Item("PRO_NOMBREETIQUETA") = wo_DR.Item("PRO_NOMBREETIQUETA")
-                        wo_Dt.Rows.Add(o_dr)
-                        o_dr = Nothing
-                    Next
+                    wo_Dt = AplicarFiltro(o_dt, strBuscar)
 
             End Select
 
@@ -141,6 +84,44 @@
 #End Region
 
 #Region "Métodos"
+
+    Private Sub AsignaSeleccion(ByVal poDt As DataTable, ByVal piItem As Integer)
+        Dim oDr As DataRow
+        Dim oDt As New DataTable
+
+        If piItem > 0 Then
+            oDt = poDt.Clone
+            For Each oDr In poDt.Select("PRO_ID = " & piItem & "")
+                oDt.ImportRow(oDr)
+                oDt.AcceptChanges()
+                oDr = Nothing
+            Next
+            'lo dejo en memoria del actual datatable de Ventas
+            frmVentas.ol_DtProducto = poDt
+            'Agrego los datos al formulario para que ingrese cantidad
+            With frmVentas
+                .txtProductoBarra.Text = oDt.Rows(0).Item("PRO_CODIGO_BARRA")
+                .txtCantidad.Focus()
+            End With
+        End If
+    End Sub
+
+    Private Function AplicarFiltro(ByVal poDt As DataTable, ByVal pszTexto As String) As DataTable
+        Dim o_dr As DataRow
+        Dim woDT As New DataTable
+
+        woDT = poDt.Clone
+
+        For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
+            
+            woDT.ImportRow(wo_DR)
+            woDT.AcceptChanges()
+            o_dr = Nothing
+
+        Next
+
+        AplicarFiltro = woDT
+    End Function
 
     ''' <summary>
     ''' Método que enlaza la Grilla con el DataTable pasado por parámetro

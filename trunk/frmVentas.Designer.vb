@@ -503,7 +503,7 @@ Partial Class frmVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoScroll = True
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(831, 609)
         Me.Controls.Add(Me.SSTDescripciones)
         Me.Controls.Add(Me.lblFecha)

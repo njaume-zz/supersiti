@@ -35,7 +35,7 @@ Partial Class frmBuscaProducto
         Me.dgrProductos.AllowUserToAddRows = False
         Me.dgrProductos.AllowUserToDeleteRows = False
         Me.dgrProductos.AllowUserToOrderColumns = True
-        Me.dgrProductos.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.dgrProductos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.dgrProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgrProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgrProductos.Location = New System.Drawing.Point(1, 51)

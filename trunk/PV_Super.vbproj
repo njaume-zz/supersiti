@@ -101,6 +101,12 @@
     <Compile Include="frmAdministraCaja.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmAutorizacion.Designer.vb">
+      <DependentUpon>frmAutorizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutorizacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBuscaProducto.Designer.vb">
       <DependentUpon>frmBuscaProducto.vb</DependentUpon>
     </Compile>
@@ -148,6 +154,9 @@
     <EmbeddedResource Include="frmAdministraCaja.resx">
       <DependentUpon>frmAdministraCaja.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAutorizacion.resx">
+      <DependentUpon>frmAutorizacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBuscaProducto.resx">
       <DependentUpon>frmBuscaProducto.vb</DependentUpon>

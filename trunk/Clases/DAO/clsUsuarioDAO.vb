@@ -45,7 +45,6 @@ Public Class clsUsuarioDAO
         Return salida
     End Function
 
-
     Public Shared Function ModificaUsuario(ByVal usuario As clsUsuario) As Integer
         Dim salida As Integer
         Dim strSQL As String = "STR_MODIFICA_USUARIO"
@@ -88,7 +87,6 @@ Public Class clsUsuarioDAO
         End Try
         Return salida
     End Function
-
 
     Public Shared Function getUsuario(ByVal USU_ID As Integer, ByVal USU_NOMBRE As String, _
                                       ByVal USU_MAIL As String, ByVal ROL_ID As Integer) As DataTable
