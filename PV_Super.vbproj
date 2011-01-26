@@ -37,9 +37,11 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -251,6 +253,7 @@
     <Content Include="Imagenes\509.png" />
     <Content Include="Imagenes\advancedsettings.png" />
     <Content Include="Imagenes\apply.png" />
+    <None Include="Imagenes\Aprobar venta.png" />
     <Content Include="Imagenes\back1.png" />
     <Content Include="Imagenes\blogmarks.png" />
     <Content Include="Imagenes\bookmark.png" />
@@ -262,6 +265,7 @@
     <Content Include="Imagenes\calculator.png" />
     <None Include="Imagenes\cancel_x_19.png" />
     <None Include="Imagenes\Cancelar_x_19.png" />
+    <None Include="Imagenes\Cancelar venta.png" />
     <Content Include="Imagenes\close.png" />
     <Content Include="Imagenes\db_add.png" />
     <Content Include="Imagenes\db_comit.png" />
@@ -276,6 +280,7 @@
     <Content Include="Imagenes\editdelete.png" />
     <Content Include="Imagenes\edit_add.png" />
     <Content Include="Imagenes\edit_remove.png" />
+    <None Include="Imagenes\Encabezado.png" />
     <Content Include="Imagenes\gohome.png" />
     <Content Include="Imagenes\info.png" />
     <None Include="Imagenes\Ingreso_x_19.png" />
@@ -285,6 +290,7 @@
     <None Include="Imagenes\ok_x_19.png" />
     <Content Include="Imagenes\ok_x_38.png" />
     <Content Include="Imagenes\plus.png" />
+    <None Include="Imagenes\Quitar Producto venta.png" />
     <Content Include="Imagenes\reload.png" />
     <Content Include="Imagenes\restart.png" />
     <Content Include="Imagenes\scroll down.png" />

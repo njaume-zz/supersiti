@@ -48,6 +48,23 @@ Partial Class frmVentas
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtPcioTotal = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
+        Me.lblFecha = New System.Windows.Forms.Label
+        Me.SSTDescripciones = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabel5 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.ToolStripStatusLabel6 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.ToolStripStatusLabel7 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.toolstMenu = New System.Windows.Forms.ToolStrip
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.TSBBuscaProducto = New System.Windows.Forms.ToolStripButton
+        Me.TSBBuscarPrecio = New System.Windows.Forms.ToolStripButton
+        Me.TSBAceptaVenta = New System.Windows.Forms.ToolStripButton
+        Me.TSBCancelaVenta = New System.Windows.Forms.ToolStripButton
+        Me.TSBEliminaItem = New System.Windows.Forms.ToolStripButton
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
@@ -67,36 +84,28 @@ Partial Class frmVentas
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ProductsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.StockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.lblFecha = New System.Windows.Forms.Label
-        Me.SSTDescripciones = New System.Windows.Forms.StatusStrip
-        Me.ToolStripStatusLabel5 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripStatusLabel6 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripStatusLabel7 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.btnBuscarProductoXNombre = New System.Windows.Forms.Button
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SSTInformaUsuario.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
         Me.SSTDescripciones.SuspendLayout()
+        Me.toolstMenu.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 118)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 132)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(545, 423)
+        Me.DataGridView1.Size = New System.Drawing.Size(545, 477)
         Me.DataGridView1.TabIndex = 0
         '
         'SSTInformaUsuario
         '
         Me.SSTInformaUsuario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.TSSUsuario, Me.ToolStripStatusLabel2, Me.TSSFecha, Me.ToolStripStatusLabel3, Me.TSSPtoVta, Me.ToolStripStatusLabel4, Me.TSSPC, Me.TSSIdUsuario})
-        Me.SSTInformaUsuario.Location = New System.Drawing.Point(0, 587)
+        Me.SSTInformaUsuario.Location = New System.Drawing.Point(0, 634)
         Me.SSTInformaUsuario.Name = "SSTInformaUsuario"
         Me.SSTInformaUsuario.Size = New System.Drawing.Size(831, 22)
         Me.SSTInformaUsuario.TabIndex = 1
@@ -162,15 +171,15 @@ Partial Class frmVentas
         '
         'txtProductoBarra
         '
-        Me.txtProductoBarra.Location = New System.Drawing.Point(13, 76)
+        Me.txtProductoBarra.Location = New System.Drawing.Point(12, 90)
         Me.txtProductoBarra.Name = "txtProductoBarra"
-        Me.txtProductoBarra.Size = New System.Drawing.Size(201, 20)
+        Me.txtProductoBarra.Size = New System.Drawing.Size(247, 20)
         Me.txtProductoBarra.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 57)
+        Me.Label1.Location = New System.Drawing.Point(12, 71)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(83, 13)
         Me.Label1.TabIndex = 3
@@ -179,7 +188,7 @@ Partial Class frmVentas
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(224, 56)
+        Me.Label2.Location = New System.Drawing.Point(494, 70)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 13)
         Me.Label2.TabIndex = 4
@@ -187,14 +196,14 @@ Partial Class frmVentas
         '
         'txtCantidad
         '
-        Me.txtCantidad.Location = New System.Drawing.Point(227, 76)
+        Me.txtCantidad.Location = New System.Drawing.Point(497, 90)
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(47, 20)
         Me.txtCantidad.TabIndex = 5
         '
         'btnIngresaProducto
         '
-        Me.btnIngresaProducto.Location = New System.Drawing.Point(374, 76)
+        Me.btnIngresaProducto.Location = New System.Drawing.Point(632, 84)
         Me.btnIngresaProducto.Name = "btnIngresaProducto"
         Me.btnIngresaProducto.Size = New System.Drawing.Size(75, 30)
         Me.btnIngresaProducto.TabIndex = 7
@@ -203,7 +212,7 @@ Partial Class frmVentas
         '
         'btnIngresaNegro
         '
-        Me.btnIngresaNegro.Location = New System.Drawing.Point(455, 76)
+        Me.btnIngresaNegro.Location = New System.Drawing.Point(713, 84)
         Me.btnIngresaNegro.Name = "btnIngresaNegro"
         Me.btnIngresaNegro.Size = New System.Drawing.Size(75, 30)
         Me.btnIngresaNegro.TabIndex = 8
@@ -213,7 +222,7 @@ Partial Class frmVentas
         'lblProductoNombre
         '
         Me.lblProductoNombre.AutoSize = True
-        Me.lblProductoNombre.Location = New System.Drawing.Point(17, 102)
+        Me.lblProductoNombre.Location = New System.Drawing.Point(16, 116)
         Me.lblProductoNombre.Name = "lblProductoNombre"
         Me.lblProductoNombre.Size = New System.Drawing.Size(127, 13)
         Me.lblProductoNombre.TabIndex = 9
@@ -228,7 +237,7 @@ Partial Class frmVentas
         Me.GroupBox1.Controls.Add(Me.txtPcioTotal)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(552, 296)
+        Me.GroupBox1.Location = New System.Drawing.Point(552, 364)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(236, 245)
         Me.GroupBox1.TabIndex = 10
@@ -303,8 +312,148 @@ Partial Class frmVentas
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Total"
         '
+        'lblFecha
+        '
+        Me.lblFecha.AutoSize = True
+        Me.lblFecha.Location = New System.Drawing.Point(601, 71)
+        Me.lblFecha.Name = "lblFecha"
+        Me.lblFecha.Size = New System.Drawing.Size(37, 13)
+        Me.lblFecha.TabIndex = 12
+        Me.lblFecha.Text = "Fecha"
+        '
+        'SSTDescripciones
+        '
+        Me.SSTDescripciones.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.SSTDescripciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9, Me.ToolStripStatusLabel10})
+        Me.SSTDescripciones.Location = New System.Drawing.Point(0, 612)
+        Me.SSTDescripciones.Name = "SSTDescripciones"
+        Me.SSTDescripciones.Size = New System.Drawing.Size(831, 22)
+        Me.SSTDescripciones.TabIndex = 13
+        Me.SSTDescripciones.Text = "StatusStrip2"
+        '
+        'ToolStripStatusLabel5
+        '
+        Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
+        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(104, 17)
+        Me.ToolStripStatusLabel5.Text = "Confirmar=[Enter]"
+        '
+        'ToolStripStatusLabel6
+        '
+        Me.ToolStripStatusLabel6.Name = "ToolStripStatusLabel6"
+        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(100, 17)
+        Me.ToolStripStatusLabel6.Text = "Cerrar Venta=[F5]"
+        '
+        'ToolStripStatusLabel7
+        '
+        Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
+        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(122, 17)
+        Me.ToolStripStatusLabel7.Text = "Buscar Producto=[F3]"
+        '
+        'ToolStripStatusLabel8
+        '
+        Me.ToolStripStatusLabel8.Name = "ToolStripStatusLabel8"
+        Me.ToolStripStatusLabel8.Size = New System.Drawing.Size(128, 17)
+        Me.ToolStripStatusLabel8.Text = "Buscar Precio=[Ctrl+B]"
+        '
+        'ToolStripStatusLabel9
+        '
+        Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
+        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(168, 17)
+        Me.ToolStripStatusLabel9.Text = "Autorizar Venta=[Ctrl+Shft+A]"
+        '
+        'ToolStripStatusLabel10
+        '
+        Me.ToolStripStatusLabel10.Name = "ToolStripStatusLabel10"
+        Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(132, 17)
+        Me.ToolStripStatusLabel10.Text = "Quitar Producto=[Supr]"
+        '
+        'toolstMenu
+        '
+        Me.toolstMenu.ImageScalingSize = New System.Drawing.Size(35, 35)
+        Me.toolstMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBBuscaProducto, Me.TSBBuscarPrecio, Me.ToolStripSeparator1, Me.TSBAceptaVenta, Me.TSBCancelaVenta, Me.TSBEliminaItem})
+        Me.toolstMenu.Location = New System.Drawing.Point(0, 24)
+        Me.toolstMenu.Name = "toolstMenu"
+        Me.toolstMenu.Size = New System.Drawing.Size(831, 42)
+        Me.toolstMenu.TabIndex = 14
+        Me.toolstMenu.Text = "Iconos Menu"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(262, 70)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(126, 13)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "Descripción del Producto"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Enabled = False
+        Me.TextBox1.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.TextBox1.Location = New System.Drawing.Point(265, 90)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(225, 20)
+        Me.TextBox1.TabIndex = 16
+        '
+        'TSBBuscaProducto
+        '
+        Me.TSBBuscaProducto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBBuscaProducto.Image = Global.PV_Super.My.Resources.Resources._229
+        Me.TSBBuscaProducto.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBBuscaProducto.Name = "TSBBuscaProducto"
+        Me.TSBBuscaProducto.Size = New System.Drawing.Size(39, 39)
+        Me.TSBBuscaProducto.Text = "Buscar Producto"
+        Me.TSBBuscaProducto.ToolTipText = "Buscar Producto"
+        '
+        'TSBBuscarPrecio
+        '
+        Me.TSBBuscarPrecio.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBBuscarPrecio.Image = Global.PV_Super.My.Resources.Resources._338
+        Me.TSBBuscarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBBuscarPrecio.Name = "TSBBuscarPrecio"
+        Me.TSBBuscarPrecio.Size = New System.Drawing.Size(39, 39)
+        Me.TSBBuscarPrecio.Text = "Lista de Precios"
+        '
+        'TSBAceptaVenta
+        '
+        Me.TSBAceptaVenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBAceptaVenta.Image = Global.PV_Super.My.Resources.Resources.Aprobar_venta
+        Me.TSBAceptaVenta.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBAceptaVenta.Name = "TSBAceptaVenta"
+        Me.TSBAceptaVenta.Size = New System.Drawing.Size(39, 39)
+        Me.TSBAceptaVenta.Text = "TSBAceptarVenta"
+        Me.TSBAceptaVenta.ToolTipText = "Aceptar Venta"
+        '
+        'TSBCancelaVenta
+        '
+        Me.TSBCancelaVenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBCancelaVenta.Image = Global.PV_Super.My.Resources.Resources.Cancelar_venta
+        Me.TSBCancelaVenta.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBCancelaVenta.Name = "TSBCancelaVenta"
+        Me.TSBCancelaVenta.Size = New System.Drawing.Size(39, 39)
+        Me.TSBCancelaVenta.Text = "TSBCancelaVenta"
+        Me.TSBCancelaVenta.ToolTipText = "Cancelar Venta"
+        '
+        'TSBEliminaItem
+        '
+        Me.TSBEliminaItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBEliminaItem.Image = Global.PV_Super.My.Resources.Resources.Quitar_Producto_venta
+        Me.TSBEliminaItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBEliminaItem.Name = "TSBEliminaItem"
+        Me.TSBEliminaItem.Size = New System.Drawing.Size(39, 39)
+        Me.TSBEliminaItem.Text = "TSBQuitarItem"
+        Me.TSBEliminaItem.ToolTipText = "Quitar Item"
+        '
         'MenuStrip1
         '
+        Me.MenuStrip1.BackgroundImage = Global.PV_Super.My.Resources.Resources.Encabezado
+        Me.MenuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministraciónToolStripMenuItem, Me.BúsquedasToolStripMenuItem, Me.ReportesToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -315,6 +464,7 @@ Partial Class frmVentas
         'AdministraciónToolStripMenuItem
         '
         Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ToolStripMenuItem7, Me.ToolStripMenuItem3, Me.CambiarDeUsuarioToolStripMenuItem, Me.CerrarSesiónToolStripMenuItem, Me.ToolStripMenuItem1, Me.SalirDelSistemaToolStripMenuItem})
+        Me.AdministraciónToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.AdministraciónToolStripMenuItem.Name = "AdministraciónToolStripMenuItem"
         Me.AdministraciónToolStripMenuItem.Size = New System.Drawing.Size(100, 20)
         Me.AdministraciónToolStripMenuItem.Text = "&Administración"
@@ -388,6 +538,7 @@ Partial Class frmVentas
         'BúsquedasToolStripMenuItem
         '
         Me.BúsquedasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem, Me.ConsultaDePrecioToolStripMenuItem})
+        Me.BúsquedasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.BúsquedasToolStripMenuItem.Name = "BúsquedasToolStripMenuItem"
         Me.BúsquedasToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.BúsquedasToolStripMenuItem.Text = "&Búsquedas"
@@ -416,6 +567,7 @@ Partial Class frmVentas
         'ReportesToolStripMenuItem
         '
         Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductsToolStripMenuItem, Me.StockToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "&Reportes"
@@ -423,95 +575,30 @@ Partial Class frmVentas
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
-        '
-        'lblFecha
-        '
-        Me.lblFecha.AutoSize = True
-        Me.lblFecha.Location = New System.Drawing.Point(576, 28)
-        Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(37, 13)
-        Me.lblFecha.TabIndex = 12
-        Me.lblFecha.Text = "Fecha"
-        '
-        'SSTDescripciones
-        '
-        Me.SSTDescripciones.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.SSTDescripciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9, Me.ToolStripStatusLabel10})
-        Me.SSTDescripciones.Location = New System.Drawing.Point(0, 565)
-        Me.SSTDescripciones.Name = "SSTDescripciones"
-        Me.SSTDescripciones.Size = New System.Drawing.Size(831, 22)
-        Me.SSTDescripciones.TabIndex = 13
-        Me.SSTDescripciones.Text = "StatusStrip2"
-        '
-        'ToolStripStatusLabel5
-        '
-        Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
-        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(104, 17)
-        Me.ToolStripStatusLabel5.Text = "Confirmar=[Enter]"
-        '
-        'ToolStripStatusLabel6
-        '
-        Me.ToolStripStatusLabel6.Name = "ToolStripStatusLabel6"
-        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(100, 17)
-        Me.ToolStripStatusLabel6.Text = "Cerrar Venta=[F5]"
-        '
-        'ToolStripStatusLabel7
-        '
-        Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
-        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(122, 17)
-        Me.ToolStripStatusLabel7.Text = "Buscar Producto=[F3]"
-        '
-        'ToolStripStatusLabel8
-        '
-        Me.ToolStripStatusLabel8.Name = "ToolStripStatusLabel8"
-        Me.ToolStripStatusLabel8.Size = New System.Drawing.Size(128, 17)
-        Me.ToolStripStatusLabel8.Text = "Buscar Precio=[Ctrl+B]"
-        '
-        'ToolStripStatusLabel9
-        '
-        Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
-        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(168, 17)
-        Me.ToolStripStatusLabel9.Text = "Autorizar Venta=[Ctrl+Shft+A]"
-        '
-        'ToolStripStatusLabel10
-        '
-        Me.ToolStripStatusLabel10.Name = "ToolStripStatusLabel10"
-        Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(132, 17)
-        Me.ToolStripStatusLabel10.Text = "Quitar Producto=[Supr]"
-        '
-        'btnBuscarProductoXNombre
-        '
-        Me.btnBuscarProductoXNombre.Image = Global.PV_Super.My.Resources.Resources.buscar_x_19
-        Me.btnBuscarProductoXNombre.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnBuscarProductoXNombre.Location = New System.Drawing.Point(280, 76)
-        Me.btnBuscarProductoXNombre.Name = "btnBuscarProductoXNombre"
-        Me.btnBuscarProductoXNombre.Size = New System.Drawing.Size(88, 30)
-        Me.btnBuscarProductoXNombre.TabIndex = 6
-        Me.btnBuscarProductoXNombre.Text = "Buscar [F3]"
-        Me.btnBuscarProductoXNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscarProductoXNombre.UseVisualStyleBackColor = True
         '
         'frmVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(831, 609)
+        Me.ClientSize = New System.Drawing.Size(831, 656)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.toolstMenu)
         Me.Controls.Add(Me.SSTDescripciones)
         Me.Controls.Add(Me.lblFecha)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.lblProductoNombre)
         Me.Controls.Add(Me.btnIngresaNegro)
         Me.Controls.Add(Me.btnIngresaProducto)
-        Me.Controls.Add(Me.btnBuscarProductoXNombre)
         Me.Controls.Add(Me.txtCantidad)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -529,10 +616,12 @@ Partial Class frmVentas
         Me.SSTInformaUsuario.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         Me.SSTDescripciones.ResumeLayout(False)
         Me.SSTDescripciones.PerformLayout()
+        Me.toolstMenu.ResumeLayout(False)
+        Me.toolstMenu.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -551,7 +640,6 @@ Partial Class frmVentas
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtCantidad As System.Windows.Forms.TextBox
-    Friend WithEvents btnBuscarProductoXNombre As System.Windows.Forms.Button
     Friend WithEvents btnIngresaProducto As System.Windows.Forms.Button
     Friend WithEvents btnIngresaNegro As System.Windows.Forms.Button
     Friend WithEvents lblProductoNombre As System.Windows.Forms.Label
@@ -590,5 +678,14 @@ Partial Class frmVentas
     Friend WithEvents TSSIdUsuario As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtSubTotal As System.Windows.Forms.TextBox
+    Friend WithEvents toolstMenu As System.Windows.Forms.ToolStrip
+    Friend WithEvents TSBBuscaProducto As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents TSBBuscarPrecio As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents TSBAceptaVenta As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBCancelaVenta As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBEliminaItem As System.Windows.Forms.ToolStripButton
 
 End Class

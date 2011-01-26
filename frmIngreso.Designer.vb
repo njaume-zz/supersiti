@@ -79,7 +79,7 @@ Partial Class frmIngreso
         Me.OK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.OK.Image = Global.PV_Super.My.Resources.Resources.Ingreso_x_19
         Me.OK.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.OK.Location = New System.Drawing.Point(239, 192)
+        Me.OK.Location = New System.Drawing.Point(305, 192)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(75, 30)
         Me.OK.TabIndex = 4
@@ -94,7 +94,7 @@ Partial Class frmIngreso
         Me.Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Cancel.Location = New System.Drawing.Point(386, 192)
         Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(70, 30)
+        Me.Cancel.Size = New System.Drawing.Size(75, 30)
         Me.Cancel.TabIndex = 5
         Me.Cancel.Text = "&Cancel"
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

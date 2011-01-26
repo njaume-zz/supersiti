@@ -72,7 +72,7 @@ Partial Class frmFormasPagos
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 50)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(360, 358)
+        Me.GroupBox1.Size = New System.Drawing.Size(360, 360)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Importes y Formas de Pago"
@@ -101,9 +101,9 @@ Partial Class frmFormasPagos
         '
         Me.btnAceptarVenta.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
         Me.btnAceptarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAceptarVenta.Location = New System.Drawing.Point(64, 321)
+        Me.btnAceptarVenta.Location = New System.Drawing.Point(196, 319)
         Me.btnAceptarVenta.Name = "btnAceptarVenta"
-        Me.btnAceptarVenta.Size = New System.Drawing.Size(71, 25)
+        Me.btnAceptarVenta.Size = New System.Drawing.Size(75, 30)
         Me.btnAceptarVenta.TabIndex = 6
         Me.btnAceptarVenta.Text = "&Aceptar"
         Me.btnAceptarVenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -113,9 +113,9 @@ Partial Class frmFormasPagos
         '
         Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.cancel_x_19
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancelar.Location = New System.Drawing.Point(268, 321)
+        Me.btnCancelar.Location = New System.Drawing.Point(274, 319)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(73, 25)
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
         Me.btnCancelar.TabIndex = 7
         Me.btnCancelar.Text = "&Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

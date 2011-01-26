@@ -169,7 +169,7 @@ Public Class frmVentas
         CerrarAplicacion()
     End Sub
 
-    Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscarProductoXNombre.Click
+    Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         frmBuscaProducto.ShowDialog()
     End Sub
 
@@ -182,6 +182,10 @@ Public Class frmVentas
     Private Sub ToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem2.Click
         frmAutorizacion.pAccionPosterior = Definiciones.gcAccionAutorizaVenta
         frmAutorizacion.ShowDialog(Me)
+    End Sub
+
+    Private Sub TSBBuscaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscaProducto.Click
+        frmBuscaProducto.ShowDialog()
     End Sub
 #End Region
 
@@ -389,4 +393,7 @@ Public Class frmVentas
     End Sub
 #End Region
 
+    Private Sub AdministraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdministraciónToolStripMenuItem.Click
+
+    End Sub
 End Class

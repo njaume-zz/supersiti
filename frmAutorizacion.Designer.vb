@@ -42,14 +42,14 @@ Partial Class frmAutorizacion
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(260, 153)
+        Me.GroupBox1.Size = New System.Drawing.Size(260, 150)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos de autorización"
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(102, 80)
+        Me.txtPassword.Location = New System.Drawing.Point(102, 66)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(142, 20)
@@ -64,11 +64,11 @@ Partial Class frmAutorizacion
         '
         'btnCancelar
         '
-        Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.cancel_x_19
+        Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.Cancelar_x_19
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancelar.Location = New System.Drawing.Point(169, 122)
+        Me.btnCancelar.Location = New System.Drawing.Point(174, 108)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(75, 25)
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
         Me.btnCancelar.TabIndex = 3
         Me.btnCancelar.Text = "&Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -76,11 +76,11 @@ Partial Class frmAutorizacion
         '
         'btnAceptar
         '
-        Me.btnAceptar.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
+        Me.btnAceptar.Image = Global.PV_Super.My.Resources.Resources.Ingreso_x_19
         Me.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAceptar.Location = New System.Drawing.Point(77, 122)
+        Me.btnAceptar.Location = New System.Drawing.Point(93, 108)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(70, 25)
+        Me.btnAceptar.Size = New System.Drawing.Size(75, 30)
         Me.btnAceptar.TabIndex = 2
         Me.btnAceptar.Text = "&Aceptar"
         Me.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -89,7 +89,7 @@ Partial Class frmAutorizacion
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(19, 80)
+        Me.Label2.Location = New System.Drawing.Point(23, 68)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(64, 13)
         Me.Label2.TabIndex = 1
@@ -98,7 +98,7 @@ Partial Class frmAutorizacion
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 34)
+        Me.Label1.Location = New System.Drawing.Point(23, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 13)
         Me.Label1.TabIndex = 0
@@ -108,7 +108,7 @@ Partial Class frmAutorizacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 173)
+        Me.ClientSize = New System.Drawing.Size(284, 174)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmAutorizacion"
