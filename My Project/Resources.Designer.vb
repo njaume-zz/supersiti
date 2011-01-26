@@ -67,6 +67,27 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property _229() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("229", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property _338() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("338", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property Aprobar_venta() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Aprobar venta", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property buscar_x_19() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("buscar_x_19", resourceCulture)
@@ -81,9 +102,23 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property Cancelar_venta() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Cancelar venta", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property Cancelar_x_19() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Cancelar_x_19", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property Encabezado() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Encabezado", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -105,6 +140,13 @@ Namespace My.Resources
         Friend ReadOnly Property ok_x_38() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ok_x_38", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property Quitar_Producto_venta() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Quitar Producto venta", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

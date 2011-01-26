@@ -46,6 +46,8 @@ Partial Class frmAdministraCaja
         Me.Label2 = New System.Windows.Forms.Label
         Me.btnConfirmar = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
+        Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer
+        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
         Me.SuspendLayout()
@@ -54,13 +56,13 @@ Partial Class frmAdministraCaja
         '
         Me.grpApertura.Controls.Add(Me.txtImporteRetiro)
         Me.grpApertura.Controls.Add(Me.Label9)
-        Me.grpApertura.Controls.Add(Me.lblOperacion)
         Me.grpApertura.Controls.Add(Me.Label8)
         Me.grpApertura.Controls.Add(Me.txtFecha)
         Me.grpApertura.Controls.Add(Me.txtOperador)
         Me.grpApertura.Controls.Add(Me.Label7)
         Me.grpApertura.Controls.Add(Me.txtImporteApertura)
         Me.grpApertura.Controls.Add(Me.Label1)
+        Me.grpApertura.Controls.Add(Me.lblOperacion)
         Me.grpApertura.Location = New System.Drawing.Point(13, 13)
         Me.grpApertura.Name = "grpApertura"
         Me.grpApertura.Size = New System.Drawing.Size(505, 143)
@@ -89,7 +91,7 @@ Partial Class frmAdministraCaja
         'lblOperacion
         '
         Me.lblOperacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOperacion.Location = New System.Drawing.Point(281, 6)
+        Me.lblOperacion.Location = New System.Drawing.Point(278, 7)
         Me.lblOperacion.Name = "lblOperacion"
         Me.lblOperacion.Size = New System.Drawing.Size(224, 66)
         Me.lblOperacion.TabIndex = 6
@@ -162,9 +164,10 @@ Partial Class frmAdministraCaja
         Me.grpCaja.Controls.Add(Me.Label2)
         Me.grpCaja.Controls.Add(Me.btnConfirmar)
         Me.grpCaja.Controls.Add(Me.btnCancelar)
+        Me.grpCaja.Controls.Add(Me.ShapeContainer1)
         Me.grpCaja.Location = New System.Drawing.Point(13, 162)
         Me.grpCaja.Name = "grpCaja"
-        Me.grpCaja.Size = New System.Drawing.Size(505, 231)
+        Me.grpCaja.Size = New System.Drawing.Size(505, 238)
         Me.grpCaja.TabIndex = 1
         Me.grpCaja.TabStop = False
         Me.grpCaja.Text = "Gestión de Caja"
@@ -264,11 +267,11 @@ Partial Class frmAdministraCaja
         '
         Me.btnConfirmar.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
         Me.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnConfirmar.Location = New System.Drawing.Point(340, 195)
+        Me.btnConfirmar.Location = New System.Drawing.Point(339, 195)
         Me.btnConfirmar.Name = "btnConfirmar"
         Me.btnConfirmar.Size = New System.Drawing.Size(75, 30)
         Me.btnConfirmar.TabIndex = 9
-        Me.btnConfirmar.Text = "Con&firmar"
+        Me.btnConfirmar.Text = "Con&firmar  "
         Me.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnConfirmar.UseVisualStyleBackColor = True
         '
@@ -284,11 +287,29 @@ Partial Class frmAdministraCaja
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
+        'ShapeContainer1
+        '
+        Me.ShapeContainer1.Location = New System.Drawing.Point(3, 16)
+        Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
+        Me.ShapeContainer1.Name = "ShapeContainer1"
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape1})
+        Me.ShapeContainer1.Size = New System.Drawing.Size(499, 219)
+        Me.ShapeContainer1.TabIndex = 11
+        Me.ShapeContainer1.TabStop = False
+        '
+        'LineShape1
+        '
+        Me.LineShape1.Name = "LineShape1"
+        Me.LineShape1.X1 = 32
+        Me.LineShape1.X2 = 250
+        Me.LineShape1.Y1 = 127
+        Me.LineShape1.Y2 = 127
+        '
         'frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 399)
+        Me.ClientSize = New System.Drawing.Size(530, 412)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -324,4 +345,6 @@ Partial Class frmAdministraCaja
     Friend WithEvents lblOperacion As System.Windows.Forms.Label
     Friend WithEvents txtImporteRetiro As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
+    Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.LineShape
 End Class
