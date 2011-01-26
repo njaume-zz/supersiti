@@ -47,7 +47,7 @@ Partial Class frmBuscaProducto
         '
         'txtDescripcionProd
         '
-        Me.txtDescripcionProd.Location = New System.Drawing.Point(121, 23)
+        Me.txtDescripcionProd.Location = New System.Drawing.Point(118, 23)
         Me.txtDescripcionProd.Name = "txtDescripcionProd"
         Me.txtDescripcionProd.Size = New System.Drawing.Size(180, 20)
         Me.txtDescripcionProd.TabIndex = 1
@@ -56,7 +56,7 @@ Partial Class frmBuscaProducto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(52, 27)
+        Me.Label1.Location = New System.Drawing.Point(49, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 2
@@ -65,7 +65,7 @@ Partial Class frmBuscaProducto
         '
         'btnBuscar
         '
-        Me.btnBuscar.Location = New System.Drawing.Point(323, 22)
+        Me.btnBuscar.Location = New System.Drawing.Point(320, 22)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(75, 23)
         Me.btnBuscar.TabIndex = 3
