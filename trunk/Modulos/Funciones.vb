@@ -50,7 +50,7 @@ Module Funciones
             oDocumento.Save(My.Application.Info.DirectoryPath & "\log.xml")
 
         Catch ex As Exception
-            Throw ex
+            'Throw ex
         Finally
             oDocumento = Nothing
             oNodo1 = Nothing
