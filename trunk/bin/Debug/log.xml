@@ -135,6 +135,80 @@ Parameter name: value</Excepcion>
     <Excepcion>There is no row at position 0.</Excepcion>
     <Ubicacion>DataGridView_CellMouseClick</Ubicacion>
     <Fecha>22/01/2011 14:33:26</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>31/01/2011 19:58:46</Fecha>
+    <Excepcion>Argument 'Length' must be greater or equal to zero.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>31/01/2011 19:58:53</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:26</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:27</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:27</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:27</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:29</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:29</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:29</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:20:29</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:20</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:22</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:22</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:22</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:22</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:40:23</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:40:32</Fecha>
+    <Excepcion>Specified argument was out of the range of valid values.
+Parameter name: value</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:42:28</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:42:38</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>dgrProductos_KeyPress</Ubicacion>
+    <Fecha>01/02/2011 19:42:38</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:48:19</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:48:46</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:49:53</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>01/02/2011 19:51:16</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -216,4 +290,52 @@ Parameter name: value</Excepcion>
   <Usuario>A2224in</Usuario>
   <Eventos />
   <Usuario>A2233in</Usuario>
+  <Eventos />
+  <Usuario>A3158in</Usuario>
+  <Eventos />
+  <Usuario>A3158in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A120in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A140in</Usuario>
+  <Eventos />
+  <Usuario>A142in</Usuario>
+  <Eventos />
+  <Usuario>A142in</Usuario>
+  <Eventos />
+  <Usuario>A142in</Usuario>
+  <Eventos />
+  <Usuario>A148in</Usuario>
+  <Eventos />
+  <Usuario>A148in</Usuario>
+  <Eventos />
+  <Usuario>A149in</Usuario>
+  <Eventos />
+  <Usuario>A151in</Usuario>
 </XMLErrores>

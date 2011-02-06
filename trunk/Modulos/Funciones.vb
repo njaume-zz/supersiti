@@ -198,7 +198,7 @@ Module Funciones
         If pszValor <> 0 Then
             If wiIndexComa = -1 Then
                 If wiIndexPunto = -1 Then
-                    oSeparadorStr = pszValor.ToString.Substring(1, 1)
+                    oSeparadorStr = pszValor.ToString.Substring(0, 0)
                 Else
                     oSeparadorStr = pszValor.ToString.Substring(wiIndexPunto, 1)
                 End If

@@ -57,14 +57,14 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
         Me.toolstMenu = New System.Windows.Forms.ToolStrip
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.TSBBuscaProducto = New System.Windows.Forms.ToolStripButton
         Me.TSBBuscarPrecio = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.TSBAceptaVenta = New System.Windows.Forms.ToolStripButton
         Me.TSBCancelaVenta = New System.Windows.Forms.ToolStripButton
         Me.TSBEliminaItem = New System.Windows.Forms.ToolStripButton
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtDescripcion = New System.Windows.Forms.TextBox
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
@@ -377,29 +377,6 @@ Partial Class frmVentas
         Me.toolstMenu.TabIndex = 14
         Me.toolstMenu.Text = "Iconos Menu"
         '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(262, 70)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(126, 13)
-        Me.Label6.TabIndex = 15
-        Me.Label6.Text = "Descripción del Producto"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.TextBox1.Location = New System.Drawing.Point(265, 90)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(225, 20)
-        Me.TextBox1.TabIndex = 16
-        '
         'TSBBuscaProducto
         '
         Me.TSBBuscaProducto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -418,6 +395,11 @@ Partial Class frmVentas
         Me.TSBBuscarPrecio.Name = "TSBBuscarPrecio"
         Me.TSBBuscarPrecio.Size = New System.Drawing.Size(39, 39)
         Me.TSBBuscarPrecio.Text = "Lista de Precios"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
         '
         'TSBAceptaVenta
         '
@@ -449,8 +431,27 @@ Partial Class frmVentas
         Me.TSBEliminaItem.Text = "TSBQuitarItem"
         Me.TSBEliminaItem.ToolTipText = "Quitar Item"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(262, 70)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(126, 13)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "Descripción del Producto"
+        '
+        'txtDescripcion
+        '
+        Me.txtDescripcion.Enabled = False
+        Me.txtDescripcion.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.txtDescripcion.Location = New System.Drawing.Point(265, 90)
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.Size = New System.Drawing.Size(225, 20)
+        Me.txtDescripcion.TabIndex = 16
+        '
         'MenuStrip1
         '
+        Me.MenuStrip1.BackColor = System.Drawing.SystemColors.ControlDark
         Me.MenuStrip1.BackgroundImage = Global.PV_Super.My.Resources.Resources.Encabezado
         Me.MenuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -464,13 +465,14 @@ Partial Class frmVentas
         'AdministraciónToolStripMenuItem
         '
         Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ToolStripMenuItem7, Me.ToolStripMenuItem3, Me.CambiarDeUsuarioToolStripMenuItem, Me.CerrarSesiónToolStripMenuItem, Me.ToolStripMenuItem1, Me.SalirDelSistemaToolStripMenuItem})
-        Me.AdministraciónToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.AdministraciónToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.AdministraciónToolStripMenuItem.Name = "AdministraciónToolStripMenuItem"
         Me.AdministraciónToolStripMenuItem.Size = New System.Drawing.Size(100, 20)
         Me.AdministraciónToolStripMenuItem.Text = "&Administración"
         '
         'ToolStripMenuItem2
         '
+        Me.ToolStripMenuItem2.ImageTransparentColor = System.Drawing.Color.Silver
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
                     Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
@@ -538,7 +540,7 @@ Partial Class frmVentas
         'BúsquedasToolStripMenuItem
         '
         Me.BúsquedasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem, Me.ConsultaDePrecioToolStripMenuItem})
-        Me.BúsquedasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.BúsquedasToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.BúsquedasToolStripMenuItem.Name = "BúsquedasToolStripMenuItem"
         Me.BúsquedasToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.BúsquedasToolStripMenuItem.Text = "&Búsquedas"
@@ -567,7 +569,8 @@ Partial Class frmVentas
         'ReportesToolStripMenuItem
         '
         Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductsToolStripMenuItem, Me.StockToolStripMenuItem})
-        Me.ReportesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.ReportesToolStripMenuItem.ForeColor = System.Drawing.Color.Black
+        Me.ReportesToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Silver
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "&Reportes"
@@ -575,13 +578,13 @@ Partial Class frmVentas
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
         '
         'frmVentas
@@ -590,7 +593,7 @@ Partial Class frmVentas
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(831, 656)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtDescripcion)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.toolstMenu)
         Me.Controls.Add(Me.SSTDescripciones)
@@ -681,7 +684,7 @@ Partial Class frmVentas
     Friend WithEvents toolstMenu As System.Windows.Forms.ToolStrip
     Friend WithEvents TSBBuscaProducto As System.Windows.Forms.ToolStripButton
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtDescripcion As System.Windows.Forms.TextBox
     Friend WithEvents TSBBuscarPrecio As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents TSBAceptaVenta As System.Windows.Forms.ToolStripButton

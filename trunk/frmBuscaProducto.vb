@@ -7,22 +7,10 @@
 
 
     Private Sub dgrProductos_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgrProductos.CellMouseDoubleClick
-        Dim item As Integer
         Try
-
-            item = Me.dgrProductos.CurrentRow.Index
-            Me.dgrProductos.FirstDisplayedScrollingRowIndex = item
-
-            If MsgBox("Está seguro que desea seleccionar el producto: " & _
-                        dgrProductos.Item(0, item).Value & "?", _
-                        MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
-                MsgBox("Se agregó el Producto: " & dgrProductos.Item(4, item).Value)
-                AsignaSeleccion(o_dt, dgrProductos.Item(0, item).Value)
-                Me.Close()
-            End If
-
+            AsignaSeleccion()
         Catch ex As Exception
-            Funciones.LogError(ex, "DataGridView_CellMouseClick", Funciones.ObtieneUsuario)
+            Funciones.Manejador_Errores("DataGridView_CellMouseClick", ex)
         End Try
     End Sub
 
@@ -35,6 +23,17 @@
         ListarProductos()
     End Sub
 
+    Private Sub dgrProductos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dgrProductos.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                AsignaSeleccion()
+                ListarProductos()
+            End If
+        Catch ex As Exception
+            Funciones.Manejador_Errores("drgProductos_KeyDown", ex)
+        End Try
+    End Sub
+
     Private Sub dgrProductos_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dgrProductos.KeyPress
         Dim wo_Dt As DataTable
         Dim item As Integer
@@ -43,19 +42,6 @@
             wo_Dt = New DataTable
             wo_Dt = o_dt.Clone()
             Select Case e.KeyChar
-                Case ChrW(Keys.Enter) ' se confirma la selección
-                    'muestra el item seleccionado
-                    item = Me.dgrProductos.CurrentRow.Index
-                    'Me.dgrProductos.FirstDisplayedScrollingRowIndex = item
-
-                    If MsgBox("Está seguro que desea seleccionar el producto: " & _
-                            dgrProductos.Item(4, item).Value & "?", _
-                            MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
-                        MsgBox("Se agregó el Producto: " & dgrProductos.Item(4, item).Value)
-                        AsignaSeleccion(o_dt, dgrProductos.Item(0, item).Value)
-                        'Debo pasar los valores a un datatable y llevarlo al formulario de ventas
-                        Me.Close()
-                    End If
                 Case ChrW(Keys.Escape) 'Se cierra el formulario actual
                     strBuscar = ""
                     wo_Dt = o_dt
@@ -74,7 +60,7 @@
             ConfigurarGrilla()
 
         Catch ex As Exception
-            Funciones.LogError(ex, "dgrProductos_KeyPress", Funciones.ObtieneUsuario)
+            Funciones.Manejador_Errores("dgrProductos_KeyPress", ex)
         Finally
             wo_Dt = Nothing
 
@@ -85,25 +71,47 @@
 
 #Region "Métodos"
 
-    Private Sub AsignaSeleccion(ByVal poDt As DataTable, ByVal piItem As Integer)
+    Private Sub AsignaSeleccion()
         Dim oDr As DataRow
-        Dim oDt As New DataTable
+        Dim oDt As DataTable
+        Dim item As Integer
 
-        If piItem > 0 Then
-            oDt = poDt.Clone
-            For Each oDr In poDt.Select("PRO_ID = " & piItem & "")
-                oDt.ImportRow(oDr)
-                oDt.AcceptChanges()
-                oDr = Nothing
+        Try
+            oDt = New DataTable
+
+            item = dgrProductos.CurrentRow.Cells("PRO_ID").Value
+            oDt = o_dt.Clone
+            For Each oDr In o_dt.Select("PRO_ID = " & item & "")
+                If MsgBox("Está seguro que desea seleccionar el producto: " & _
+                        oDr.Item("PRO_NOMBRE") & "?", _
+                        MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
+                    MsgBox("Se agregó el Producto: " & oDr.Item("PRO_NOMBRE"))
+
+                    oDt.ImportRow(oDr)
+                    oDt.AcceptChanges()
+                    oDr = Nothing
+                    'lo dejo en memoria del actual datatable de Ventas
+                    frmVentas.ol_DtProducto = o_dt
+                    'Agrego los datos al formulario para que ingrese cantidad
+                    With frmVentas
+                        .txtProductoBarra.Text = oDt.Rows(0).Item("PRO_CODIGO_BARRA")
+                        .txtDescripcion.Text = oDt.Rows(0).Item("PRO_NOMBRE")
+                        .txtCantidad.Focus()
+                    End With
+                    'End If
+                    Me.Close()
+                Else
+                    ListarProductos()
+                End If
             Next
-            'lo dejo en memoria del actual datatable de Ventas
-            frmVentas.ol_DtProducto = poDt
-            'Agrego los datos al formulario para que ingrese cantidad
-            With frmVentas
-                .txtProductoBarra.Text = oDt.Rows(0).Item("PRO_CODIGO_BARRA")
-                .txtCantidad.Focus()
-            End With
-        End If
+
+
+        Catch ex As Exception
+            Funciones.LogError(ex, "AsignaSeleccion", Funciones.ObtieneUsuario)
+        Finally
+            oDr = Nothing
+            oDt = Nothing
+        End Try
     End Sub
 
     Private Function AplicarFiltro(ByVal poDt As DataTable, ByVal pszTexto As String) As DataTable
@@ -113,7 +121,7 @@
         woDT = poDt.Clone
 
         For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
-            
+
             woDT.ImportRow(wo_DR)
             woDT.AcceptChanges()
             o_dr = Nothing
@@ -143,8 +151,9 @@
             o_dt = New DataTable
             o_dt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, "", 0)
             If Not o_dt Is Nothing Then
-                Me.dgrProductos.DataSource = o_dt
-                ConfigurarGrilla()
+                'Me.dgrProductos.DataSource = o_dt
+                'ConfigurarGrilla()
+                Lista(o_dt)
             End If
 
         Catch ex As Exception

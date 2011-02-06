@@ -6,21 +6,48 @@ PV_Super
 </name>
 </assembly>
 <members>
-<member name="M:PV_Super.frmBuscaProducto.Lista(System.Data.DataTable)">
+<member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
 	<summary>
- Método que enlaza la Grilla con el DataTable pasado por parámetro
+ Función que inserta una caja nueva
  </summary>
-	<param name="pDt">DataTable a enlazar con la grilla</param>
+	<param name="pCaja"></param>
+	<returns>entero que determina si tuvo éxito o no</returns>
 	<remarks></remarks>
-</member><member name="M:PV_Super.frmBuscaProducto.ListarProductos">
+</member><member name="M:PV_Super.clsCajaDAO.ModificaCaja(PV_Super.clsCaja)">
 	<summary>
- Método que recupera de la base de datos los productos según un filtro.
+ Modificación de Caja
  </summary>
+	<param name="pCaja"></param>
+	<returns>Entero que determina si modificó bien o no</returns>
 	<remarks></remarks>
-</member><member name="M:PV_Super.frmBuscaProducto.ConfigurarGrilla">
+</member><member name="M:PV_Super.clsCajaDAO.getCaja(System.Int32,System.String,System.DateTime,System.DateTime)">
 	<summary>
- Método que configura la visualización de la grilla y asigna la cabecera
+ Función parametrizada que tiene como fin recuperar los datos necesario
+ de la tabla de Cajas
  </summary>
+	<param name="CAJ_ID"></param>
+	<param name="CAJ_NUMERO"></param>
+	<param name="CAJ_FECHAAPERTURA"></param>
+	<param name="CAJ_FECHACIERRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaEstado(System.Int32,System.String)">
+	<summary>
+ Función que devuelve los estados de la caja
+ </summary>
+	<param name="CAE_ID"></param>
+	<param name="CAE_NOMBRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaAcciones(System.Int32,System.DateTime,System.Int32,System.Int32)">
+	<summary>
+ Lista las ACciones realizadas en las cajas, aperturas, retiro, etc.
+ </summary>
+	<param name="CAA_ID"></param>
+	<param name="CAA_FECHA"></param>
+	<param name="CAE_ID"></param>
+	<param name="USU_ID"></param>
+	<returns>Datatable</returns>
 	<remarks></remarks>
 </member><member name="M:PV_Super.frmVentas.ToolStripMenuItem4_Click(System.Object,System.EventArgs)">
 	<summary>
@@ -75,7 +102,7 @@ PV_Super
  Inicializa el DataTable que será utilizado para el formulario Ventas
  </summary>
 	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.AgregarItemDT(PV_Super.clsDetalleComprobante)">
+</member><member name="M:PV_Super.frmVentas.AgregarItemDT(PV_Super.clsComprobanteDetalle)">
 	<summary>
  Método que agrega un ítem al DataTable que será utilizado para Ventas
  </summary>
@@ -96,48 +123,42 @@ PV_Super
  </summary>
 	<param name="dt">Se pasa el DataTable declarado de manera global</param>
 	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+</member><member name="M:PV_Super.frmBuscaProducto.Lista(System.Data.DataTable)">
 	<summary>
- Función que inserta una caja nueva
+ Método que enlaza la Grilla con el DataTable pasado por parámetro
  </summary>
-	<param name="pCaja"></param>
-	<returns>entero que determina si tuvo éxito o no</returns>
+	<param name="pDt">DataTable a enlazar con la grilla</param>
 	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.ModificaCaja(PV_Super.clsCaja)">
+</member><member name="M:PV_Super.frmBuscaProducto.ListarProductos">
 	<summary>
- Modificación de Caja
+ Método que recupera de la base de datos los productos según un filtro.
  </summary>
-	<param name="pCaja"></param>
-	<returns>Entero que determina si modificó bien o no</returns>
 	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCaja(System.Int32,System.String,System.DateTime,System.DateTime)">
+</member><member name="M:PV_Super.frmBuscaProducto.ConfigurarGrilla">
 	<summary>
- Función parametrizada que tiene como fin recuperar los datos necesario
- de la tabla de Cajas
+ Método que configura la visualización de la grilla y asigna la cabecera
  </summary>
-	<param name="CAJ_ID"></param>
-	<param name="CAJ_NUMERO"></param>
-	<param name="CAJ_FECHAAPERTURA"></param>
-	<param name="CAJ_FECHACIERRE"></param>
-	<returns>Datatable</returns>
 	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCajaEstado(System.Int32,System.String)">
+</member><member name="M:PV_Super.frmFormasPagos.btnCancelar_Click(System.Object,System.EventArgs)">
 	<summary>
- Función que devuelve los estados de la caja
+ Evento que consulta si se desea cancelar el comprobante de venta.-
  </summary>
-	<param name="CAE_ID"></param>
-	<param name="CAE_NOMBRE"></param>
-	<returns>Datatable</returns>
+	<param name="sender"></param>
+	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCajaAcciones(System.Int32,System.DateTime,System.Int32,System.Int32)">
+</member><member name="M:PV_Super.frmFormasPagos.frmFormasPagos_Load(System.Object,System.EventArgs)">
 	<summary>
- Lista las ACciones realizadas en las cajas, aperturas, retiro, etc.
+ Evento que inicializa valores del formulario Formas de Pago
  </summary>
-	<param name="CAA_ID"></param>
-	<param name="CAA_FECHA"></param>
-	<param name="CAE_ID"></param>
-	<param name="USU_ID"></param>
-	<returns>Datatable</returns>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmFormasPagos.txtDescuento_LostFocus(System.Object,System.EventArgs)">
+	<summary>
+ Se calcula el descuento sobre el Monto Total de la Venta
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:PV_Super.Funciones.ConvertirDecimal(System.String)">
 	<summary>
@@ -191,27 +212,6 @@ PV_Super
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="M:PV_Super.frmFormasPagos.btnCancelar_Click(System.Object,System.EventArgs)">
-	<summary>
- Evento que consulta si se desea cancelar el comprobante de venta.-
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmFormasPagos.frmFormasPagos_Load(System.Object,System.EventArgs)">
-	<summary>
- Evento que inicializa valores del formulario Formas de Pago
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:PV_Super.frmFormasPagos.txtDescuento_LostFocus(System.Object,System.EventArgs)">
-	<summary>
- Se calcula el descuento sobre el Monto Total de la Venta
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
 </member>
 </members>
 </doc>

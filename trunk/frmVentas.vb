@@ -58,6 +58,14 @@ Public Class frmVentas
     '    End Try
     'End Sub
 
+    Private Sub txtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCantidad.KeyPress
+        'If Not Funciones.ValidaNumerico(e.KeyChar) Then
+        If Not IsNumeric(e.KeyChar) Then
+            Me.txtCantidad.Text = ""
+            e.Handled = False
+        End If
+    End Sub
+
     Private Sub txtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCantidad.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Not Me.txtCantidad.Text = "" Then
@@ -85,6 +93,7 @@ Public Class frmVentas
             If e.KeyCode = Keys.Enter Then
                 ' el 2º parámetro me indica que lo mantengo en memoria hasta ingresar la cantidad.
                 BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+
                 Me.txtCantidad.Focus()
             End If
         End If
@@ -112,7 +121,8 @@ Public Class frmVentas
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = Keys.Delete Then
             If MsgBox("¿Está seguro de quitar este Item de la venta?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = MsgBoxResult.Yes Then
-                QuitarItemDT(ol_DtProducto, Me.DataGridView1.CurrentCell.RowIndex)
+                ol_DtProducto = QuitarItemDT(ol_DtProducto, Me.DataGridView1.CurrentCell.RowIndex)
+                Me.DataGridView1.DataSource = ol_DtProducto
             End If
         End If
     End Sub
@@ -187,6 +197,18 @@ Public Class frmVentas
     Private Sub TSBBuscaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscaProducto.Click
         frmBuscaProducto.ShowDialog()
     End Sub
+
+    Private Sub TSBAceptaVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBAceptaVenta.Click
+        MsgBox("Aceptar Venta")
+    End Sub
+
+    Private Sub TSBCancelaVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBCancelaVenta.Click
+        MsgBox("Cancelar Venta")
+    End Sub
+
+    Private Sub TSBEliminaItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBEliminaItem.Click
+        MsgBox("Ubicarme en la grilla y seleccionar un item")
+    End Sub
 #End Region
 
 #Region "Métodos"
@@ -197,10 +219,10 @@ Public Class frmVentas
         End If
     End Sub
 
-    Private Sub RealizarCalculos(ByVal poDetalle As clsDetalleComprobante)
-        Me.txtPcioProducto.Text = Funciones.FormatoMoneda(CStr(poDetalle.PcioUnitario))
-        Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad))
-        Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.PcioUnitario * poDetalle.Cantidad), 2))
+    Private Sub RealizarCalculos(ByVal poDetalle As clsComprobanteDetalle)
+        Me.txtPcioProducto.Text = Funciones.FormatoMoneda(CStr(poDetalle.COD_PROPCIOUNITARIO))
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.COD_PROPCIOUNITARIO * poDetalle.COD_PROCANTIDAD))
+        Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.COD_PROPCIOUNITARIO * poDetalle.COD_PROCANTIDAD), 2))
     End Sub
 
     ''' <summary>
@@ -209,28 +231,29 @@ Public Class frmVentas
     ''' <param name="poDT"></param>
     ''' <remarks></remarks>
     Public Sub AgregarAGrilla(ByVal poDT As DataTable)
-        Dim oDetalle As New clsDetalleComprobante
+        Dim oDetalle As New clsComprobanteDetalle
         Dim wstrPrecio As String
+        If Me.txtCantidad.Text > 0 Then
+            If poDT.Rows.Count > 0 Then
+                wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
 
-        If poDT.Rows.Count > 0 Then
-            wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
-
-            oDetalle.ID = poDT.Rows(0).Item("PRO_ID")
-            oDetalle.Nombre = poDT.Rows(0).Item("PRO_NOMBRE")
-            oDetalle.Codigo = poDT.Rows(0).Item("PRO_CODIGO")
-            oDetalle.PcioUnitario = Funciones.FormatoMoneda(wstrPrecio)
-            oDetalle.Cantidad = CInt("0" & Me.txtCantidad.Text)
-            oDetalle.PcioTotal = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.PcioUnitario)), 2))
-            oDetalle.Pesable = poDT.Rows(0).Item("PRO_PESABLE")
-            ol_dt = AgregarItemDT(oDetalle)
+                oDetalle.COD_ID = poDT.Rows(0).Item("PRO_ID")
+                oDetalle.COD_PRONOMBRE = poDT.Rows(0).Item("PRO_NOMBRE")
+                oDetalle.COD_PROCODIGO = poDT.Rows(0).Item("PRO_CODIGO")
+                oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(wstrPrecio)
+                oDetalle.COD_PROCANTIDAD = CInt("0" & Me.txtCantidad.Text)
+                oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.COD_PROPCIOUNITARIO)), 2))
+                oDetalle.COD_PESABLE = poDT.Rows(0).Item("PRO_PESABLE")
+                ol_dt = AgregarItemDT(oDetalle)
 
 
-            Me.DataGridView1.DataSource = ol_dt
-            'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
-            Me.txtProductoBarra.Text = ""
-            Me.txtCantidad.Text = ""
-            Me.txtProductoBarra.Focus()
-            RealizarCalculos(oDetalle)
+                Me.DataGridView1.DataSource = ol_dt
+                'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
+                Me.txtProductoBarra.Text = ""
+                Me.txtCantidad.Text = ""
+                Me.txtProductoBarra.Focus()
+                RealizarCalculos(oDetalle)
+            End If
         End If
     End Sub
 
@@ -248,6 +271,7 @@ Public Class frmVentas
                         frmBuscaProducto.Show()
                     ElseIf oDt.Rows.Count = 1 Then
                         ol_DtProducto = oDt
+                        txtDescripcion.Text = oDt.Rows(0).Item("PRO_NOMBRE")
                         Me.txtCantidad.Focus()
                     ElseIf oDt.Rows.Count > 1 Then
                         frmBuscaProducto.Lista(oDt)
@@ -312,19 +336,19 @@ Public Class frmVentas
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub CrearDTItems()
-        Dim oDet As New clsDetalleComprobante
+        Dim oDet As New clsComprobanteDetalle
         ol_dt = New DataTable
 
         With ol_dt.Columns
-            .Add(DefinirColumna("id"))
-            .Add(DefinirColumna("Nombre"))
-            .Add(DefinirColumna("Codigo"))
-            .Add(DefinirColumna("PcioUnitario"))
-            .Add(DefinirColumna("Cantidad"))
-            .Add(DefinirColumna("PcioTotal"))
-            .Add(DefinirColumna("Pesable"))
+            .Add(DefinirColumna("COD_ID"))
+            .Add(DefinirColumna("COD_PRONOMBRE"))
+            .Add(DefinirColumna("COD_PROCODIGO"))
+            .Add(DefinirColumna("COD_PROPCIOUNITARIO"))
+            .Add(DefinirColumna("COD_PROCANTIDAD"))
+            .Add(DefinirColumna("COD_PRECIOCANTIDAD"))
+            .Add(DefinirColumna("COD_PESABLE"))
         End With
-        
+
 
     End Sub
 
@@ -334,28 +358,28 @@ Public Class frmVentas
     ''' <param name="campos">Clase del Detalle de Comprobantes</param>
     ''' <returns>DataTable</returns>
     ''' <remarks></remarks>
-    Public Function AgregarItemDT(ByVal campos As clsDetalleComprobante) As DataTable
+    Public Function AgregarItemDT(ByVal campos As clsComprobanteDetalle) As DataTable
         Try
             Dim obRepetido As Boolean = False
             Dim dr As DataRow ' = dt.NewRow()
 
-            For Each odrVerifica As DataRow In ol_dt.Select("id = " & campos.ID & "")
-                If Not odrVerifica.Item("id") Is Nothing Then
+            For Each odrVerifica As DataRow In ol_dt.Select("COD_ID = " & campos.COD_ID & "")
+                If Not odrVerifica.Item("COD_ID") Is Nothing Then
                     obRepetido = True
-                    odrVerifica.Item("Cantidad") = odrVerifica.Item("Cantidad") + campos.Cantidad
-                    odrVerifica.Item("PcioTotal") = Funciones.FormatoMoneda(campos.PcioTotal)
+                    odrVerifica.Item("COD_PROCANTIDAD") = odrVerifica.Item("COD_PROCANTIDAD") + campos.COD_PROCANTIDAD
+                    odrVerifica.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
                     Exit For
                 End If
             Next
             If obRepetido = False Then
                 dr = ol_dt.NewRow()
-                dr.Item("id") = campos.ID
-                dr.Item("Nombre") = campos.Nombre
-                dr.Item("Codigo") = campos.Codigo
-                dr.Item("PcioUnitario") = Funciones.FormatoMoneda(campos.PcioUnitario)
-                dr.Item("Cantidad") = campos.Cantidad
-                dr.Item("PcioTotal") = Funciones.FormatoMoneda(campos.PcioTotal)
-                dr.Item("Pesable") = campos.Pesable
+                dr.Item("COD_ID") = campos.COD_ID
+                dr.Item("COD_PRONOMBRE") = campos.COD_PRONOMBRE
+                dr.Item("COD_PROCODIGO") = campos.COD_PROCODIGO
+                dr.Item("COD_PROPCIOUNITARIO") = Funciones.FormatoMoneda(campos.COD_PROPCIOUNITARIO)
+                dr.Item("COD_PROCANTIDAD") = campos.COD_PROCANTIDAD
+                dr.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
+                dr.Item("COD_PESABLE") = campos.COD_PESABLE
 
                 ol_dt.Rows.Add(dr)
             End If
@@ -393,7 +417,5 @@ Public Class frmVentas
     End Sub
 #End Region
 
-    Private Sub AdministraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdministraciónToolStripMenuItem.Click
 
-    End Sub
 End Class
