@@ -15,4 +15,7 @@
     <LeyendaTicket></LeyendaTicket>
     <InicioActividad></InicioActividad>
   </DatosPropios>
+  <Venta>
+    <NroCaja>1</NroCaja>
+  </Venta>
 </Configuracion>

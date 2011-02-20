@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Microsoft.VisualBasic.PowerPacks
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmAdministraCaja
     Inherits System.Windows.Forms.Form
 
@@ -46,8 +48,8 @@ Partial Class frmAdministraCaja
         Me.Label2 = New System.Windows.Forms.Label
         Me.btnConfirmar = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
-        Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer
-        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape
+        'Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer
+        'Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
         Me.SuspendLayout()
@@ -164,7 +166,7 @@ Partial Class frmAdministraCaja
         Me.grpCaja.Controls.Add(Me.Label2)
         Me.grpCaja.Controls.Add(Me.btnConfirmar)
         Me.grpCaja.Controls.Add(Me.btnCancelar)
-        Me.grpCaja.Controls.Add(Me.ShapeContainer1)
+        ' Me.grpCaja.Controls.Add(Me.ShapeContainer1)
         Me.grpCaja.Location = New System.Drawing.Point(13, 162)
         Me.grpCaja.Name = "grpCaja"
         Me.grpCaja.Size = New System.Drawing.Size(505, 238)
@@ -289,21 +291,21 @@ Partial Class frmAdministraCaja
         '
         'ShapeContainer1
         '
-        Me.ShapeContainer1.Location = New System.Drawing.Point(3, 16)
-        Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
-        Me.ShapeContainer1.Name = "ShapeContainer1"
-        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(499, 219)
-        Me.ShapeContainer1.TabIndex = 11
-        Me.ShapeContainer1.TabStop = False
+        'Me.ShapeContainer1.Location = New System.Drawing.Point(3, 16)
+        'Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
+        'Me.ShapeContainer1.Name = "ShapeContainer1"
+        'Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.OpenShare() {Me.LineShape1})
+        'Me.ShapeContainer1.Size = New System.Drawing.Size(499, 219)
+        'Me.ShapeContainer1.TabIndex = 11
+        'Me.ShapeContainer1.TabStop = False
         '
         'LineShape1
         '
-        Me.LineShape1.Name = "LineShape1"
-        Me.LineShape1.X1 = 32
-        Me.LineShape1.X2 = 250
-        Me.LineShape1.Y1 = 127
-        Me.LineShape1.Y2 = 127
+        'Me.LineShape1.Name = "LineShape1"
+        'Me.LineShape1.X1 = 32
+        'Me.LineShape1.X2 = 250
+        'Me.LineShape1.Y1 = 127
+        'Me.LineShape1.Y2 = 127
         '
         'frmAdministraCaja
         '
@@ -345,6 +347,6 @@ Partial Class frmAdministraCaja
     Friend WithEvents lblOperacion As System.Windows.Forms.Label
     Friend WithEvents txtImporteRetiro As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
-    Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.LineShape
+    'Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
+    'Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
 End Class

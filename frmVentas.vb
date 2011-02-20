@@ -33,10 +33,7 @@ Public Class frmVentas
     End Sub
 
     Private Sub frmVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Funciones.InicializarConfiguracion()
-        Me.lblFecha.Text = Format(Date.Now, "dd/MM/yyyy")
-        CrearDTItems()
-        IniciaStrip()
+        Inicializar()
     End Sub
 
     'Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
@@ -109,7 +106,6 @@ Public Class frmVentas
         If e.KeyChar = ChrW(Keys.F2) Then
             frmBuscaProducto.ShowDialog()
         End If
-
     End Sub
 
     Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
@@ -212,6 +208,36 @@ Public Class frmVentas
 #End Region
 
 #Region "Métodos"
+
+    ''' <summary>
+    ''' Método que inicializa el formulario.
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub Inicializar()
+        Funciones.InicializarConfiguracion()
+        Me.lblFecha.Text = Format(Date.Now, "dd/MM/yyyy")
+        CrearDTItems()
+        IniciaStrip()
+        LimpiarCampos()
+    End Sub
+
+    ''' <summary>
+    ''' Método que limpia la pantalla inicializando los valores vacíos
+    ''' </summary>
+    ''' <remarks>Maxi Adad</remarks>
+    Private Sub LimpiarCampos()
+        Me.DataGridView1.Rows.Clear()
+        Me.txtCantidad.Text = "0"
+        Me.txtDescripcion.Text = ""
+        Me.txtPcioProducto.Text = ""
+        Me.txtPcioTotal.Text = Funciones.FormatoMoneda("0.00")
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda("0.00")
+    End Sub
+
+    ''' <summary>
+    ''' Método que pasa los valores del formulario ventas al formulario Formas de Pago
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub CompletarFormaPago()
         If Me.DataGridView1.RowCount > 0 Then
             frmFormasPagos.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtPcioTotal.Text)
@@ -219,6 +245,12 @@ Public Class frmVentas
         End If
     End Sub
 
+    ''' <summary>
+    ''' Método qu erealiza los cálculos de los importes del producto por la cantidad.
+    ''' Sumándolo al subtotal actual.
+    ''' </summary>
+    ''' <param name="poDetalle"></param>
+    ''' <remarks></remarks>
     Private Sub RealizarCalculos(ByVal poDetalle As clsComprobanteDetalle)
         Me.txtPcioProducto.Text = Funciones.FormatoMoneda(CStr(poDetalle.COD_PROPCIOUNITARIO))
         Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.COD_PROPCIOUNITARIO * poDetalle.COD_PROCANTIDAD))
@@ -256,7 +288,6 @@ Public Class frmVentas
             End If
         End If
     End Sub
-
 
     Private Sub BuscarProducto(ByVal pstrProducto As String, ByVal accion As String)
         Dim oDt As DataTable

@@ -174,6 +174,17 @@ Module Funciones
         Return str
     End Function
 
+    Public Function ObtenerPuntoVenta() As String
+        Dim str As String
+        Try
+            str = frmVentas.TSSPtoVta.Text
+        Catch ex As Exception
+            str = ""
+            Manejador_Errores("Obtener Punto de Venta", ex)
+        End Try
+        Return str
+    End Function
+
     ''' <summary>
     ''' Convierto a decimal, tomando la configuración local y 
     ''' poder determinar el separador decimal para una

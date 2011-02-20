@@ -1,7 +1,7 @@
 ﻿Module Definiciones
 
 #Region "Constantes"
-    Public cXMLConfig = "XMLConfig.xml"
+    Public cXMLConfig As String = "XMLConfig.xml"
     Public gszPath = ""
 
     'Constantes que definen las acciones posteriores a la selección

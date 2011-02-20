@@ -7,7 +7,14 @@
 --                      USUARIO, MODULOS Y ROLES DEL SISTEMA
 -- =============================================================================================
 
-
+/**************************************************************************************
+									TABLAS DE SISTEMA
+***************************************************************************************/
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('S_MODULO') 
+              )
+   
 CREATE TABLE [dbo].[S_MODULO](
 	[MOD_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[MOD_NOMBRE] [VARCHAR](100) NOT NULL,
@@ -21,6 +28,11 @@ CREATE TABLE [dbo].[S_MODULO](
 	PRIMARY KEY ([MOD_ID])
 )
 go
+
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('S_ROL') 
+              )
 CREATE TABLE [dbo].[S_ROL](
 	[ROL_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[ROL_NOMBRE] [VARCHAR] (100),
@@ -29,6 +41,11 @@ CREATE TABLE [dbo].[S_ROL](
 	PRIMARY KEY ([ROL_ID])
 )
 go
+
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('S_USUARIO') 
+              )
 CREATE TABLE [dbo].[S_USUARIO](
 	[USU_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[USU_NOMBRE] [VARCHAR] (100) NOT NULL,
@@ -41,6 +58,11 @@ CREATE TABLE [dbo].[S_USUARIO](
 	CONSTRAINT [FK_USUARIO_ROL] FOREIGN KEY ([ROL_ID]) REFERENCES [S_ROL] ([ROL_ID])
 )
 go
+
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('S_ROL_MODULO') 
+              )
 CREATE TABLE [dbo].[S_ROL_MODULO](
 	[ROM_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[ROM_ESTADO] [INT],
@@ -51,10 +73,19 @@ CREATE TABLE [dbo].[S_ROL_MODULO](
 	CONSTRAINT [FK_ROL_MODULO_MODULOS] FOREIGN KEY ([MOD_ID]) REFERENCES [S_MODULO] ([MOD_ID])
 )
 go
+
+/**************************************************************************************
+							FIN DE TABLAS DE SISTEMA
+***************************************************************************************/
+
 -- ====================================================================================
 --                                  INICIO DE SCRIPT PARA CAJAS
 -- ====================================================================================
 -- ESTADO DE CAJA CONTIENE LOS ESTADOS APERTURA, CIERRE X, CIERRE Z
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_CAJA_TIPO_MOVIMIENTO') 
+              )
 CREATE TABLE [dbo].[V_CAJA_TIPO_MOVIMIENTO](
 	[CAE_ID] [INT] IDENTITY(1,1) NOT NULL,
 	[CAE_NOMBRE] [VARCHAR] (80) NOT NULL,
@@ -64,6 +95,10 @@ CREATE TABLE [dbo].[V_CAJA_TIPO_MOVIMIENTO](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_CAJA') 
+              )
 CREATE TABLE [dbo].[V_CAJA](
 	[CAJ_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[CAJ_NUMERO] [INT] NOT NULL,
@@ -72,6 +107,11 @@ CREATE TABLE [dbo].[V_CAJA](
 	PRIMARY KEY ([CAJ_ID])
 )
 go
+
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_CAJA_MOVIMIENTOS') 
+              )
 CREATE TABLE [dbo].[V_CAJA_MOVIMIENTOS](
 	[CAM_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[CAM_IMPORTE] [NUMERIC] (18,2),
@@ -86,6 +126,10 @@ CREATE TABLE [dbo].[V_CAJA_MOVIMIENTOS](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_CAJA_CIERRES') 
+              )
 CREATE TABLE [dbo].[V_CAJA_CIERRES](
 	[CAC_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[CAC_EFECTIVO] [NUMERIC] (18,2),
@@ -96,7 +140,14 @@ CREATE TABLE [dbo].[V_CAJA_CIERRES](
 	[CAC_FECHAALTA] [DATETIME],
 	PRIMARY KEY ([CAC_ID])	
 )
-go
+
+IF NOT EXISTS (SELECT * 
+				FROM SYSCOLUMNS
+                WHERE ID = OBJECT_ID('V_TIPO_COMPROBANTE') AND NAME='CTC_ULTIMONRO'
+              )
+              ALTER TABLE V_TIPO_COMPROBANTE ADD CTC_ULTIMONRO CHAR(20) NULL
+
+GO
 CREATE TABLE [dbo].[V_TIPO_COMPROBANTE](
 	[CTC_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[CTC_CODIGO] [VARCHAR](2) NOT NULL ,
@@ -108,7 +159,10 @@ CREATE TABLE [dbo].[V_TIPO_COMPROBANTE](
 )
 
 GO
-
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_FORMAPAGO') 
+              )
 CREATE TABLE [dbo].[V_FORMAPAGO](
 	[FOP_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[FOP_NOMBRE] [VARCHAR] (100) NOT NULL,
@@ -120,7 +174,10 @@ CREATE TABLE [dbo].[V_FORMAPAGO](
  )
 
 GO
-
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_COMPROBANTE') 
+              )
 CREATE TABLE [dbo].[V_COMPROBANTE](
 	[COM_ID] [INT] IDENTITY(1,1) NOT NULL,
 	[COM_PTOVTA] [VARCHAR](4) NOT NULL, -- DE ESTO DEPENDE COMO TOMAMOS LAS CAJAS
@@ -154,7 +211,10 @@ CREATE TABLE [dbo].[V_COMPROBANTE](
 )
 
 GO
-
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('V_COMPROBANTE_DETALLE') 
+              )
 CREATE TABLE [dbo].[V_COMPROBANTE_DETALLE](
 	[COD_ID] [INT] IDENTITY (1,1),
 	[COD_PROCODIGO] [VARCHAR] (50),
@@ -179,6 +239,10 @@ GO
 -- ====================================================================================
 --                    INICIO SCRIPT PARA COMERCIALIZACION
 -- ====================================================================================
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_UNIDAD') 
+              )
 CREATE TABLE [dbo].[C_UNIDAD](
 	[UNI_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[UNI_NOMBRE] [VARCHAR](100) NOT NULL,
@@ -190,6 +254,10 @@ CREATE TABLE [dbo].[C_UNIDAD](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_RUBRO') 
+              )
 CREATE TABLE [dbo].[C_RUBRO](
 	[RUB_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[RUB_NOMBRE] [VARCHAR](100) NOT NULL,
@@ -201,6 +269,10 @@ CREATE TABLE [dbo].[C_RUBRO](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_FAMILIA') 
+              )
 CREATE TABLE [dbo].[C_FAMILIA](
 	[FAM_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[FAM_NOMBRE] [VARCHAR](100) NOT NULL,
@@ -214,6 +286,10 @@ CREATE TABLE [dbo].[C_FAMILIA](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_PRODUCTO') 
+              )
 CREATE TABLE [dbo].[C_PRODUCTO](
 	[PRO_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[PRO_CODIGO] [VARCHAR](20),
@@ -245,6 +321,10 @@ CREATE TABLE [dbo].[C_PRODUCTO](
 )
 go
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_TIPOS_PRECIOS') 
+              )
 CREATE TABLE [dbo].[C_TIPOS_PRECIOS](
 	[TPR_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[TPR_CODIGO] [VARCHAR] (10) NOT NULL,
@@ -257,6 +337,10 @@ CREATE TABLE [dbo].[C_TIPOS_PRECIOS](
 
 GO
 
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('C_LISTA_PRECIO') 
+              )
 CREATE TABLE [dbo].[C_LISTA_PRECIO](
 	[LPR_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[PRO_ID] [INT] NOT NULL,
@@ -276,6 +360,10 @@ GO
 	========================= TABLAS AUXILIARES ==========================
 */
 --IMPUESTO IVA SERÁ EL PORCENTAJE DE IVA, CATEGORÍA IVA SERÁ, POR EJEMPLO, RESPONSABLE INSCRIPTO
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('A_IMPUESTOIVA') 
+              )
 CREATE TABLE [dbo].[A_IMPUESTOIVA](
 	[IVA_ID] [INT] IDENTITY (1,1) NOT NULL,
 	[IVA_NOMBRE] [VARCHAR](250) NOT NULL,
@@ -287,21 +375,10 @@ CREATE TABLE [dbo].[A_IMPUESTOIVA](
 )
 go
 
-
-
-CREATE TABLE [dbo].[A_COMPROBANTES_VENTA] (
-    [COV_ID] [INT] IDENTITY (1,1) NOT NULL,
-	[COV_CODIGO] [INT],
-    [COV_DESCRIPCION] [VARCHAR](30),
-    [COV_SIGLA] [VARCHAR] (10),
-    [COV_Letra] [VARCHAR] (1),
-    [COV_Signo] [VARCHAR] (1),
-    [COV_UltimoNro] [VARCHAR](13),  -- ultimo numero entregado al cliente.
-    PRIMARY KEY ([COV_ID])
-)
-
- go
-
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('A_PUNTO_VENTA') 
+              )
 CREATE TABLE [dbo].[A_PUNTO_VENTA] (
   [PTV_ID] [INT] IDENTITY(1,1) NOT NULL,
   [PTV_CODIGO] [VARCHAR](4),
@@ -312,7 +389,10 @@ CREATE TABLE [dbo].[A_PUNTO_VENTA] (
 )
 
 go
-
+IF NOT EXISTS (SELECT * 
+				FROM SYSOBJECTS
+                WHERE ID = OBJECT_ID('A_SITUACION_IMPOSITIVA') 
+              )
 CREATE TABLE [dbo].[A_SITUACION_IMPOSITIVA] (
   [SII_ID] [INT] identity (1,1 )NOT NULL ,
   [SII_CLAVE] [varchar](2) NOT NULL,

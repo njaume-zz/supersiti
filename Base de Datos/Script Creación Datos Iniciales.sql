@@ -3,15 +3,15 @@ go
 -- ============================================================================
 -- SITUACIONES FRENTE A IVA
 -- ============================================================================
-/*
-exec  fn_saveSituacion('01', 'Responsable Inscripto', 'RSI');
-exec fn_saveSituacion('02', 'Responsable No Inscripto', 'RNI');
-exec fn_saveSituacion('03', 'No Responsable', 'NRS');
-exec fn_saveSituacion('04', 'Exento', 'EXT');
-exec fn_saveSituacion('05', 'Consumidor Final', 'CNF');
-exec fn_saveSituacion('06', 'No Categorizado', 'NC');
-exec fn_saveSituacion('07', 'Monotributo', 'MON');
-*/
+
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'01', 'Responsable Inscripto', 'RSI'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'02', 'Responsable No Inscripto', 'RNI'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'03', 'No Responsable', 'NRS'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'04', 'Exento', 'EXT'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'05', 'Consumidor Final', 'CNF'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'06', 'No Categorizado', 'NC'
+EXEC STR_NUEVO_A_SITUACION_IMPOSITIVA 0,'07', 'Monotributo', 'MON'
+
 -- ===========================================================================
 -- TIPOS DE DOCUMENTOS
 -- ===========================================================================
@@ -23,19 +23,40 @@ exec fn_saveTipoDoc(3, 'DNI');
 -- ===========================================================================
 -- COMPROBANTES DE VENTA
 -- ===========================================================================
-/*
-exec fn_savetipocomprob ('01','FACTURA','FACT','A','+');
-exec fn_savetipocomprob ('02','NOTA DE DEBITO','ND','A','+');
-exec fn_savetipocomprob ('03','NOTA DE CREDITO','NC','A','-');
-exec fn_savetipocomprob ('04','RECIBO','REC','A','+');
-exec fn_savetipocomprob ('06','FACTURA','FACT','B','+');
-exec fn_savetipocomprob ('07','NOTA DE DEBITO','ND','B','+');
-exec fn_savetipocomprob ('08','NOTA DE CREDITO','NC','B','-');
-exec fn_savetipocomprob ('09','RECIBO','REC','B','+');
-exec fn_savetipocomprob ('12','REMITO','REMITO','A','+');
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE 0,'01','FACTURA','FACT','A','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'02','NOTA DE DEBITO','ND','A','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'03','NOTA DE CREDITO','NC','A','-','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'04','RECIBO','REC','A','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE 0,'06','FACTURA','FACT','B','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE 0,'07','NOTA DE DEBITO','ND','B','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'08','NOTA DE CREDITO','NC','B','-','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'09','RECIBO','REC','B','+','00000000'
+EXEC STR_NUEVO_V_TIPO_COMPROBANTE  0,'12','REMITO','REMITO','A','+','00000000'
 
+
+-- CARGA DE FORMAS DE PAGO
+
+
+INSERT INTO V_FORMAPAGO (FOP_NOMBRE,FOP_DESCRIPCION,FOP_SIGLA,FOP_ESTADO,FOP_FECHAALTA)
+VALUES ('EFECTIVO','EFECTIVO','EFT',1,GETDATE())
+
+INSERT INTO V_FORMAPAGO (FOP_NOMBRE,FOP_DESCRIPCION,FOP_SIGLA,FOP_ESTADO,FOP_FECHAALTA)
+VALUES ('TARJETA','Tarjeta de credito/debito','TAR',1,GETDATE())
+
+INSERT INTO V_FORMAPAGO (FOP_NOMBRE,FOP_DESCRIPCION,FOP_SIGLA,FOP_ESTADO,FOP_FECHAALTA)
+VALUES ('CUENTA CORIENTE','Cuenta Corriente','CCTE',1,GETDATE())
+
+INSERT INTO V_FORMAPAGO (FOP_NOMBRE,FOP_DESCRIPCION,FOP_SIGLA,FOP_ESTADO,FOP_FECHAALTA)
+VALUES ('VALE','Vale','VALE',1,GETDATE())
+
+-- CARGA DE CAJAS
+/*
+	INICIALMENTE QUEDARÁ SÓLO UNA CAJA HABILITADA.
+	SE PUEDE HACER UN ABM DESDE EL WEB
 */
--- CARGA DE CAJA ESATDO
+EXEC STR_NUEVO_CAJA 0,1,1
+
+-- CARGA DE CAJA ESTADO
 
 exec STR_NUEVO_CAJA_TIPO_MOVIMIENTO 0,'Apertura',1
 exec str_nuevo_caja_tipo_movimiento 0,'Retiro',1
