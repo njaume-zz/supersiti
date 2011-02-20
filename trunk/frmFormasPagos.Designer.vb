@@ -39,6 +39,8 @@ Partial Class frmFormasPagos
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.cmbTipoComprobante = New System.Windows.Forms.ComboBox
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -56,6 +58,8 @@ Partial Class frmFormasPagos
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cmbTipoComprobante)
+        Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.txtSubTotal)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.btnAceptarVenta)
@@ -72,7 +76,7 @@ Partial Class frmFormasPagos
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 50)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(360, 360)
+        Me.GroupBox1.Size = New System.Drawing.Size(360, 395)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Importes y Formas de Pago"
@@ -82,7 +86,7 @@ Partial Class frmFormasPagos
         Me.txtSubTotal.BackColor = System.Drawing.SystemColors.Window
         Me.txtSubTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSubTotal.Location = New System.Drawing.Point(196, 116)
+        Me.txtSubTotal.Location = New System.Drawing.Point(196, 154)
         Me.txtSubTotal.Name = "txtSubTotal"
         Me.txtSubTotal.Size = New System.Drawing.Size(144, 26)
         Me.txtSubTotal.TabIndex = 2
@@ -91,7 +95,7 @@ Partial Class frmFormasPagos
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(6, 122)
+        Me.Label7.Location = New System.Drawing.Point(6, 160)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(81, 20)
         Me.Label7.TabIndex = 12
@@ -101,7 +105,7 @@ Partial Class frmFormasPagos
         '
         Me.btnAceptarVenta.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
         Me.btnAceptarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAceptarVenta.Location = New System.Drawing.Point(196, 319)
+        Me.btnAceptarVenta.Location = New System.Drawing.Point(196, 357)
         Me.btnAceptarVenta.Name = "btnAceptarVenta"
         Me.btnAceptarVenta.Size = New System.Drawing.Size(75, 30)
         Me.btnAceptarVenta.TabIndex = 6
@@ -113,7 +117,7 @@ Partial Class frmFormasPagos
         '
         Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.cancel_x_19
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancelar.Location = New System.Drawing.Point(274, 319)
+        Me.btnCancelar.Location = New System.Drawing.Point(274, 357)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
         Me.btnCancelar.TabIndex = 7
@@ -127,7 +131,7 @@ Partial Class frmFormasPagos
         Me.txtVuelto.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtVuelto.Enabled = False
         Me.txtVuelto.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtVuelto.Location = New System.Drawing.Point(197, 266)
+        Me.txtVuelto.Location = New System.Drawing.Point(197, 304)
         Me.txtVuelto.Name = "txtVuelto"
         Me.txtVuelto.Size = New System.Drawing.Size(144, 28)
         Me.txtVuelto.TabIndex = 5
@@ -136,7 +140,7 @@ Partial Class frmFormasPagos
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(22, 269)
+        Me.Label6.Location = New System.Drawing.Point(22, 307)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(102, 25)
         Me.Label6.TabIndex = 8
@@ -147,7 +151,7 @@ Partial Class frmFormasPagos
         Me.txtTotalEnTarjeta.BackColor = System.Drawing.SystemColors.Window
         Me.txtTotalEnTarjeta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTotalEnTarjeta.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalEnTarjeta.Location = New System.Drawing.Point(196, 203)
+        Me.txtTotalEnTarjeta.Location = New System.Drawing.Point(196, 241)
         Me.txtTotalEnTarjeta.Name = "txtTotalEnTarjeta"
         Me.txtTotalEnTarjeta.Size = New System.Drawing.Size(144, 26)
         Me.txtTotalEnTarjeta.TabIndex = 4
@@ -157,7 +161,7 @@ Partial Class frmFormasPagos
         Me.txtTotalEnEfectivo.BackColor = System.Drawing.SystemColors.Window
         Me.txtTotalEnEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtTotalEnEfectivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalEnEfectivo.Location = New System.Drawing.Point(196, 158)
+        Me.txtTotalEnEfectivo.Location = New System.Drawing.Point(196, 196)
         Me.txtTotalEnEfectivo.Name = "txtTotalEnEfectivo"
         Me.txtTotalEnEfectivo.Size = New System.Drawing.Size(144, 26)
         Me.txtTotalEnEfectivo.TabIndex = 3
@@ -167,7 +171,7 @@ Partial Class frmFormasPagos
         Me.txtDescuento.BackColor = System.Drawing.SystemColors.Window
         Me.txtDescuento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtDescuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescuento.Location = New System.Drawing.Point(196, 75)
+        Me.txtDescuento.Location = New System.Drawing.Point(196, 113)
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(144, 26)
         Me.txtDescuento.TabIndex = 1
@@ -178,7 +182,7 @@ Partial Class frmFormasPagos
         Me.txtTotalAPagar.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtTotalAPagar.Enabled = False
         Me.txtTotalAPagar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalAPagar.Location = New System.Drawing.Point(196, 36)
+        Me.txtTotalAPagar.Location = New System.Drawing.Point(196, 74)
         Me.txtTotalAPagar.Name = "txtTotalAPagar"
         Me.txtTotalAPagar.Size = New System.Drawing.Size(144, 19)
         Me.txtTotalAPagar.TabIndex = 0
@@ -187,7 +191,7 @@ Partial Class frmFormasPagos
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(6, 205)
+        Me.Label5.Location = New System.Drawing.Point(6, 243)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(145, 20)
         Me.Label5.TabIndex = 3
@@ -197,7 +201,7 @@ Partial Class frmFormasPagos
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(6, 160)
+        Me.Label4.Location = New System.Drawing.Point(6, 198)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(145, 20)
         Me.Label4.TabIndex = 2
@@ -207,7 +211,7 @@ Partial Class frmFormasPagos
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(6, 81)
+        Me.Label3.Location = New System.Drawing.Point(6, 119)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(128, 20)
         Me.Label3.TabIndex = 1
@@ -217,17 +221,35 @@ Partial Class frmFormasPagos
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 36)
+        Me.Label2.Location = New System.Drawing.Point(6, 74)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(118, 20)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Total A Pagar"
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(6, 29)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(181, 20)
+        Me.Label8.TabIndex = 13
+        Me.Label8.Text = "Tipo de Comprobante"
+        '
+        'cmbTipoComprobante
+        '
+        Me.cmbTipoComprobante.FormattingEnabled = True
+        Me.cmbTipoComprobante.Location = New System.Drawing.Point(194, 29)
+        Me.cmbTipoComprobante.Name = "cmbTipoComprobante"
+        Me.cmbTipoComprobante.Size = New System.Drawing.Size(146, 21)
+        Me.cmbTipoComprobante.TabIndex = 14
+        '
         'frmFormasPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 420)
+        Me.ClientSize = New System.Drawing.Size(384, 457)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
@@ -258,4 +280,6 @@ Partial Class frmFormasPagos
     Friend WithEvents btnAceptarVenta As System.Windows.Forms.Button
     Friend WithEvents txtSubTotal As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipoComprobante As System.Windows.Forms.ComboBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
 End Class

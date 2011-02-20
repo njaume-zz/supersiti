@@ -31,7 +31,6 @@ Public Class clsComprobante
     Public Sub New()
     End Sub
 
-
     Public Property COM_ID() As Int32
         Get
             Return _com_id
@@ -40,6 +39,7 @@ Public Class clsComprobante
             _com_id = Value
         End Set
     End Property
+
     Public Property COM_PTOVTA() As String
         Get
             Return _com_ptovta
@@ -48,6 +48,7 @@ Public Class clsComprobante
             _com_ptovta = Value
         End Set
     End Property
+
     Public Property COM_NROEMITIDO() As String
         Get
             Return _com_nroemitido
@@ -56,6 +57,7 @@ Public Class clsComprobante
             _com_nroemitido = Value
         End Set
     End Property
+
     Public Property COM_FECHA() As DateTime
         Get
             Return _com_fecha
@@ -64,6 +66,7 @@ Public Class clsComprobante
             _com_fecha = Value
         End Set
     End Property
+
     Public Property COM_IMPORTEGRAVADO() As Decimal
         Get
             Return _com_importegravado
@@ -72,6 +75,7 @@ Public Class clsComprobante
             _com_importegravado = Value
         End Set
     End Property
+
     Public Property COM_IMPORTENOGRAVADO() As Decimal
         Get
             Return _com_importenogravado
@@ -80,6 +84,7 @@ Public Class clsComprobante
             _com_importenogravado = Value
         End Set
     End Property
+
     Public Property COM_IVAFACTURADO() As Decimal
         Get
             Return _com_ivafacturado
@@ -88,6 +93,7 @@ Public Class clsComprobante
             _com_ivafacturado = Value
         End Set
     End Property
+
     Public Property COM_TOTALFACTRADO() As Decimal
         Get
             Return _com_totalfactrado
@@ -96,6 +102,7 @@ Public Class clsComprobante
             _com_totalfactrado = Value
         End Set
     End Property
+
     Public Property COM_IMPRESO() As String
         Get
             Return _com_impreso
@@ -104,6 +111,7 @@ Public Class clsComprobante
             _com_impreso = Value
         End Set
     End Property
+
     Public Property COM_USUNOMBRE() As String
         Get
             Return _com_usunombre
@@ -112,6 +120,7 @@ Public Class clsComprobante
             _com_usunombre = Value
         End Set
     End Property
+
     Public Property COM_CLIRAZONSOCIAL() As String
         Get
             Return _com_clirazonsocial
@@ -120,6 +129,7 @@ Public Class clsComprobante
             _com_clirazonsocial = Value
         End Set
     End Property
+
     Public Property COM_CLIDOMICILIO() As String
         Get
             Return _com_clidomicilio
@@ -128,6 +138,7 @@ Public Class clsComprobante
             _com_clidomicilio = Value
         End Set
     End Property
+
     Public Property COM_CLITELEFONO() As String
         Get
             Return _com_clitelefono
@@ -136,6 +147,7 @@ Public Class clsComprobante
             _com_clitelefono = Value
         End Set
     End Property
+
     Public Property COM_CLIDOMICILIOENTREGA() As String
         Get
             Return _com_clidomicilioentrega
@@ -144,6 +156,7 @@ Public Class clsComprobante
             _com_clidomicilioentrega = Value
         End Set
     End Property
+
     Public Property COM_CLICUIT() As String
         Get
             Return _com_clicuit
@@ -152,6 +165,7 @@ Public Class clsComprobante
             _com_clicuit = Value
         End Set
     End Property
+
     Public Property COM_CLIINGRESOBRUTO() As String
         Get
             Return _com_cliingresobruto
@@ -160,6 +174,7 @@ Public Class clsComprobante
             _com_cliingresobruto = Value
         End Set
     End Property
+
     Public Property COM_RAZONSOCIALPROPIO() As String
         Get
             Return _com_razonsocialpropio
@@ -168,6 +183,7 @@ Public Class clsComprobante
             _com_razonsocialpropio = Value
         End Set
     End Property
+
     Public Property COM_DOMICILIOPROPIO() As String
         Get
             Return _com_domiciliopropio
@@ -176,6 +192,7 @@ Public Class clsComprobante
             _com_domiciliopropio = Value
         End Set
     End Property
+
     Public Property COM_TELEFONOPROPIO() As String
         Get
             Return _com_telefonopropio
@@ -184,6 +201,7 @@ Public Class clsComprobante
             _com_telefonopropio = Value
         End Set
     End Property
+
     Public Property COM_CUITPROPIO() As String
         Get
             Return _com_cuitpropio
@@ -192,6 +210,7 @@ Public Class clsComprobante
             _com_cuitpropio = Value
         End Set
     End Property
+
     Public Property COM_INGRESOBRUTOPROPIO() As String
         Get
             Return _com_ingresobrutopropio
@@ -200,6 +219,7 @@ Public Class clsComprobante
             _com_ingresobrutopropio = Value
         End Set
     End Property
+
     Public Property CTC_ID() As Int32
         Get
             Return _ctc_id
@@ -208,6 +228,7 @@ Public Class clsComprobante
             _ctc_id = Value
         End Set
     End Property
+
     Public Property CAJ_ID() As Int32
         Get
             Return _caj_id
@@ -216,6 +237,7 @@ Public Class clsComprobante
             _caj_id = Value
         End Set
     End Property
+
     Public Property FOP_ID() As Int32
         Get
             Return _fop_id

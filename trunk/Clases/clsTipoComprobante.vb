@@ -7,6 +7,8 @@ Public Class clsTipoComprobante
     Private _ctc_sigla As System.String
     Private _ctc_letra As System.String
     Private _ctc_signo As System.String
+    Private _ctc_ultimonro As System.String
+
 #End Region
 #Region "Propiedades"
 
@@ -61,6 +63,15 @@ Public Class clsTipoComprobante
         End Get
         Set(ByVal Value As String)
             _ctc_signo = Value
+        End Set
+    End Property
+
+    Public Property CTC_UltimoNro() As String
+        Get
+            Return _ctc_ultimonro
+        End Get
+        Set(ByVal value As String)
+            _ctc_ultimonro = value
         End Set
     End Property
 #End Region
