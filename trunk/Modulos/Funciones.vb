@@ -235,6 +235,33 @@ Module Funciones
     End Function
 
     ''' <summary>
+    ''' Función que permite formatear el número de comprobante para visualizarlo correctamente.
+    ''' </summary>
+    ''' <param name="pstrValor">string</param>
+    ''' <returns>string</returns>
+    ''' <remarks>madad</remarks>
+    Public Function FormatoNroComprobante(ByVal pstrValor As String) As String
+        Select Case Len(pstrValor)
+            Case 1
+                FormatoNroComprobante = "0000000" & pstrValor
+            Case 2
+                FormatoNroComprobante = "000000" & pstrValor
+            Case 3
+                FormatoNroComprobante = "00000" & pstrValor
+            Case 4
+                FormatoNroComprobante = "0000" & pstrValor
+            Case 5
+                FormatoNroComprobante = "000" & pstrValor
+            Case 6
+                FormatoNroComprobante = "00" & pstrValor
+            Case 7
+                FormatoNroComprobante = "0" & pstrValor
+            Case Else
+                FormatoNroComprobante = pstrValor
+        End Select
+    End Function
+
+    ''' <summary>
     ''' Controla el ingreso de caracter distinto de comilla simple o doble.
     ''' </summary>
     ''' <param name="pcKeyChar">Caracter a validar</param>

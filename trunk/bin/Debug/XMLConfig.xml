@@ -17,5 +17,6 @@
   </DatosPropios>
   <Venta>
     <NroCaja>1</NroCaja>
-  </Venta>
+    <TipoComprobante>20</TipoComprobante> <!--TICKET-->
+  </Venta>  
 </Configuracion>

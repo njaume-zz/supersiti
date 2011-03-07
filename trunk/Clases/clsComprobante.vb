@@ -25,6 +25,8 @@ Public Class clsComprobante
     Private _ctc_id As System.Int32
     Private _caj_id As System.Int32
     Private _fop_id As System.Int32
+    Private _detalle As ArrayList
+
 #End Region
 #Region "Propiedades"
 
@@ -244,6 +246,15 @@ Public Class clsComprobante
         End Get
         Set(ByVal Value As Int32)
             _fop_id = Value
+        End Set
+    End Property
+
+    Public Property DETALLE() As ArrayList
+        Get
+            Return _detalle
+        End Get
+        Set(ByVal value As ArrayList)
+            _detalle = value
         End Set
     End Property
 #End Region
