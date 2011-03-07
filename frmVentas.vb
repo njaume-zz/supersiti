@@ -226,7 +226,8 @@ Public Class frmVentas
     ''' </summary>
     ''' <remarks>Maxi Adad</remarks>
     Private Sub LimpiarCampos()
-        Me.DataGridView1.Rows.Clear()
+        Me.DataGridView1.DataBindings.Clear()
+        Me.DataGridView1.Refresh()
         Me.txtCantidad.Text = "0"
         Me.txtDescripcion.Text = ""
         Me.txtPcioProducto.Text = ""
@@ -240,6 +241,7 @@ Public Class frmVentas
     ''' <remarks></remarks>
     Public Sub CompletarFormaPago()
         If Me.DataGridView1.RowCount > 0 Then
+            frmFormasPagos.goDt = Me.DataGridView1.DataSource
             frmFormasPagos.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtPcioTotal.Text)
             frmFormasPagos.ShowDialog()
         End If

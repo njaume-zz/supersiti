@@ -1,7 +1,15 @@
 ﻿Public Class frmFormasPagos
 
+#Region "Variables"
+    Public goDt As DataTable
+
+#End Region
 #Region "Métodos"
 
+    ''' <summary>
+    ''' Método que inicializa los campos en vacío
+    ''' </summary>
+    ''' <remarks>madad</remarks>
     Private Sub LimpiarCampos()
         Me.txtDescuento.Text = 0
         Me.txtSubTotal.Text = Funciones.FormatoMoneda("0.00")
@@ -12,6 +20,11 @@
         Me.txtTotalEnEfectivo.Focus()
     End Sub
 
+    ''' <summary>
+    ''' Método que valida las formas de pago.
+    ''' </summary>
+    ''' <returns>string con mensaje a mostrar</returns>
+    ''' <remarks>madad</remarks>
     Private Function ValidaPago() As String
         If Me.txtSubTotal.Text = "" Then
             ValidaPago = "El campo SubTotal no puede estar vacío.-"
@@ -37,7 +50,9 @@
     ''' <param name="poComprobante">Objeto Comprobante</param>
     ''' <returns>Objeto Comprobante</returns>
     ''' <remarks></remarks>
-    Private Function InicializaComprobante(ByVal poComprobante As clsComprobante) As clsComprobante
+    Private Function InicializaComprobante(ByVal poComprobante As clsComprobante, ByVal parrDetalle As ArrayList) As clsComprobante
+        Dim NroComp As String
+        Dim TipoComp As String
         '--------------------------------------------------------
         'Datos propios obtenidos de un archivo de configuración
         '--------------------------------------------------------
@@ -61,44 +76,29 @@
         poComprobante.COM_IMPORTENOGRAVADO = Funciones.FormatoMoneda("0.00")
         poComprobante.COM_IMPRESO = "S"
         poComprobante.COM_IVAFACTURADO = Funciones.FormatoMoneda("0.00")
-        poComprobante.COM_NROEMITIDO = clsComprobanteDAO.ObtieneNroComprobante() 'Hacer función
+        TipoComp = ObtenerConfiguracion(gstrTipoComprobante)
+        NroComp = FormatoNroComprobante(clsComprobanteDAO.ObtieneNroComprobante(TipoComp)) 'Hacer función
+        poComprobante.COM_NROEMITIDO = NroComp
         poComprobante.COM_PTOVTA = Funciones.ObtenerPuntoVenta()
         poComprobante.COM_TOTALFACTRADO = Funciones.FormatoMoneda(Me.txtTotalAPagar.Text)
         poComprobante.COM_USUNOMBRE = Funciones.ObtieneUsuario
 
-        poComprobante.CTC_ID = Me.cmbTipoComprobante.SelectedValue
+        poComprobante.CTC_ID = clsComprobanteDAO.ObtieneTipoComprobante(TipoComp)
 
         If Me.txtTotalEnTarjeta.Text = "0.00" Then
             'momentaneamente va en duro.
             poComprobante.FOP_ID = 1
         End If
         'ver bien si conviene ir a buscarlo a la base.
-        poComprobante.CAJ_ID = Funciones.ObtenerConfiguracion("Venta/NroCaja")
-
+        poComprobante.CAJ_ID = Funciones.ObtenerConfiguracion(gstrCaja)
+        poComprobante.DETALLE = parrDetalle
         Return poComprobante
     End Function
 
     ''' <summary>
-    ''' Inicializa los valores del Detalle del comprobante tomándolos del formulario.
+    ''' Función que recupera los tipos de comprobantes.
     ''' </summary>
-    ''' <param name="piNroComp">Objeto ComprobanteDetalle</param>
-    ''' <returns>Objeto ComprobanteDetalle</returns>
     ''' <remarks></remarks>
-    Private Function InicializaDetalle(ByVal piNroComp As Integer) As clsComprobanteDetalle
-        Dim oDetalle As New clsComprobanteDetalle
-        oDetalle.COD_ID = 0
-        oDetalle.COD_IVA = 0
-        oDetalle.COD_PESABLE = "1"
-        oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda("0.00")
-        oDetalle.COD_PROCANTIDAD = "0"
-        oDetalle.COD_PROCODIGO = ""
-        oDetalle.COD_PRONOMBRE = ""
-        oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda("0.00")
-        oDetalle.COM_ID = piNroComp
-
-        Return oDetalle
-    End Function
-
     Private Sub LlenarTipoComprobante()
         Dim oDt As DataTable
         Dim oTipoComp As clsTipoComprobante
@@ -112,12 +112,15 @@
             oTipoComp.CTC_SIGLA = ""
             oTipoComp.CTC_SIGNO = ""
             oTipoComp.CTC_UltimoNro = ""
+            Me.cmbTipoComprobante.DataBindings.Clear()
             Me.cmbTipoComprobante.DisplayMember = "CTC_DESCRIPCION"
-            Me.cmbTipoComprobante.ValueMember = "CTC_ID"
+            Me.cmbTipoComprobante.ValueMember = "CTC_CODIGO"
             oDt = clsTipoComprobanteDAO.GetTable(oTipoComp)
             Me.cmbTipoComprobante.DataSource = oDt
+            Me.cmbTipoComprobante.Text = "TICKET"
+            Me.cmbTipoComprobante.Enabled = False
         Catch ex As Exception
-
+            Manejador_Errores("LlenarTipoComprobante", ex)
         End Try
     End Sub
 #End Region
@@ -159,7 +162,7 @@
         Me.txtTotalEnTarjeta.Text = FormatoMoneda("0.00")
         Me.txtDescuento.Focus()
         Me.txtTotalAPagar.Enabled = False
-        LlenarTipoComprobante()
+        '        LlenarTipoComprobante()
     End Sub
 
     Private Sub txtDescuento_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.GotFocus
@@ -210,28 +213,53 @@
 
     Private Sub btnAceptarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptarVenta.Click
         Dim oComprobante As clsComprobante
-        Dim oDetalle() As clsComprobanteDetalle
+        Dim arrDetalle As New ArrayList
         ' ver de hacer un arraylist con el detalle
         Dim wiNroComprobante As Integer
-        Dim wiNroDetalle As Integer
+
         Try
             oComprobante = New clsComprobante
             'oDetalle() = New clsComprobanteDetalle
             If ValidaPago() <> "" Or ValidaPago() = Nothing Then
                 'Cargo datos del comprobante
-                oComprobante = InicializaComprobante(oComprobante)
-                wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)
+                'wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)
 
-                For i = 0 To frmVentas.DataGridView1.Rows.Count
-                    'oDetalle(i) = New clsComprobanteDetalle
-                    oDetalle(i) = InicializaDetalle(wiNroComprobante)
-                    wiNroDetalle = clsComprobanteDetalleDAO.Insertar(oDetalle(i))
-                    oDetalle(i) = Nothing
+                For i = 0 To goDt.Rows.Count - 1
+                    Dim oDetalle As New clsComprobanteDetalle
+                    'oComprobante.DETALLE.Item(0) = 0
+                    'oComprobante.DETALLE.Item(0) = 0
+                    oDetalle.COD_ID = 0
+                    oDetalle.COD_IVA = 0
+                    oDetalle.COD_PESABLE = goDt.Rows(i).Item("COD_PESABLE")
+                    oDetalle.COD_PRECIOCANTIDAD = goDt.Rows(i).Item("COD_PRECIOCANTIDAD")
+                    oDetalle.COD_PROCANTIDAD = goDt.Rows(i).Item("COD_PROCANTIDAD")
+                    oDetalle.COD_PROCODIGO = goDt.Rows(i).Item("COD_PROCODIGO")
+                    oDetalle.COD_PRONOMBRE = goDt.Rows(i).Item("COD_PRONOMBRE")
+                    oDetalle.COD_PROPCIOUNITARIO = goDt.Rows(i).Item("COD_PROPCIOUNITARIO")
+                    oDetalle.COM_ID = wiNroComprobante
+                    'wiNroDetalle = clsComprobanteDetalleDAO.Insertar(oDetalle(i))
+                    arrDetalle.Add(oDetalle)
+
                 Next
-
-                LimpiarCampos()
-                frmVentas.Inicializar()
-                'guardar detalle y ver bien que devuelve
+                oComprobante = InicializaComprobante(oComprobante, arrDetalle)
+                wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)
+                If wiNroComprobante <> -1 Then
+                    Dim oTipoComp As New clsTipoComprobante()
+                    oTipoComp.CTC_ID = ObtenerConfiguracion(gstrTipoComprobante)
+                    oTipoComp.CTC_LETRA = ""
+                    oTipoComp.CTC_CODIGO = ""
+                    oTipoComp.CTC_DESCRIPCION = ""
+                    oTipoComp.CTC_SIGLA = ""
+                    oTipoComp.CTC_SIGNO = ""
+                    oTipoComp.CTC_UltimoNro = oComprobante.COM_NROEMITIDO
+                    clsTipoComprobanteDAO.Modificar(oTipoComp)
+                    LimpiarCampos()
+                    frmVentas.Inicializar()
+                    Me.Hide()
+                Else
+                    MessageBox.Show("Ocurrió un problema al guardar el comprobante. La VENTA NO FUE REALIZADA.-", ".:: ERROR GRAVE ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    LimpiarCampos()
+                End If
             End If
 
         Catch ex As Exception
@@ -239,7 +267,6 @@
             Funciones.LogError(ex, "btnAceptarVenta_Click", Funciones.ObtieneUsuario)
         Finally
             oComprobante = Nothing
-            oDetalle = Nothing
         End Try
     End Sub
 
