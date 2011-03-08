@@ -65,3 +65,4 @@ E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmFormasPagos.resources
 E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmAutorizacion.resources
 D:\Documentos\Proyectos\Super\PV_Super\obj\Debug\PV_Super.frmAutorizacion.resources
 D:\Documentos\Proyectos\Super\PV_Super\obj\Debug\PV_Super.frmFormasPagos.resources
+E:\Proyectos\PV_Super\obj\Debug\PV_Super.frmListaPrecios.resources
