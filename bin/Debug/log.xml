@@ -245,6 +245,52 @@ Parameter name: value</Excepcion>
     <Excepcion>Could not find stored procedure 'STR_CONSULTA_UltimoComprobante'.</Excepcion>
     <Ubicacion>ObtieneNroComprobante</Ubicacion>
     <Fecha>20/02/2011 12:19:56</Fecha>
+    <Excepcion>String[0]: the Size property has an invalid size of 0.</Excepcion>
+    <Ubicacion>ObtieneNroComprobante</Ubicacion>
+    <Fecha>07/03/2011 15:28:04</Fecha>
+    <Excepcion>Procedure or function 'STR_CONSULTA_UltimoComprobante' expects parameter '@CTC_CODIGO', which was not supplied.</Excepcion>
+    <Ubicacion>ObtieneNroComprobante</Ubicacion>
+    <Fecha>07/03/2011 15:28:44</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>ObtieneNroComprobante</Ubicacion>
+    <Fecha>07/03/2011 15:29:32</Fecha>
+    <Excepcion>There is no row at position 2.</Excepcion>
+    <Ubicacion>btnAceptarVenta_Click</Ubicacion>
+    <Fecha>07/03/2011 16:20:32</Fecha>
+    <Excepcion>Cannot clear this list.</Excepcion>
+    <Ubicacion>btnAceptarVenta_Click</Ubicacion>
+    <Fecha>07/03/2011 16:39:34</Fecha>
+    <Excepcion>The INSERT statement conflicted with the FOREIGN KEY constraint "FK_COMPROBANTE_TIPO". The conflict occurred in database "DES_SUPER", table "dbo.V_TIPO_COMPROBANTE", column 'CTC_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>07/03/2011 16:50:25</Fecha>
+    <Excepcion>The INSERT statement conflicted with the FOREIGN KEY constraint "FK_COMPROBANTE_TIPO". The conflict occurred in database "DES_SUPER", table "dbo.V_TIPO_COMPROBANTE", column 'CTC_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>07/03/2011 16:59:10</Fecha>
+    <Excepcion>The INSERT statement conflicted with the FOREIGN KEY constraint "FK_COMPROBANTE_TIPO". The conflict occurred in database "DES_SUPER", table "dbo.V_TIPO_COMPROBANTE", column 'CTC_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>07/03/2011 17:06:30</Fecha>
+    <Excepcion>The INSERT statement conflicted with the FOREIGN KEY constraint "FK_COMPROBANTE_TIPO". The conflict occurred in database "DES_SUPER", table "dbo.V_TIPO_COMPROBANTE", column 'CTC_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>07/03/2011 17:12:05</Fecha>
+    <Excepcion>Cannot clear this list.</Excepcion>
+    <Ubicacion>btnAceptarVenta_Click</Ubicacion>
+    <Fecha>07/03/2011 17:12:51</Fecha>
+    <Excepcion>Cannot clear this list.</Excepcion>
+    <Ubicacion>btnAceptarVenta_Click</Ubicacion>
+    <Fecha>07/03/2011 17:13:33</Fecha>
+    <Excepcion>The INSERT statement conflicted with the FOREIGN KEY constraint "FK_COMPROBANTE_FORMAPAGO". The conflict occurred in database "DES_SUPER", table "dbo.V_FORMAPAGO", column 'FOP_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>07/03/2011 17:14:58</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -398,4 +444,28 @@ Parameter name: value</Excepcion>
   <Usuario>A2019in</Usuario>
   <Eventos />
   <Usuario>A2019in</Usuario>
+  <Eventos />
+  <Usuario>A728in</Usuario>
+  <Eventos />
+  <Usuario>A728in</Usuario>
+  <Eventos />
+  <Usuario>A729in</Usuario>
+  <Eventos />
+  <Usuario>A720in</Usuario>
+  <Eventos />
+  <Usuario>A739in</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
+  <Eventos />
+  <Usuario>A712in</Usuario>
+  <Eventos />
+  <Usuario>A713in</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
 </XMLErrores>
