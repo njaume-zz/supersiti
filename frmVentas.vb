@@ -23,12 +23,14 @@ Public Class frmVentas
     Private Sub frmVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F2 Then
             frmBuscaProducto.Show()
+            frmBuscaProducto.Focus()
         End If
     End Sub
 
     Private Sub frmVentas_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
         If e.KeyChar = ChrW(Keys.F2) Then
             frmBuscaProducto.ShowDialog()
+            frmBuscaProducto.Focus()
         End If
     End Sub
 
@@ -80,6 +82,7 @@ Public Class frmVentas
                 CompletarFormaPago()
             End If
         End If
+
     End Sub
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
@@ -100,6 +103,7 @@ Public Class frmVentas
                 CompletarFormaPago()
             End If
         End If
+
     End Sub
 
     Private Sub txtProductoBarra_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProductoBarra.KeyPress
@@ -195,16 +199,28 @@ Public Class frmVentas
     End Sub
 
     Private Sub TSBAceptaVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBAceptaVenta.Click
-        MsgBox("Aceptar Venta")
+        If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
+                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") = MsgBoxResult.Yes Then
+            CompletarFormaPago()
+        End If
     End Sub
 
     Private Sub TSBCancelaVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBCancelaVenta.Click
-        MsgBox("Cancelar Venta")
+        If MsgBox("Está seguro de Cancelar la Venta?.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkCancel, _
+                  ".:: CANCELAR VENTA ::.") = MsgBoxResult.Ok Then
+            LimpiarCampos()
+            Inicializar()
+        End If
     End Sub
 
     Private Sub TSBEliminaItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBEliminaItem.Click
         MsgBox("Ubicarme en la grilla y seleccionar un item")
     End Sub
+
+    Private Sub TSBBuscarPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscarPrecio.Click
+        frmListaPrecios.Show()
+    End Sub
+
 #End Region
 
 #Region "Métodos"

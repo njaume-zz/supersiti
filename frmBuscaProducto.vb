@@ -172,6 +172,7 @@
         Me.dgrProductos.Columns.Item("IVA_TASA").Visible = False
         Me.dgrProductos.Columns.Item("IVA_NOMBRE").Visible = False
         Me.dgrProductos.Columns.Item("RUB_ID").Visible = False
+        Me.dgrProductos.Columns.Item("FAM_ID").Visible = False
         Me.dgrProductos.Columns.Item("FAM_NOMBRE").Visible = False
         Me.dgrProductos.Columns.Item("RUB_NOMBRE").Visible = False
         Me.dgrProductos.Columns.Item("PRO_ALERTA").Visible = False
@@ -186,11 +187,14 @@
         Me.dgrProductos.Columns.Item("PRO_CODIGO_BARRA").Visible = False
         Me.dgrProductos.Columns.Item("PRO_DESCRIPCION").Visible = False
         Me.dgrProductos.Columns.Item("PRO_NOMBREETIQUETA").Visible = False
+        Me.dgrProductos.Columns.Item("UNC_ID").Visible = False
+        Me.dgrProductos.Columns.Item("UNV_ID").Visible = False
 
-        Me.dgrProductos.Columns.Item("PRO_CODIGO").HeaderText = "Codigo"
+        Me.dgrProductos.Columns.Item("PRO_CODIGO").HeaderText = "Código"
         Me.dgrProductos.Columns.Item("PRO_NOMBRE").HeaderText = "Nombre"
         Me.dgrProductos.Columns.Item("LPR_PRECIO").HeaderText = "Precio"
         Me.dgrProductos.Columns.Item("PRO_MARCA").HeaderText = "Marca"
+        Me.dgrProductos.Columns.Item("PRO_PESABLE").HeaderText = "Pesable"
     End Sub
 
 #End Region

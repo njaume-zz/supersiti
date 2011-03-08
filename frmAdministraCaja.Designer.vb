@@ -28,13 +28,13 @@ Partial Class frmAdministraCaja
         Me.grpApertura = New System.Windows.Forms.GroupBox
         Me.txtImporteRetiro = New System.Windows.Forms.TextBox
         Me.Label9 = New System.Windows.Forms.Label
-        Me.lblOperacion = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtFecha = New System.Windows.Forms.TextBox
         Me.txtOperador = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.txtImporteApertura = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
+        Me.lblOperacion = New System.Windows.Forms.Label
         Me.grpCaja = New System.Windows.Forms.GroupBox
         Me.txtCredito = New System.Windows.Forms.TextBox
         Me.txtTarjetas = New System.Windows.Forms.TextBox
@@ -48,10 +48,10 @@ Partial Class frmAdministraCaja
         Me.Label2 = New System.Windows.Forms.Label
         Me.btnConfirmar = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
-        'Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer
-        'Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpApertura
@@ -65,7 +65,7 @@ Partial Class frmAdministraCaja
         Me.grpApertura.Controls.Add(Me.txtImporteApertura)
         Me.grpApertura.Controls.Add(Me.Label1)
         Me.grpApertura.Controls.Add(Me.lblOperacion)
-        Me.grpApertura.Location = New System.Drawing.Point(13, 13)
+        Me.grpApertura.Location = New System.Drawing.Point(13, 26)
         Me.grpApertura.Name = "grpApertura"
         Me.grpApertura.Size = New System.Drawing.Size(505, 143)
         Me.grpApertura.TabIndex = 0
@@ -89,16 +89,6 @@ Partial Class frmAdministraCaja
         Me.Label9.Size = New System.Drawing.Size(73, 13)
         Me.Label9.TabIndex = 21
         Me.Label9.Text = "Importe Retiro"
-        '
-        'lblOperacion
-        '
-        Me.lblOperacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOperacion.Location = New System.Drawing.Point(278, 7)
-        Me.lblOperacion.Name = "lblOperacion"
-        Me.lblOperacion.Size = New System.Drawing.Size(224, 66)
-        Me.lblOperacion.TabIndex = 6
-        Me.lblOperacion.Text = "lblOperacion"
-        Me.lblOperacion.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label8
         '
@@ -152,6 +142,16 @@ Partial Class frmAdministraCaja
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Importe de Apertura"
         '
+        'lblOperacion
+        '
+        Me.lblOperacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOperacion.Location = New System.Drawing.Point(278, 7)
+        Me.lblOperacion.Name = "lblOperacion"
+        Me.lblOperacion.Size = New System.Drawing.Size(224, 66)
+        Me.lblOperacion.TabIndex = 6
+        Me.lblOperacion.Text = "lblOperacion"
+        Me.lblOperacion.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
         'grpCaja
         '
         Me.grpCaja.Controls.Add(Me.txtCredito)
@@ -166,8 +166,7 @@ Partial Class frmAdministraCaja
         Me.grpCaja.Controls.Add(Me.Label2)
         Me.grpCaja.Controls.Add(Me.btnConfirmar)
         Me.grpCaja.Controls.Add(Me.btnCancelar)
-        ' Me.grpCaja.Controls.Add(Me.ShapeContainer1)
-        Me.grpCaja.Location = New System.Drawing.Point(13, 162)
+        Me.grpCaja.Location = New System.Drawing.Point(13, 175)
         Me.grpCaja.Name = "grpCaja"
         Me.grpCaja.Size = New System.Drawing.Size(505, 238)
         Me.grpCaja.TabIndex = 1
@@ -289,29 +288,21 @@ Partial Class frmAdministraCaja
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
-        'ShapeContainer1
+        'PictureBox1
         '
-        'Me.ShapeContainer1.Location = New System.Drawing.Point(3, 16)
-        'Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
-        'Me.ShapeContainer1.Name = "ShapeContainer1"
-        'Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.OpenShare() {Me.LineShape1})
-        'Me.ShapeContainer1.Size = New System.Drawing.Size(499, 219)
-        'Me.ShapeContainer1.TabIndex = 11
-        'Me.ShapeContainer1.TabStop = False
-        '
-        'LineShape1
-        '
-        'Me.LineShape1.Name = "LineShape1"
-        'Me.LineShape1.X1 = 32
-        'Me.LineShape1.X2 = 250
-        'Me.LineShape1.Y1 = 127
-        'Me.LineShape1.Y2 = 127
+        Me.PictureBox1.Image = Global.PV_Super.My.Resources.Resources.Encabezado
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(528, 25)
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
         '
         'frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 412)
+        Me.ClientSize = New System.Drawing.Size(530, 423)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -321,6 +312,7 @@ Partial Class frmAdministraCaja
         Me.grpApertura.PerformLayout()
         Me.grpCaja.ResumeLayout(False)
         Me.grpCaja.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -347,6 +339,7 @@ Partial Class frmAdministraCaja
     Friend WithEvents lblOperacion As System.Windows.Forms.Label
     Friend WithEvents txtImporteRetiro As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     'Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
     'Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
 End Class

@@ -206,6 +206,7 @@
     Private Sub txtTotalEnEfectivo_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnEfectivo.LostFocus
         If Me.txtTotalEnEfectivo.Text <> 0 And Me.txtTotalEnEfectivo.Text >= Me.txtSubTotal.Text Then
             Me.txtVuelto.Text = Funciones.FormatoMoneda(Me.txtTotalEnEfectivo.Text - Me.txtSubTotal.Text)
+            Me.btnAceptarVenta.Focus()
         Else
             Me.txtTotalEnEfectivo.Focus()
         End If
@@ -272,7 +273,15 @@
 
     Private Sub txtTotalEnTarjeta_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.GotFocus
         frmAutorizacion.Show()
+        Me.Focus()
     End Sub
+
+    Private Sub txtTotalEnTarjeta_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.TextChanged
+        frmAutorizacion.Show()
+        Me.Focus()
+    End Sub
+
 #End Region
 
+    
 End Class

@@ -22,6 +22,7 @@ Partial Class frmAutorizacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAutorizacion))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.txtPassword = New System.Windows.Forms.TextBox
         Me.txtUsuario = New System.Windows.Forms.TextBox
@@ -111,6 +112,7 @@ Partial Class frmAutorizacion
         Me.ClientSize = New System.Drawing.Size(284, 174)
         Me.ControlBox = False
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmAutorizacion"
         Me.Text = "Ingresar Datos para Autorizar"
         Me.GroupBox1.ResumeLayout(False)

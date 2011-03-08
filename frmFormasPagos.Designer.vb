@@ -41,7 +41,9 @@ Partial Class frmFormasPagos
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -49,7 +51,7 @@ Partial Class frmFormasPagos
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label1.Location = New System.Drawing.Point(40, 9)
+        Me.Label1.Location = New System.Drawing.Point(40, 27)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(295, 37)
         Me.Label1.TabIndex = 0
@@ -74,7 +76,7 @@ Partial Class frmFormasPagos
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 50)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 68)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(360, 395)
         Me.GroupBox1.TabIndex = 1
@@ -247,11 +249,21 @@ Partial Class frmFormasPagos
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Total A Pagar"
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.PV_Super.My.Resources.Resources.Encabezado
+        Me.PictureBox1.Location = New System.Drawing.Point(-1, -1)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(384, 25)
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        '
         'frmFormasPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 457)
+        Me.ClientSize = New System.Drawing.Size(384, 469)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
         Me.Cursor = System.Windows.Forms.Cursors.Default
@@ -262,6 +274,7 @@ Partial Class frmFormasPagos
         Me.Text = "Formas de Pagos"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -284,4 +297,5 @@ Partial Class frmFormasPagos
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cmbTipoComprobante As System.Windows.Forms.ComboBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 End Class

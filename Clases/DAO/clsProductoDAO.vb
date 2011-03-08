@@ -214,4 +214,42 @@ Public Class clsProductoDAO
         Return salida
     End Function
 
+
+    Public Shared Function GetListaPrecio() As DataTable
+        Dim strSql As String = "SELECT * FROM VT_LISTAPRECIOS"
+        Dim Conexion As SqlConnection
+        Dim cmd As New SqlCommand
+        Dim conecto As Boolean
+        Dim salida As New DataTable
+
+        Try
+            Conexion = clsConexion.Conectar()
+            conecto = True
+        Catch ex As Exception
+            conecto = False
+        End Try
+
+        Try
+            If conecto Then
+                With cmd
+                    .Connection = Conexion
+                    .CommandText = strSql
+                    .CommandType = CommandType.Text
+                    'With .Parameters
+                    '    .AddWithValue("@PRO_ID", PRO_ID)
+                    'End With
+                    salida.Load(.ExecuteReader())
+                End With
+            Else
+                salida = Nothing
+            End If
+            clsConexion.Desconectar(Conexion)
+        Catch ex As Exception
+            salida = Nothing
+        Finally
+            cmd = Nothing
+            Conexion = Nothing
+        End Try
+        Return salida
+    End Function
 End Class

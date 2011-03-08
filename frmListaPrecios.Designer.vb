@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmBuscaProducto
+Partial Class frmListaPrecios
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmBuscaProducto
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuscaProducto))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmListaPrecios))
         Me.dgrProductos = New System.Windows.Forms.DataGridView
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -37,36 +37,32 @@ Partial Class frmBuscaProducto
         Me.dgrProductos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.dgrProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgrProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgrProductos.Location = New System.Drawing.Point(1, 26)
+        Me.dgrProductos.Location = New System.Drawing.Point(1, 27)
         Me.dgrProductos.MultiSelect = False
         Me.dgrProductos.Name = "dgrProductos"
         Me.dgrProductos.ReadOnly = True
-        Me.dgrProductos.Size = New System.Drawing.Size(570, 469)
-        Me.dgrProductos.TabIndex = 0
+        Me.dgrProductos.Size = New System.Drawing.Size(573, 469)
+        Me.dgrProductos.TabIndex = 1
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.PV_Super.My.Resources.Resources.Encabezado
-        Me.PictureBox1.Location = New System.Drawing.Point(0, -1)
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(571, 25)
-        Me.PictureBox1.TabIndex = 4
+        Me.PictureBox1.Size = New System.Drawing.Size(574, 25)
+        Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
-        'frmBuscaProducto
+        'frmListaPrecios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(572, 498)
+        Me.ClientSize = New System.Drawing.Size(576, 499)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.dgrProductos)
-        Me.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "frmBuscaProducto"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Buscar Productos"
+        Me.Name = "frmListaPrecios"
+        Me.Text = "Lista de Precios"
         CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

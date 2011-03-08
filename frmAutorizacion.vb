@@ -28,6 +28,7 @@
                         'formulario de pagos.
                 End Select
                 Me.Close()
+                frmFormasPagos.Focus()
             Else
                 MessageBox.Show("El USUARIO y CONTRASEÑA ingresadas son INCORRECTAS o no tiene permisos.", ".:: ADVERTENCIA ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Me.Close()

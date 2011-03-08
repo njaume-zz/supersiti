@@ -131,6 +131,12 @@
     <Compile Include="frmIngreso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmListaPrecios.Designer.vb">
+      <DependentUpon>frmListaPrecios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmVentas.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIngreso.resx">
       <DependentUpon>frmIngreso.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaPrecios.resx">
+      <DependentUpon>frmListaPrecios.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentas.resx">
@@ -307,6 +317,7 @@
     <Content Include="Imagenes\sipphone.png" />
     <Content Include="Imagenes\softwareD.png" />
     <Content Include="Imagenes\stop.png" />
+    <Content Include="Imagenes\Super SITI favicon.ico" />
     <Content Include="Imagenes\tab.png" />
     <Content Include="Imagenes\tab_new.png" />
     <Content Include="Imagenes\tab_remove.png" />

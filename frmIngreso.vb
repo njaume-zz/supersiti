@@ -35,6 +35,7 @@
                 o_dtUsr = ValidarUsuario(Me.txtUsuario.Text, Me.txtPassword.Text)
                 If o_dtUsr Is Nothing Then
                     LimpiarForm()
+                    Me.txtUsuario.Focus()
                     Exit Sub
                 Else
                     'frmVentas.CargarMenu(o_dtUsr)
@@ -42,7 +43,6 @@
                     LimpiarForm()
                     Me.Hide()
                     frmVentas.Show()
-
                 End If
             Else
                 Me.txtUsuario.Text = ""
@@ -51,10 +51,8 @@
             End If
 
         Catch ex As Exception
-
             Funciones.Manejador_Errores("OK_Click", ex)
-            'Throw ex
-
+            LogError(ex, "OK_Click", Me.txtUsuario.Text)
         End Try
     End Sub
 
