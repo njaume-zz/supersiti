@@ -340,8 +340,8 @@ Partial Class frmVentas
         'ToolStripStatusLabel6
         '
         Me.ToolStripStatusLabel6.Name = "ToolStripStatusLabel6"
-        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(100, 17)
-        Me.ToolStripStatusLabel6.Text = "Cerrar Venta=[F5]"
+        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(122, 17)
+        Me.ToolStripStatusLabel6.Text = "Confirmar Venta=[F5]"
         '
         'ToolStripStatusLabel7
         '
