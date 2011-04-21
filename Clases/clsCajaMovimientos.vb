@@ -8,6 +8,7 @@
     Private _CAE_ID As System.Int32
     Private _CAM_FECHA As System.DateTime
     Private _USU_ID As System.Int32
+    Private _CAJ_ID As System.Int32
     Private _CAM_ESTADO As System.Int32
     Private _CAM_FECHAALTA As System.DateTime
 
@@ -21,15 +22,16 @@
     End Sub
 
     Public Sub New(ByVal cam_id As System.Int32, ByVal cam_importe As System.Decimal, ByVal cae_id As System.Int32, _
-                    ByVal cam_fecha As System.DateTime, ByVal usu_id As System.Int32, ByVal cam_estado As System.Int32, _
-                    ByVal cam_fechaalta As System.DateTime)
+                    ByVal cam_fecha As System.DateTime, ByVal usu_id As System.Int32, ByVal caj_id As System.Int32, _
+                    ByVal cam_estado As System.Int32, ByVal cam_fechaalta As System.DateTime)
         _CAM_ID = cam_id
         _CAM_IMPORTE = cam_importe
         _CAE_ID = cae_id
         _CAM_FECHA = cam_fecha
         _USU_ID = usu_id
+        _CAJ_ID = caj_id
         _CAM_ESTADO = cam_estado
-        _CAM_FECHAALTA = cam_fechaalta
+        _CAM_FECHAALTA = CAM_FECHAALTA
     End Sub
 
 
@@ -71,6 +73,14 @@
         End Get
         Set(ByVal Value As Int32)
             _USU_ID = Value
+        End Set
+    End Property
+    Public Property CAJ_ID() As Int32
+        Get
+            Return _CAJ_ID
+        End Get
+        Set(ByVal value As Int32)
+            _CAJ_ID = value
         End Set
     End Property
     Public Property CAM_ESTADO() As Int32

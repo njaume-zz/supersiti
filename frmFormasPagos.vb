@@ -4,6 +4,7 @@
     Public goDt As DataTable
 
 #End Region
+
 #Region "Métodos"
 
     ''' <summary>
@@ -12,11 +13,11 @@
     ''' <remarks>madad</remarks>
     Private Sub LimpiarCampos()
         Me.txtDescuento.Text = 0
-        Me.txtSubTotal.Text = Funciones.FormatoMoneda("0.00")
-        Me.txtTotalAPagar.Text = Funciones.FormatoMoneda("0.00")
-        Me.txtTotalEnEfectivo.Text = Funciones.FormatoMoneda("0.00")
-        Me.txtTotalEnTarjeta.Text = Funciones.FormatoMoneda("0.00")
-        Me.txtVuelto.Text = Funciones.FormatoMoneda("0.00")
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtTotalAPagar.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtTotalEnEfectivo.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtTotalEnTarjeta.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtVuelto.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtTotalEnEfectivo.Focus()
     End Sub
 
@@ -72,10 +73,10 @@
         poComprobante.COM_CLIINGRESOBRUTO = ""
         poComprobante.COM_CLIRAZONSOCIAL = "Consumidor Final"
         poComprobante.COM_CLITELEFONO = ""
-        poComprobante.COM_IMPORTEGRAVADO = Funciones.FormatoMoneda("0.00")
-        poComprobante.COM_IMPORTENOGRAVADO = Funciones.FormatoMoneda("0.00")
+        poComprobante.COM_IMPORTEGRAVADO = Funciones.FormatoMoneda(gdNull)
+        poComprobante.COM_IMPORTENOGRAVADO = Funciones.FormatoMoneda(gdNull)
         poComprobante.COM_IMPRESO = "S"
-        poComprobante.COM_IVAFACTURADO = Funciones.FormatoMoneda("0.00")
+        poComprobante.COM_IVAFACTURADO = Funciones.FormatoMoneda(gdNull)
         TipoComp = ObtenerConfiguracion(gstrTipoComprobante)
         NroComp = FormatoNroComprobante(clsComprobanteDAO.ObtieneNroComprobante(TipoComp)) 'Hacer función
         poComprobante.COM_NROEMITIDO = NroComp
@@ -85,7 +86,7 @@
 
         poComprobante.CTC_ID = clsComprobanteDAO.ObtieneTipoComprobante(TipoComp)
 
-        If Me.txtTotalEnTarjeta.Text = "0.00" Then
+        If Me.txtTotalEnTarjeta.Text = gdNull Then
             'momentaneamente va en duro.
             poComprobante.FOP_ID = 1
         End If
@@ -123,6 +124,19 @@
             Manejador_Errores("LlenarTipoComprobante", ex)
         End Try
     End Sub
+
+    Private Sub CerrarForm(ByVal pValor As String)
+        If pValor = "Cancelar" Then
+            If MsgBox("¿Está seguro que desea CANCELAR la Venta?", _
+                    MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CANCELACION DE VENTA ::.") = MsgBoxResult.Yes Then
+                LimpiarCampos()
+                Me.Hide()
+            End If
+        Else
+            Me.Hide()
+        End If
+        frmVentas.Inicializar()
+    End Sub
 #End Region
 
 #Region "Eventos"
@@ -134,18 +148,12 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
-        If MsgBox("¿Está seguro que desea CANCELAR la Venta?", _
-        MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CANCELACION DE VENTA ::.") = MsgBoxResult.Yes Then
-            LimpiarCampos()
-            Hide()
-        End If
+        CerrarForm("Cancelar")
     End Sub
 
     Private Sub frmFormasPagos_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        If MsgBox("¿Está seguro que desea CANCELAR la Venta?", _
-                MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CANCELACION DE VENTA ::.") = MsgBoxResult.Yes Then
-            LimpiarCampos()
-            Hide()
+        If e.CloseReason <> 0 Then
+            CerrarForm("Cancelar")
         End If
     End Sub
 
@@ -158,11 +166,11 @@
     Private Sub frmFormasPagos_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtTotalAPagar.Text)
         Me.txtDescuento.Text = "0"
-        Me.txtTotalEnEfectivo.Text = FormatoMoneda("0.00")
-        Me.txtTotalEnTarjeta.Text = FormatoMoneda("0.00")
-        Me.txtDescuento.Focus()
+        Me.txtTotalEnEfectivo.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtTotalEnTarjeta.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtTotalAPagar.Enabled = False
-        '        LlenarTipoComprobante()
+        Me.txtDescuento.Focus()
+        'LlenarTipoComprobante()
     End Sub
 
     Private Sub txtDescuento_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.GotFocus
@@ -198,7 +206,7 @@
             oiSubTotal = Funciones.FormatoMoneda((oiDescuento * oiTotal / 100))
         Else
             oiTotal = Funciones.FormatoMoneda(Me.txtTotalAPagar.Text)
-            oiSubTotal = Funciones.FormatoMoneda("0.00")
+            oiSubTotal = Funciones.FormatoMoneda(gdNull)
         End If
         Me.txtSubTotal.Text = Funciones.FormatoMoneda(oiTotal - oiSubTotal)
     End Sub
@@ -207,8 +215,8 @@
         If Me.txtTotalEnEfectivo.Text <> 0 And Me.txtTotalEnEfectivo.Text >= Me.txtSubTotal.Text Then
             Me.txtVuelto.Text = Funciones.FormatoMoneda(Me.txtTotalEnEfectivo.Text - Me.txtSubTotal.Text)
             Me.btnAceptarVenta.Focus()
-        Else
-            Me.txtTotalEnEfectivo.Focus()
+            'Else
+            'Me.txtTotalEnEfectivo.Focus()
         End If
     End Sub
 
@@ -256,10 +264,11 @@
                     clsTipoComprobanteDAO.Modificar(oTipoComp)
                     LimpiarCampos()
                     frmVentas.Inicializar()
-                    Me.Hide()
+                    CerrarForm("Cerrar")
                 Else
                     MessageBox.Show("Ocurrió un problema al guardar el comprobante. La VENTA NO FUE REALIZADA.-", ".:: ERROR GRAVE ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     LimpiarCampos()
+                    CerrarForm("Cerrar")
                 End If
             End If
 
@@ -276,12 +285,7 @@
         Me.Focus()
     End Sub
 
-    Private Sub txtTotalEnTarjeta_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.TextChanged
-        frmAutorizacion.Show()
-        Me.Focus()
-    End Sub
-
 #End Region
 
-    
+
 End Class

@@ -13,6 +13,8 @@
     'Constantes de Ventas
     Public Const gstrTipoComprobante = "Venta/TipoComprobante"
     Public Const gstrCaja = "Venta/NroCaja"
+
+    Public Const gdNull = "0.00"
 #End Region
 
 #Region "Variables"
