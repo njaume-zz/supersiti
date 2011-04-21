@@ -4,8 +4,8 @@
 
     Private Function Validar() As Boolean
         Dim ok As Boolean
-        If Me.txtBonos.Text = "0.00" Or Me.txtCredito.Text = "0.00" Or Me.txtEfectivo.Text = "0.00" Or _
-            Me.txtTarjetas.Text = "0.00" Or Me.txtImporteApertura.Text = "0.00" Then
+        If Me.txtBonos.Text = gdNull Or Me.txtCredito.Text = gdNull Or Me.txtEfectivo.Text = gdNull Or _
+            Me.txtTarjetas.Text = gdNull Or Me.txtImporteApertura.Text = gdNull Then
             ok = False
         Else
             ok = True
@@ -14,13 +14,13 @@
     End Function
 
     Private Sub LimiparCampos()
-        Me.txtBonos.Text = "0.00"
-        Me.txtCredito.Text = "0.00"
-        Me.txtEfectivo.Text = "0.00"
-        Me.txtTarjetas.Text = "0.00"
-        Me.txtImporteApertura.Text = "0.00"
+        Me.txtBonos.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtCredito.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtEfectivo.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtTarjetas.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtImporteApertura.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtOperador.Text = ""
-        Me.txtTotalCaja.Text = "0.00"
+        Me.txtTotalCaja.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtFecha.Text = Format(Now, "dd/MM/yyyy")
     End Sub
 
@@ -66,6 +66,11 @@
                             "CAA.USU_ID  FROM V_CAJA CAJ INNER JOIN V_CAJA_ESTADO CAE ON CAJ.CAE_ID = CAE.CAE_ID INNER JOIN V_CAJA_ACCIONES CAA " & _
                             " ON CAE.CAE_ID = CAA.CAE_ID GROUP BY CAJ.CAE_ID,CAJ.CAJ_ID,CAJ.CAJ_NUMERO,CAJ.CAJ_FECHAAPERTURA," & _
                             "CAJ.CAJ_FECHACIERRE,CAE.CAE_ID,CAE.CAE_NOMBRE,CAA.CAA_ID,CAA.CAA_FECHA,CAA.USU_ID() ORDER BY SUM(CAA.CAA_IMPORTE)"
+
+
+        Dim str2 As String = "SELECT * FROM V_CAJA_MOVIMIENTOS CAM INNER JOIN V_CAJA_TIPO_MOVIMIENTO CAE" & _
+                             "ON CAM.CAE_ID = CAE.CAE_ID INNER JOIN V_CAJA CAJ" & _
+                             "on CAM.CAJ_ID = CAJ.CAJ_ID"
     End Function
 #End Region
 
@@ -73,7 +78,7 @@
 
     Private Sub btnConfirmar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfirmar.Click
         Dim Estado As Integer
-
+        Dim oDt As DataTable
         Try
 
             If Not Validar() Then
@@ -81,22 +86,26 @@
                 LimiparCampos()
             Else
                 Select Case Me.lblOperacion.Text
+                    'CAMBIAR LA CAJA POR UNA VARIABLE
                     Case "Apertura"  'CAE_ID = 1
                         Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               1, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                                                               1, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                         Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
 
                     Case "Retiro"    'CAE_ID = 2
                         Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               2, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                                                               2, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                         Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                     Case "Cierre X"  'CAE_ID = 3
                         Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               3, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                                                               3, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                         Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        oDt = New DataTable
+                        oDt = RecuperaImportesCaja()
+                        'listar los valores recuperados
                     Case "Cierre Z"  'CAE_ID = 4
                         Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               4, Now(), frmVentas.TSSIdUsuario.Text, 1, Now)
+                                                               4, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                         Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                 End Select
                 If Estado = -1 Then

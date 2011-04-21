@@ -331,6 +331,7 @@ Public Class clsCajaDAO
                         .AddWithValue("@CAM_FECHA", pCajaMovimiento.CAM_FECHA)
                         .AddWithValue("@CAE_ID", pCajaMovimiento.CAE_ID)
                         .AddWithValue("@USU_ID", pCajaMovimiento.USU_ID)
+                        .AddWithValue("@CAJ_ID", pCajaMovimiento.CAJ_ID)
                         .AddWithValue("@CAM_ESTADO", pCajaMovimiento.CAM_ESTADO)
                     End With
                     .ExecuteNonQuery()

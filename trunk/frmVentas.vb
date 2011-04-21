@@ -122,7 +122,12 @@ Public Class frmVentas
         If e.KeyCode = Keys.Delete Then
             If MsgBox("¿Está seguro de quitar este Item de la venta?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = MsgBoxResult.Yes Then
                 ol_DtProducto = QuitarItemDT(ol_DtProducto, Me.DataGridView1.CurrentCell.RowIndex)
-                Me.DataGridView1.DataSource = ol_DtProducto
+                If ol_DtProducto.Rows.Count > 0 Then
+                    Me.DataGridView1.DataSource = ol_DtProducto
+                    DefinirCabeceras()
+                Else
+                    CrearDTItems()
+                End If
             End If
         End If
     End Sub
@@ -296,7 +301,6 @@ Public Class frmVentas
                 oDetalle.COD_PESABLE = poDT.Rows(0).Item("PRO_PESABLE")
                 ol_dt = AgregarItemDT(oDetalle)
 
-
                 Me.DataGridView1.DataSource = ol_dt
                 'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
                 Me.txtProductoBarra.Text = ""
@@ -364,6 +368,18 @@ Public Class frmVentas
 
 #Region "Creación de métodos auxiliares"
 
+    Private Sub DefinirCabeceras()
+        Me.DataGridView1.Columns.Item("COD_ID").HeaderText = "Nro. Producto"
+        Me.DataGridView1.Columns.Item("COD_ID").Visible = False
+        Me.DataGridView1.Columns.Item("COD_PRONOMBRE").HeaderText = "Producto"
+        Me.DataGridView1.Columns.Item("COD_PROCODIGO").HeaderText = "Código Producto"
+        Me.DataGridView1.Columns.Item("COD_PROPCIOUNITARIO").HeaderText = "Pcio. Unitario"
+        Me.DataGridView1.Columns.Item("COD_PROCANTIDAD").HeaderText = "Cantidad"
+        Me.DataGridView1.Columns.Item("COD_PRECIOCANTIDAD").HeaderText = "Pcio. Cantidad"
+        Me.DataGridView1.Columns.Item("COD_PESABLE").HeaderText = "Pesable"
+        Me.DataGridView1.Refresh()
+    End Sub
+
     ''' <summary>
     ''' Método que define las columnas necesarias para un datatable
     ''' </summary>
@@ -397,8 +413,9 @@ Public Class frmVentas
             .Add(DefinirColumna("COD_PRECIOCANTIDAD"))
             .Add(DefinirColumna("COD_PESABLE"))
         End With
-
-
+        Me.DataGridView1.DataSource = ol_dt
+        Me.DataGridView1.Refresh()
+        DefinirCabeceras()
     End Sub
 
     ''' <summary>
