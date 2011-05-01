@@ -6,7 +6,14 @@ PV_Super
 </name>
 </assembly>
 <members>
-<member name="M:PV_Super.frmBuscaProducto.Lista(System.Data.DataTable)">
+<member name="M:PV_Super.clsComprobanteDAO.ObtieneTipoComprobante(System.String)">
+	<summary>
+ Método que recupera el ID del tipo de comprobante, según el código del mismo.
+ </summary>
+	<param name="pstrCodigoComp"></param>
+	<returns>integer</returns>
+	<remarks>Maxi Adad</remarks>
+</member><member name="M:PV_Super.frmBuscaProducto.Lista(System.Data.DataTable)">
 	<summary>
  Método que enlaza la Grilla con el DataTable pasado por parámetro
  </summary>
@@ -21,49 +28,6 @@ PV_Super
 	<summary>
  Método que configura la visualización de la grilla y asigna la cabecera
  </summary>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
-	<summary>
- Función que inserta una caja nueva
- </summary>
-	<param name="pCaja"></param>
-	<returns>entero que determina si tuvo éxito o no</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.ModificaCaja(PV_Super.clsCaja)">
-	<summary>
- Modificación de Caja
- </summary>
-	<param name="pCaja"></param>
-	<returns>Entero que determina si modificó bien o no</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCaja(System.Int32,System.String,System.DateTime,System.DateTime)">
-	<summary>
- Función parametrizada que tiene como fin recuperar los datos necesario
- de la tabla de Cajas
- </summary>
-	<param name="CAJ_ID"></param>
-	<param name="CAJ_NUMERO"></param>
-	<param name="CAJ_FECHAAPERTURA"></param>
-	<param name="CAJ_FECHACIERRE"></param>
-	<returns>Datatable</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCajaEstado(System.Int32,System.String)">
-	<summary>
- Función que devuelve los estados de la caja
- </summary>
-	<param name="CAE_ID"></param>
-	<param name="CAE_NOMBRE"></param>
-	<returns>Datatable</returns>
-	<remarks></remarks>
-</member><member name="M:PV_Super.clsCajaDAO.getCajaAcciones(System.Int32,System.DateTime,System.Int32,System.Int32)">
-	<summary>
- Lista las ACciones realizadas en las cajas, aperturas, retiro, etc.
- </summary>
-	<param name="CAA_ID"></param>
-	<param name="CAA_FECHA"></param>
-	<param name="CAE_ID"></param>
-	<param name="USU_ID"></param>
-	<returns>Datatable</returns>
 	<remarks></remarks>
 </member><member name="M:PV_Super.frmVentas.ToolStripMenuItem4_Click(System.Object,System.EventArgs)">
 	<summary>
@@ -115,13 +79,6 @@ PV_Super
  Método que pasa los valores del formulario ventas al formulario Formas de Pago
  </summary>
 	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.RealizarCalculos(PV_Super.clsComprobanteDetalle)">
-	<summary>
- Método qu erealiza los cálculos de los importes del producto por la cantidad.
- Sumándolo al subtotal actual.
- </summary>
-	<param name="poDetalle"></param>
-	<remarks></remarks>
 </member><member name="M:PV_Super.frmVentas.AgregarAGrilla(System.Data.DataTable)">
 	<summary>
  Método que relaciona el DataTable a la grilla de venta.
@@ -161,6 +118,69 @@ PV_Super
  </summary>
 	<param name="dt">Se pasa el DataTable declarado de manera global</param>
 	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+	<summary>
+ Función que inserta una caja nueva
+ </summary>
+	<param name="pCaja"></param>
+	<returns>entero que determina si tuvo éxito o no</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.ModificaCaja(PV_Super.clsCaja)">
+	<summary>
+ Modificación de Caja
+ </summary>
+	<param name="pCaja"></param>
+	<returns>Entero que determina si modificó bien o no</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCaja(System.Int32,System.String,System.DateTime,System.DateTime)">
+	<summary>
+ Función parametrizada que tiene como fin recuperar los datos necesario
+ de la tabla de Cajas
+ </summary>
+	<param name="CAJ_ID"></param>
+	<param name="CAJ_NUMERO"></param>
+	<param name="CAJ_FECHAAPERTURA"></param>
+	<param name="CAJ_FECHACIERRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaEstado(System.Int32,System.String)">
+	<summary>
+ Función que devuelve los estados de la caja
+ </summary>
+	<param name="CAE_ID"></param>
+	<param name="CAE_NOMBRE"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.getCajaAcciones(System.Int32,System.DateTime,System.Int32,System.Int32)">
+	<summary>
+ Lista las ACciones realizadas en las cajas, aperturas, retiro, etc.
+ </summary>
+	<param name="CAA_ID"></param>
+	<param name="CAA_FECHA"></param>
+	<param name="CAE_ID"></param>
+	<param name="USU_ID"></param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmListaPrecios.AplicarFiltro(System.Data.DataTable,System.String)">
+	<summary>
+ Método genérico que permite aplicar un filtro sobre la grilla
+ a partir de la introducción de text en la misma.
+ </summary>
+	<param name="poDt">DataTable global</param>
+	<param name="pszTexto">Palabra a buscar</param>
+	<returns>DataTable filtrado</returns>
+	<remarks>Maxi Adad</remarks>
+</member><member name="M:PV_Super.frmListaPrecios.ConfigurarGrilla">
+	<summary>
+ Método que permite realizar la configuración sobre la grilla.
+ Se establecen los campos a mostrar
+ </summary>
+	<remarks>Maxi Adad</remarks>
+</member><member name="M:PV_Super.frmListaPrecios.CompletarGrilla">
+	<summary>
+ Asigna la lista de productos completa a la grilla
+ </summary>
+	<remarks>Maxi Adad</remarks>
 </member><member name="M:PV_Super.Funciones.ConvertirDecimal(System.String)">
 	<summary>
  Convierto a decimal, tomando la configuración local y 
@@ -220,13 +240,6 @@ PV_Super
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="M:PV_Super.clsComprobanteDAO.ObtieneTipoComprobante(System.String)">
-	<summary>
- Método que recupera el ID del tipo de comprobante, según el código del mismo.
- </summary>
-	<param name="pstrCodigoComp"></param>
-	<returns>integer</returns>
-	<remarks>Maxi Adad</remarks>
 </member><member name="M:PV_Super.frmFormasPagos.LimpiarCampos">
 	<summary>
  Método que inicializa los campos en vacío

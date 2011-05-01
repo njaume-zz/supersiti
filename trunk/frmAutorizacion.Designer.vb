@@ -54,14 +54,14 @@ Partial Class frmAutorizacion
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(142, 20)
-        Me.txtPassword.TabIndex = 5
+        Me.txtPassword.TabIndex = 1
         '
         'txtUsuario
         '
         Me.txtUsuario.Location = New System.Drawing.Point(102, 34)
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.Size = New System.Drawing.Size(142, 20)
-        Me.txtUsuario.TabIndex = 4
+        Me.txtUsuario.TabIndex = 0
         '
         'btnCancelar
         '

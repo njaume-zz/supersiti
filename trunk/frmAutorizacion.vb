@@ -21,17 +21,22 @@
                             frmFormasPagos.ShowDialog()
                         End If
                     Case Definiciones.gcAccionAutorizaDescuento
+                        If frmVentas.DataGridView1.RowCount > 0 Then
+                            frmFormasPagos.gbAutorizado = True
+                        Else
+                            frmFormasPagos.gbAutorizado = False
+                        End If
                         'autoriza el descuento, se debe cerrar acá y continuar con el 
                         'formulario de pagos.
                     Case Definiciones.gcAccionAutorizaTarjeta
                         'autoriza el pago con Tarjeta y se debe cerar acá y continuar con el
                         'formulario de pagos.
                 End Select
-                Me.Close()
+                Me.Hide()
                 frmFormasPagos.Focus()
             Else
                 MessageBox.Show("El USUARIO y CONTRASEÑA ingresadas son INCORRECTAS o no tiene permisos.", ".:: ADVERTENCIA ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Me.Close()
+                Me.Hide()
             End If
         Catch ex As Exception
             Funciones.LogError(ex, "Aceptar - Autorizaion", Funciones.ObtieneUsuario)
@@ -46,13 +51,13 @@
     End Sub
 
     Private Sub txtPassword_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtPassword.KeyDown
-        If e.KeyCode = Asc(Keys.Enter) Then
+        If e.KeyCode = Keys.Enter Then
             Call btnAceptar_Click(sender, e)
         End If
     End Sub
 
     Private Sub txtUsuario_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtUsuario.KeyDown
-        If e.KeyCode = Asc(Keys.Enter) Then
+        If e.KeyCode = Keys.Enter Then
             Me.txtPassword.Focus()
         End If
     End Sub

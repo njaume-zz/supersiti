@@ -2,7 +2,7 @@
 
 #Region "Variables"
     Public goDt As DataTable
-
+    Public gbAutorizado As Boolean
 #End Region
 
 #Region "Métodos"
@@ -137,6 +137,14 @@
         End If
         frmVentas.Inicializar()
     End Sub
+
+    Private Sub CalcularImporte()
+        Dim oiSubTotal, oiTotal, oiDescuento As String
+        oiTotal = Me.txtTotalAPagar.Text
+        oiDescuento = CInt(Me.txtDescuento.Text)
+        oiSubTotal = Funciones.FormatoMoneda((oiDescuento * oiTotal / 100))
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda(oiTotal - oiSubTotal)
+    End Sub
 #End Region
 
 #Region "Eventos"
@@ -198,21 +206,22 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub txtDescuento_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.LostFocus
-        Dim oiSubTotal, oiTotal, oiDescuento As String
 
         If Me.txtDescuento.Text <> 0 Then
-            oiTotal = Me.txtTotalAPagar.Text
-            oiDescuento = CInt(Me.txtDescuento.Text)
-            oiSubTotal = Funciones.FormatoMoneda((oiDescuento * oiTotal / 100))
-        Else
-            oiTotal = Funciones.FormatoMoneda(Me.txtTotalAPagar.Text)
-            oiSubTotal = Funciones.FormatoMoneda(gdNull)
+            frmAutorizacion.pAccionPosterior = Definiciones.gcAccionAutorizaDescuento
+            frmAutorizacion.ShowDialog()
+            If Not gbAutorizado Then
+                MessageBox.Show("No tiene permiso para realizar descuento.-", ".:: SIN AUTORIZACION ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Me.txtDescuento.Text = "0"
+            End If
         End If
-        Me.txtSubTotal.Text = Funciones.FormatoMoneda(oiTotal - oiSubTotal)
+        CalcularImporte()
+
     End Sub
 
     Private Sub txtTotalEnEfectivo_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnEfectivo.LostFocus
-        If Me.txtTotalEnEfectivo.Text <> 0 And Me.txtTotalEnEfectivo.Text >= Me.txtSubTotal.Text Then
+        If Me.txtTotalEnEfectivo.Text <> 0 And (CDbl(Me.txtTotalEnEfectivo.Text) >= CDbl(Me.txtSubTotal.Text)) Then
+            CalcularImporte()
             Me.txtVuelto.Text = Funciones.FormatoMoneda(Me.txtTotalEnEfectivo.Text - Me.txtSubTotal.Text)
             Me.btnAceptarVenta.Focus()
             'Else
@@ -264,6 +273,7 @@
                     clsTipoComprobanteDAO.Modificar(oTipoComp)
                     LimpiarCampos()
                     frmVentas.Inicializar()
+                    MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     CerrarForm("Cerrar")
                 Else
                     MessageBox.Show("Ocurrió un problema al guardar el comprobante. La VENTA NO FUE REALIZADA.-", ".:: ERROR GRAVE ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -280,10 +290,10 @@
         End Try
     End Sub
 
-    Private Sub txtTotalEnTarjeta_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.GotFocus
-        frmAutorizacion.Show()
-        Me.Focus()
-    End Sub
+    'Private Sub txtTotalEnTarjeta_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.GotFocus
+    '    frmAutorizacion.Show()
+    '    Me.Focus()
+    'End Sub
 
 #End Region
 
