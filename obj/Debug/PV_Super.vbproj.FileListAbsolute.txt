@@ -82,3 +82,4 @@ K:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.frmVentas.resources
 K:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.Resources.resources
 K:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.vbproj.GenerateResource.Cache
 K:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.exe
+D:\Documentos\Proyectos\Super\PV_Super\obj\Debug\PV_Super.frmListaPrecios.resources

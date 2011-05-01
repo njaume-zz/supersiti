@@ -25,6 +25,12 @@ Public Class frmVentas
             frmBuscaProducto.Show()
             frmBuscaProducto.Focus()
         End If
+        If e.KeyCode = Keys.F5 Then
+            ConfirmarVenta()
+        End If
+        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+            frmListaPrecios.ShowDialog()
+        End If
     End Sub
 
     Private Sub frmVentas_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
@@ -43,6 +49,7 @@ Public Class frmVentas
             rta = MessageBox.Show("Debe existir una Apertura para poder realizar Ventas." & vbNewLine & _
                             " Desea realizar una Apertura de caja?", ".:: NO EXISTEN APERTURAS ::.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If rta = vbYes Then
+                frmAdministraCaja.lblOperacion.Text = "Apertura"
                 frmAdministraCaja.ShowDialog()
             Else
                 End
@@ -89,12 +96,11 @@ Public Class frmVentas
             End If
         End If
         If e.KeyCode = Keys.F5 Then
-            If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
-                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") Then
-                CompletarFormaPago()
-            End If
+            ConfirmarVenta()
         End If
-
+        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+            frmListaPrecios.ShowDialog()
+        End If
     End Sub
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
@@ -110,12 +116,11 @@ Public Class frmVentas
             End If
         End If
         If e.KeyCode = Keys.F5 Then
-            If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
-                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") = MsgBoxResult.Yes Then
-                CompletarFormaPago()
-            End If
+            ConfirmarVenta()
         End If
-
+        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+            MsgBox("Lista de Prevcios")
+        End If
     End Sub
 
     Private Sub txtProductoBarra_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProductoBarra.KeyPress
@@ -131,16 +136,29 @@ Public Class frmVentas
     End Sub
 
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
+        Dim oDetalle As New clsComprobanteDetalle
+        'Dim wstrprecio As String
+
         If e.KeyCode = Keys.Delete Then
             If MsgBox("¿Está seguro de quitar este Item de la venta?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = MsgBoxResult.Yes Then
-                ol_DtProducto = QuitarItemDT(ol_DtProducto, Me.DataGridView1.CurrentCell.RowIndex)
-                If ol_DtProducto.Rows.Count > 0 Then
-                    Me.DataGridView1.DataSource = ol_DtProducto
+                ol_dt = QuitarItemDT(ol_dt, Me.DataGridView1.CurrentCell.RowIndex)
+                If ol_dt.Rows.Count > 0 Then
+                    Me.DataGridView1.DataSource = ol_dt
                     DefinirCabeceras()
+                    RealizarCalculos(ol_dt)
                 Else
-                    CrearDTItems()
+                    'CrearDTItems()
+                    Inicializar()
                 End If
             End If
+        End If
+
+        If e.KeyCode = Keys.F5 Then
+            ConfirmarVenta()
+        End If
+
+        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+            frmListaPrecios.ShowDialog()
         End If
     End Sub
 
@@ -235,12 +253,18 @@ Public Class frmVentas
     End Sub
 
     Private Sub TSBBuscarPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscarPrecio.Click
-        frmListaPrecios.Show()
+        frmListaPrecios.ShowDialog()
     End Sub
 
 #End Region
 
 #Region "Métodos"
+    Private Sub ConfirmarVenta()
+        If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
+                      MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") Then
+            CompletarFormaPago()
+        End If
+    End Sub
 
     ''' <summary>
     ''' Método que inicializa el formulario.
@@ -286,10 +310,38 @@ Public Class frmVentas
     ''' </summary>
     ''' <param name="poDetalle"></param>
     ''' <remarks></remarks>
-    Private Sub RealizarCalculos(ByVal poDetalle As clsComprobanteDetalle)
-        Me.txtPcioProducto.Text = Funciones.FormatoMoneda(CStr(poDetalle.COD_PROPCIOUNITARIO))
-        Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (poDetalle.COD_PROPCIOUNITARIO * poDetalle.COD_PROCANTIDAD))
-        Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (poDetalle.COD_PROPCIOUNITARIO * poDetalle.COD_PROCANTIDAD), 2))
+    Private Sub RealizarCalculos(ByVal poDt As DataTable)
+        'Dim wstrPrecio As String
+        'Dim wstrCantidad As String
+
+        'If pstrOperacion = "suma" Then
+        '    wstrCantidad = Me.DataGridView1.CurrentRow().Cells("COD_PROCANTIDAD").Value
+        '    wstrPrecio = Me.DataGridView1.CurrentRow().Cells("COD_PROPCIOUNITARIO").Value
+        '    'Funciones.FormatoMoneda(IIf(IsDBNull(poDt.Rows(0).Item("LPR_PRECIO")), poDt.Rows(0).Item("PRO_PRECIOCOSTO"), poDt.Rows(0).Item("LPR_PRECIO")))
+
+        '    Me.txtPcioProducto.Text = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(wstrCantidad) * CDbl(wstrPrecio)), 2))
+        '    Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (Funciones.FormatoMoneda(wstrPrecio) * wstrCantidad))
+        '    Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (Funciones.FormatoMoneda(wstrPrecio) * wstrCantidad), 2))
+
+        'Else
+        Dim woDt As New DataTable
+        Dim suma As Double = 0
+        woDt = DataGridView1.DataSource
+        If Not woDt Is Nothing Then
+            For Each oDr As DataRow In woDt.Rows
+                suma = suma + oDr.Item("COD_PRECIOCANTIDAD") '(oDr.Item("COD_PROPCIOUNITARIO") * oDr.Item("COD_PROCANTIDAD"))
+                Me.txtPcioProducto.Text = oDr.Item("COD_PRECIOCANTIDAD") ' oDr.Item("COD_PROPCIOUNITARIO") * oDr.Item("COD_PROCANTIDAD")
+            Next
+            'wstrPrecio = Funciones.FormatoMoneda(woDt.Rows(0).Item("COD_PRECIOCANTIDAD"))
+
+            Me.txtSubTotal.Text = Funciones.FormatoMoneda(suma)
+            Me.txtPcioTotal.Text = Funciones.FormatoMoneda(suma)
+
+        End If
+        'End If
+        Me.txtProductoBarra.Text = ""
+        Me.txtCantidad.Text = ""
+        Me.txtProductoBarra.Focus()
     End Sub
 
     ''' <summary>
@@ -300,25 +352,31 @@ Public Class frmVentas
     Public Sub AgregarAGrilla(ByVal poDT As DataTable)
         Dim oDetalle As New clsComprobanteDetalle
         Dim wstrPrecio As String
+        Dim wiCantidad As Integer
+
         If Me.txtCantidad.Text > 0 Then
             If poDT.Rows.Count > 0 Then
-                wstrPrecio = Funciones.FormatoMoneda(IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")))
+                If Me.DataGridView1.RowCount = 0 Then
+                    wiCantidad = CInt(Me.txtCantidad.Text)
+                Else
+                    wiCantidad = Me.DataGridView1.CurrentRow().Cells("COD_PROCANTIDAD").Value + CInt("0" & Me.txtCantidad.Text)
+                End If
+
+                wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wiCantidad))
 
                 oDetalle.COD_ID = poDT.Rows(0).Item("PRO_ID")
                 oDetalle.COD_PRONOMBRE = poDT.Rows(0).Item("PRO_NOMBRE")
                 oDetalle.COD_PROCODIGO = poDT.Rows(0).Item("PRO_CODIGO")
-                oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(wstrPrecio)
-                oDetalle.COD_PROCANTIDAD = CInt("0" & Me.txtCantidad.Text)
-                oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.COD_PROPCIOUNITARIO)), 2))
+                oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
+                oDetalle.COD_PROCANTIDAD = wiCantidad
+                oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda(wstrPrecio)
+                'Funciones.FormatoMoneda(Math.Round(CDbl(CInt(Me.txtCantidad.Text) * CDbl(oDetalle.COD_PROPCIOUNITARIO)), 2))
                 oDetalle.COD_PESABLE = poDT.Rows(0).Item("PRO_PESABLE")
                 ol_dt = AgregarItemDT(oDetalle)
 
                 Me.DataGridView1.DataSource = ol_dt
                 'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
-                Me.txtProductoBarra.Text = ""
-                Me.txtCantidad.Text = ""
-                Me.txtProductoBarra.Focus()
-                RealizarCalculos(oDetalle)
+                RealizarCalculos(poDT)
             End If
         End If
     End Sub
@@ -440,11 +498,12 @@ Public Class frmVentas
         Try
             Dim obRepetido As Boolean = False
             Dim dr As DataRow ' = dt.NewRow()
-
+            
             For Each odrVerifica As DataRow In ol_dt.Select("COD_ID = " & campos.COD_ID & "")
                 If Not odrVerifica.Item("COD_ID") Is Nothing Then
                     obRepetido = True
-                    odrVerifica.Item("COD_PROCANTIDAD") = odrVerifica.Item("COD_PROCANTIDAD") + campos.COD_PROCANTIDAD
+                    odrVerifica.Item("COD_PROCANTIDAD") = campos.COD_PROCANTIDAD
+                    'wiCantidad = odrVerifica.Item("COD_PROCANTIDAD")
                     odrVerifica.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
                     Exit For
                 End If
@@ -455,7 +514,7 @@ Public Class frmVentas
                 dr.Item("COD_PRONOMBRE") = campos.COD_PRONOMBRE
                 dr.Item("COD_PROCODIGO") = campos.COD_PROCODIGO
                 dr.Item("COD_PROPCIOUNITARIO") = Funciones.FormatoMoneda(campos.COD_PROPCIOUNITARIO)
-                dr.Item("COD_PROCANTIDAD") = campos.COD_PROCANTIDAD
+                dr.Item("COD_PROCANTIDAD") = CInt(campos.COD_PROCANTIDAD)
                 dr.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
                 dr.Item("COD_PESABLE") = campos.COD_PESABLE
 

@@ -101,6 +101,8 @@
                         Else
                             Funciones.Manejador_Errores("Apertura de Caja", New Exception("Ya existe una Apertura pendiende de cierre.-"))
                         End If
+                        Me.Hide()
+                        frmVentas.ShowDialog()
                     Case "Retiro"    'CAE_ID = 2
                         If wbApertura = True Then
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
@@ -109,6 +111,8 @@
                         Else
                             Funciones.Manejador_Errores("Retiro de Dinero", New Exception("No existe una Apertura de Caja, por eso no se puede Retirar dinero.-"))
                         End If
+                        Me.Hide()
+                        frmVentas.ShowDialog()
                     Case "Cierre X"  'CAE_ID = 3
                         If wbApertura = True Then
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
@@ -116,10 +120,8 @@
                             Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                             oDt = New DataTable
                             oDt = RecuperaImportesCaja()
-
-                            '1º Busco si hay Apertura
-                            '2º Recupero Importes de Caja entre fechas
-                            '3º Sumo las ventas y descuento la (Apertura + Retiro)
+                            '1º Recupero Importes de Caja entre fechas
+                            '2º Sumo las ventas y descuento la (Apertura + Retiro)
                             'listar los valores recuperados
                             'recuperar los importes de cajas.
                             'Movimientos,Usuario, Caja, Tipo Movimiento
@@ -167,10 +169,14 @@
                                     ControlChars.CrLf & " Debe realizar el Cierre X, primero.", ".:: Caja con Apertura ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Me.Close()
                 End If
+                Me.txtImporteRetiro.Enabled = False
+                Me.txtImporteApertura.Enabled = True
             Case "Retiro"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
                 ' se debe recuperar el importe de apertura y los retiros hechos por el usuario.
                 VerificarRetiro()
+                Me.txtImporteRetiro.Enabled = True
+                Me.txtImporteApertura.Enabled = False
             Case "Cierre X"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
                 'si se permite el cierre, se recupera de la base los importes de las ventas

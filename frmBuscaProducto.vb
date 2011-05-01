@@ -47,8 +47,13 @@
                     wo_Dt = o_dt
                     Me.Close()
                 Case ChrW(Keys.Back) ' borro la última letra escrita
-                    strBuscar = Microsoft.VisualBasic.Left(strBuscar, strBuscar.Length - 1)
-                    wo_Dt = AplicarFiltro(o_dt, strBuscar)
+                    If Not strBuscar = "" Then
+                        strBuscar = Microsoft.VisualBasic.Left(strBuscar, strBuscar.Length - 1)
+                        wo_Dt = AplicarFiltro(o_dt, strBuscar)
+                    Else
+                        strBuscar = ""
+                        wo_Dt = o_dt
+                    End If
                 Case Else
                     strBuscar = strBuscar & e.KeyChar.ToString
                     wo_Dt = AplicarFiltro(o_dt, strBuscar)
@@ -85,7 +90,7 @@
                 If MsgBox("Está seguro que desea seleccionar el producto: " & _
                         oDr.Item("PRO_NOMBRE") & "?", _
                         MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: ADVERTENCIA ::.") = vbYes Then
-                    MsgBox("Se agregó el Producto: " & oDr.Item("PRO_NOMBRE"))
+                    'MsgBox("Se agregó el Producto: " & oDr.Item("PRO_NOMBRE"))
 
                     oDt.ImportRow(oDr)
                     oDt.AcceptChanges()
@@ -119,16 +124,19 @@
         Dim woDT As New DataTable
 
         woDT = poDt.Clone
+        If Not pszTexto = "" Then
+            'For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
+            For Each wo_DR As DataRow In poDt.Select("('" & strBuscar & "' = '' OR (PRO_NOMBRE LIKE '" & strBuscar & "%'))")
+                woDT.ImportRow(wo_DR)
+                woDT.AcceptChanges()
+                o_dr = Nothing
 
-        For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
+            Next
 
-            woDT.ImportRow(wo_DR)
-            woDT.AcceptChanges()
-            o_dr = Nothing
-
-        Next
-
-        AplicarFiltro = woDT
+            AplicarFiltro = woDT
+        Else
+            ListarProductos()
+        End If
     End Function
 
     ''' <summary>
