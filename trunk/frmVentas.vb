@@ -35,7 +35,19 @@ Public Class frmVentas
     End Sub
 
     Private Sub frmVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim wbApertura As Boolean
+        Dim rta As Long
         Inicializar()
+        wbApertura = frmAdministraCaja.VerificarApertura()
+        If wbApertura = False Then
+            rta = MessageBox.Show("Debe existir una Apertura para poder realizar Ventas." & vbNewLine & _
+                            " Desea realizar una Apertura de caja?", ".:: NO EXISTEN APERTURAS ::.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If rta = vbYes Then
+                frmAdministraCaja.ShowDialog()
+            Else
+                End
+            End If
+        End If
     End Sub
 
     'Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown

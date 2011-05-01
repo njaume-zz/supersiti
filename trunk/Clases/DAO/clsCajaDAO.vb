@@ -355,4 +355,48 @@ Public Class clsCajaDAO
         End Try
         Return salida
     End Function
+
+    Public Shared Function ListarImporteCaja(ByVal CAM_ID As Integer, ByVal USU_ID As Integer, _
+                                               ByVal CAJ_ID As Integer, ByVal CAE_ID As Integer) As DataTable
+        Dim strStore As String = "STR_CONSULTA_MOVIMIENTO_CAJA"
+        Dim Conexion As SqlConnection
+        Dim cmd As New SqlCommand
+        Dim conecto As Boolean
+        Dim salida As New DataTable
+
+        Conexion = clsConexion.Conectar
+        Try
+            Conexion.Open()
+            conecto = True
+        Catch ex As Exception
+            conecto = False
+        End Try
+
+        Try
+            If conecto Then
+                With cmd
+                    .Connection = Conexion
+                    .CommandText = strStore
+                    .CommandType = CommandType.StoredProcedure
+                    With .Parameters
+                        .AddWithValue("@CAM_ID", CAM_ID)
+                        .AddWithValue("@USU_ID", USU_ID)
+                        .AddWithValue("@CAJ_ID", CAJ_ID)
+                        .AddWithValue("@CAE_ID", CAE_ID)
+                    End With
+                    salida.Load(.ExecuteReader)
+                End With
+            Else
+                salida = Nothing
+            End If
+            Conexion.Close()
+        Catch ex As Exception
+            salida = Nothing
+            MsgBox(ex.Message)
+        Finally
+            cmd = Nothing
+            Conexion = Nothing
+        End Try
+        Return salida
+    End Function
 End Class
