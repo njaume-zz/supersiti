@@ -32,7 +32,7 @@
         Me.txtTotalCaja.Enabled = False
     End Sub
 
-    Private Function VerificarApertura() As Boolean
+    Public Function VerificarApertura() As Boolean
         Dim ok As Boolean
         Dim idUsr As Integer = CInt(frmVentas.SSTInformaUsuario.Items("TSSIdUsuario").Text)
         ok = clsCajaDAO.ValidaMovimientosCaja(1, idUsr)  ' 1 = Apertura
@@ -61,16 +61,18 @@
     End Function
 
     Private Function RecuperaImportesCaja() As DataTable
-        Dim str As String = "SELECT	CAJ.CAJ_ID,CAJ.CAJ_NUMERO,CAJ.CAE_ID,CAJ.CAJ_FECHAAPERTURA,CAJ.CAJ_FECHACIERRE, " & _
-                            "CAE.CAE_ID,CAE.CAE_NOMBRE,CAA.CAA_ID,SUM(CAA.CAA_IMPORTE) AS 'CAA_IMPORTE',CAA.CAA_FECHA," & _
-                            "CAA.USU_ID  FROM V_CAJA CAJ INNER JOIN V_CAJA_ESTADO CAE ON CAJ.CAE_ID = CAE.CAE_ID INNER JOIN V_CAJA_ACCIONES CAA " & _
-                            " ON CAE.CAE_ID = CAA.CAE_ID GROUP BY CAJ.CAE_ID,CAJ.CAJ_ID,CAJ.CAJ_NUMERO,CAJ.CAJ_FECHAAPERTURA," & _
-                            "CAJ.CAJ_FECHACIERRE,CAE.CAE_ID,CAE.CAE_NOMBRE,CAA.CAA_ID,CAA.CAA_FECHA,CAA.USU_ID() ORDER BY SUM(CAA.CAA_IMPORTE)"
+        Dim woDt As DataTable
+        Try
+            woDt = New DataTable
+            ' obtener id de usuario!
+            woDt = clsCajaDAO.ListarImporteCaja(0, frmVentas.TSSIdUsuario.Text, 1, 3)
 
-
-        Dim str2 As String = "SELECT * FROM V_CAJA_MOVIMIENTOS CAM INNER JOIN V_CAJA_TIPO_MOVIMIENTO CAE" & _
-                             "ON CAM.CAE_ID = CAE.CAE_ID INNER JOIN V_CAJA CAJ" & _
-                             "on CAM.CAJ_ID = CAJ.CAJ_ID"
+        Catch ex As Exception
+            Funciones.LogError(ex, "RecuperaImportesCaja", Funciones.ObtieneUsuario)
+        Finally
+            woDt = Nothing
+        End Try
+        Return woDt
     End Function
 #End Region
 
@@ -79,34 +81,60 @@
     Private Sub btnConfirmar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfirmar.Click
         Dim Estado As Integer
         Dim oDt As DataTable
+        Dim wbApertura As Boolean
+        Dim wdblImporte As Double
+
         Try
 
             If Not Validar() Then
                 MsgBox("No se puede confirmar la operación porque faltan datos.-", MsgBoxStyle.Exclamation, ".:: OPERACION FALLIDA ::.")
                 LimiparCampos()
             Else
+                wbApertura = VerificarApertura()
                 Select Case Me.lblOperacion.Text
                     'CAMBIAR LA CAJA POR UNA VARIABLE
                     Case "Apertura"  'CAE_ID = 1
-                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               1, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
-                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
-
+                        If wbApertura = False Then
+                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                                   1, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
+                            Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        Else
+                            Funciones.Manejador_Errores("Apertura de Caja", New Exception("Ya existe una Apertura pendiende de cierre.-"))
+                        End If
                     Case "Retiro"    'CAE_ID = 2
-                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               2, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
-                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        If wbApertura = True Then
+                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                                   2, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
+                            Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        Else
+                            Funciones.Manejador_Errores("Retiro de Dinero", New Exception("No existe una Apertura de Caja, por eso no se puede Retirar dinero.-"))
+                        End If
                     Case "Cierre X"  'CAE_ID = 3
-                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               3, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
-                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
-                        oDt = New DataTable
-                        oDt = RecuperaImportesCaja()
-                        'listar los valores recuperados
+                        If wbApertura = True Then
+                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                                   3, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
+                            Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                            oDt = New DataTable
+                            oDt = RecuperaImportesCaja()
+
+                            '1º Busco si hay Apertura
+                            '2º Recupero Importes de Caja entre fechas
+                            '3º Sumo las ventas y descuento la (Apertura + Retiro)
+                            'listar los valores recuperados
+                            'recuperar los importes de cajas.
+                            'Movimientos,Usuario, Caja, Tipo Movimiento
+                            'RecuperaImportesCaja(CAM_ID,USU_ID,CAJ_ID,3)
+                        Else
+                            Funciones.Manejador_Errores("Cierre X de Caja", New Exception("No existe una Apertura pendiende de cierre.-"))
+                        End If
                     Case "Cierre Z"  'CAE_ID = 4
-                        Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                               4, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
-                        Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        If wbApertura = True Then
+                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
+                                                                   4, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
+                            Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                        Else
+                            Funciones.Manejador_Errores("Cierre Z de Caja", New Exception("No existe una Apertura pendiende de cierre.-"))
+                        End If
                 End Select
                 If Estado = -1 Then
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " falló y no pudo guardarse.-", ".:: ERROR EN CAJAS ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
