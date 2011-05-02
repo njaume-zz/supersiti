@@ -65,7 +65,7 @@
         Try
             woDt = New DataTable
             ' obtener id de usuario!
-            woDt = clsCajaDAO.ListarImporteCaja(0, frmVentas.TSSIdUsuario.Text, 1, 3)
+            woDt = clsCajaDAO.ListarImporteCaja(0, frmVentas.TSSIdUsuario.Text, Funciones.ObtenerConfiguracion(gstrCaja), 3)
 
         Catch ex As Exception
             Funciones.LogError(ex, "RecuperaImportesCaja", Funciones.ObtieneUsuario)
