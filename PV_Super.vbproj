@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{73933D06-5A60-4E47-873E-1CE489AD7AF2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -214,10 +214,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\PV_Super.exe" />
-    <Content Include="bin\Debug\PV_Super.pdb" />
     <Content Include="bin\Debug\PV_Super.vshost.exe" />
-    <Content Include="bin\Debug\PV_Super.xml" />
     <Content Include="Iconos\124.png" />
     <Content Include="Iconos\152.png" />
     <Content Include="Iconos\155.png" />
