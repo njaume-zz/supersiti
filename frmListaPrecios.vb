@@ -68,17 +68,14 @@
 
         woDT = poDt.Clone
         If Not pszTexto = "" Then
-            For Each wo_DR As DataRow In poDt.Select("('" & strBuscar & "' = '' OR (PRO_NOMBRE LIKE '" & strBuscar & "%'))")
-
+            For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
                 woDT.ImportRow(wo_DR)
                 woDT.AcceptChanges()
                 o_dr = Nothing
-
             Next
-
             AplicarFiltro = woDT
         Else
-            CompletarGrilla()
+            AplicarFiltro = poDt
         End If
     End Function
 
