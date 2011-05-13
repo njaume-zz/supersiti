@@ -55,26 +55,14 @@ Public Class frmVentas
                 End
             End If
         End If
+        Me.DataGridView1.ForeColor = Color.Black
     End Sub
 
-    'Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
-    '    'If Not Me.txtProductoBarra.Text = "" Then
-    '    Try
-
-    '        If e.KeyCode = Keys.F2 Then
-    '            frmBuscaProducto.ShowDialog()
-    '        End If
-    '        If Not Me.txtProductoBarra.Text = "" Then
-    '            If e.KeyCode = Keys.Enter Then
-    '                'Buscar en la base y completar una Clase detalle
-    '                Me.txtCantidad.Focus()
-    '            End If
-    '        End If
-
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
+    Private Sub txtCantidad_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCantidad.GotFocus
+        If Me.txtDescripcion.Text = "" Or Me.txtProductoBarra.Text = "" Then
+            BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+        End If
+    End Sub
 
     Private Sub txtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCantidad.KeyPress
         'If Not Funciones.ValidaNumerico(e.KeyChar) Then
@@ -105,22 +93,22 @@ Public Class frmVentas
 
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
         If e.KeyCode = Keys.F3 Then
-            frmBuscaProducto.Show()
+            frmBuscaProducto.ShowDialog()
         End If
         If Not Me.txtProductoBarra.Text = "" Then
             If e.KeyCode = Keys.Enter Then
                 ' el 2º parámetro me indica que lo mantengo en memoria hasta ingresar la cantidad.
                 BuscarProducto(Me.txtProductoBarra.Text, "buscar")
-
                 Me.txtCantidad.Focus()
             End If
         End If
         If e.KeyCode = Keys.F5 Then
             ConfirmarVenta()
         End If
-        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
-            MsgBox("Lista de Prevcios")
-        End If
+        'If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+        '    MsgBox("Lista de Prevcios")
+        'End If
+
     End Sub
 
     Private Sub txtProductoBarra_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProductoBarra.KeyPress
@@ -129,11 +117,11 @@ Public Class frmVentas
         End If
     End Sub
 
-    Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
-        If Me.txtProductoBarra.Text <> "" Then
-            BuscarProducto(Me.txtProductoBarra.Text, "buscar")
-        End If
-    End Sub
+    'Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
+    '    If Me.txtProductoBarra.Text <> "" Then
+    '        BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+    '    End If
+    'End Sub
 
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
         Dim oDetalle As New clsComprobanteDetalle
@@ -249,7 +237,15 @@ Public Class frmVentas
     End Sub
 
     Private Sub TSBEliminaItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBEliminaItem.Click
-        MsgBox("Ubicarme en la grilla y seleccionar un item")
+        Me.DataGridView1.Focus()
+        If Not Me.DataGridView1.RowCount = 0 Then
+            Me.DataGridView1.SelectedCells(0).Selected = True
+        Else
+            Me.txtProductoBarra.Focus()
+        End If
+        MessageBox.Show("Se encuentra posicionado el la grilla, " & ControlChars.NewLine & _
+                        "seleccione un item para eliminar y presione [Supr] or [Del].-", _
+                            ".:: ELIMINACION DE ITEMS ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub TSBBuscarPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscarPrecio.Click
@@ -263,6 +259,7 @@ Public Class frmVentas
         If MsgBox("Está seguro/a desea CONFIRMAR la venta?.", _
                       MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") Then
             CompletarFormaPago()
+            LimpiarCampos()
         End If
     End Sub
 
@@ -290,6 +287,8 @@ Public Class frmVentas
         Me.txtPcioProducto.Text = ""
         Me.txtPcioTotal.Text = Funciones.FormatoMoneda("0.00")
         Me.txtSubTotal.Text = Funciones.FormatoMoneda("0.00")
+        ol_dt = Nothing
+        ol_DtProducto = Nothing
     End Sub
 
     ''' <summary>
@@ -311,34 +310,19 @@ Public Class frmVentas
     ''' <param name="poDetalle"></param>
     ''' <remarks></remarks>
     Private Sub RealizarCalculos(ByVal poDt As DataTable)
-        'Dim wstrPrecio As String
-        'Dim wstrCantidad As String
-
-        'If pstrOperacion = "suma" Then
-        '    wstrCantidad = Me.DataGridView1.CurrentRow().Cells("COD_PROCANTIDAD").Value
-        '    wstrPrecio = Me.DataGridView1.CurrentRow().Cells("COD_PROPCIOUNITARIO").Value
-        '    'Funciones.FormatoMoneda(IIf(IsDBNull(poDt.Rows(0).Item("LPR_PRECIO")), poDt.Rows(0).Item("PRO_PRECIOCOSTO"), poDt.Rows(0).Item("LPR_PRECIO")))
-
-        '    Me.txtPcioProducto.Text = Funciones.FormatoMoneda(Math.Round(CDbl(CInt(wstrCantidad) * CDbl(wstrPrecio)), 2))
-        '    Me.txtSubTotal.Text = Funciones.FormatoMoneda(Me.txtSubTotal.Text + (Funciones.FormatoMoneda(wstrPrecio) * wstrCantidad))
-        '    Me.txtPcioTotal.Text = Funciones.FormatoMoneda(Math.Round(Me.txtPcioTotal.Text + (Funciones.FormatoMoneda(wstrPrecio) * wstrCantidad), 2))
-
-        'Else
         Dim woDt As New DataTable
         Dim suma As Double = 0
         woDt = DataGridView1.DataSource
         If Not woDt Is Nothing Then
             For Each oDr As DataRow In woDt.Rows
-                suma = suma + oDr.Item("COD_PRECIOCANTIDAD") '(oDr.Item("COD_PROPCIOUNITARIO") * oDr.Item("COD_PROCANTIDAD"))
-                Me.txtPcioProducto.Text = oDr.Item("COD_PRECIOCANTIDAD") ' oDr.Item("COD_PROPCIOUNITARIO") * oDr.Item("COD_PROCANTIDAD")
+                suma = suma + oDr.Item("COD_PRECIOCANTIDAD")
+                Me.txtPcioProducto.Text = oDr.Item("COD_PRECIOCANTIDAD")
             Next
-            'wstrPrecio = Funciones.FormatoMoneda(woDt.Rows(0).Item("COD_PRECIOCANTIDAD"))
-
+          
             Me.txtSubTotal.Text = Funciones.FormatoMoneda(suma)
             Me.txtPcioTotal.Text = Funciones.FormatoMoneda(suma)
 
         End If
-        'End If
         Me.txtProductoBarra.Text = ""
         Me.txtCantidad.Text = ""
         Me.txtProductoBarra.Focus()
@@ -383,15 +367,17 @@ Public Class frmVentas
 
     Private Sub BuscarProducto(ByVal pstrProducto As String, ByVal accion As String)
         Dim oDt As DataTable
-
+        
         Try
+            
             oDt = New DataTable
             oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, pstrProducto, 0)
 
             If Not oDt Is Nothing Then
                 If accion = "buscar" Then
                     If oDt.Rows.Count = 0 Then
-                        frmBuscaProducto.Show()
+                        frmBuscaProducto.txtBuscar.Text = Me.txtProductoBarra.Text
+                        frmBuscaProducto.ShowDialog()
                     ElseIf oDt.Rows.Count = 1 Then
                         ol_DtProducto = oDt
                         txtDescripcion.Text = oDt.Rows(0).Item("PRO_NOMBRE")
@@ -403,7 +389,7 @@ Public Class frmVentas
                 End If
             End If
         Catch ex As Exception
-            Throw ex
+            MessageBox.Show(ex.ToString, ".:: ERROR ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             oDt = Nothing
         End Try

@@ -1,4 +1,6 @@
 ﻿Public Class frmIngreso
+  
+
 #Region "Métodos"
 
     Private Sub LimpiarForm()
@@ -22,9 +24,25 @@
         Return o_dt
     End Function
 
+
+    Friend Function PrevInstance() As Boolean
+        If UBound(Diagnostics.Process.GetProcessesByName(Diagnostics.Process.GetCurrentProcess.ProcessName)) > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 #End Region
 
 #Region "Eventos"
+    Private Sub frmIngreso_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If PrevInstance() Then
+            MessageBox.Show("El sistema Ya se esta ejecutando", ".:: APLICACION EN EJECUCION ::.", _
+                            MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End
+        End If
+    End Sub
+
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         Dim o_dtUsr As DataTable
 
@@ -75,4 +93,5 @@
     End Sub
 #End Region
 
+   
 End Class

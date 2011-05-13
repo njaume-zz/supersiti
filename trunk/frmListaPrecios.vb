@@ -10,6 +10,7 @@
 
     Private Sub frmListaPrecios_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         CompletarGrilla()
+        Me.dgrProductos.ForeColor = Color.Black
         'o_dt = New DataTable
     End Sub
 

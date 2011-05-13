@@ -175,7 +175,6 @@ Public Class clsProductoDAO
         Return salida
     End Function
 
-
     Public Shared Function getMarcas(ByVal PRO_MARCA As String) As DataTable
         Dim strSql As String = "STR_CONSULTA_PRODUCTO_MARCA"
         Dim Conexion As SqlConnection '= New SqlConnection(ConfigurationManager.ConnectionStrings("sqlConexion2").ConnectionString)
@@ -213,7 +212,6 @@ Public Class clsProductoDAO
         End Try
         Return salida
     End Function
-
 
     Public Shared Function GetListaPrecio() As DataTable
         Dim strSql As String = "SELECT * FROM VT_LISTAPRECIOS"
