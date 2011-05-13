@@ -27,15 +27,15 @@
     ''' <returns>string con mensaje a mostrar</returns>
     ''' <remarks>madad</remarks>
     Private Function ValidaPago() As String
-        If Me.txtSubTotal.Text = "" Then
+        If Me.txtSubTotal.Text = "" Or Me.txtSubTotal.Text = 0 Then
             ValidaPago = "El campo SubTotal no puede estar vacío.-"
             Exit Function
         End If
-        If Me.txtTotalAPagar.Text = "" Then
+        If Me.txtTotalAPagar.Text = "" Or Me.txtTotalAPagar.Text = 0 Then
             ValidaPago = "El campo Total a Pagar no puede estar vacío.-"
             Exit Function
         End If
-        If Me.txtTotalEnEfectivo.Text = "" Then
+        If Me.txtTotalEnEfectivo.Text = "" Or Me.txtTotalEnEfectivo.Text = 0 Then
             ValidaPago = "El campo Total en Efectivo no puede estar vacío.-"
             Exit Function
         End If

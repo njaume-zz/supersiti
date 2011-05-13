@@ -5,6 +5,16 @@
 
 #Region "Eventos"
 
+    Private Sub txtBuscar_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtBuscar.KeyPress
+        If e.KeyChar = ChrW(Keys.Escape) Then
+            Me.Close()
+        Else
+            Call dgrProductos_KeyPress(sender, e)
+        End If
+    End Sub
+    Private Sub txtBuscar_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBuscar.LostFocus
+        Me.txtBuscar.Focus()
+    End Sub
 
     Private Sub dgrProductos_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgrProductos.CellMouseDoubleClick
         Try
@@ -15,12 +25,14 @@
     End Sub
 
     Private Sub frmBuscaProducto_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        Me.txtBuscar.Text = ""
         strBuscar = ""
         o_dt = Nothing
     End Sub
 
     Private Sub frmBuscaProducto_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ListarProductos()
+        Me.dgrProductos.ForeColor = Color.Black
     End Sub
 
     Private Sub dgrProductos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dgrProductos.KeyDown
@@ -39,13 +51,16 @@
         Dim item As Integer
 
         Try
+            strBuscar = Me.txtBuscar.Text.Trim
+            Me.txtBuscar.Text = ""
             wo_Dt = New DataTable
             wo_Dt = o_dt.Clone()
             Select Case e.KeyChar
                 Case ChrW(Keys.Escape) 'Se cierra el formulario actual
                     strBuscar = ""
+                    Me.txtBuscar.Text = ""
                     wo_Dt = o_dt
-                    Me.Close()
+                    Call frmBuscaProducto_FormClosing(New Object, New FormClosingEventArgs(CloseReason.FormOwnerClosing, False))
                 Case ChrW(Keys.Back) ' borro la última letra escrita
                     If Not strBuscar = "" Then
                         strBuscar = Microsoft.VisualBasic.Left(strBuscar, strBuscar.Length - 1)
@@ -59,7 +74,7 @@
                     wo_Dt = AplicarFiltro(o_dt, strBuscar)
 
             End Select
-
+            Me.txtBuscar.Text = strBuscar
             Me.dgrProductos.DataSource = wo_Dt
 
             ConfigurarGrilla()

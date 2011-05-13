@@ -25,6 +25,7 @@ Partial Class frmBuscaProducto
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuscaProducto))
         Me.dgrProductos = New System.Windows.Forms.DataGridView
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.txtBuscar = New System.Windows.Forms.TextBox
         CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -37,7 +38,7 @@ Partial Class frmBuscaProducto
         Me.dgrProductos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.dgrProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgrProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgrProductos.Location = New System.Drawing.Point(1, 26)
+        Me.dgrProductos.Location = New System.Drawing.Point(0, 56)
         Me.dgrProductos.MultiSelect = False
         Me.dgrProductos.Name = "dgrProductos"
         Me.dgrProductos.ReadOnly = True
@@ -53,11 +54,19 @@ Partial Class frmBuscaProducto
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
         '
+        'txtBuscar
+        '
+        Me.txtBuscar.Location = New System.Drawing.Point(42, 31)
+        Me.txtBuscar.Name = "txtBuscar"
+        Me.txtBuscar.Size = New System.Drawing.Size(251, 20)
+        Me.txtBuscar.TabIndex = 0
+        '
         'frmBuscaProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(572, 498)
+        Me.ClientSize = New System.Drawing.Size(572, 526)
+        Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.dgrProductos)
         Me.ForeColor = System.Drawing.SystemColors.ControlDark
@@ -70,8 +79,10 @@ Partial Class frmBuscaProducto
         CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents dgrProductos As System.Windows.Forms.DataGridView
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents txtBuscar As System.Windows.Forms.TextBox
 End Class
