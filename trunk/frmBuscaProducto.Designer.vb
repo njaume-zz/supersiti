@@ -25,7 +25,7 @@ Partial Class frmBuscaProducto
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuscaProducto))
         Me.dgrProductos = New System.Windows.Forms.DataGridView
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.txtBuscar = New System.Windows.Forms.TextBox
+        Me.lblBusqueda = New System.Windows.Forms.Label
         CType(Me.dgrProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -54,19 +54,23 @@ Partial Class frmBuscaProducto
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
         '
-        'txtBuscar
+        'lblBusqueda
         '
-        Me.txtBuscar.Location = New System.Drawing.Point(42, 31)
-        Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(251, 20)
-        Me.txtBuscar.TabIndex = 0
+        Me.lblBusqueda.AutoSize = True
+        Me.lblBusqueda.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.lblBusqueda.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.lblBusqueda.Location = New System.Drawing.Point(14, 33)
+        Me.lblBusqueda.MinimumSize = New System.Drawing.Size(300, 0)
+        Me.lblBusqueda.Name = "lblBusqueda"
+        Me.lblBusqueda.Size = New System.Drawing.Size(300, 13)
+        Me.lblBusqueda.TabIndex = 5
         '
         'frmBuscaProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(572, 526)
-        Me.Controls.Add(Me.txtBuscar)
+        Me.Controls.Add(Me.lblBusqueda)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.dgrProductos)
         Me.ForeColor = System.Drawing.SystemColors.ControlDark
@@ -84,5 +88,5 @@ Partial Class frmBuscaProducto
     End Sub
     Friend WithEvents dgrProductos As System.Windows.Forms.DataGridView
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents txtBuscar As System.Windows.Forms.TextBox
+    Friend WithEvents lblBusqueda As System.Windows.Forms.Label
 End Class

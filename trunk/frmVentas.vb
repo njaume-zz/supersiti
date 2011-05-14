@@ -4,7 +4,7 @@ Public Class frmVentas
 
 #Region "Variables Locales"
     'Esta variable contiene los elementos necesarios para ingresar en la grilla.
-    Dim ol_dt As DataTable
+    Public ol_dt As DataTable
     'Declaro esta variable como s, para poder obtener los datos del Usuario
     'en todo momento y poder validar los permisos. Además de utilizarlos en el
     'Status Strip Tools
@@ -21,10 +21,6 @@ Public Class frmVentas
     End Sub
 
     Private Sub frmVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.F2 Then
-            frmBuscaProducto.Show()
-            frmBuscaProducto.Focus()
-        End If
         If e.KeyCode = Keys.F5 Then
             ConfirmarVenta()
         End If
@@ -34,9 +30,11 @@ Public Class frmVentas
     End Sub
 
     Private Sub frmVentas_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
-        If e.KeyChar = ChrW(Keys.F2) Then
+        If e.KeyChar = ChrW(Keys.F3) Then
+            Me.Visible = False
+            frmBuscaProducto.dgrProductos.Focus()
             frmBuscaProducto.ShowDialog()
-            frmBuscaProducto.Focus()
+            Me.Visible = True
         End If
     End Sub
 
@@ -58,14 +56,7 @@ Public Class frmVentas
         Me.DataGridView1.ForeColor = Color.Black
     End Sub
 
-    Private Sub txtCantidad_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCantidad.GotFocus
-        If Me.txtDescripcion.Text = "" Or Me.txtProductoBarra.Text = "" Then
-            BuscarProducto(Me.txtProductoBarra.Text, "buscar")
-        End If
-    End Sub
-
     Private Sub txtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCantidad.KeyPress
-        'If Not Funciones.ValidaNumerico(e.KeyChar) Then
         If Not IsNumeric(e.KeyChar) Then
             Me.txtCantidad.Text = ""
             e.Handled = False
@@ -91,37 +82,31 @@ Public Class frmVentas
         End If
     End Sub
 
+    Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
+        If Me.txtCantidad.Focused Then
+            BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+        End If
+    End Sub
+
     Private Sub txtProductoBarra_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProductoBarra.KeyDown
         If e.KeyCode = Keys.F3 Then
+            Me.Visible = False
             frmBuscaProducto.ShowDialog()
+            Me.Visible = True
         End If
         If Not Me.txtProductoBarra.Text = "" Then
             If e.KeyCode = Keys.Enter Then
                 ' el 2º parámetro me indica que lo mantengo en memoria hasta ingresar la cantidad.
-                BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+                'BuscarProducto(Me.txtProductoBarra.Text, "buscar")
+                Call txtProductoBarra_LostFocus(sender, New System.EventArgs)
                 Me.txtCantidad.Focus()
             End If
         End If
         If e.KeyCode = Keys.F5 Then
             ConfirmarVenta()
         End If
-        'If e.KeyCode = (Keys.ControlKey + Keys.B) Then
-        '    MsgBox("Lista de Prevcios")
-        'End If
 
     End Sub
-
-    Private Sub txtProductoBarra_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProductoBarra.KeyPress
-        If e.KeyChar = ChrW(Keys.F2) Then
-            frmBuscaProducto.ShowDialog()
-        End If
-    End Sub
-
-    'Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
-    '    If Me.txtProductoBarra.Text <> "" Then
-    '        BuscarProducto(Me.txtProductoBarra.Text, "buscar")
-    '    End If
-    'End Sub
 
     Private Sub DataGridView1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView1.KeyDown
         Dim oDetalle As New clsComprobanteDetalle
@@ -203,7 +188,9 @@ Public Class frmVentas
     End Sub
 
     Private Sub btnBuscarProductoXNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Me.Visible = False
         frmBuscaProducto.ShowDialog()
+        Me.Visible = True
     End Sub
 
     ''' <summary>
@@ -218,7 +205,9 @@ Public Class frmVentas
     End Sub
 
     Private Sub TSBBuscaProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBBuscaProducto.Click
+        Me.Visible = False
         frmBuscaProducto.ShowDialog()
+        Me.Visible = True
     End Sub
 
     Private Sub TSBAceptaVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBAceptaVenta.Click
@@ -252,6 +241,16 @@ Public Class frmVentas
         frmListaPrecios.ShowDialog()
     End Sub
 
+    Private Sub CerrarSesiónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CerrarSesiónToolStripMenuItem.Click
+        If MsgBox("Está seguro/a que desea CERRAR SESION?.", _
+                MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CERRAR SESION ::.") Then
+            LimpiarCampos()
+            BorrarDT(ol_dt)
+            BorrarDT(ol_DtProducto)
+            BorrarDT(ol_dtUsr)
+            CerrarSesion()
+        End If
+    End Sub
 #End Region
 
 #Region "Métodos"
@@ -260,6 +259,9 @@ Public Class frmVentas
                       MsgBoxStyle.Information + MsgBoxStyle.YesNo, ".:: CONFIRMAR VENTA ::.") Then
             CompletarFormaPago()
             LimpiarCampos()
+            ol_dt = Nothing
+            ol_DtProducto = Nothing
+            CrearDTItems()
         End If
     End Sub
 
@@ -287,8 +289,6 @@ Public Class frmVentas
         Me.txtPcioProducto.Text = ""
         Me.txtPcioTotal.Text = Funciones.FormatoMoneda("0.00")
         Me.txtSubTotal.Text = Funciones.FormatoMoneda("0.00")
-        ol_dt = Nothing
-        ol_DtProducto = Nothing
     End Sub
 
     ''' <summary>
@@ -299,6 +299,7 @@ Public Class frmVentas
         If Me.DataGridView1.RowCount > 0 Then
             frmFormasPagos.goDt = Me.DataGridView1.DataSource
             frmFormasPagos.txtTotalAPagar.Text = Funciones.FormatoMoneda(Me.txtPcioTotal.Text)
+            frmFormasPagos.txtDescuento.Focus()
             frmFormasPagos.ShowDialog()
         End If
     End Sub
@@ -346,6 +347,8 @@ Public Class frmVentas
                     wiCantidad = Me.DataGridView1.CurrentRow().Cells("COD_PROCANTIDAD").Value + CInt("0" & Me.txtCantidad.Text)
                 End If
 
+                poDT.Select("PRO_CODIGO_BARRA = '" & Me.txtProductoBarra.Text.Trim & "'")
+
                 wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wiCantidad))
 
                 oDetalle.COD_ID = poDT.Rows(0).Item("PRO_ID")
@@ -359,7 +362,6 @@ Public Class frmVentas
                 ol_dt = AgregarItemDT(oDetalle)
 
                 Me.DataGridView1.DataSource = ol_dt
-                'Me.DataGridView1.Columns.Item("PRO_ID").Visible = False
                 RealizarCalculos(poDT)
             End If
         End If
@@ -376,15 +378,19 @@ Public Class frmVentas
             If Not oDt Is Nothing Then
                 If accion = "buscar" Then
                     If oDt.Rows.Count = 0 Then
-                        frmBuscaProducto.txtBuscar.Text = Me.txtProductoBarra.Text
+                        frmBuscaProducto.dgrProductos.Focus()
+                        Me.Visible = False
                         frmBuscaProducto.ShowDialog()
+                        Me.Visible = True
                     ElseIf oDt.Rows.Count = 1 Then
                         ol_DtProducto = oDt
                         txtDescripcion.Text = oDt.Rows(0).Item("PRO_NOMBRE")
                         Me.txtCantidad.Focus()
                     ElseIf oDt.Rows.Count > 1 Then
                         frmBuscaProducto.Lista(oDt)
+                        Me.Visible = False
                         frmBuscaProducto.ShowDialog()
+                        Me.Visible = True
                     End If
                 End If
             End If
@@ -404,21 +410,18 @@ Public Class frmVentas
     End Sub
 
     Private Sub CerrarAplicacion()
-        If MsgBox("¿Está seguro que desea cerrar la Aplicación?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CIERRE DE APLICACIÓN ::.") = MsgBoxResult.Yes Then
+        If MsgBox("¿Está seguro que desea cerrar la Aplicación?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, _
+                    ".:: CIERRE DE APLICACIÓN ::.") = MsgBoxResult.Yes Then
             BorrarDT(ol_dt)
             End
-        End If
+        Else : End If
     End Sub
 
-    Public Sub CargarMenu(ByVal po_dt As DataTable)
-        'Dim o_item As MenuItem
-        'Dim o_men As MenuStrip
-
-        'For Each dr As DataRow In po_dt.Rows
-        '    o_men = New MenuStrip
-
-        'Next
-
+    Private Sub CerrarSesion()
+        Me.Visible = False
+        Me.Hide()
+        frmIngreso.ShowDialog()
+        'Me.Visible = True
     End Sub
 #End Region
 
@@ -433,6 +436,15 @@ Public Class frmVentas
         Me.DataGridView1.Columns.Item("COD_PROCANTIDAD").HeaderText = "Cantidad"
         Me.DataGridView1.Columns.Item("COD_PRECIOCANTIDAD").HeaderText = "Pcio. Cantidad"
         Me.DataGridView1.Columns.Item("COD_PESABLE").HeaderText = "Pesable"
+
+        Me.DataGridView1.Columns.Item("COD_ID").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PRONOMBRE").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PROCODIGO").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PROPCIOUNITARIO").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PROCANTIDAD").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PRECIOCANTIDAD").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.DataGridView1.Columns.Item("COD_PESABLE").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+
         Me.DataGridView1.Refresh()
     End Sub
 
@@ -484,7 +496,9 @@ Public Class frmVentas
         Try
             Dim obRepetido As Boolean = False
             Dim dr As DataRow ' = dt.NewRow()
-            
+
+            'If Not ol_dt Is Nothing Then
+
             For Each odrVerifica As DataRow In ol_dt.Select("COD_ID = " & campos.COD_ID & "")
                 If Not odrVerifica.Item("COD_ID") Is Nothing Then
                     obRepetido = True
@@ -506,6 +520,8 @@ Public Class frmVentas
 
                 ol_dt.Rows.Add(dr)
             End If
+
+            'End If
 
             Return ol_dt
 
@@ -539,6 +555,5 @@ Public Class frmVentas
         dt = Nothing
     End Sub
 #End Region
-
 
 End Class

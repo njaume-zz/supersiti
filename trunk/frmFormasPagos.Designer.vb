@@ -110,6 +110,7 @@ Partial Class frmFormasPagos
         Me.txtSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSubTotal.Location = New System.Drawing.Point(196, 138)
         Me.txtSubTotal.Name = "txtSubTotal"
+        Me.txtSubTotal.ReadOnly = True
         Me.txtSubTotal.Size = New System.Drawing.Size(144, 26)
         Me.txtSubTotal.TabIndex = 2
         '

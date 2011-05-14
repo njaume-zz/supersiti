@@ -5,17 +5,6 @@
 
 #Region "Eventos"
 
-    Private Sub txtBuscar_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtBuscar.KeyPress
-        If e.KeyChar = ChrW(Keys.Escape) Then
-            Me.Close()
-        Else
-            Call dgrProductos_KeyPress(sender, e)
-        End If
-    End Sub
-    Private Sub txtBuscar_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBuscar.LostFocus
-        Me.txtBuscar.Focus()
-    End Sub
-
     Private Sub dgrProductos_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgrProductos.CellMouseDoubleClick
         Try
             AsignaSeleccion()
@@ -25,8 +14,8 @@
     End Sub
 
     Private Sub frmBuscaProducto_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        Me.txtBuscar.Text = ""
         strBuscar = ""
+        Me.lblBusqueda.Text = strBuscar
         o_dt = Nothing
     End Sub
 
@@ -51,16 +40,14 @@
         Dim item As Integer
 
         Try
-            strBuscar = Me.txtBuscar.Text.Trim
-            Me.txtBuscar.Text = ""
             wo_Dt = New DataTable
             wo_Dt = o_dt.Clone()
             Select Case e.KeyChar
                 Case ChrW(Keys.Escape) 'Se cierra el formulario actual
                     strBuscar = ""
-                    Me.txtBuscar.Text = ""
                     wo_Dt = o_dt
-                    Call frmBuscaProducto_FormClosing(New Object, New FormClosingEventArgs(CloseReason.FormOwnerClosing, False))
+                    'Call frmBuscaProducto_FormClosing(New Object, New FormClosingEventArgs(CloseReason.FormOwnerClosing, False))
+                    Me.Close()
                 Case ChrW(Keys.Back) ' borro la última letra escrita
                     If Not strBuscar = "" Then
                         strBuscar = Microsoft.VisualBasic.Left(strBuscar, strBuscar.Length - 1)
@@ -74,7 +61,7 @@
                     wo_Dt = AplicarFiltro(o_dt, strBuscar)
 
             End Select
-            Me.txtBuscar.Text = strBuscar
+            Me.lblBusqueda.Text = strBuscar
             Me.dgrProductos.DataSource = wo_Dt
 
             ConfigurarGrilla()
@@ -204,13 +191,13 @@
         Me.dgrProductos.Columns.Item("PRO_PRECIOCOMPRA").Visible = False
         Me.dgrProductos.Columns.Item("PRO_PRECIOCOSTO").Visible = False
         Me.dgrProductos.Columns.Item("PRO_CODIGO_PROVEEDOR").Visible = False
-        Me.dgrProductos.Columns.Item("PRO_CODIGO_BARRA").Visible = False
+        Me.dgrProductos.Columns.Item("PRO_CODIGO").Visible = False
         Me.dgrProductos.Columns.Item("PRO_DESCRIPCION").Visible = False
         Me.dgrProductos.Columns.Item("PRO_NOMBREETIQUETA").Visible = False
         Me.dgrProductos.Columns.Item("UNC_ID").Visible = False
         Me.dgrProductos.Columns.Item("UNV_ID").Visible = False
 
-        Me.dgrProductos.Columns.Item("PRO_CODIGO").HeaderText = "Código"
+        Me.dgrProductos.Columns.Item("PRO_CODIGO_BARRA").HeaderText = "Código Barra"
         Me.dgrProductos.Columns.Item("PRO_NOMBRE").HeaderText = "Nombre"
         Me.dgrProductos.Columns.Item("LPR_PRECIO").HeaderText = "Precio"
         Me.dgrProductos.Columns.Item("PRO_MARCA").HeaderText = "Marca"

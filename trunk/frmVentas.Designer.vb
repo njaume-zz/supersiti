@@ -73,7 +73,8 @@ Partial Class frmVentas
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator
-        Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.tsmAnularTicket = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.CerrarSesiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator
         Me.SalirDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -104,6 +105,7 @@ Partial Class frmVentas
         '
         'SSTInformaUsuario
         '
+        Me.SSTInformaUsuario.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.SSTInformaUsuario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.TSSUsuario, Me.ToolStripStatusLabel2, Me.TSSFecha, Me.ToolStripStatusLabel3, Me.TSSPtoVta, Me.ToolStripStatusLabel4, Me.TSSPC, Me.TSSIdUsuario})
         Me.SSTInformaUsuario.Location = New System.Drawing.Point(0, 634)
         Me.SSTInformaUsuario.Name = "SSTInformaUsuario"
@@ -237,7 +239,7 @@ Partial Class frmVentas
         Me.GroupBox1.Controls.Add(Me.txtPcioTotal)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(552, 364)
+        Me.GroupBox1.Location = New System.Drawing.Point(552, 362)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(236, 245)
         Me.GroupBox1.TabIndex = 10
@@ -323,6 +325,7 @@ Partial Class frmVentas
         '
         'SSTDescripciones
         '
+        Me.SSTDescripciones.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.SSTDescripciones.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.SSTDescripciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9, Me.ToolStripStatusLabel10})
         Me.SSTDescripciones.Location = New System.Drawing.Point(0, 612)
@@ -464,7 +467,7 @@ Partial Class frmVentas
         '
         'AdministraciónToolStripMenuItem
         '
-        Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ToolStripMenuItem7, Me.ToolStripMenuItem3, Me.CambiarDeUsuarioToolStripMenuItem, Me.CerrarSesiónToolStripMenuItem, Me.ToolStripMenuItem1, Me.SalirDelSistemaToolStripMenuItem})
+        Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ToolStripMenuItem7, Me.ToolStripMenuItem3, Me.tsmAnularTicket, Me.ToolStripSeparator2, Me.CerrarSesiónToolStripMenuItem, Me.ToolStripMenuItem1, Me.SalirDelSistemaToolStripMenuItem})
         Me.AdministraciónToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.AdministraciónToolStripMenuItem.Name = "AdministraciónToolStripMenuItem"
         Me.AdministraciónToolStripMenuItem.Size = New System.Drawing.Size(100, 20)
@@ -512,12 +515,17 @@ Partial Class frmVentas
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.Size = New System.Drawing.Size(245, 6)
         '
-        'CambiarDeUsuarioToolStripMenuItem
+        'tsmAnularTicket
         '
-        Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
-        Me.CambiarDeUsuarioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.U), System.Windows.Forms.Keys)
-        Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
-        Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de Usuario"
+        Me.tsmAnularTicket.Name = "tsmAnularTicket"
+        Me.tsmAnularTicket.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
+        Me.tsmAnularTicket.Size = New System.Drawing.Size(248, 22)
+        Me.tsmAnularTicket.Text = "Anular Ticket"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(245, 6)
         '
         'CerrarSesiónToolStripMenuItem
         '
@@ -558,6 +566,7 @@ Partial Class frmVentas
         Me.ClienteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
         Me.ClienteToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
         Me.ClienteToolStripMenuItem.Text = "Pro&veedor"
+        Me.ClienteToolStripMenuItem.Visible = False
         '
         'ConsultaDePrecioToolStripMenuItem
         '
@@ -574,17 +583,18 @@ Partial Class frmVentas
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "&Reportes"
+        Me.ReportesToolStripMenuItem.Visible = False
         '
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
         '
         'frmVentas
@@ -613,6 +623,7 @@ Partial Class frmVentas
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmVentas"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = "Administración de Ventas"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SSTInformaUsuario.ResumeLayout(False)
@@ -654,7 +665,6 @@ Partial Class frmVentas
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents AdministraciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CambiarDeUsuarioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CerrarSesiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SalirDelSistemaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -690,5 +700,7 @@ Partial Class frmVentas
     Friend WithEvents TSBAceptaVenta As System.Windows.Forms.ToolStripButton
     Friend WithEvents TSBCancelaVenta As System.Windows.Forms.ToolStripButton
     Friend WithEvents TSBEliminaItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsmAnularTicket As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
 
 End Class

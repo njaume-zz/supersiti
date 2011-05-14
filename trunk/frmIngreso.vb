@@ -1,13 +1,25 @@
 ﻿Public Class frmIngreso
-  
+
 
 #Region "Métodos"
 
+    ''' <summary>
+    ''' Método que limpia los controles de la pantalla
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub LimpiarForm()
         Me.txtPassword.Text = ""
         Me.txtUsuario.Text = ""
+        Me.txtUsuario.Focus()
     End Sub
 
+    ''' <summary>
+    ''' Método que valida si el usuario está autorizado a ingresar
+    ''' </summary>
+    ''' <param name="p_usuario">Usuario</param>
+    ''' <param name="p_password">Password</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function ValidarUsuario(ByVal p_usuario As String, ByVal p_password As String) As DataTable
         Dim o_dt As DataTable
 
@@ -24,7 +36,11 @@
         Return o_dt
     End Function
 
-
+    ''' <summary>
+    ''' Valida la existencia de una instancia anterior de la misma aplicación
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks></remarks>
     Friend Function PrevInstance() As Boolean
         If UBound(Diagnostics.Process.GetProcessesByName(Diagnostics.Process.GetCurrentProcess.ProcessName)) > 0 Then
             Return True
@@ -32,12 +48,14 @@
             Return False
         End If
     End Function
+
 #End Region
 
 #Region "Eventos"
+
     Private Sub frmIngreso_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If PrevInstance() Then
-            MessageBox.Show("El sistema Ya se esta ejecutando", ".:: APLICACION EN EJECUCION ::.", _
+            MessageBox.Show("El sistema Ya se está ejecutando", ".:: APLICACION EN EJECUCION ::.", _
                             MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End
         End If
@@ -54,9 +72,10 @@
                 If o_dtUsr Is Nothing Then
                     LimpiarForm()
                     Me.txtUsuario.Focus()
+                    MessageBox.Show("El usuario ingresado es incorrecto. Intente nuevamente.-", _
+                                ".:: USUARIO INVALIDO ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
                 Else
-                    'frmVentas.CargarMenu(o_dtUsr)
                     frmVentas.ol_dtUsr = o_dtUsr
                     LimpiarForm()
                     Me.Hide()
@@ -91,7 +110,8 @@
             Me.txtPassword.Focus()
         End If
     End Sub
+
 #End Region
 
-   
+
 End Class
