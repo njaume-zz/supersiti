@@ -27,22 +27,28 @@
     ''' <returns>string con mensaje a mostrar</returns>
     ''' <remarks>madad</remarks>
     Private Function ValidaPago() As String
-        If Me.txtSubTotal.Text = "" Or Me.txtSubTotal.Text = 0 Then
-            ValidaPago = "El campo SubTotal no puede estar vacío.-"
-            Exit Function
-        End If
-        If Me.txtTotalAPagar.Text = "" Or Me.txtTotalAPagar.Text = 0 Then
-            ValidaPago = "El campo Total a Pagar no puede estar vacío.-"
-            Exit Function
-        End If
-        If Me.txtTotalEnEfectivo.Text = "" Or Me.txtTotalEnEfectivo.Text = 0 Then
-            ValidaPago = "El campo Total en Efectivo no puede estar vacío.-"
-            Exit Function
-        End If
-        If Me.txtTotalEnEfectivo.Text < Me.txtTotalAPagar.Text Then
-            ValidaPago = "El importe a Abonar, debe ser mayor o igual al Total a Pagar.-"
-            Exit Function
-        End If
+        Try
+
+            If Me.txtSubTotal.Text = "" Or Me.txtSubTotal.Text = "0" Or Me.txtSubTotal.Text = Definiciones.gdNull Then
+                ValidaPago = "El campo SubTotal no puede estar vacío.-"
+                Exit Function
+            End If
+            If Me.txtTotalAPagar.Text = "" Or Me.txtTotalAPagar.Text = "0" Or Me.txtTotalAPagar.Text = Definiciones.gdNull Then
+                ValidaPago = "El campo Total a Pagar no puede estar vacío.-"
+                Exit Function
+            End If
+            If Me.txtTotalEnEfectivo.Text = "" Or Me.txtTotalEnEfectivo.Text = 0 Or Me.txtTotalEnEfectivo.Text = Definiciones.gdNull Then
+                ValidaPago = "El campo Total en Efectivo no puede estar vacío.-"
+                Exit Function
+            End If
+            If CDbl(Me.txtTotalEnEfectivo.Text) < CDbl(Me.txtTotalAPagar.Text) Then
+                ValidaPago = "El importe a Abonar, debe ser mayor o igual al Total a Pagar.-"
+                Exit Function
+            End If
+
+        Catch ex As Exception
+            ValidaPago = ""
+        End Try
     End Function
 
     ''' <summary>
@@ -177,8 +183,8 @@
         Me.txtTotalEnEfectivo.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtTotalEnTarjeta.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtTotalAPagar.Enabled = False
+        CalcularImporte()
         Me.txtDescuento.Focus()
-        'LlenarTipoComprobante()
     End Sub
 
     Private Sub txtDescuento_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.GotFocus
@@ -224,8 +230,6 @@
             CalcularImporte()
             Me.txtVuelto.Text = Funciones.FormatoMoneda(Me.txtTotalEnEfectivo.Text - Me.txtSubTotal.Text)
             Me.btnAceptarVenta.Focus()
-            'Else
-            'Me.txtTotalEnEfectivo.Focus()
         End If
     End Sub
 
@@ -234,11 +238,12 @@
         Dim arrDetalle As New ArrayList
         ' ver de hacer un arraylist con el detalle
         Dim wiNroComprobante As Integer
-
+        Dim strValida As String = ""
         Try
             oComprobante = New clsComprobante
             'oDetalle() = New clsComprobanteDetalle
-            If ValidaPago() <> "" Or ValidaPago() = Nothing Then
+            strValida = ValidaPago()
+            If strValida = "" Then
                 'Cargo datos del comprobante
                 'wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)
 
@@ -272,6 +277,8 @@
                     oTipoComp.CTC_UltimoNro = oComprobante.COM_NROEMITIDO
                     clsTipoComprobanteDAO.Modificar(oTipoComp)
                     LimpiarCampos()
+                    frmVentas.ol_dt = Nothing
+                    frmVentas.ol_DtProducto = Nothing
                     frmVentas.Inicializar()
                     MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     CerrarForm("Cerrar")
@@ -280,6 +287,8 @@
                     LimpiarCampos()
                     CerrarForm("Cerrar")
                 End If
+            Else
+                MessageBox.Show(strValida, ".:: CAMPOS INCOMPLETOS ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
 
         Catch ex As Exception
