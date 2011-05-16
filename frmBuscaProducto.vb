@@ -16,6 +16,7 @@
     Private Sub frmBuscaProducto_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         strBuscar = ""
         Me.lblBusqueda.Text = strBuscar
+        frmVentas.txtCantidad.Focus()
         o_dt = Nothing
     End Sub
 
@@ -98,7 +99,7 @@
                     oDt.AcceptChanges()
                     oDr = Nothing
                     'lo dejo en memoria del actual datatable de Ventas
-                    frmVentas.ol_DtProducto = o_dt
+                    frmVentas.ol_DtProducto = oDt 'ol_dt
                     'Agrego los datos al formulario para que ingrese cantidad
                     With frmVentas
                         .txtProductoBarra.Text = oDt.Rows(0).Item("PRO_CODIGO_BARRA")

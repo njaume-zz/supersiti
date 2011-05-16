@@ -79,9 +79,9 @@ Partial Class frmVentas
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator
         Me.SalirDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.BúsquedasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.tsmBuscarProducto = New System.Windows.Forms.ToolStripMenuItem
         Me.ClienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ConsultaDePrecioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.tsmConsultaPrecio = New System.Windows.Forms.ToolStripMenuItem
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ProductsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.StockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -547,18 +547,18 @@ Partial Class frmVentas
         '
         'BúsquedasToolStripMenuItem
         '
-        Me.BúsquedasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductoToolStripMenuItem, Me.ClienteToolStripMenuItem, Me.ConsultaDePrecioToolStripMenuItem})
+        Me.BúsquedasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmBuscarProducto, Me.ClienteToolStripMenuItem, Me.tsmConsultaPrecio})
         Me.BúsquedasToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.BúsquedasToolStripMenuItem.Name = "BúsquedasToolStripMenuItem"
         Me.BúsquedasToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
         Me.BúsquedasToolStripMenuItem.Text = "&Búsquedas"
         '
-        'ProductoToolStripMenuItem
+        'tsmBuscarProducto
         '
-        Me.ProductoToolStripMenuItem.Name = "ProductoToolStripMenuItem"
-        Me.ProductoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2
-        Me.ProductoToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
-        Me.ProductoToolStripMenuItem.Text = "&Producto"
+        Me.tsmBuscarProducto.Name = "tsmBuscarProducto"
+        Me.tsmBuscarProducto.ShortcutKeys = System.Windows.Forms.Keys.F3
+        Me.tsmBuscarProducto.Size = New System.Drawing.Size(214, 22)
+        Me.tsmBuscarProducto.Text = "&Producto"
         '
         'ClienteToolStripMenuItem
         '
@@ -568,12 +568,12 @@ Partial Class frmVentas
         Me.ClienteToolStripMenuItem.Text = "Pro&veedor"
         Me.ClienteToolStripMenuItem.Visible = False
         '
-        'ConsultaDePrecioToolStripMenuItem
+        'tsmConsultaPrecio
         '
-        Me.ConsultaDePrecioToolStripMenuItem.Name = "ConsultaDePrecioToolStripMenuItem"
-        Me.ConsultaDePrecioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.B), System.Windows.Forms.Keys)
-        Me.ConsultaDePrecioToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
-        Me.ConsultaDePrecioToolStripMenuItem.Text = "Consulta de Precio"
+        Me.tsmConsultaPrecio.Name = "tsmConsultaPrecio"
+        Me.tsmConsultaPrecio.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.B), System.Windows.Forms.Keys)
+        Me.tsmConsultaPrecio.Size = New System.Drawing.Size(214, 22)
+        Me.tsmConsultaPrecio.Text = "Consulta de Precio"
         '
         'ReportesToolStripMenuItem
         '
@@ -588,13 +588,13 @@ Partial Class frmVentas
         'ProductsToolStripMenuItem
         '
         Me.ProductsToolStripMenuItem.Name = "ProductsToolStripMenuItem"
-        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ProductsToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.ProductsToolStripMenuItem.Text = "Productos"
         '
         'StockToolStripMenuItem
         '
         Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
-        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.StockToolStripMenuItem.Text = "Stock"
         '
         'frmVentas
@@ -670,12 +670,12 @@ Partial Class frmVentas
     Friend WithEvents SalirDelSistemaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents BúsquedasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ProductoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsmBuscarProducto As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ClienteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProductsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents StockToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ConsultaDePrecioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsmConsultaPrecio As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblFecha As System.Windows.Forms.Label
     Friend WithEvents SSTDescripciones As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel5 As System.Windows.Forms.ToolStripStatusLabel

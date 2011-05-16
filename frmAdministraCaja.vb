@@ -74,6 +74,21 @@
         End Try
         Return woDt
     End Function
+
+    Private Function RecuperaImporteApertura()
+        Dim woDt As DataTable
+        Try
+            woDt = New DataTable
+            ' obtener id de usuario!
+            woDt = clsCajaDAO.ListarImporteCaja(1, CInt(frmVentas.TSSIdUsuario.Text), Funciones.ObtenerConfiguracion(gstrCaja), 1)
+            Me.txtImporteApertura.Text = woDt.Rows(0).Item("CAM_IMPORTE").ToString()
+        Catch ex As Exception
+            Funciones.LogError(ex, "RecuperaImportesApertura", Funciones.ObtieneUsuario)
+        Finally
+            woDt = Nothing
+        End Try
+        Return woDt
+    End Function
 #End Region
 
 #Region "Eventos"
@@ -101,8 +116,8 @@
                         Else
                             Funciones.Manejador_Errores("Apertura de Caja", New Exception("Ya existe una Apertura pendiende de cierre.-"))
                         End If
-                        Me.Hide()
-                        frmVentas.ShowDialog()
+                        'Me.Hide()
+                        'frmVentas.ShowDialog()
                     Case "Retiro"    'CAE_ID = 2
                         If wbApertura = True Then
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
@@ -111,8 +126,8 @@
                         Else
                             Funciones.Manejador_Errores("Retiro de Dinero", New Exception("No existe una Apertura de Caja, por eso no se puede Retirar dinero.-"))
                         End If
-                        Me.Hide()
-                        frmVentas.ShowDialog()
+                        'Me.Hide()
+                        'frmVentas.ShowDialog()
                     Case "Cierre X"  'CAE_ID = 3
                         If wbApertura = True Then
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
@@ -144,6 +159,8 @@
                 Else
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " se realizó con éxito.-", ".:: Operación Exitosa ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
+                Me.Hide()
+                frmVentas.ShowDialog()
             End If
 
         Catch ex As Exception
@@ -174,6 +191,7 @@
             Case "Retiro"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
                 ' se debe recuperar el importe de apertura y los retiros hechos por el usuario.
+                RecuperaImporteApertura()
                 VerificarRetiro()
                 Me.txtImporteRetiro.Enabled = True
                 Me.txtImporteApertura.Enabled = False
@@ -182,8 +200,9 @@
                 'si se permite el cierre, se recupera de la base los importes de las ventas
                 'Estas ventas se deberían recuperar por cada tipo de pago.
                 'Hacer un Store con la consulta hecha en el ESCRITORIO
+                RecuperaImporteApertura()
             Case "Cierre Z"
-
+                RecuperaImporteApertura()
         End Select
     End Sub
 
@@ -196,8 +215,8 @@
     End Sub
 
     Private Sub txtBonos_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBonos.LostFocus
-        If Me.txtBonos.Text = "" Then
-            Me.txtBonos.Text = "0.00"
+        If Me.txtBonos.Text = "" Or Me.txtBonos.Text = "0" Then
+            Me.txtBonos.Text = gdNull
         End If
         Me.txtBonos.Text = Convert.ToDouble(Me.txtBonos.Text)
         CalcularTotal()
@@ -212,8 +231,8 @@
     End Sub
 
     Private Sub txtEfectivo_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtEfectivo.LostFocus
-        If Me.txtEfectivo.Text = "" Then
-            Me.txtEfectivo.Text = "0.00"
+        If Me.txtEfectivo.Text = "" Or Me.txtEfectivo.Text = "0" Then
+            Me.txtEfectivo.Text = gdNull
         End If
         Me.txtEfectivo.Text = Convert.ToDouble(Me.txtEfectivo.Text)
         CalcularTotal()
@@ -228,8 +247,8 @@
     End Sub
 
     Private Sub txtCredito_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCredito.LostFocus
-        If Me.txtCredito.Text = "" Then
-            Me.txtCredito.Text = "0.00"
+        If Me.txtCredito.Text = "" Or Me.txtCredito.Text = "0" Then
+            Me.txtCredito.Text = gdNull
         End If
         Me.txtCredito.Text = Convert.ToDouble(Me.txtCredito.Text)
         CalcularTotal()
@@ -244,8 +263,8 @@
     End Sub
 
     Private Sub txtTarjetas_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTarjetas.LostFocus
-        If Me.txtTarjetas.Text = "" Then
-            Me.txtTarjetas.Text = "0.00"
+        If Me.txtTarjetas.Text = "" Or Me.txtTarjetas.Text = "0" Then
+            Me.txtTarjetas.Text = gdNull
         End If
         Me.txtTarjetas.Text = Convert.ToDouble(Me.txtTarjetas.Text)
         CalcularTotal()
@@ -260,8 +279,8 @@
     End Sub
 
     Private Sub txtImporteApertura_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtImporteApertura.LostFocus
-        If Me.txtImporteApertura.Text = "" Then
-            Me.txtImporteApertura.Text = "0.00"
+        If Me.txtImporteApertura.Text = "" Or Me.txtImporteApertura.Text = "0" Then
+            Me.txtImporteApertura.Text = gdNull
         End If
         Me.txtImporteApertura.Text = Convert.ToDouble(Me.txtImporteApertura.Text)
         CalcularTotal()
@@ -276,8 +295,8 @@
     End Sub
 
     Private Sub txtImporteRetiro_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtImporteRetiro.LostFocus
-        If Me.txtImporteRetiro.Text = "" Then
-            Me.txtImporteRetiro.Text = "0.00"
+        If Me.txtImporteRetiro.Text = "" Or Me.txtImporteRetiro.Text = "0" Then
+            Me.txtImporteRetiro.Text = gdNull
         End If
         Me.txtImporteRetiro.Text = Convert.ToDouble(Me.txtImporteRetiro.Text)
         CalcularTotal()
@@ -286,6 +305,7 @@
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
         If MsgBox("¿Está seguro que desea cerrar la Administración de Cajas?", _
                           MsgBoxStyle.YesNo + MsgBoxStyle.Question, ".:: CIERRE DE ADMINISTRACION DE CAJA ::.") = MsgBoxResult.Yes Then
+            LimiparCampos()
             Me.Close()
         End If
     End Sub

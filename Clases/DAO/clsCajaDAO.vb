@@ -364,9 +364,9 @@ Public Class clsCajaDAO
         Dim conecto As Boolean
         Dim salida As New DataTable
 
-        Conexion = clsConexion.Conectar
         Try
-            Conexion.Open()
+            Conexion = clsConexion.Conectar
+            'Conexion.Open()
             conecto = True
         Catch ex As Exception
             conecto = False

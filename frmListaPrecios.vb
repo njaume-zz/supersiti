@@ -39,7 +39,7 @@
                     wo_Dt = AplicarFiltro(o_dt, strBuscar)
 
             End Select
-
+            Me.lblBusqueda.Text = strBuscar
             Me.dgrProductos.DataSource = wo_Dt
 
             ConfigurarGrilla()
@@ -48,7 +48,6 @@
             Funciones.Manejador_Errores("dgrProductos_KeyPress", ex)
         Finally
             wo_Dt = Nothing
-
         End Try
     End Sub
 #End Region
@@ -69,7 +68,7 @@
 
         woDT = poDt.Clone
         If Not pszTexto = "" Then
-            For Each wo_DR As DataRow In poDt.Select("PRO_NOMBRE LIKE '" & strBuscar & "%'")
+            For Each wo_DR As DataRow In poDt.Select("PRO_CODIGO_BARRA LIKE '" & strBuscar & "%'")
                 woDT.ImportRow(wo_DR)
                 woDT.AcceptChanges()
                 o_dr = Nothing
