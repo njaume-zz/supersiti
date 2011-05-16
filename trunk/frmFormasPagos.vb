@@ -41,7 +41,7 @@
                 ValidaPago = "El campo Total en Efectivo no puede estar vacío.-"
                 Exit Function
             End If
-            If CDbl(Me.txtTotalEnEfectivo.Text) < CDbl(Me.txtTotalAPagar.Text) Then
+            If CDbl(Me.txtTotalEnEfectivo.Text) < CDbl(Me.txtSubTotal.Text) Then
                 ValidaPago = "El importe a Abonar, debe ser mayor o igual al Total a Pagar.-"
                 Exit Function
             End If
@@ -187,6 +187,10 @@
         Me.txtDescuento.Focus()
     End Sub
 
+    Private Sub txtSubTotal_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSubTotal.TextChanged
+        CalcularImporte()
+    End Sub
+
     Private Sub txtDescuento_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.GotFocus
         Dim o_Dt As DataTable
         Try
@@ -205,6 +209,14 @@
         End Try
     End Sub
 
+    Private Sub txtDescuento_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtDescuento.KeyPress
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = False
+            e.KeyChar = ChrW(0)
+            Me.txtDescuento.Text = ""
+        End If
+    End Sub
+
     ''' <summary>
     ''' Se calcula el descuento sobre el Monto Total de la Venta
     ''' </summary>
@@ -212,7 +224,7 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub txtDescuento_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtDescuento.LostFocus
-
+        If Me.txtDescuento.Text = "" Then Me.txtDescuento.Text = "0"
         If Me.txtDescuento.Text <> 0 Then
             frmAutorizacion.pAccionPosterior = Definiciones.gcAccionAutorizaDescuento
             frmAutorizacion.ShowDialog()
@@ -225,11 +237,48 @@
 
     End Sub
 
+    Private Sub txtTotalEnEfectivo_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnEfectivo.GotFocus
+        Me.txtTotalEnEfectivo.SelectAll()
+    End Sub
+
+    Private Sub txtTotalEnEfectivo_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalEnEfectivo.KeyPress
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = False
+            e.KeyChar = ChrW(0)
+            Me.txtTotalEnEfectivo.Text = ""
+        End If
+    End Sub
+
     Private Sub txtTotalEnEfectivo_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnEfectivo.LostFocus
+        If Me.txtTotalEnEfectivo.Text = "" Then Me.txtTotalEnEfectivo.Text = "0"
         If Me.txtTotalEnEfectivo.Text <> 0 And (CDbl(Me.txtTotalEnEfectivo.Text) >= CDbl(Me.txtSubTotal.Text)) Then
             CalcularImporte()
             Me.txtVuelto.Text = Funciones.FormatoMoneda(Me.txtTotalEnEfectivo.Text - Me.txtSubTotal.Text)
             Me.btnAceptarVenta.Focus()
+        End If
+    End Sub
+
+    Private Sub txtTotalAPagar_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalAPagar.GotFocus
+        Me.txtTotalAPagar.SelectAll()
+    End Sub
+
+    Private Sub txtTotalAPagar_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalAPagar.KeyPress
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = False
+            e.KeyChar = ChrW(0)
+            Me.txtTotalAPagar.Text = ""
+        End If
+    End Sub
+
+    Private Sub txtTotalEnTarjeta_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.GotFocus
+        Me.txtTotalEnTarjeta.SelectAll()
+    End Sub
+
+    Private Sub txtTotalEnTarjeta_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalEnTarjeta.KeyPress
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = False
+            e.KeyChar = ChrW(0)
+            Me.txtTotalEnTarjeta.Text = ""
         End If
     End Sub
 
@@ -253,7 +302,7 @@
                     'oComprobante.DETALLE.Item(0) = 0
                     oDetalle.COD_ID = 0
                     oDetalle.COD_IVA = 0
-                    oDetalle.COD_PESABLE = goDt.Rows(i).Item("COD_PESABLE")
+                    oDetalle.COD_PESABLE = IIf(goDt.Rows(i).Item("COD_PESABLE") = "No", 0, 1)
                     oDetalle.COD_PRECIOCANTIDAD = goDt.Rows(i).Item("COD_PRECIOCANTIDAD")
                     oDetalle.COD_PROCANTIDAD = goDt.Rows(i).Item("COD_PROCANTIDAD")
                     oDetalle.COD_PROCODIGO = goDt.Rows(i).Item("COD_PROCODIGO")
@@ -299,12 +348,7 @@
         End Try
     End Sub
 
-    'Private Sub txtTotalEnTarjeta_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTotalEnTarjeta.GotFocus
-    '    frmAutorizacion.Show()
-    '    Me.Focus()
-    'End Sub
 
 #End Region
-
 
 End Class
