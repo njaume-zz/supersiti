@@ -60,7 +60,7 @@ Public Class frmVentas
         If Not IsNumeric(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
-            Me.txtCantidad.Text = ""
+            Me.txtCantidad.Text = 1
         End If
     End Sub
 
@@ -293,7 +293,7 @@ Public Class frmVentas
     Private Sub LimpiarCampos()
         Me.DataGridView1.DataBindings.Clear()
         Me.DataGridView1.Refresh()
-        Me.txtCantidad.Text = "0"
+        Me.txtCantidad.Text = 1
         Me.txtDescripcion.Text = ""
         Me.txtPcioProducto.Text = ""
         Me.txtPcioTotal.Text = Funciones.FormatoMoneda("0.00")
@@ -334,7 +334,7 @@ Public Class frmVentas
 
         End If
         Me.txtProductoBarra.Text = ""
-        Me.txtCantidad.Text = ""
+        Me.txtCantidad.Text = "1"
         Me.txtProductoBarra.Focus()
     End Sub
 

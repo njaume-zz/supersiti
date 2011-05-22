@@ -37,6 +37,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -266,6 +267,7 @@
     <Content Include="Imagenes\509.png" />
     <Content Include="Imagenes\advancedsettings.png" />
     <Content Include="Imagenes\apply.png" />
+    <None Include="Base de Datos\Script Cierres.sql" />
     <None Include="Imagenes\Aprobar venta.png" />
     <Content Include="Imagenes\back1.png" />
     <Content Include="Imagenes\blogmarks.png" />
@@ -322,6 +324,9 @@
     <Content Include="Imagenes\utilities.png" />
     <Content Include="Imagenes\write 1.png" />
     <Content Include="bin\Debug\XMLConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ClasesApp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
