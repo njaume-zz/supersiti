@@ -25,6 +25,7 @@ Module mdlFiscal
         Public Letra As String
         Public Detalle As String
     End Structure
+
     Private Structure tPagos
         Public Detalle As String
         Public Monto As Double
@@ -52,34 +53,34 @@ Module mdlFiscal
 
     Public Sub AperturaCajon()
         On Error Resume Next
-        If PV_Super.ImpFiscal.Utiliza Then
-            If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-                If Not (form_principal Is Nothing) Then form_principal = Nothing
-                form_principal = frmVentas
-                With form_principal.prf_port
-                    If Not (.PortOpen = True) Then
-                        .CommPort = SistemaPV.ImpFiscal.Puerto
-                        If Not .PortOpen Then .PortOpen = True
-                    End If
-                    mdlFiscalEpson.FISCajon(1)
-                    If .PortOpen Then .PortOpen = False
-                End With
-            Else
-                Dim boolCierre As Boolean
-                With Comprobante
-                    If (.frmFormulario Is Nothing) Then
-                        .frmFormulario = New frmSistema_PrintFiscal
-                        Puerto_Hasar()
-                        boolCierre = True
-                    End If
-                    If Not .frmFormulario.ncrFiscal.CajonAbierto Then .frmFormulario.ncrFiscal.AbrirCajonDeDinero()
-                    If boolCierre Then
-                        Comprobante.frmFormulario.ncrFiscal.Finalizar()
-                        .frmFormulario = Nothing
-                    End If
-                End With
-            End If
-        End If
+        'If ImpFiscal.Utiliza Then
+        '    If ImpFiscal.Modelo = EpsonTM Then
+        '        If Not (form_principal Is Nothing) Then form_principal = Nothing
+        '        form_principal = frmVentas
+        '        With form_principal.prf_port
+        '            If Not (.PortOpen = True) Then
+        '                .CommPort = ImpFiscal.Puerto
+        '                If Not .PortOpen Then .PortOpen = True
+        '            End If
+        mdlFiscalEpson.FISCajon(1)
+        'If .PortOpen Then .PortOpen = False
+        '        End With
+        '    Else
+        'Dim boolCierre As Boolean
+        'With Comprobante
+        '    If (.frmFormulario Is Nothing) Then
+        '        .frmFormulario = New frmSistema_PrintFiscal
+        '        Puerto_Hasar()
+        '        boolCierre = True
+        '    End If
+        '    If Not .frmFormulario.ncrFiscal.CajonAbierto Then .frmFormulario.ncrFiscal.AbrirCajonDeDinero()
+        '    If boolCierre Then
+        '        Comprobante.frmFormulario.ncrFiscal.Finalizar()
+        '        .frmFormulario = Nothing
+        '    End If
+        'End With
+        '    End If
+        'End If
 
     End Sub
 
@@ -510,13 +511,13 @@ e:
         On Error GoTo e
         Dim v As Integer
         For v = 0 To UBound(Comprobante.Pagos) - 1
-            Comprobante.frmFormulario.ncrFiscal.ImprimirPago(Comprobante.Pagos(v).Detalle, Comprobante.Pagos(v).Monto)
+            'Comprobante.frmFormulario.ncrFiscal.ImprimirPago(Comprobante.Pagos(v).Detalle, Comprobante.Pagos(v).Monto)
         Next v
         Exit Sub
 e:
         Comprobante.OK = False
         Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->Pagos." & Err.Description
-        Comprobante.frmFormulario.ncrFiscal.TratarDeCancelarTodo()
+        'Comprobante.frmFormulario.ncrFiscal.TratarDeCancelarTodo()
     End Sub
     '------------------------------------------------------------------------------------------
     ' Cerrar_Epson: Procedimiento Privado
@@ -543,12 +544,12 @@ e:
     '------------------------------------------------------------------------------------------
     Private Sub Cerrar_Hasar()
         On Error GoTo e
-        Comprobante.frmFormulario.ncrFiscal.CerrarComprobanteFiscal()
+        'Comprobante.frmFormulario.ncrFiscal.CerrarComprobanteFiscal()
         Exit Sub
 e:
         Comprobante.OK = False
         Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->Cerrar." & Err.Description
-        Comprobante.frmFormulario.ncrFiscal.TratarDeCancelarTodo()
+        'Comprobante.frmFormulario.ncrFiscal.TratarDeCancelarTodo()
     End Sub
     '------------------------------------------------------------------------------------------
     ' Numero: Funcion Privado
@@ -556,17 +557,18 @@ e:
     '------------------------------------------------------------------------------------------
     Private Function Numero() As String
         On Error GoTo e
-        If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-            Numero = Trim(garrayentrada(3))
-        ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
-            If (Comprobante.Comprobante.Letra = "A" Or Comprobante.Comprobante.Letra = "B") Then
-                ' Numero = Comprobante.frmFormulario.ncrFiscal.UltimaFactura
-                Numero = Format(SistemaPV.ImpFiscal.PuntoDeVenta, "0000") & "-" & Format(Comprobante.frmFormulario.ncrFiscal.Respuesta(3), "00000000")
-            Else
+        'If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
+        '    Numero = Trim(garrayentrada(3))
+        'ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
+        'If (Comprobante.Comprobante.Letra = "A" Or Comprobante.Comprobante.Letra = "B") Then
+        '    ' Numero = Comprobante.frmFormulario.ncrFiscal.UltimaFactura
+        '    Numero = Format(SistemaPV.ImpFiscal.PuntoDeVenta, "0000") & "-" & Format(Comprobante.frmFormulario.ncrFiscal.Respuesta(3), "00000000")
+        'Else
 
-                Numero = Format(SistemaPV.ImpFiscal.PuntoDeVenta, "0000") & "-" & Format(Comprobante.frmFormulario.ncrFiscal.Respuesta(3), "00000000")
-            End If
-        End If
+        '    Numero = Format(SistemaPV.ImpFiscal.PuntoDeVenta, "0000") & "-" & Format(Comprobante.frmFormulario.ncrFiscal.Respuesta(3), "00000000")
+        'End If
+        'End If
+        'Return Format(Comprobante.frmFormulario.ncrFiscal.Respuesta(3), "00000000")
         Exit Function
 e:
         Comprobante.OK = False
@@ -574,76 +576,76 @@ e:
     End Function
 
 
-    Public Function ObtenerUltimoNumero(ByVal intTipo As Integer) As String
-        ' 0 - t / 1-f / 2-z
-        On Error GoTo e
-        If SistemaPV.ImpFiscal.Utiliza Then
-            If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-                ObtenerUltimoNumero = ""
-            ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
-                With Comprobante
-                    Dim boolCierre As Boolean
-                    If (.frmFormulario Is Nothing) Then
-                        .frmFormulario = New frmSistema_PrintFiscal
-                        Puerto_Hasar()
-                        boolCierre = True
-                    End If
-                    Select Case intTipo
-                        Case 0
-                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimoTicket
-                        Case 1
-                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimaFactura
-                        Case 2
-                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimaFactura
-                    End Select
-                    If boolCierre Then
-                        .frmFormulario.ncrFiscal.Finalizar()
-                        .frmFormulario = Nothing
-                    End If
-                End With
-            End If
-        Else
-            ObtenerUltimoNumero = ""
-        End If
-        Exit Function
-e:
-        Comprobante.OK = False
-        Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->Numero." & Err.Description
-    End Function
+    '    Public Function ObtenerUltimoNumero(ByVal intTipo As Integer) As String
+    '        ' 0 - t / 1-f / 2-z
+    '        On Error GoTo e
+    '        If SistemaPV.ImpFiscal.Utiliza Then
+    '            If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
+    '                ObtenerUltimoNumero = ""
+    '            ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
+    '                With Comprobante
+    '                    Dim boolCierre As Boolean
+    '                    If (.frmFormulario Is Nothing) Then
+    '                        .frmFormulario = New frmSistema_PrintFiscal
+    '                        Puerto_Hasar()
+    '                        boolCierre = True
+    '                    End If
+    '                    Select Case intTipo
+    '                        Case 0
+    '                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimoTicket
+    '                        Case 1
+    '                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimaFactura
+    '                        Case 2
+    '                            ObtenerUltimoNumero = .frmFormulario.ncrFiscal.UltimaFactura
+    '                    End Select
+    '                    If boolCierre Then
+    '                        .frmFormulario.ncrFiscal.Finalizar()
+    '                        .frmFormulario = Nothing
+    '                    End If
+    '                End With
+    '            End If
+    '        Else
+    '            ObtenerUltimoNumero = ""
+    '        End If
+    '        Exit Function
+    'e:
+    '        Comprobante.OK = False
+    '        Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->Numero." & Err.Description
+    '    End Function
 
 
-    Public Function ObtenerPtoVta() As Integer
-        ' 0 - t / 1-f / 2-z
-        On Error GoTo e
-        If SistemaPV.ImpFiscal.Utiliza Then
-            If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-                ObtenerPtoVta = 0
-            ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
-                With Comprobante
-                    Dim boolCierre As Boolean
-                    If (.frmFormulario Is Nothing) Then
-                        .frmFormulario = New frmSistema_PrintFiscal
-                        Puerto_Hasar()
-                        boolCierre = True
-                    End If
-                    .frmFormulario.ncrFiscal.ObtenerDatosDeInicializacion()
-                    ObtenerPtoVta = Val(.frmFormulario.ncrFiscal.Respuesta(7))
-                    If boolCierre Then
-                        .frmFormulario.ncrFiscal.Finalizar()
-                        .frmFormulario = Nothing
-                    End If
-                End With
+    '    Public Function ObtenerPtoVta() As Integer
+    '        ' 0 - t / 1-f / 2-z
+    '        On Error GoTo e
+    '        If SistemaPV.ImpFiscal.Utiliza Then
+    '            If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
+    '                ObtenerPtoVta = 0
+    '            ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
+    '                With Comprobante
+    '                    Dim boolCierre As Boolean
+    '                    If (.frmFormulario Is Nothing) Then
+    '                        .frmFormulario = New frmSistema_PrintFiscal
+    '                        Puerto_Hasar()
+    '                        boolCierre = True
+    '                    End If
+    '                    .frmFormulario.ncrFiscal.ObtenerDatosDeInicializacion()
+    '                    ObtenerPtoVta = Val(.frmFormulario.ncrFiscal.Respuesta(7))
+    '                    If boolCierre Then
+    '                        .frmFormulario.ncrFiscal.Finalizar()
+    '                        .frmFormulario = Nothing
+    '                    End If
+    '                End With
 
-            End If
-        Else
-            ObtenerPtoVta = 0
-        End If
-        Exit Function
+    '            End If
+    '        Else
+    '            ObtenerPtoVta = 0
+    '        End If
+    '        Exit Function
 
-e:
-        Comprobante.OK = False
-        Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->PtoVta." & Err.Description
-    End Function
+    'e:
+    '        Comprobante.OK = False
+    '        Comprobante.ErrorMensaje = Comprobante.ErrorMensaje & "-->PtoVta." & Err.Description
+    '    End Function
 
     ''
     ''Private Sub CMD_Click(Index As Integer)
@@ -741,101 +743,101 @@ e:
     '
     '
 
-    Private Function CodigoTipo(ByRef strCodigo As String) As TiposDeDocumento
-        If ValidaCuit(strCodigo, True) Then
-            CodigoTipo = TIPO_CUIT
-            strCodigo = Trim(Replace(strCodigo, "-", ""))
-        Else
-            CodigoTipo = TIPO_DNI
-        End If
-    End Function
-    Private Function Responsabilidades(ByRef strResp As String) As TiposDeResponsabilidades
-        Select Case UCase(strResp)
-            Case "E"
-                Responsabilidades = RESPONSABLE_EXENTO
-            Case "I"
-                Responsabilidades = RESPONSABLE_INSCRIPTO
-            Case "C", ""
-                Responsabilidades = CONSUMIDOR_FINAL
-            Case "M"
-                Responsabilidades = MONOTRIBUTO
-        End Select
-    End Function
+    'Private Function CodigoTipo(ByRef strCodigo As String) As TiposDeDocumento
+    '    If ValidaCuit(strCodigo, True) Then
+    '        CodigoTipo = TIPO_CUIT
+    '        strCodigo = Trim(Replace(strCodigo, "-", ""))
+    '    Else
+    '        CodigoTipo = TIPO_DNI
+    '    End If
+    'End Function
+    'Private Function Responsabilidades(ByRef strResp As String) As TiposDeResponsabilidades
+    '    Select Case UCase(strResp)
+    '        Case "E"
+    '            Responsabilidades = RESPONSABLE_EXENTO
+    '        Case "I"
+    '            Responsabilidades = RESPONSABLE_INSCRIPTO
+    '        Case "C", ""
+    '            Responsabilidades = CONSUMIDOR_FINAL
+    '        Case "M"
+    '            Responsabilidades = MONOTRIBUTO
+    '    End Select
+    'End Function
 
 
-    Private Function ValidarDatos() As Boolean
-        Dim dblCantidad As Double, dblNuevaCantidad As Double
-        Dim intTope As Integer, i As Integer, v As Integer, j As Integer
-        Dim boolGrabar As Boolean
-        Dim varDatos() As Object, varBookActual As Object
-        Const cCantidadMaxima = 999
+    '    Private Function ValidarDatos() As Boolean
+    '        Dim dblCantidad As Double, dblNuevaCantidad As Double
+    '        Dim intTope As Integer, i As Integer, v As Integer, j As Integer
+    '        Dim boolGrabar As Boolean
+    '        Dim varDatos() As Object, varBookActual As Object
+    '        Const cCantidadMaxima = 999
 
-        ValidarDatos = False
-        On Error GoTo e
-        With Comprobante
-            ' - Validacion Tipos y datos del comprobante
-            .Cliente.Detalle = xValida(.Cliente.Detalle)
-            .Cliente.Domicilio = Trim(xValida(Left(.Cliente.Domicilio, 50)))
-            If .Comprobante.Letra = "A" Then
-                If Not (.Cliente.IdTipo = TIPO_CUIT) Then .Comprobante.Letra = "B"
-            End If
-            ' - Validacion de Items
-            With .rstItems
-                If .RecordCount > 0 Then
-                    .MoveFirst()
-                    For j = 1 To .RecordCount
-                        !Detalleticket = Left(Valida(Trim("" & !Detalleticket)), 20)
-                        ReDim varDatos(.Fields.Count - 1)
-                        For v = 0 To .Fields.Count - 1
-                            varDatos(v) = Trim(.Fields(v).Value)
-                        Next v
-                        dblCantidad = Val("" & !Cantidad)
-                        Debug.Print("------>")
-                        Debug.Print(Trim("" & !Id_arti) & " Cantidad :" & dblCantidad)
-                        Debug.Print("Posicion :" & .AbsolutePosition & " Boock :" & .Bookmark)
-                        Debug.Print("------>")
-                        varBookActual = .Bookmark
-                        ' Distribucion de las cantidades
-                        intTope = 10
-                        boolGrabar = False
-                        For i = 1 To intTope
-                            dblNuevaCantidad = CInt(dblCantidad / i)
-                            If Abs(dblNuevaCantidad) <= cCantidadMaxima Then
-                                If (boolGrabar Or i > 1) And dblNuevaCantidad > 0 Then  ' Agregar
-                                    dblCantidad = dblCantidad - dblNuevaCantidad
+    '        ValidarDatos = False
+    '        On Error GoTo e
+    '        With Comprobante
+    '            ' - Validacion Tipos y datos del comprobante
+    '            .Cliente.Detalle = xValida(.Cliente.Detalle)
+    '            .Cliente.Domicilio = Trim(xValida(Left(.Cliente.Domicilio, 50)))
+    '            If .Comprobante.Letra = "A" Then
+    '                If Not (.Cliente.IdTipo = TIPO_CUIT) Then .Comprobante.Letra = "B"
+    '            End If
+    '            ' - Validacion de Items
+    '            With .rstItems
+    '                If .RecordCount > 0 Then
+    '                    .MoveFirst()
+    '                    For j = 1 To .RecordCount
+    '                        !Detalleticket = Left(Valida(Trim("" & !Detalleticket)), 20)
+    '                        ReDim varDatos(.Fields.Count - 1)
+    '                        For v = 0 To .Fields.Count - 1
+    '                            varDatos(v) = Trim(.Fields(v).Value)
+    '                        Next v
+    '                        dblCantidad = Val("" & !Cantidad)
+    '                        Debug.Print("------>")
+    '                        Debug.Print(Trim("" & !Id_arti) & " Cantidad :" & dblCantidad)
+    '                        Debug.Print("Posicion :" & .AbsolutePosition & " Boock :" & .Bookmark)
+    '                        Debug.Print("------>")
+    '                        varBookActual = .Bookmark
+    '                        ' Distribucion de las cantidades
+    '                        intTope = 10
+    '                        boolGrabar = False
+    '                        For i = 1 To intTope
+    '                            dblNuevaCantidad = CInt(dblCantidad / i)
+    '                            If Abs(dblNuevaCantidad) <= cCantidadMaxima Then
+    '                                If (boolGrabar Or i > 1) And dblNuevaCantidad > 0 Then  ' Agregar
+    '                                    dblCantidad = dblCantidad - dblNuevaCantidad
 
-                                    If Not boolGrabar Then  ' es el primer cambio then
-                                        Debug.Print(Trim("" & !Id_arti) & " Cantidad Act:" & dblNuevaCantidad)
-                                        !Cantidad = dblNuevaCantidad
-                                        .Update()
-                                        boolGrabar = True
-                                    Else                    ' tengo que agregar
-                                        .AddNew()
-                                        Debug.Print(" Cantidad New:" & dblNuevaCantidad)
-                                        For v = 0 To .Fields.Count - 1
-                                            .Fields(v).Value = varDatos(v)
-                                        Next v
-                                        !Cantidad = dblNuevaCantidad
-                                        .Update()
-                                        .Bookmark = varBookActual
-                                    End If
-                                    i = 0
-                                Else
-                                    i = intTope + 1
-                                End If
-                            End If
-                        Next i
-                        .MoveNext()
-                    Next j
-                    .MoveFirst()
-                End If
-            End With
-        End With
-        ValidarDatos = True
-        Exit Function
-e:
-        Err.Raise(1, "Validacion para Imprimir", Comprobante.ErrorMensaje)
-    End Function
+    '                                    If Not boolGrabar Then  ' es el primer cambio then
+    '                                        Debug.Print(Trim("" & !Id_arti) & " Cantidad Act:" & dblNuevaCantidad)
+    '                                        !Cantidad = dblNuevaCantidad
+    '                                        .Update()
+    '                                        boolGrabar = True
+    '                                    Else                    ' tengo que agregar
+    '                                        .AddNew()
+    '                                        Debug.Print(" Cantidad New:" & dblNuevaCantidad)
+    '                                        For v = 0 To .Fields.Count - 1
+    '                                            .Fields(v).Value = varDatos(v)
+    '                                        Next v
+    '                                        !Cantidad = dblNuevaCantidad
+    '                                        .Update()
+    '                                        .Bookmark = varBookActual
+    '                                    End If
+    '                                    i = 0
+    '                                Else
+    '                                    i = intTope + 1
+    '                                End If
+    '                            End If
+    '                        Next i
+    '                        .MoveNext()
+    '                    Next j
+    '                    .MoveFirst()
+    '                End If
+    '            End With
+    '        End With
+    '        ValidarDatos = True
+    '        Exit Function
+    'e:
+    '        Err.Raise(1, "Validacion para Imprimir", Comprobante.ErrorMensaje)
+    '    End Function
 
     'Public Function fFacturaImprimir(mDatos As tFactura, mItems As tFacturaItems) As Boolean
     '    Dim mRazonSocial(1) As String, mIdent As String, mDomicilio(1) As String
@@ -1004,7 +1006,7 @@ e:
     Private Function Valida(ByVal mTexto As String) As String
         Dim mBien As Boolean, i As Integer
         Dim mTextoFinal As String, mLetra As String
-        On Error GoTo err_ed
+
         mTextoFinal = ""
         For i = 1 To Len(Trim(mTexto))
             mLetra = Mid(mTexto, i, 1)
@@ -1018,8 +1020,7 @@ e:
         Next
         Valida = mTextoFinal
         Exit Function
-err_ed:
-        MsgBox("Cuidado: " & Err.Description & " " & Err())
+
     End Function
 
     Private Sub CancelaEpson()
@@ -1034,13 +1035,13 @@ e:
     End Sub
 
     Private Function Pagos_Colocar(ByVal strPagosComprobante As String)
-        Dim ps As tParametros
-        Dim P As tParametro
+        'Dim ps As tParametros
+        'Dim P As tParametro
         Dim v As Integer, i As Integer
         Dim strDetalle As String
         Dim dblMonto As Double
         Dim strFila As String
-        ps = Parametros_Obtener(strPagosComprobante)
+        'ps = Parametros_Obtener(strPagosComprobante)
         Dim strPagos(3) As String
         strPagos(0) = "Contado"
         strPagos(1) = "Tickets"
@@ -1081,153 +1082,152 @@ e:
         strDevolver = ""
         strDatosComprobante = ""
         Comprobante.arrDatosIva = ""
-        If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-            If Not (form_principal Is Nothing) Then form_principal = Nothing
-            form_principal = frmVentas
-            With form_principal.prf_port
-                If Not (.PortOpen = True) Then
-                    .CommPort = SistemaPV.ImpFiscal.Puerto
-                    If Not .PortOpen Then .PortOpen = True
-                End If
-                If intTipo = 0 Then
-                    boolOK = mdlFiscalEpson.FISCierreX("")
-                Else
-                    boolOK = mdlFiscalEpson.FISCierreZ
-                End If
-                If .PortOpen Then .PortOpen = False
-            End With
+        'If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
+        If Not (form_principal Is Nothing) Then form_principal = Nothing
+        form_principal = frmVentas
+        'With form_principal.prf_port
+        'If Not (.PortOpen = True) Then
+        '    .CommPort = SistemaPV.ImpFiscal.Puerto
+        '    If Not .PortOpen Then .PortOpen = True
+        'End If
+        If intTipo = 0 Then
+            boolOK = mdlFiscalEpson.FISCierreX("")
         Else
-            Dim boolCierre As Boolean
-            With Comprobante
-                If (.frmFormulario Is Nothing) Then
-                    .frmFormulario = New frmSistema_PrintFiscal
-                    Puerto_Hasar()
-                    boolCierre = True
-                End If
-                If intTipo = 0 Then
-                    boolOK = .frmFormulario.ncrFiscal.ReporteX
-                Else
-                    boolOK = .frmFormulario.ncrFiscal.ReporteZ
-                End If
-                On Error Resume Next
-                strDevolver = ""
-                Parametros_Agregar(strDevolver, "Numero", Val(.frmFormulario.ncrFiscal.Respuesta(3)))
-                Parametros_Agregar(strDevolver, "AcumuladoVentas", Val(.frmFormulario.ncrFiscal.Respuesta(11)))
-                Parametros_Agregar(strDevolver, "AcumuladoIva", Val(.frmFormulario.ncrFiscal.Respuesta(12)))
-                Parametros_Agregar(strDevolver, "UltimoA", Val(.frmFormulario.ncrFiscal.Respuesta(10)))
-                Parametros_Agregar(strDevolver, "UltimoBC", Val(.frmFormulario.ncrFiscal.Respuesta(9)))
-                If boolCierre Then
-                    .frmFormulario.ncrFiscal.Finalizar()
-                    .frmFormulario = Nothing
-                End If
-            End With
+            boolOK = mdlFiscalEpson.FISCierreZ
         End If
+        'If .PortOpen Then .PortOpen = False
+        'End With
+        'Else
+        Dim boolCierre As Boolean
+        With Comprobante
+            If (.frmFormulario Is Nothing) Then
+                'Puerto_Hasar()
+                boolCierre = True
+            End If
+            'If intTipo = 0 Then
+            '    boolOK = .frmFormulario.ncrFiscal.ReporteX
+            'Else
+            '    boolOK = .frmFormulario.ncrFiscal.ReporteZ
+            'End If
+            On Error Resume Next
+            strDevolver = ""
+            'Parametros_Agregar(strDevolver, "Numero", Val(.frmFormulario.ncrFiscal.Respuesta(3)))
+            'Parametros_Agregar(strDevolver, "AcumuladoVentas", Val(.frmFormulario.ncrFiscal.Respuesta(11)))
+            'Parametros_Agregar(strDevolver, "AcumuladoIva", Val(.frmFormulario.ncrFiscal.Respuesta(12)))
+            'Parametros_Agregar(strDevolver, "UltimoA", Val(.frmFormulario.ncrFiscal.Respuesta(10)))
+            'Parametros_Agregar(strDevolver, "UltimoBC", Val(.frmFormulario.ncrFiscal.Respuesta(9)))
+            'If boolCierre Then
+            '    .frmFormulario.ncrFiscal.Finalizar()
+            '    .frmFormulario = Nothing
+            'End If
+        End With
+        'End If
         strDatosComprobante = strDevolver
         Cierre = boolOK
     End Function
 
-    Private Sub GrabarImpresion()
-        Dim strEncabezado As String
-        Dim strIvas As String
-        Dim dblTotal(4) As Double
-        Dim v As Integer
-        Dim parametros As tParametros, P As tParametro
+    '    Private Sub GrabarImpresion()
+    '        Dim strEncabezado As String
+    '        Dim strIvas As String
+    '        Dim dblTotal(4) As Double
+    '        Dim v As Integer
+    '        Dim parametros As tParametros, P As tParametro
 
-        If Not (Trim(Comprobante.NumeroDevuelto) = "") And Not (Trim(Comprobante.arrDatosIva) = "") Then
+    '        If Not (Trim(Comprobante.NumeroDevuelto) = "") And Not (Trim(Comprobante.arrDatosIva) = "") Then
 
-            Dim objLibro As clsLibroVentas
-            Parametros_Agregar(strEncabezado, "Ent_cuit", " " & Comprobante.Cliente.CUIT)
-            Parametros_Agregar(strEncabezado, "Ent_RazonSocial", Comprobante.Cliente.Detalle)
-            Parametros_Agregar(strEncabezado, "Ent_tipoIva", Comprobante.Cliente.ResponsabilidadId)
-            Parametros_Agregar(strEncabezado, "Ent_IngBrutos", " " & Comprobante.Cliente.IngresosBrutos)
-            Parametros_Agregar(strEncabezado, "Lib_Fecha", Format(CDate(Now()), "yyyy/mm/dd"))
-            Parametros_Agregar(strEncabezado, "Lib_PtoVta", SistemaPV.ImpFiscal.PuntoDeVenta)
-            Parametros_Agregar(strEncabezado, "Lib_Comprobante", Comprobante.Comprobante.Detalle)
-            Parametros_Agregar(strEncabezado, "Lib_ComprobanteLetra", Comprobante.Comprobante.Letra)
-            Parametros_Agregar(strEncabezado, "Lib_Numero", Comprobante.NumeroDevuelto)
+    '            Dim objLibro As clsLibroVentas
+    '            Parametros_Agregar(strEncabezado, "Ent_cuit", " " & Comprobante.Cliente.CUIT)
+    '            Parametros_Agregar(strEncabezado, "Ent_RazonSocial", Comprobante.Cliente.Detalle)
+    '            Parametros_Agregar(strEncabezado, "Ent_tipoIva", Comprobante.Cliente.ResponsabilidadId)
+    '            Parametros_Agregar(strEncabezado, "Ent_IngBrutos", " " & Comprobante.Cliente.IngresosBrutos)
+    '            Parametros_Agregar(strEncabezado, "Lib_Fecha", Format(CDate(Now()), "yyyy/mm/dd"))
+    '            Parametros_Agregar(strEncabezado, "Lib_PtoVta", SistemaPV.ImpFiscal.PuntoDeVenta)
+    '            Parametros_Agregar(strEncabezado, "Lib_Comprobante", Comprobante.Comprobante.Detalle)
+    '            Parametros_Agregar(strEncabezado, "Lib_ComprobanteLetra", Comprobante.Comprobante.Letra)
+    '            Parametros_Agregar(strEncabezado, "Lib_Numero", Comprobante.NumeroDevuelto)
 
-            parametros = Parametros_Obtener(Comprobante.arrDatosIva)
-            '---------------------------------------------
-            ' Obtener los importes impresos
-            '---------------------------------------------
-            ' Ivas Generales
-            strIvas = Parametros_ObtenerValor(parametros, "general").Valor
-            For v = 0 To 3
-                dblTotal(v) = Val(Split(strIvas, ";")(v))
-            Next v
+    '            parametros = Parametros_Obtener(Comprobante.arrDatosIva)
+    '            '---------------------------------------------
+    '            ' Obtener los importes impresos
+    '            '---------------------------------------------
+    '            ' Ivas Generales
+    '            strIvas = Parametros_ObtenerValor(parametros, "general").Valor
+    '            For v = 0 To 3
+    '                dblTotal(v) = Val(Split(strIvas, ";")(v))
+    '            Next v
 
-            ' strIvas = strIvas & "porcentaje;neto;iva;nogravado;total/"
+    '            ' strIvas = strIvas & "porcentaje;neto;iva;nogravado;total/"
 
-            ' Ivas según Porcentajes Ivas
-            strIvas = ""
-            For v = 1 To parametros.Cantidad - 1
-                strIvas = strIvas & parametros.item(v).Valor & "/"
-            Next v
-
-
-            Parametros_Agregar(strEncabezado, "Lib_Neto", dblTotal(0))
-            Parametros_Agregar(strEncabezado, "Lib_Iva", dblTotal(1))
-            Parametros_Agregar(strEncabezado, "Lib_NoGravado", dblTotal(2))
-            Parametros_Agregar(strEncabezado, "Lib_Total", dblTotal(3))
-
-            Parametros_Agregar(strEncabezado, "arrIvas", strIvas)
-
-            objLibro = New clsLibroVentas
-            objLibro.Actualizar(SistemaPV.datosPV.Caja, strEncabezado)
-            MatarObjeto(objLibro)
-
-        End If
-
-        Exit Sub
-e:
-        MatarObjeto(objLibro)
-    End Sub
-
-    Private Sub ObtenerInfoComprobante()
-        Dim v As Integer
-        Dim strFila As String
-        Dim dblTotal(4), dblFila(4) As Double
-        If SistemaPV.ImpFiscal.Utiliza Then
-            With Comprobante
-                .NumeroDevuelto = Numero()
-                If Val(Trim(Right(.NumeroDevuelto, 6))) = 0 Then
-                    .NumeroDevuelto = ""
-                    .OK = False
-                Else
-                    ' Obtención de Valores de Iva
-                    If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
-                        'Numero = Trim(garrayentrada(3))
-                    ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
-                        '"porcentaje;neto;iva;nogravado;total/"
-                        With Comprobante.frmFormulario.ncrFiscal
-                            For v = 0 To 6
-                                If v = 0 Then
-                                    .PedirPrimerIVA()
-                                Else
-                                    .PedirSiguienteIVA()
-                                End If
-                                If UBound(Split(.Respuesta(0), "")) > 5 Then
-                                    dblFila(1) = Val(.Respuesta(5)) * Val(.Respuesta(3)) ' Iva
-                                    dblFila(2) = Val(.Respuesta(8)) * Val(.Respuesta(3)) ' Neto
-                                    dblFila(0) = dblFila(2) + dblFila(1)
-                                    dblTotal(0) = dblTotal(0) + dblFila(0)
-                                    dblTotal(1) = dblTotal(1) + dblFila(1)
-                                    dblTotal(2) = dblTotal(2) + dblFila(2)
-
-                                    Parametros_Agregar(strFila, "IVA", Val(.Respuesta(4)) & ";" & dblFila(2) & ";" & dblFila(1) & ";0;" & dblFila(0))
-                                Else
-                                    v = 7
-                                End If
-                            Next v
-                        End With
-                        .arrDatosIva = "general=" & dblTotal(2) & ";" & dblTotal(1) & ";0;" & dblTotal(0) & "|" & strFila
-                        Debug.Print("-> " & .arrDatosIva)
-                    End If
-                End If
-            End With
-        End If
+    '            ' Ivas según Porcentajes Ivas
+    '            strIvas = ""
+    '            For v = 1 To parametros.Cantidad - 1
+    '                strIvas = strIvas & parametros.item(v).Valor & "/"
+    '            Next v
 
 
-    End Sub
+    '            Parametros_Agregar(strEncabezado, "Lib_Neto", dblTotal(0))
+    '            Parametros_Agregar(strEncabezado, "Lib_Iva", dblTotal(1))
+    '            Parametros_Agregar(strEncabezado, "Lib_NoGravado", dblTotal(2))
+    '            Parametros_Agregar(strEncabezado, "Lib_Total", dblTotal(3))
+
+    '            Parametros_Agregar(strEncabezado, "arrIvas", strIvas)
+
+    '            objLibro = New clsLibroVentas
+    '            objLibro.Actualizar(SistemaPV.datosPV.Caja, strEncabezado)
+    '            MatarObjeto(objLibro)
+
+    '        End If
+
+    '        Exit Sub
+    'e:
+    '        MatarObjeto(objLibro)
+    '    End Sub
+
+    '    Private Sub ObtenerInfoComprobante()
+    '        Dim v As Integer
+    '        Dim strFila As String
+    '        Dim dblTotal(4), dblFila(4) As Double
+    '        If SistemaPV.ImpFiscal.Utiliza Then
+    '            With Comprobante
+    '                .NumeroDevuelto = Numero()
+    '                If Val(Trim(Right(.NumeroDevuelto, 6))) = 0 Then
+    '                    .NumeroDevuelto = ""
+    '                    .OK = False
+    '                Else
+    '                    ' Obtención de Valores de Iva
+    '                    If SistemaPV.ImpFiscal.Modelo = EpsonTM Then
+    '                        'Numero = Trim(garrayentrada(3))
+    '                    ElseIf SistemaPV.ImpFiscal.Modelo = HASAR Then
+    '                        '"porcentaje;neto;iva;nogravado;total/"
+    '                        With Comprobante.frmFormulario.ncrFiscal
+    '                            For v = 0 To 6
+    '                                If v = 0 Then
+    '                                    .PedirPrimerIVA()
+    '                                Else
+    '                                    .PedirSiguienteIVA()
+    '                                End If
+    '                                If UBound(Split(.Respuesta(0), "")) > 5 Then
+    '                                    dblFila(1) = Val(.Respuesta(5)) * Val(.Respuesta(3)) ' Iva
+    '                                    dblFila(2) = Val(.Respuesta(8)) * Val(.Respuesta(3)) ' Neto
+    '                                    dblFila(0) = dblFila(2) + dblFila(1)
+    '                                    dblTotal(0) = dblTotal(0) + dblFila(0)
+    '                                    dblTotal(1) = dblTotal(1) + dblFila(1)
+    '                                    dblTotal(2) = dblTotal(2) + dblFila(2)
+
+    '                                    Parametros_Agregar(strFila, "IVA", Val(.Respuesta(4)) & ";" & dblFila(2) & ";" & dblFila(1) & ";0;" & dblFila(0))
+    '                                Else
+    '                                    v = 7
+    '                                End If
+    '                            Next v
+    '                        End With
+    '                        .arrDatosIva = "general=" & dblTotal(2) & ";" & dblTotal(1) & ";0;" & dblTotal(0) & "|" & strFila
+    '                        Debug.Print("-> " & .arrDatosIva)
+    '                    End If
+    '                End If
+    '            End With
+    '        End If
+
+
+    '    End Sub
 
 End Module

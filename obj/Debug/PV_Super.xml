@@ -49,6 +49,24 @@ PV_Super
 	<param name="USU_ID"></param>
 	<returns>Datatable</returns>
 	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.ListarImporteCaja(System.Int32)">
+	<summary>
+ Recupera de la base de datos los importes de las ventas realizadas por 
+ la caja deseada
+ </summary>
+	<param name="CAJ_ID">Número de caja</param>
+	<returns>Datatable</returns>
+	<remarks></remarks>
+	<autor>madad</autor>
+</member><member name="M:PV_Super.clsCajaDAO.ListarImporteCierres(System.Int32)">
+	<summary>
+ Recupera los importes para realizar el cierre de caja.
+ Estos importes se listan en una grilla indicando apertura,cierre,retiro, etc.
+ </summary>
+	<param name="CAJ_ID">Número de Caja</param>
+	<returns>Datatable con los datos</returns>
+	<remarks></remarks>
+	<autor>madad</autor>
 </member><member name="M:PV_Super.frmFormasPagos.LimpiarCampos">
 	<summary>
  Método que inicializa los campos en vacío
@@ -270,6 +288,25 @@ PV_Super
  </summary>
 	<param name="pszAtributo">Atributo</param>
 	<returns>Valor del atributo</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmIngreso.LimpiarForm">
+	<summary>
+ Método que limpia los controles de la pantalla
+ </summary>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmIngreso.ValidarUsuario(System.String,System.String)">
+	<summary>
+ Método que valida si el usuario está autorizado a ingresar
+ </summary>
+	<param name="p_usuario">Usuario</param>
+	<param name="p_password">Password</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.frmIngreso.PrevInstance">
+	<summary>
+ Valida la existencia de una instancia anterior de la misma aplicación
+ </summary>
+	<returns>Boolean</returns>
 	<remarks></remarks>
 </member><member name="P:PV_Super.My.Resources.Resources.ResourceManager">
 	<summary>
