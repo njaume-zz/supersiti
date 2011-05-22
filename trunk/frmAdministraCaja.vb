@@ -20,16 +20,21 @@
         Me.txtTarjetas.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtImporteApertura.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtOperador.Text = ""
-        Me.txtTotalCaja.Text = Funciones.FormatoMoneda(gdNull)
+        Me.txtSubTotal.Text = Funciones.FormatoMoneda(gdNull)
         Me.txtFecha.Text = Format(Now, "dd/MM/yyyy")
     End Sub
 
     Private Sub CalcularTotal()
-        Dim total As Double
+        Dim wdSubTotal As Double
 
-        total = CDbl(Me.txtBonos.Text) + CDbl(Me.txtCredito.Text) + CDbl(Me.txtEfectivo.Text) + CDbl(Me.txtTarjetas.Text)
-        Me.txtTotalCaja.Text = Str(CDbl(Me.txtImporteApertura.Text) - total)
-        Me.txtTotalCaja.Enabled = False
+        wdSubTotal = CDec(Me.txtBonos.Text) + CDec(Me.txtCredito.Text) + CDec(Me.txtEfectivo.Text) + CDec(Me.txtTarjetas.Text)
+        Me.txtSubTotal.Text = wdSubTotal.ToString
+        Me.txtSubTotal.Enabled = False
+        Me.txtTotalApertura.Text = Me.txtImporteApertura.Text
+        Me.txtTotalRetiros.Text = Me.txtImporteRetiro.Text
+        Me.txtTotalVentas.Text = Me.txtSubTotal.Text
+        Me.txtImportesCaja.Text = IIf(Me.txtImportesCaja.Text = "", 0, Me.txtImportesCaja.Text)
+        Me.txtTotal.Text = (CDec(Me.txtImportesCaja.Text) + (CDec(Me.txtTotalApertura.Text) + (CDec(Me.txtTotalRetiros.Text)) - CDec(Me.txtTotalVentas.Text)))
     End Sub
 
     Public Function VerificarApertura() As Boolean
@@ -60,42 +65,69 @@
         Return ok
     End Function
 
-    Private Function RecuperaImportesCaja() As DataTable
+    Private Sub RecuperaVentas(ByVal piCaja As Integer)
         Dim woDt As DataTable
+
         Try
             woDt = New DataTable
-            ' obtener id de usuario!
-            woDt = clsCajaDAO.ListarImporteCaja(0, frmVentas.TSSIdUsuario.Text, Funciones.ObtenerConfiguracion(gstrCaja), 3)
+
+            woDt = clsCajaDAO.ListarImporteCaja(piCaja)
+
+            For Each oDr As DataRow In woDt.Rows
+
+                Select Case LCase(oDr("NOMBRE"))
+                    Case LCase("Efectivo")
+                        Me.txtEfectivo.Text = oDr("IMPORTES").ToString
+                    Case LCase("Tarjeta")
+                        Me.txtTarjetas.Text = oDr("IMPORTES").ToString
+                    Case LCase("Vale")
+                        Me.txtBonos.Text = oDr("IMPORTES").ToString
+                    Case LCase("Cuenta Corriente")
+                        Me.txtCredito.Text = oDr("IMPORTES").ToString
+                End Select
+
+            Next
 
         Catch ex As Exception
-            Funciones.LogError(ex, "RecuperaImportesCaja", Funciones.ObtieneUsuario)
+            Funciones.LogError(ex, "RecuperaVentas", Funciones.ObtieneUsuario)
         Finally
             woDt = Nothing
         End Try
-        Return woDt
-    End Function
+    End Sub
 
-    Private Function RecuperaImporteApertura()
+    Private Sub RecuperaCierres(ByVal pbEsRetiro As Boolean, ByVal piCaja As Integer)
         Dim woDt As DataTable
+
         Try
             woDt = New DataTable
-            ' obtener id de usuario!
-            woDt = clsCajaDAO.ListarImporteCaja(1, CInt(frmVentas.TSSIdUsuario.Text), Funciones.ObtenerConfiguracion(gstrCaja), 1)
-            Me.txtImporteApertura.Text = woDt.Rows(0).Item("CAM_IMPORTE").ToString()
+
+            woDt = clsCajaDAO.ListarImporteCierres(piCaja)
+
+            For Each oDr As DataRow In woDt.Rows
+
+                Select Case LCase(oDr("NOMBRE"))
+                    Case LCase("Apertura")
+                        Me.txtImporteApertura.Text = oDr("IMPORTES").ToString
+                    Case LCase("Retiro")
+                        If pbEsRetiro = False Then
+                            Me.txtImporteRetiro.Text = oDr("IMPORTES").ToString
+                        End If
+                End Select
+
+            Next
+
         Catch ex As Exception
-            Funciones.LogError(ex, "RecuperaImportesApertura", Funciones.ObtieneUsuario)
+            Funciones.LogError(ex, "RecuperaCierres", Funciones.ObtieneUsuario)
         Finally
             woDt = Nothing
         End Try
-        Return woDt
-    End Function
+    End Sub
 #End Region
 
 #Region "Eventos"
 
     Private Sub btnConfirmar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfirmar.Click
         Dim Estado As Integer
-        Dim oDt As DataTable
         Dim wbApertura As Boolean
         Dim wdblImporte As Double
 
@@ -133,8 +165,6 @@
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
                                                                    3, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                             Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
-                            oDt = New DataTable
-                            oDt = RecuperaImportesCaja()
                             '1º Recupero Importes de Caja entre fechas
                             '2º Sumo las ventas y descuento la (Apertura + Retiro)
                             'listar los valores recuperados
@@ -191,7 +221,9 @@
             Case "Retiro"
                 'acá se llama a los métodos para determinar si hay una apertura para ese usuario
                 ' se debe recuperar el importe de apertura y los retiros hechos por el usuario.
-                RecuperaImporteApertura()
+                'RecuperaImporteApertura()
+                'RecuperaVentas()
+                RecuperaCierres(True, Funciones.ObtenerConfiguracion(Definiciones.gstrCaja)) 'envío verdadero para indicar que es un retiro de dinero
                 VerificarRetiro()
                 Me.txtImporteRetiro.Enabled = True
                 Me.txtImporteApertura.Enabled = False
@@ -200,9 +232,13 @@
                 'si se permite el cierre, se recupera de la base los importes de las ventas
                 'Estas ventas se deberían recuperar por cada tipo de pago.
                 'Hacer un Store con la consulta hecha en el ESCRITORIO
-                RecuperaImporteApertura()
+                RecuperaVentas(Funciones.ObtenerConfiguracion(Definiciones.gstrCaja))
+                RecuperaCierres(False, Funciones.ObtenerConfiguracion(Definiciones.gstrCaja)) 'envío falso para indicar que no es retiro de dinero
+                CalcularTotal()
             Case "Cierre Z"
-                RecuperaImporteApertura()
+                ' en este caso de deben listar todos los importes de todas las cajas
+                RecuperaVentas(0) 'envío 0 para recuperar todas las cajas
+                RecuperaCierres(False, Funciones.ObtenerConfiguracion(Definiciones.gstrCaja)) 'envío falso para indicar que no es retiro de dinero
         End Select
     End Sub
 
@@ -218,7 +254,7 @@
         If Me.txtBonos.Text = "" Or Me.txtBonos.Text = "0" Then
             Me.txtBonos.Text = gdNull
         End If
-        Me.txtBonos.Text = Convert.ToDouble(Me.txtBonos.Text)
+        Me.txtBonos.Text = Convert.ToDouble(Me.txtBonos.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -234,7 +270,7 @@
         If Me.txtEfectivo.Text = "" Or Me.txtEfectivo.Text = "0" Then
             Me.txtEfectivo.Text = gdNull
         End If
-        Me.txtEfectivo.Text = Convert.ToDouble(Me.txtEfectivo.Text)
+        Me.txtEfectivo.Text = Convert.ToDouble(Me.txtEfectivo.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -250,7 +286,7 @@
         If Me.txtCredito.Text = "" Or Me.txtCredito.Text = "0" Then
             Me.txtCredito.Text = gdNull
         End If
-        Me.txtCredito.Text = Convert.ToDouble(Me.txtCredito.Text)
+        Me.txtCredito.Text = Convert.ToDouble(Me.txtCredito.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -266,7 +302,7 @@
         If Me.txtTarjetas.Text = "" Or Me.txtTarjetas.Text = "0" Then
             Me.txtTarjetas.Text = gdNull
         End If
-        Me.txtTarjetas.Text = Convert.ToDouble(Me.txtTarjetas.Text)
+        Me.txtTarjetas.Text = Convert.ToDouble(Me.txtTarjetas.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -282,7 +318,7 @@
         If Me.txtImporteApertura.Text = "" Or Me.txtImporteApertura.Text = "0" Then
             Me.txtImporteApertura.Text = gdNull
         End If
-        Me.txtImporteApertura.Text = Convert.ToDouble(Me.txtImporteApertura.Text)
+        Me.txtImporteApertura.Text = Convert.ToDouble(Me.txtImporteApertura.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -298,7 +334,7 @@
         If Me.txtImporteRetiro.Text = "" Or Me.txtImporteRetiro.Text = "0" Then
             Me.txtImporteRetiro.Text = gdNull
         End If
-        Me.txtImporteRetiro.Text = Convert.ToDouble(Me.txtImporteRetiro.Text)
+        Me.txtImporteRetiro.Text = Convert.ToDouble(Me.txtImporteRetiro.Text).ToString("###0.00")
         CalcularTotal()
     End Sub
 
@@ -310,5 +346,20 @@
         End If
     End Sub
 
+    Private Sub txtImportesCaja_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtImportesCaja.KeyPress
+        If Not ValidaNumerico(e.KeyChar) Then
+            e.Handled = True
+        Else
+            e.Handled = False
+        End If
+    End Sub
+
+    Private Sub txtImportesCaja_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtImportesCaja.LostFocus
+        'Me.txtTotal.Text = (CDec(Me.txtTotal.Text) - CDec(IIf(Me.txtImportesCaja.Text = "", 0, Me.txtImportesCaja.Text)))
+        Me.txtImportesCaja.Text = CDec(IIf(Me.txtImportesCaja.Text = "", 0, Me.txtImportesCaja.Text)).ToString("###0.00")
+        CalcularTotal()
+    End Sub
 #End Region
+
+
 End Class

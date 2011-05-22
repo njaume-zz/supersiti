@@ -356,9 +356,16 @@ Public Class clsCajaDAO
         Return salida
     End Function
 
-    Public Shared Function ListarImporteCaja(ByVal CAM_ID As Integer, ByVal USU_ID As Integer, _
-                                               ByVal CAJ_ID As Integer, ByVal CAE_ID As Integer) As DataTable
-        Dim strStore As String = "STR_CONSULTA_MOVIMIENTO_CAJA"
+    ''' <summary>
+    ''' Recupera de la base de datos los importes de las ventas realizadas por 
+    ''' la caja deseada
+    ''' </summary>
+    ''' <param name="CAJ_ID">Número de caja</param>
+    ''' <returns>Datatable</returns>
+    ''' <remarks></remarks>
+    ''' <autor>madad</autor>
+    Public Shared Function ListarImporteCaja(ByVal CAJ_ID As Integer) As DataTable
+        Dim strStore As String = "STR_RECUPERA_IMPORTES_VENTA"
         Dim Conexion As SqlConnection
         Dim cmd As New SqlCommand
         Dim conecto As Boolean
@@ -366,7 +373,6 @@ Public Class clsCajaDAO
 
         Try
             Conexion = clsConexion.Conectar
-            'Conexion.Open()
             conecto = True
         Catch ex As Exception
             conecto = False
@@ -378,25 +384,69 @@ Public Class clsCajaDAO
                     .Connection = Conexion
                     .CommandText = strStore
                     .CommandType = CommandType.StoredProcedure
-                    With .Parameters
-                        .AddWithValue("@CAM_ID", CAM_ID)
-                        .AddWithValue("@USU_ID", USU_ID)
-                        .AddWithValue("@CAJ_ID", CAJ_ID)
-                        .AddWithValue("@CAE_ID", CAE_ID)
-                    End With
+                    .Parameters.AddWithValue("@CAJ_ID", CAJ_ID)
+
                     salida.Load(.ExecuteReader)
                 End With
             Else
                 salida = Nothing
             End If
             Conexion.Close()
+            ListarImporteCaja = salida
         Catch ex As Exception
             salida = Nothing
             MsgBox(ex.Message)
         Finally
             cmd = Nothing
             Conexion = Nothing
+            salida = Nothing
         End Try
-        Return salida
+    End Function
+
+    ''' <summary>
+    ''' Recupera los importes para realizar el cierre de caja.
+    ''' Estos importes se listan en una grilla indicando apertura,cierre,retiro, etc.
+    ''' </summary>
+    ''' <param name="CAJ_ID">Número de Caja</param>
+    ''' <returns>Datatable con los datos</returns>
+    ''' <remarks></remarks>
+    ''' <autor>madad</autor>
+    Public Shared Function ListarImporteCierres(ByVal CAJ_ID As Integer) As DataTable
+        Dim strStore As String = "STR_RECUPERA_IMPORTES_CIERRE"
+        Dim Conexion As SqlConnection
+        Dim cmd As New SqlCommand
+        Dim conecto As Boolean
+        Dim salida As New DataTable
+
+        Try
+            Conexion = clsConexion.Conectar
+            conecto = True
+        Catch ex As Exception
+            conecto = False
+        End Try
+
+        Try
+            If conecto Then
+                With cmd
+                    .Connection = Conexion
+                    .CommandText = strStore
+                    .CommandType = CommandType.StoredProcedure
+                    .Parameters.AddWithValue("@CAJ_ID", CAJ_ID)
+
+                    salida.Load(.ExecuteReader)
+                End With
+            Else
+                salida = Nothing
+            End If
+            Conexion.Close()
+            ListarImporteCierres = salida
+        Catch ex As Exception
+            salida = Nothing
+            MsgBox(ex.Message)
+        Finally
+            cmd = Nothing
+            Conexion = Nothing
+            salida = Nothing
+        End Try
     End Function
 End Class

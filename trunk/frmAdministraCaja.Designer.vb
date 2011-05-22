@@ -36,11 +36,23 @@ Partial Class frmAdministraCaja
         Me.Label1 = New System.Windows.Forms.Label
         Me.lblOperacion = New System.Windows.Forms.Label
         Me.grpCaja = New System.Windows.Forms.GroupBox
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.txtImportesCaja = New System.Windows.Forms.TextBox
+        Me.Label14 = New System.Windows.Forms.Label
+        Me.txtTotal = New System.Windows.Forms.TextBox
+        Me.txtTotalApertura = New System.Windows.Forms.TextBox
+        Me.txtTotalRetiros = New System.Windows.Forms.TextBox
+        Me.txtTotalVentas = New System.Windows.Forms.TextBox
+        Me.Label15 = New System.Windows.Forms.Label
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Label13 = New System.Windows.Forms.Label
         Me.txtCredito = New System.Windows.Forms.TextBox
         Me.txtTarjetas = New System.Windows.Forms.TextBox
         Me.txtBonos = New System.Windows.Forms.TextBox
         Me.txtEfectivo = New System.Windows.Forms.TextBox
-        Me.txtTotalCaja = New System.Windows.Forms.TextBox
+        Me.txtSubTotal = New System.Windows.Forms.TextBox
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
@@ -51,6 +63,7 @@ Partial Class frmAdministraCaja
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -77,7 +90,7 @@ Partial Class frmAdministraCaja
         Me.txtImporteRetiro.Location = New System.Drawing.Point(154, 106)
         Me.txtImporteRetiro.Name = "txtImporteRetiro"
         Me.txtImporteRetiro.Size = New System.Drawing.Size(112, 20)
-        Me.txtImporteRetiro.TabIndex = 3
+        Me.txtImporteRetiro.TabIndex = 1
         Me.txtImporteRetiro.Text = "0.00"
         Me.txtImporteRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -105,7 +118,7 @@ Partial Class frmAdministraCaja
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.ReadOnly = True
         Me.txtFecha.Size = New System.Drawing.Size(112, 20)
-        Me.txtFecha.TabIndex = 0
+        Me.txtFecha.TabIndex = 101
         '
         'txtOperador
         '
@@ -113,7 +126,7 @@ Partial Class frmAdministraCaja
         Me.txtOperador.Name = "txtOperador"
         Me.txtOperador.ReadOnly = True
         Me.txtOperador.Size = New System.Drawing.Size(112, 20)
-        Me.txtOperador.TabIndex = 1
+        Me.txtOperador.TabIndex = 100
         '
         'Label7
         '
@@ -129,7 +142,7 @@ Partial Class frmAdministraCaja
         Me.txtImporteApertura.Location = New System.Drawing.Point(154, 78)
         Me.txtImporteApertura.Name = "txtImporteApertura"
         Me.txtImporteApertura.Size = New System.Drawing.Size(112, 20)
-        Me.txtImporteApertura.TabIndex = 2
+        Me.txtImporteApertura.TabIndex = 0
         Me.txtImporteApertura.Text = "0.00"
         Me.txtImporteApertura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -154,11 +167,12 @@ Partial Class frmAdministraCaja
         '
         'grpCaja
         '
+        Me.grpCaja.Controls.Add(Me.GroupBox1)
         Me.grpCaja.Controls.Add(Me.txtCredito)
         Me.grpCaja.Controls.Add(Me.txtTarjetas)
         Me.grpCaja.Controls.Add(Me.txtBonos)
         Me.grpCaja.Controls.Add(Me.txtEfectivo)
-        Me.grpCaja.Controls.Add(Me.txtTotalCaja)
+        Me.grpCaja.Controls.Add(Me.txtSubTotal)
         Me.grpCaja.Controls.Add(Me.Label6)
         Me.grpCaja.Controls.Add(Me.Label5)
         Me.grpCaja.Controls.Add(Me.Label4)
@@ -168,17 +182,136 @@ Partial Class frmAdministraCaja
         Me.grpCaja.Controls.Add(Me.btnCancelar)
         Me.grpCaja.Location = New System.Drawing.Point(13, 175)
         Me.grpCaja.Name = "grpCaja"
-        Me.grpCaja.Size = New System.Drawing.Size(505, 238)
+        Me.grpCaja.Size = New System.Drawing.Size(505, 262)
         Me.grpCaja.TabIndex = 1
         Me.grpCaja.TabStop = False
         Me.grpCaja.Text = "Gestión de Caja"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.txtImportesCaja)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.txtTotal)
+        Me.GroupBox1.Controls.Add(Me.txtTotalApertura)
+        Me.GroupBox1.Controls.Add(Me.txtTotalRetiros)
+        Me.GroupBox1.Controls.Add(Me.txtTotalVentas)
+        Me.GroupBox1.Controls.Add(Me.Label15)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Location = New System.Drawing.Point(297, 9)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(204, 197)
+        Me.GroupBox1.TabIndex = 11
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Resúmen"
+        '
+        'txtImportesCaja
+        '
+        Me.txtImportesCaja.Location = New System.Drawing.Point(106, 109)
+        Me.txtImportesCaja.Name = "txtImportesCaja"
+        Me.txtImportesCaja.Size = New System.Drawing.Size(73, 20)
+        Me.txtImportesCaja.TabIndex = 10
+        Me.txtImportesCaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(13, 111)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(77, 13)
+        Me.Label14.TabIndex = 12
+        Me.Label14.Text = "Dinero en Caja"
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Enabled = False
+        Me.txtTotal.Location = New System.Drawing.Point(106, 148)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotal.TabIndex = 11
+        Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotalApertura
+        '
+        Me.txtTotalApertura.Enabled = False
+        Me.txtTotalApertura.Location = New System.Drawing.Point(106, 79)
+        Me.txtTotalApertura.Name = "txtTotalApertura"
+        Me.txtTotalApertura.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalApertura.TabIndex = 9
+        Me.txtTotalApertura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotalRetiros
+        '
+        Me.txtTotalRetiros.Enabled = False
+        Me.txtTotalRetiros.Location = New System.Drawing.Point(106, 49)
+        Me.txtTotalRetiros.Name = "txtTotalRetiros"
+        Me.txtTotalRetiros.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalRetiros.TabIndex = 8
+        Me.txtTotalRetiros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotalVentas
+        '
+        Me.txtTotalVentas.Enabled = False
+        Me.txtTotalVentas.Location = New System.Drawing.Point(106, 19)
+        Me.txtTotalVentas.Name = "txtTotalVentas"
+        Me.txtTotalVentas.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalVentas.TabIndex = 7
+        Me.txtTotalVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(10, 150)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(64, 20)
+        Me.Label15.TabIndex = 6
+        Me.Label15.Text = "TOTAL"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(13, 78)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(47, 13)
+        Me.Label12.TabIndex = 2
+        Me.Label12.Text = "Apertura"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(13, 51)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(82, 13)
+        Me.Label11.TabIndex = 1
+        Me.Label11.Text = "Total de Retiros"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(13, 22)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(82, 13)
+        Me.Label10.TabIndex = 0
+        Me.Label10.Text = "Total de Ventas"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(96, 124)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(97, 13)
+        Me.Label13.TabIndex = 11
+        Me.Label13.Text = "_______________"
         '
         'txtCredito
         '
         Me.txtCredito.Location = New System.Drawing.Point(154, 111)
         Me.txtCredito.Name = "txtCredito"
         Me.txtCredito.Size = New System.Drawing.Size(100, 20)
-        Me.txtCredito.TabIndex = 7
+        Me.txtCredito.TabIndex = 5
         Me.txtCredito.Text = "0.00"
         Me.txtCredito.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -187,7 +320,7 @@ Partial Class frmAdministraCaja
         Me.txtTarjetas.Location = New System.Drawing.Point(154, 84)
         Me.txtTarjetas.Name = "txtTarjetas"
         Me.txtTarjetas.Size = New System.Drawing.Size(100, 20)
-        Me.txtTarjetas.TabIndex = 6
+        Me.txtTarjetas.TabIndex = 4
         Me.txtTarjetas.Text = "0.00"
         Me.txtTarjetas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -197,7 +330,7 @@ Partial Class frmAdministraCaja
         Me.txtBonos.Location = New System.Drawing.Point(154, 58)
         Me.txtBonos.Name = "txtBonos"
         Me.txtBonos.Size = New System.Drawing.Size(100, 20)
-        Me.txtBonos.TabIndex = 5
+        Me.txtBonos.TabIndex = 3
         Me.txtBonos.Text = "0.00"
         Me.txtBonos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -206,36 +339,36 @@ Partial Class frmAdministraCaja
         Me.txtEfectivo.Location = New System.Drawing.Point(154, 32)
         Me.txtEfectivo.Name = "txtEfectivo"
         Me.txtEfectivo.Size = New System.Drawing.Size(100, 20)
-        Me.txtEfectivo.TabIndex = 4
+        Me.txtEfectivo.TabIndex = 2
         Me.txtEfectivo.Text = "0.00"
         Me.txtEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txtTotalCaja
+        'txtSubTotal
         '
-        Me.txtTotalCaja.Location = New System.Drawing.Point(154, 156)
-        Me.txtTotalCaja.Name = "txtTotalCaja"
-        Me.txtTotalCaja.Size = New System.Drawing.Size(100, 20)
-        Me.txtTotalCaja.TabIndex = 8
-        Me.txtTotalCaja.Text = "0.00"
-        Me.txtTotalCaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtSubTotal.Location = New System.Drawing.Point(154, 156)
+        Me.txtSubTotal.Name = "txtSubTotal"
+        Me.txtSubTotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtSubTotal.TabIndex = 6
+        Me.txtSubTotal.Text = "0.00"
+        Me.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(100, 159)
+        Me.Label6.Location = New System.Drawing.Point(86, 159)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(31, 13)
+        Me.Label6.Size = New System.Drawing.Size(53, 13)
         Me.Label6.TabIndex = 9
-        Me.Label6.Text = "Total"
+        Me.Label6.Text = "Sub Total"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(32, 114)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(93, 13)
+        Me.Label5.Size = New System.Drawing.Size(96, 13)
         Me.Label5.TabIndex = 8
-        Me.Label5.Text = "Importe en Crédito"
+        Me.Label5.Text = "Importe Ctas. Ctes."
         '
         'Label4
         '
@@ -268,10 +401,10 @@ Partial Class frmAdministraCaja
         '
         Me.btnConfirmar.Image = Global.PV_Super.My.Resources.Resources.ok_x_19
         Me.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnConfirmar.Location = New System.Drawing.Point(339, 195)
+        Me.btnConfirmar.Location = New System.Drawing.Point(342, 226)
         Me.btnConfirmar.Name = "btnConfirmar"
         Me.btnConfirmar.Size = New System.Drawing.Size(75, 30)
-        Me.btnConfirmar.TabIndex = 9
+        Me.btnConfirmar.TabIndex = 12
         Me.btnConfirmar.Text = "Con&firmar  "
         Me.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnConfirmar.UseVisualStyleBackColor = True
@@ -280,10 +413,10 @@ Partial Class frmAdministraCaja
         '
         Me.btnCancelar.Image = Global.PV_Super.My.Resources.Resources.cancel_x_19
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnCancelar.Location = New System.Drawing.Point(421, 195)
+        Me.btnCancelar.Location = New System.Drawing.Point(424, 226)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 30)
-        Me.btnCancelar.TabIndex = 10
+        Me.btnCancelar.TabIndex = 13
         Me.btnCancelar.Text = "&Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCancelar.UseVisualStyleBackColor = True
@@ -301,7 +434,7 @@ Partial Class frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 423)
+        Me.ClientSize = New System.Drawing.Size(530, 449)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.grpCaja)
         Me.Controls.Add(Me.grpApertura)
@@ -312,6 +445,8 @@ Partial Class frmAdministraCaja
         Me.grpApertura.PerformLayout()
         Me.grpCaja.ResumeLayout(False)
         Me.grpCaja.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -327,7 +462,7 @@ Partial Class frmAdministraCaja
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents txtTotalCaja As System.Windows.Forms.TextBox
+    Friend WithEvents txtSubTotal As System.Windows.Forms.TextBox
     Friend WithEvents txtCredito As System.Windows.Forms.TextBox
     Friend WithEvents txtTarjetas As System.Windows.Forms.TextBox
     Friend WithEvents txtBonos As System.Windows.Forms.TextBox
@@ -340,6 +475,18 @@ Partial Class frmAdministraCaja
     Friend WithEvents txtImporteRetiro As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents txtTotalApertura As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotalRetiros As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotalVentas As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotal As System.Windows.Forms.TextBox
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents txtImportesCaja As System.Windows.Forms.TextBox
     'Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
     'Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
 End Class
