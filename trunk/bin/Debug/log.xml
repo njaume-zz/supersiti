@@ -300,6 +300,47 @@ The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, wh
     <Excepcion>Object reference not set to an instance of an object.</Excepcion>
     <Ubicacion>AsignaSeleccion</Ubicacion>
     <Fecha>21/04/2011 10:33:02</Fecha>
+    <Excepcion>Form that is already displayed modally cannot be displayed as a modal dialog box. Close the form before calling showDialog.</Excepcion>
+    <Ubicacion>OK_Click</Ubicacion>
+    <Fecha>14/05/2011 12:30:16</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>OK_Click</Ubicacion>
+    <Fecha>14/05/2011 12:31:09</Fecha>
+    <Excepcion>Form that is already displayed modally cannot be displayed as a modal dialog box. Close the form before calling showDialog.</Excepcion>
+    <Ubicacion>OK_Click</Ubicacion>
+    <Fecha>14/05/2011 12:35:02</Fecha>
+    <Excepcion>Form that is already displayed modally cannot be displayed as a modal dialog box. Close the form before calling showDialog.</Excepcion>
+    <Ubicacion>OK_Click</Ubicacion>
+    <Fecha>14/05/2011 12:35:52</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Retiro</Ubicacion>
+    <Fecha>14/05/2011 16:02:17</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Retiro</Ubicacion>
+    <Fecha>14/05/2011 16:05:17</Fecha>
+    <Excepcion>Conversion from string "No" to type 'Integer' is not valid.</Excepcion>
+    <Ubicacion>btnAceptarVenta_Click</Ubicacion>
+    <Fecha>14/05/2011 16:47:17</Fecha>
+    <Excepcion>INSERT statement conflicted with COLUMN FOREIGN KEY constraint 'FK_COMPROBANTE_FORMAPAGO'. The conflict occurred in database 'DES_SUPER', table 'V_FORMAPAGO', column 'FOP_ID'.
+The statement has been terminated.
+The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, which is not allowed. A status of 0 will be returned instead.</Excepcion>
+    <Ubicacion>clsComprobanteDAO.Insertar</Ubicacion>
+    <Fecha>14/05/2011 16:48:00</Fecha>
+    <Excepcion>Arithmetic operation resulted in an overflow.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>14/05/2011 17:32:01</Fecha>
+    <Excepcion>Arithmetic operation resulted in an overflow.</Excepcion>
+    <Ubicacion>AsignaSeleccion</Ubicacion>
+    <Fecha>14/05/2011 17:32:17</Fecha>
+    <Excepcion>Column 'NOMBRES' does not belong to table .</Excepcion>
+    <Ubicacion>RecuperaCierres</Ubicacion>
+    <Fecha>21/05/2011 21:36:08</Fecha>
+    <Excepcion>Column 'NOMBRES' does not belong to table .</Excepcion>
+    <Ubicacion>RecuperaCierres</Ubicacion>
+    <Fecha>21/05/2011 21:37:14</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Retiro</Ubicacion>
+    <Fecha>21/05/2011 21:38:42</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -483,4 +524,30 @@ The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, wh
   <Usuario>A2133in</Usuario>
   <Eventos />
   <Usuario>A2133in</Usuario>
+  <Eventos />
+  <Usuario>14/05/2011 12:30:16 p.m.</Usuario>
+  <Eventos />
+  <Usuario>14/05/2011 12:31:09 p.m.</Usuario>
+  <Eventos />
+  <Usuario>14/05/2011 12:35:02 p.m.</Usuario>
+  <Eventos />
+  <Usuario>14/05/2011 12:35:52 p.m.</Usuario>
+  <Eventos />
+  <Usuario>A142in</Usuario>
+  <Eventos />
+  <Usuario>A145in</Usuario>
+  <Eventos />
+  <Usuario>A1447in</Usuario>
+  <Eventos />
+  <Usuario>DAO</Usuario>
+  <Eventos />
+  <Usuario>A1432in</Usuario>
+  <Eventos />
+  <Usuario>A1432in</Usuario>
+  <Eventos />
+  <Usuario>A2136in</Usuario>
+  <Eventos />
+  <Usuario>A2137in</Usuario>
+  <Eventos />
+  <Usuario>A2138in</Usuario>
 </XMLErrores>
