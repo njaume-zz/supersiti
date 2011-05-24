@@ -2255,3 +2255,29 @@ CREATE VIEW [dbo].[VT_LISTAPRECIOS] AS
 		ON PRD.PRO_ID = LPR.PRO_ID INNER JOIN C_TIPOS_PRECIOS TPR
 		ON LPR.TPR_ID = TPR.TPR_ID
 	WHERE PRD.PRO_ESTADO = 1
+
+	GO
+	
+/********************************************************************************
+ *						INCORPORAR A PARTIR DEL 23/05/2011						*
+ *	Estas modificaciones y nuevos procedimientos están a partir de la fecha     *
+ ********************************************************************************/
+ 
+ 
+ CREATE PROCEDURE [dbo].[STR_CONSULTA_FORMA_PAGO](
+	@FOP_ID AS INT = 0,
+	@FOP_NOMBRE AS VARCHAR(100) = '',
+	@FOP_SIGLA AS VARCHAR(10) = ''
+)
+AS
+	BEGIN
+
+			
+		SELECT FOP_ID,FOP_NOMBRE,FOP_DESCRIPCION,FOP_SIGLA
+		FROM V_FORMAPAGO
+		WHERE	(@FOP_ID = 0 OR (FOP_ID = @FOP_ID))
+			AND (@FOP_NOMBRE= '' OR (FOP_NOMBRE = @FOP_NOMBRE))
+			AND (@FOP_SIGLA = '' OR (FOP_SIGLA = @FOP_SIGLA))
+
+	END
+GO	

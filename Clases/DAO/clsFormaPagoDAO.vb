@@ -90,13 +90,15 @@ Public Class clsFormaPagoDAO
 
     End Function
 
-    Public Shared Function GetTable(ByVal pFormaPago As clsFormaPago) As Integer
-        Dim strStore As String = "STR_CONSULTA_FormaPago"
+    Public Shared Function GetTable(ByVal pFormaPago As clsFormaPago) As DataTable
+        Dim strStore As String = "STR_CONSULTA_FORMA_PAGO"
         Dim oCn As SqlConnection
         Dim oCmd As New SqlCommand
-        Dim iSalida As Integer
+        Dim oSalida As DataTable
         Dim conecto As Boolean
+
         Try
+            oSalida = New DataTable
 
             Try
                 oCn = clsConexion.Conectar
@@ -107,27 +109,24 @@ Public Class clsFormaPagoDAO
 
             With oCmd
                 .Connection = oCn
-                .CommandText = "STR_CONSULTA_FormaPago"
+                .CommandText = strStore
                 .CommandType = CommandType.StoredProcedure
                 With .Parameters
-                    .Add("@FOP_ID", SqlDbType.Int).Direction = ParameterDirection.Output
+                    .AddWithValue("@FOP_ID", pFormaPago.FOP_ID)
                     .AddWithValue("@FOP_NOMBRE", pFormaPago.FOP_NOMBRE)
-                    .AddWithValue("@FOP_DESCRIPCION", pFormaPago.FOP_DESCRIPCION)
                     .AddWithValue("@FOP_SIGLA", pFormaPago.FOP_SIGLA)
-                    .AddWithValue("@FOP_ESTADO", pFormaPago.FOP_ESTADO)
-                    .AddWithValue("@FOP_FECHAALTA", pFormaPago.FOP_FECHAALTA)
-
                 End With
-                .ExecuteNonQuery()
+                oSalida.Load(.ExecuteReader())
             End With
-            iSalida = oCmd.Parameters.Item("@FOP_ID").Value
             clsConexion.Desconectar(oCn)
+            Return oSalida
         Catch ex As Exception
-            iSalida = -1
+            oSalida = Nothing
         Finally
             oCmd = Nothing
             oCn = Nothing
+            oSalida = Nothing
         End Try
-        Return iSalida
+
     End Function
 End Class

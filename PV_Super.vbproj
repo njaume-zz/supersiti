@@ -69,6 +69,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClasesApp\clsImpresiones.vb" />
     <Compile Include="Clases\clsCaja.vb" />
     <Compile Include="Clases\clsCajaMovimientos.vb" />
     <Compile Include="Clases\clsCajaTipoMovimiento.vb" />
@@ -326,7 +327,22 @@
     <Content Include="bin\Debug\XMLConfig.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ClasesApp\" />
+    <COMReference Include="AxEPSON_Impresora_Fiscal">
+      <Guid>{AFD24A52-2823-4FBD-B75D-C282C11E1D98}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="EPSON_Impresora_Fiscal">
+      <Guid>{AFD24A52-2823-4FBD-B75D-C282C11E1D98}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

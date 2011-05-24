@@ -3,20 +3,22 @@
   <Conexion>Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>
   <!--<Conexion>Data Source=PICHITOS-PC\;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>-->
   <DatosPropios>
-    <RazonSocial></RazonSocial>
-    <NombreFantasia></NombreFantasia>
-    <CUIT></CUIT>
-    <IngresosBrutos></IngresosBrutos>
-    <DomicilioFiscal></DomicilioFiscal>
-    <DomicilioComercial></DomicilioComercial>
+    <RazonSocial>Autoservicio Tauro</RazonSocial>
+    <NombreFantasia>Autoservicio Tauro</NombreFantasia>
+    <CUIT>27143390492</CUIT>
+    <IngresosBrutos>250330871</IngresosBrutos>
+    <DomicilioFiscal>Corrientes 22 - Laguna Larga - (5974) - Cordoba</DomicilioFiscal>
+    <DomicilioComercial>Corrientes 22 - Laguna Larga - (5974) - Cordoba</DomicilioComercial>
     <Telefono></Telefono>
-    <NombreFantasia></NombreFantasia>
-    <CondicionImpositiva></CondicionImpositiva>
+    <HabilitacionMunicipal>316</HabilitacionMunicipal>
+    <CondicionImpositiva>Responsable Inscripto</CondicionImpositiva>
     <LeyendaTicket></LeyendaTicket>
     <InicioActividad></InicioActividad>
   </DatosPropios>
   <Venta>
     <NroCaja>1</NroCaja>
     <TipoComprobante>20</TipoComprobante> <!--TICKET-->
-  </Venta>  
+    <PuertoCOM>10</PuertoCOM>
+  </Venta> 
+  
 </Configuracion>
