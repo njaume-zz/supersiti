@@ -115,3 +115,8 @@ M:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.frmListaPrecios.resources
 M:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.frmVentas.resources
 M:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.Resources.resources
 M:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.vbproj.GenerateResource.Cache
+M:\Proyectos\NET\PV_Super\obj\Debug\PV_Super.vbproj.ResolveComReference.cache
+M:\Proyectos\NET\PV_Super\bin\Debug\Interop.EPSON_Impresora_Fiscal.dll
+M:\Proyectos\NET\PV_Super\bin\Debug\AxInterop.EPSON_Impresora_Fiscal.dll
+M:\Proyectos\NET\PV_Super\obj\Debug\Interop.EPSON_Impresora_Fiscal.dll
+M:\Proyectos\NET\PV_Super\obj\Debug\AxInterop.EPSON_Impresora_Fiscal.dll

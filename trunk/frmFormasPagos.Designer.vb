@@ -42,8 +42,10 @@ Partial Class frmFormasPagos
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.EpsonFis = New AxEPSON_Impresora_Fiscal.AxPrinterFiscal
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EpsonFis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -253,17 +255,28 @@ Partial Class frmFormasPagos
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.PV_Super.My.Resources.Resources.Encabezado
-        Me.PictureBox1.Location = New System.Drawing.Point(-1, -1)
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(384, 25)
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
+        '
+        'EpsonFis
+        '
+        Me.EpsonFis.Enabled = True
+        Me.EpsonFis.Location = New System.Drawing.Point(2, 30)
+        Me.EpsonFis.Name = "EpsonFis"
+        Me.EpsonFis.OcxState = CType(resources.GetObject("EpsonFis.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.EpsonFis.Size = New System.Drawing.Size(32, 32)
+        Me.EpsonFis.TabIndex = 3
+        Me.EpsonFis.Visible = False
         '
         'frmFormasPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 469)
+        Me.Controls.Add(Me.EpsonFis)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
@@ -276,6 +289,7 @@ Partial Class frmFormasPagos
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EpsonFis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -299,4 +313,5 @@ Partial Class frmFormasPagos
     Friend WithEvents cmbTipoComprobante As System.Windows.Forms.ComboBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents EpsonFis As AxEPSON_Impresora_Fiscal.AxPrinterFiscal
 End Class

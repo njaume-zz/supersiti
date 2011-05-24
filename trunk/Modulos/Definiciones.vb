@@ -14,7 +14,23 @@
     Public Const gstrTipoComprobante = "Venta/TipoComprobante"
     Public Const gstrCaja = "Venta/NroCaja"
 
+    'Constantes para Datos Propios
+    Public Const gstrRazonSocial = "DatosPropios/RazonSocial"
+    Public Const gstrNombreFantasia = "DatosPropios/NombreFantasia"
+    Public Const gstrCUIT = "DatosPropios/CUIT"
+    Public Const gIngresosBrutos = "DatosPropios/IngresosBrutos"
+    Public Const gstrDomicilioFiscal = "DomicilioFiscal/DomicilioFiscal"
+    Public Const gstrDomicilioComercial = "DatosPropios/DomicilioComercial"
+    Public Const gstrTelefono = "DatosPropios/Telefono"
+    Public Const gstrHabilitacionMunicipal = "DatosPropios/HabilitacionMunicipal"
+    Public Const gstrCondicionImpositiva = "DatosPropios/CondicionImpositiva"
+    Public Const gstrLeyendaTicket = "DatosPropios/LeyendaTicket"
+    Public Const gstrInicioActividad = "DatosPropios/InicioActividad"
+
+    Public Const gstrPuertoCOM = "Venta/PuertoCOM"
+    'Constantes de Formato
     Public Const gdNull = "0.00"
+
 #End Region
 
 #Region "Variables"

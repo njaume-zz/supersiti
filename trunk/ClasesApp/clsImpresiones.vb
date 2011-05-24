@@ -1,4 +1,5 @@
-﻿
+﻿Imports AxEPSON_Impresora_Fiscal
+
 Public Class clsImpresiones
 
     'Public Function CierreX() As Boolean
@@ -17,47 +18,49 @@ Public Class clsImpresiones
     '    End Try
     'End Function
 
-    Public Function ImprimirTicket() As Boolean
-        Dim oImpresora As FiscalPrinterLib.HASAR
+    Public Shared Function ImprimirTicket(ByVal poImpresora As AxPrinterFiscal, _
+                                          ByVal poComprobante As clsComprobante) As Boolean
+        'Dim oImpresora As EPSON_Impresora_Fiscal.PrinterFiscal
         Dim wbImprime As Boolean = False
-        Dim wiImpuesto, wiTotal, wiOpen, wiClose As Integer
-        Dim wszFact As String
+        Dim i As Integer
+        Dim wszFormaPago As String
+        Dim oDt As DataTable
+        Dim oFormaDePago As clsFormaPago
 
         Try
+            oDt = New DataTable
+            oFormaDePago = New clsFormaPago()
 
-            oImpresora = New FiscalPrinterLib.HASAR
-            'dat1, G o C
-            oImpresora.FISOpenTicket("G")
-            '---------------------------------------------------------
-            '       1 - (dat1) Descripción
-            '       2 - (dat2) Cantidad de items
-            '       3 - (dat3) Monto del item
-            '       4 - (dat4) Tasa de iva estandar
-            '       5 - (dat5) Calificador de item
-            '       6 - (dat6) Unidades (bultos)
-            '       7 - (dat7) Tasa de imp int porecentuales K
-            '       8 - (dat8) Impuestos internos fijos
-            wbImprime = oImpresora.FISSendItemTique("Descrip", "2", "2.00", "21", "123", "5", "21", "10")
-            'P o N, descripcion
-            wbImprime = oImpresora.FISSubTique("P", "Imprimir")
+            poImpresora.PortNumber = ObtenerConfiguracion(gstrPuertoCOM)
+            poImpresora.BaudRate = 9600
+            poImpresora.OpenTicket("G") ' Establecer Datos en Config
 
-            wbImprime = oImpresora.FISCierreTique()
-            'oImpresora.Comenzar()
-            ''oImpresora.Baudios = 9600
-            ''oImpresora.Puerto = 1
-            'oImpresora.UsarDisplay = False
-            ''oImpresora.MODELO_614()
-            'oImpresora.ImprimirTextoNoFiscal("TEXTO NO FISCAL")
-            'oImpresora.AutodetectarControlador(1)
-            'oImpresora.Comenzar()
-            'oImpresora.ImprimirItem("Descrip", 2, 2.0, 21.0, 12.0)
-            'oImpresora.ImprimirPago("Pago", 21.2)
-            'wiTotal = oImpresora.Respuesta(3)
-            'wiClose = oImpresora.UltimoTicket
+            For i = 0 To poComprobante.DETALLE.Count - 1
 
-            'wbImprime = True
+                wbImprime = poImpresora.SendTicketItem(poComprobante.DETALLE.Item(i).cod_pronombre, _
+                                                       poComprobante.DETALLE.Item(i).cod_procantidad, _
+                                                       poComprobante.DETALLE.Item(i).cod_propciounitario, _
+                                                       "." & poComprobante.DETALLE.Item(i).cod_iva, _
+                                                       "M", "0", "0")
 
-
+            Next
+            'oFormaDePago.FOP_ID = poComprobante.FOP_ID
+            'oDt = clsFormaPagoDAO.GetTable(oFormaDePago)
+            'If oDt.Rows.Count > 0 Then
+            '    wszFormaPago = oDt.Rows(0).Item("FOP_NOMBRE")
+            'Else
+            '    wszFormaPago = "Efectivo"
+            'End If
+            wbImprime = poImpresora.GetTicketSubtotal("P", "LINDO SUB")
+            wbImprime = poImpresora.SendTicketPayment("TicketA", poComprobante.COM_TOTALFACTRADO, "T")
+            wbImprime = poImpresora.CloseTicket()
+            'ultimo ticket poImpresora.AnswerField_3
+            '6) Los tipos de categorias son:
+            'cons final: F,inscripto: I,iva exento: E, monotributo: M, no inscripto: R, no responsable: N, no categorizado: S. 
+            '8) Cierres Z:
+            'PrinterFiscal1.CloseJournal("Z", "P")
+            'Cierres(X)
+            'PrinterFiscal1.CloseJournal("X", "P")
             Return wbImprime
 
         Catch ex As Exception
