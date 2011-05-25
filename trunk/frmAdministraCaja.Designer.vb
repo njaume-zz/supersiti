@@ -61,10 +61,12 @@ Partial Class frmAdministraCaja
         Me.btnConfirmar = New System.Windows.Forms.Button
         Me.btnCancelar = New System.Windows.Forms.Button
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.EpsonPrinter = New AxEPSON_Impresora_Fiscal.AxPrinterFiscal
         Me.grpApertura.SuspendLayout()
         Me.grpCaja.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EpsonPrinter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpApertura
@@ -167,6 +169,7 @@ Partial Class frmAdministraCaja
         '
         'grpCaja
         '
+        Me.grpCaja.Controls.Add(Me.EpsonPrinter)
         Me.grpCaja.Controls.Add(Me.GroupBox1)
         Me.grpCaja.Controls.Add(Me.txtCredito)
         Me.grpCaja.Controls.Add(Me.txtTarjetas)
@@ -430,6 +433,15 @@ Partial Class frmAdministraCaja
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
+        'EpsonPrinter
+        '
+        Me.EpsonPrinter.Enabled = True
+        Me.EpsonPrinter.Location = New System.Drawing.Point(-12, 247)
+        Me.EpsonPrinter.Name = "EpsonPrinter"
+        Me.EpsonPrinter.OcxState = CType(resources.GetObject("EpsonPrinter.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.EpsonPrinter.Size = New System.Drawing.Size(32, 32)
+        Me.EpsonPrinter.TabIndex = 4
+        '
         'frmAdministraCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -448,6 +460,7 @@ Partial Class frmAdministraCaja
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EpsonPrinter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -487,6 +500,7 @@ Partial Class frmAdministraCaja
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents txtImportesCaja As System.Windows.Forms.TextBox
+    Friend WithEvents EpsonPrinter As AxEPSON_Impresora_Fiscal.AxPrinterFiscal
     'Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
     'Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.Printing.PrintForm
 End Class

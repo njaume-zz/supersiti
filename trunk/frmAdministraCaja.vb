@@ -3,13 +3,28 @@
 #Region "Métodos"
 
     Private Function Validar() As Boolean
-        Dim ok As Boolean
-        If Me.txtBonos.Text = gdNull Or Me.txtCredito.Text = gdNull Or Me.txtEfectivo.Text = gdNull Or _
-            Me.txtTarjetas.Text = gdNull Or Me.txtImporteApertura.Text = gdNull Then
+        Dim ok As Boolean = True
+
+        'If Me.txtBonos.Text = gdNull Then
+        '    ok = False
+        'End If
+
+        'If Me.txtCredito.Text = gdNull Then
+        '    ok = False
+        'End If
+
+        'If Me.txtTarjetas.Text = gdNull Then
+        '    ok = False
+        'End If
+
+        If Me.txtEfectivo.Text = gdNull Then
             ok = False
-        Else
-            ok = True
         End If
+
+        If Me.txtImporteApertura.Text = gdNull Then
+            ok = False
+        End If
+
         Return ok
     End Function
 
@@ -122,13 +137,25 @@
             woDt = Nothing
         End Try
     End Sub
+
+    Private Sub HabilitarCampos(ByVal pValor As Boolean)
+        Me.txtBonos.Enabled = pValor
+        Me.txtEfectivo.Enabled = pValor
+        Me.txtImporteApertura.Enabled = pValor
+        Me.txtImporteRetiro.Enabled = pValor
+        Me.txtTarjetas.Enabled = pValor
+        Me.txtCredito.Enabled = pValor
+        Me.txtTotalVentas.Enabled = pValor
+        Me.txtTotalRetiros.Enabled = pValor
+        Me.txtTotalApertura.Enabled = pValor
+    End Sub
 #End Region
 
 #Region "Eventos"
 
     Private Sub btnConfirmar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfirmar.Click
         Dim Estado As Integer
-        Dim wbApertura As Boolean
+        Dim wbApertura, wbCierre As Boolean
         Dim wdblImporte As Double
 
         Try
@@ -162,8 +189,9 @@
                         'frmVentas.ShowDialog()
                     Case "Cierre X"  'CAE_ID = 3
                         If wbApertura = True Then
-                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
-                                                                   3, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
+                            Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtTotalVentas.Text), _
+                                                                   3, Now(), frmVentas.TSSIdUsuario.Text, _
+                                                                   ObtenerConfiguracion(gstrCaja), 1, Now)
                             Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
                             '1º Recupero Importes de Caja entre fechas
                             '2º Sumo las ventas y descuento la (Apertura + Retiro)
@@ -171,6 +199,12 @@
                             'recuperar los importes de cajas.
                             'Movimientos,Usuario, Caja, Tipo Movimiento
                             'RecuperaImportesCaja(CAM_ID,USU_ID,CAJ_ID,3)
+                            wbCierre = clsImpresiones.CierreX(EpsonPrinter, True)
+                            If wbCierre Then
+                                Estado = 1
+                            Else
+                                Estado = -1
+                            End If
                         Else
                             Funciones.Manejador_Errores("Cierre X de Caja", New Exception("No existe una Apertura pendiende de cierre.-"))
                         End If
@@ -179,12 +213,19 @@
                             Dim oCajaMov As New clsCajaMovimientos(0, CDec(Me.txtImporteApertura.Text), _
                                                                    4, Now(), frmVentas.TSSIdUsuario.Text, 1, 1, Now)
                             Estado = clsCajaDAO.InsertaCajaMovimientos(oCajaMov)
+                            wbCierre = clsImpresiones.CierreZ(EpsonPrinter, True)
+                            If wbCierre Then
+                                Estado = 1
+                            Else
+                                Estado = -1
+                            End If
                         Else
                             Funciones.Manejador_Errores("Cierre Z de Caja", New Exception("No existe una Apertura pendiende de cierre.-"))
                         End If
                 End Select
                 If Estado = -1 Then
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " falló y no pudo guardarse.-", ".:: ERROR EN CAJAS ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    LogError(New Exception, "Error al Confirmar acciones de Caja", ObtieneUsuario)
                     'GUARDAR EN ARCHIVO LOG
                 Else
                     MessageBox.Show("La operación " & Me.lblOperacion.Text & " se realizó con éxito.-", ".:: Operación Exitosa ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -235,10 +276,12 @@
                 RecuperaVentas(Funciones.ObtenerConfiguracion(Definiciones.gstrCaja))
                 RecuperaCierres(False, Funciones.ObtenerConfiguracion(Definiciones.gstrCaja)) 'envío falso para indicar que no es retiro de dinero
                 CalcularTotal()
+                HabilitarCampos(False)
             Case "Cierre Z"
                 ' en este caso de deben listar todos los importes de todas las cajas
                 RecuperaVentas(0) 'envío 0 para recuperar todas las cajas
                 RecuperaCierres(False, Funciones.ObtenerConfiguracion(Definiciones.gstrCaja)) 'envío falso para indicar que no es retiro de dinero
+                HabilitarCampos(False)
         End Select
     End Sub
 
