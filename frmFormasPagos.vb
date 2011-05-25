@@ -329,7 +329,7 @@
                     frmVentas.ol_dt = Nothing
                     frmVentas.ol_DtProducto = Nothing
                     frmVentas.Inicializar()
-                    clsImpresiones.ImprimirTicket(Me.EpsonFis, oComprobante)
+                    clsImpresiones.ImprimirTicket2(Me.EpsonFis, oComprobante)
                     MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     CerrarForm("Cerrar")
                 Else
