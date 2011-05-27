@@ -3,22 +3,6 @@ Imports System.Threading
 
 Module Funciones
 
-    ''' <summary>
-    ''' Emisión de Cierre X sin imprimir
-    ''' </summary>
-    ''' <remarks></remarks>
-    'Public Sub CierreXSinImprimir()
-    '    sCmd = Chr$(&H8) + Chr$(&H2)
-    '    If bAnswer Then bAnswer = Me.Epson.AddDataField(sCmd)
-    '    sCmdExt = Chr$(&H0) + Chr$(&H0)
-    '    If bAnswer Then bAnswer = Me.Epson.AddDataField(sCmdExt)
-    '    If bAnswer Then bAnswer = Me.Epson.SendCommand
-    '    Call FPDelay()
-    'End Sub
-    '''Tomar valores indicados en x
-    'Me.Epson.GetExtraField(x)
-
-
     Public Sub InicializarConfiguracion()
         System.Threading.Thread.CurrentThread.CurrentCulture = New System.Globalization.CultureInfo("es-AR")
         System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy"

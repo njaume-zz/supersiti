@@ -1,4 +1,5 @@
-﻿Public Class frmFormasPagos
+﻿
+Public Class frmFormasPagos
 
 #Region "Variables"
     Public goDt As DataTable
@@ -210,10 +211,10 @@
     End Sub
 
     Private Sub txtDescuento_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtDescuento.KeyPress
-        If Not IsNumeric(e.KeyChar) Then
+        If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
-            Me.txtDescuento.Text = ""
+            Me.txtDescuento.Text = gdNull
         End If
     End Sub
 
@@ -242,10 +243,10 @@
     End Sub
 
     Private Sub txtTotalEnEfectivo_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalEnEfectivo.KeyPress
-        If Not IsNumeric(e.KeyChar) Then
+        If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
-            Me.txtTotalEnEfectivo.Text = ""
+            Me.txtTotalEnEfectivo.Text = gdNull
         End If
     End Sub
 
@@ -263,10 +264,10 @@
     End Sub
 
     Private Sub txtTotalAPagar_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalAPagar.KeyPress
-        If Not IsNumeric(e.KeyChar) Then
+        If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
-            Me.txtTotalAPagar.Text = ""
+            Me.txtTotalAPagar.Text = gdNull
         End If
     End Sub
 
@@ -275,10 +276,10 @@
     End Sub
 
     Private Sub txtTotalEnTarjeta_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTotalEnTarjeta.KeyPress
-        If Not IsNumeric(e.KeyChar) Then
+        If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
-            Me.txtTotalEnTarjeta.Text = ""
+            Me.txtTotalEnTarjeta.Text = gdNull
         End If
     End Sub
 
@@ -329,7 +330,7 @@
                     frmVentas.ol_dt = Nothing
                     frmVentas.ol_DtProducto = Nothing
                     frmVentas.Inicializar()
-                    clsImpresiones.ImprimirTicket2(Me.EpsonFis, oComprobante)
+                    clsImpresiones.ImprimirTicket(Me.EpsonFis, oComprobante)
                     MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     CerrarForm("Cerrar")
                 Else

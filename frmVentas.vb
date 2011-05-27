@@ -57,7 +57,7 @@ Public Class frmVentas
     End Sub
 
     Private Sub txtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCantidad.KeyPress
-        If Not IsNumeric(e.KeyChar) Then
+        If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
             e.KeyChar = ChrW(0)
             Me.txtCantidad.Text = 1
@@ -65,10 +65,21 @@ Public Class frmVentas
     End Sub
 
     Private Sub txtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCantidad.KeyDown
+        Dim wdImporte As Decimal
+        Dim wszImporte As String
         If e.KeyCode = Keys.Enter Then
             If Not Me.txtCantidad.Text = "" Then
                 If Not ol_DtProducto Is Nothing Then
-                    AgregarAGrilla(ol_DtProducto)
+                    If Me.txtProductoBarra.Text.Length <= 2 Then
+                        wszImporte = InputBox("Ingrese el importe del Producto", ".:: Ingreso de Importe ::.", 0)
+                        If IsNumeric(wszImporte) Then
+                            wdImporte = CDec(Replace(wszImporte, ",", "."))
+                        Else
+                            MessageBox.Show("Debe ingresar un valor numérico.-", ".:: VALOR INVALIDO ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            Exit Sub
+                        End If
+                    End If
+                    AgregarAGrilla(ol_DtProducto, wdImporte)
                 Else
                     'el 2º parámetro me indica que lo busco y agrego a la grilla
                     BuscarProducto(Me.txtProductoBarra.Text, "agregar")
@@ -343,7 +354,7 @@ Public Class frmVentas
     ''' </summary>
     ''' <param name="poDT"></param>
     ''' <remarks></remarks>
-    Public Sub AgregarAGrilla(ByVal poDT As DataTable)
+    Public Sub AgregarAGrilla(ByVal poDT As DataTable, Optional ByVal pdImporte As Decimal = 0)
         Dim oDetalle As New clsComprobanteDetalle
         Dim woDt As DataTable
         Dim wstrPrecio As String
@@ -357,13 +368,17 @@ Public Class frmVentas
                 wiCantidad = CInt(Me.txtCantidad.Text)
 
                 poDT.Select("PRO_CODIGO_BARRA = '" & Me.txtProductoBarra.Text.Trim & "'")
-
-                wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wiCantidad))
-
+                If pdImporte = 0 Then
+                    wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wiCantidad))
+                    oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
+                Else
+                    wstrPrecio = Funciones.FormatoMoneda(pdImporte * wiCantidad)
+                    oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(pdImporte)
+                End If
                 oDetalle.COD_ID = poDT.Rows(0).Item("PRO_ID")
                 oDetalle.COD_PRONOMBRE = poDT.Rows(0).Item("PRO_NOMBRE")
                 oDetalle.COD_PROCODIGO = poDT.Rows(0).Item("PRO_CODIGO_BARRA")
-                oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
+                'oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
                 oDetalle.COD_PROCANTIDAD = wiCantidad
                 oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda(wstrPrecio)
                 oDetalle.COD_PESABLE = poDT.Rows(0).Item("PRO_PESABLE")
@@ -525,7 +540,7 @@ Public Class frmVentas
                 obRepetido = True
                 odrVerifica.Item("COD_PROCANTIDAD") = odrVerifica.Item("COD_PROCANTIDAD") + campos.COD_PROCANTIDAD
                 'wiCantidad = odrVerifica.Item("COD_PROCANTIDAD")
-                odrVerifica.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
+                odrVerifica.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD * odrVerifica.Item("COD_PROCANTIDAD"))
                 ol_dt.AcceptChanges()
                 Exit For
                 'End If
@@ -577,6 +592,5 @@ Public Class frmVentas
         dt = Nothing
     End Sub
 #End Region
-
 
 End Class
