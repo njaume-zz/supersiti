@@ -264,12 +264,11 @@ Partial Class frmFormasPagos
         'EpsonFis
         '
         Me.EpsonFis.Enabled = True
-        Me.EpsonFis.Location = New System.Drawing.Point(2, 30)
+        Me.EpsonFis.Location = New System.Drawing.Point(2, 27)
         Me.EpsonFis.Name = "EpsonFis"
         Me.EpsonFis.OcxState = CType(resources.GetObject("EpsonFis.OcxState"), System.Windows.Forms.AxHost.State)
         Me.EpsonFis.Size = New System.Drawing.Size(32, 32)
         Me.EpsonFis.TabIndex = 3
-        Me.EpsonFis.Visible = False
         '
         'frmFormasPagos
         '
@@ -314,4 +313,5 @@ Partial Class frmFormasPagos
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents EpsonFis As AxEPSON_Impresora_Fiscal.AxPrinterFiscal
+    'Friend WithEvents EpsonFis As AxEPSON_Impresora_Fiscal.AxPrinterFiscal
 End Class

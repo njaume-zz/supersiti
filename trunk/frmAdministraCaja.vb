@@ -1,4 +1,8 @@
-﻿Public Class frmAdministraCaja
+﻿Imports AxEPSON_Impresora_Fiscal.AxPrinterFiscal
+
+Public Class frmAdministraCaja
+
+
 
 #Region "Métodos"
 
