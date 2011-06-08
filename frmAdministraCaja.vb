@@ -1,4 +1,6 @@
 ﻿Imports AxEPSON_Impresora_Fiscal.AxPrinterFiscal
+Imports CapaDatos.CapaDatos
+Imports CapaNegocio.CapaNegocio
 
 Public Class frmAdministraCaja
 

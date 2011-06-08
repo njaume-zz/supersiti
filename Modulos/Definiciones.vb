@@ -3,7 +3,6 @@
 #Region "Constantes"
     Public cXMLConfig As String = "XMLConfig.xml"
 
-
     'Constantes que definen las acciones posteriores a la selección
     ' de autorización de: Venta/Descuento/Tarjeta, etc.
     Public Const gcAccionAutorizaVenta = 1
@@ -19,7 +18,7 @@
     Public Const gstrNombreFantasia = "DatosPropios/NombreFantasia"
     Public Const gstrCUIT = "DatosPropios/CUIT"
     Public Const gIngresosBrutos = "DatosPropios/IngresosBrutos"
-    Public Const gstrDomicilioFiscal = "DomicilioFiscal/DomicilioFiscal"
+    Public Const gstrDomicilioFiscal = "DatosPropios/DomicilioFiscal"
     Public Const gstrDomicilioComercial = "DatosPropios/DomicilioComercial"
     Public Const gstrTelefono = "DatosPropios/Telefono"
     Public Const gstrHabilitacionMunicipal = "DatosPropios/HabilitacionMunicipal"

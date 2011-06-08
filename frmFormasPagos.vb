@@ -1,4 +1,6 @@
-﻿
+﻿Imports CapaDatos.CapaDatos
+Imports CapaNegocio.CapaNegocio
+
 Public Class frmFormasPagos
 
 #Region "Variables"
@@ -64,11 +66,11 @@ Public Class frmFormasPagos
         '--------------------------------------------------------
         'Datos propios obtenidos de un archivo de configuración
         '--------------------------------------------------------
-        poComprobante.COM_CUITPROPIO = Funciones.ObtenerConfiguracion("DatosPropios/CUIT")
-        poComprobante.COM_INGRESOBRUTOPROPIO = Funciones.ObtenerConfiguracion("DatosPropios/IngresosBrutos")
-        poComprobante.COM_DOMICILIOPROPIO = Funciones.ObtenerConfiguracion("DatosPropios/DomicilioFiscal")
-        poComprobante.COM_RAZONSOCIALPROPIO = Funciones.ObtenerConfiguracion("DatosPropios/RazonSocial")
-        poComprobante.COM_TELEFONOPROPIO = Funciones.ObtenerConfiguracion("DatosPropios/Telefono")
+        poComprobante.COM_CUITPROPIO = Funciones.ObtenerConfiguracion(gstrCUIT)
+        poComprobante.COM_INGRESOBRUTOPROPIO = Funciones.ObtenerConfiguracion(gIngresosBrutos)
+        poComprobante.COM_DOMICILIOPROPIO = Funciones.ObtenerConfiguracion(gstrDomicilioFiscal)
+        poComprobante.COM_RAZONSOCIALPROPIO = Funciones.ObtenerConfiguracion(gstrRazonSocial)
+        poComprobante.COM_TELEFONOPROPIO = Funciones.ObtenerConfiguracion(gstrTelefono)
         '--------------------------------------------------------
         poComprobante.COM_ID = 0
         poComprobante.COM_FECHA = Now
@@ -152,6 +154,7 @@ Public Class frmFormasPagos
         oiSubTotal = Funciones.FormatoMoneda((oiDescuento * oiTotal / 100))
         Me.txtSubTotal.Text = Funciones.FormatoMoneda(oiTotal - oiSubTotal)
     End Sub
+
 #End Region
 
 #Region "Eventos"
@@ -291,16 +294,10 @@ Public Class frmFormasPagos
         Dim strValida As String = ""
         Try
             oComprobante = New clsComprobante
-            'oDetalle() = New clsComprobanteDetalle
             strValida = ValidaPago()
             If strValida = "" Then
-                'Cargo datos del comprobante
-                'wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)
-
                 For i = 0 To goDt.Rows.Count - 1
                     Dim oDetalle As New clsComprobanteDetalle
-                    'oComprobante.DETALLE.Item(0) = 0
-                    'oComprobante.DETALLE.Item(0) = 0
                     oDetalle.COD_ID = 0
                     oDetalle.COD_IVA = 0
                     oDetalle.COD_PESABLE = IIf(goDt.Rows(i).Item("COD_PESABLE") = "No", 0, 1)
@@ -310,9 +307,7 @@ Public Class frmFormasPagos
                     oDetalle.COD_PRONOMBRE = goDt.Rows(i).Item("COD_PRONOMBRE")
                     oDetalle.COD_PROPCIOUNITARIO = goDt.Rows(i).Item("COD_PROPCIOUNITARIO")
                     oDetalle.COM_ID = wiNroComprobante
-                    'wiNroDetalle = clsComprobanteDetalleDAO.Insertar(oDetalle(i))
                     arrDetalle.Add(oDetalle)
-
                 Next
                 oComprobante = InicializaComprobante(oComprobante, arrDetalle)
                 wiNroComprobante = clsComprobanteDAO.Insertar(oComprobante)

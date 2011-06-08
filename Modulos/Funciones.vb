@@ -1,5 +1,7 @@
 ﻿Imports System.Globalization
 Imports System.Threading
+Imports CapaDatos.CapaDatos
+Imports System.Configuration
 
 Module Funciones
 
@@ -261,6 +263,17 @@ Module Funciones
         End Select
     End Function
 
+    Public Function CompletaCeros(ByVal pszValor As String, ByVal piCantidad As Integer) As String
+        Dim i As Integer
+        Dim wszCompletar As String = ""
+
+        For i = 1 To piCantidad - pszValor.Length
+            wszCompletar = wszCompletar & "0"
+        Next
+
+        CompletaCeros = wszCompletar & pszValor
+    End Function
+
     ''' <summary>
     ''' Controla el ingreso de caracter distinto de comilla simple o doble.
     ''' </summary>
@@ -303,6 +316,53 @@ Module Funciones
         Return Array.IndexOf(digitos, _char) <> -1
 
     End Function
+
+    Public Function ValidaDecimal(ByVal e As System.Windows.Forms.KeyPressEventArgs, ByVal Text As TextBox) As Integer
+
+        Dim dig As Integer = Len(Text.Text & e.KeyChar)
+        Dim a, esDecimal, NumDecimales As Integer
+        Dim esDec As Boolean
+        ' se verifica si es un digito o un punto 
+        If Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+            Return a
+        Else
+            e.Handled = True
+        End If
+        ' se verifica que el primer digito ingresado no sea un punto al seleccionar
+        If Text.SelectedText <> "" Then
+            If e.KeyChar = "." Then
+                e.Handled = True
+                Return a
+            End If
+        End If
+        If dig = 1 And e.KeyChar = "." Then
+            e.Handled = True
+            Return a
+        End If
+        'aqui se hace la verificacion cuando es seleccionado el valor del texto
+        'y no sea considerado como la adicion de un digito mas al valor ya contenido en el textbox
+        If Text.SelectedText = "" Then
+            ' aqui se hace el for para controlar que el numero sea de dos digitos - contadose a partir del punto decimal.
+            For a = 0 To dig - 1
+                Dim car As String = CStr(Text.Text & e.KeyChar)
+                If car.Substring(a, 1) = "." Then
+                    esDecimal = esDecimal + 1
+                    esDec = True
+                End If
+                If esDec = True Then
+                    NumDecimales = NumDecimales + 1
+                End If
+                ' aqui se controla los digitos a partir del punto numdecimales = 4 si es de dos decimales 
+                If NumDecimales >= 4 Or esDecimal >= 2 Then
+                    e.Handled = True
+                End If
+            Next
+        End If
+    End Function
+
     ''' <summary>
     ''' Guarda un atributo de configuración de la aplicación dentro
     ''' del archivo de configuración.
@@ -381,7 +441,8 @@ Module Funciones
         Dim szValor As String = ""
         Dim szRuta As String
         Try
-            szRuta = System.IO.Path.Combine(My.Application.Info.DirectoryPath, cXMLConfig)
+
+            szRuta = System.IO.Path.Combine(My.Settings.XMLConfig, cXMLConfig)
             'Abro el archivo de configuración.
             oFSO = New System.IO.FileInfo(szRuta)
             If (oFSO.Exists) Then

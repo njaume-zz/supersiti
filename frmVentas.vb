@@ -1,5 +1,8 @@
 ﻿Option Explicit On
 
+Imports CapaDatos.CapaDatos
+Imports CapaNegocio.CapaNegocio
+
 Public Class frmVentas
 
 #Region "Variables Locales"
@@ -12,6 +15,7 @@ Public Class frmVentas
     'Creo la variable ol_DtProducto, sólo para no realizar 2 accesos a la base
     ' y mantener en memoria los datos necesarios para ingresar en la grilla
     Public ol_DtProducto As DataTable
+
 #End Region
 
 #Region "Eventos"
@@ -59,39 +63,49 @@ Public Class frmVentas
     Private Sub txtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCantidad.KeyPress
         If Not ValidaNumerico(e.KeyChar) Then
             e.Handled = False
-            e.KeyChar = ChrW(0)
-            Me.txtCantidad.Text = 1
         End If
     End Sub
 
     Private Sub txtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCantidad.KeyDown
         Dim wdImporte As Decimal
         Dim wszImporte As String
-        If e.KeyCode = Keys.Enter Then
-            If Not Me.txtCantidad.Text = "" Then
-                If Not ol_DtProducto Is Nothing Then
-                    If Me.txtProductoBarra.Text.Length <= 2 Then
-                        wszImporte = InputBox("Ingrese el importe del Producto", ".:: Ingreso de Importe ::.", 0)
-                        If IsNumeric(wszImporte) Then
-                            wdImporte = CDec(Replace(wszImporte, ",", "."))
-                        Else
-                            MessageBox.Show("Debe ingresar un valor numérico.-", ".:: VALOR INVALIDO ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                            Exit Sub
+        Dim wszImporteCantidad As String
+        Dim wdCantidad As Decimal
+
+        Try
+
+            If e.KeyCode = Keys.Enter Then
+                If Not Me.txtCantidad.Text = "" Then
+                    If Not ol_DtProducto Is Nothing Then
+                        If Me.txtProductoBarra.Text.Length <= 2 Then
+                            wdCantidad = CDec(Me.txtCantidad.Text)
+                            wszImporte = InputBox("Ingrese el importe del Producto", ".:: Ingreso de Importe ::.", 0)
+                            If IsNumeric(wszImporte) Then
+                                wdImporte = CDec(Replace(wszImporte, ",", "."))
+
+                                wszImporteCantidad = wdImporte.ToString & "|" & wdCantidad.ToString
+                            Else
+                                MessageBox.Show("Debe ingresar un valor numérico.-", ".:: VALOR INVALIDO ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                Exit Sub
+                            End If
                         End If
+                        AgregarAGrilla(ol_DtProducto, wszImporteCantidad)
+                    Else
+                        'el 2º parámetro me indica que lo busco y agrego a la grilla
+                        BuscarProducto(Me.txtProductoBarra.Text, "agregar")
                     End If
-                    AgregarAGrilla(ol_DtProducto, wdImporte)
-                Else
-                    'el 2º parámetro me indica que lo busco y agrego a la grilla
-                    BuscarProducto(Me.txtProductoBarra.Text, "agregar")
                 End If
             End If
-        End If
-        If e.KeyCode = Keys.F5 Then
-            ConfirmarVenta()
-        End If
-        If e.KeyCode = (Keys.ControlKey + Keys.B) Then
-            frmListaPrecios.ShowDialog()
-        End If
+            If e.KeyCode = Keys.F5 Then
+                ConfirmarVenta()
+            End If
+            If e.KeyCode = (Keys.ControlKey + Keys.B) Then
+                frmListaPrecios.ShowDialog()
+            End If
+            'Me.txtCantidad.Text = 1
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub txtProductoBarra_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtProductoBarra.LostFocus
@@ -354,32 +368,35 @@ Public Class frmVentas
     ''' </summary>
     ''' <param name="poDT"></param>
     ''' <remarks></remarks>
-    Public Sub AgregarAGrilla(ByVal poDT As DataTable, Optional ByVal pdImporte As Decimal = 0)
+    Public Sub AgregarAGrilla(ByVal poDT As DataTable, Optional ByVal pszImporte As String = "")
         Dim oDetalle As New clsComprobanteDetalle
         Dim woDt As DataTable
         Dim wstrPrecio As String
-        Dim wiCantidad As Integer
+        Dim wdCantidad As Decimal
 
         Try
             woDt = New DataTable
 
             If Me.txtCantidad.Text > 0 Then
 
-                wiCantidad = CInt(Me.txtCantidad.Text)
+                wdCantidad = CDec(Me.txtCantidad.Text)
 
                 poDT.Select("PRO_CODIGO_BARRA = '" & Me.txtProductoBarra.Text.Trim & "'")
-                If pdImporte = 0 Then
-                    wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wiCantidad))
+                If pszImporte = "" Or pszImporte Is Nothing Then
+                    wstrPrecio = Funciones.FormatoMoneda((IIf(IsDBNull(poDT.Rows(0).Item("LPR_PRECIO")), poDT.Rows(0).Item("PRO_PRECIOCOSTO"), poDT.Rows(0).Item("LPR_PRECIO")) * wdCantidad))
                     oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
+                    oDetalle.COD_PROCANTIDAD = wdCantidad
                 Else
-                    wstrPrecio = Funciones.FormatoMoneda(pdImporte * wiCantidad)
-                    oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(pdImporte)
+                    'Si se pone el importe a mano, no se multiplica la cantidad
+                    wstrPrecio = Funciones.FormatoMoneda(pszImporte.Split("|")(0))
+                    oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(pszImporte.Split("|")(0))
+                    oDetalle.COD_PROCANTIDAD = CDec(pszImporte.Split("|")(1))
                 End If
                 oDetalle.COD_ID = poDT.Rows(0).Item("PRO_ID")
                 oDetalle.COD_PRONOMBRE = poDT.Rows(0).Item("PRO_NOMBRE")
                 oDetalle.COD_PROCODIGO = poDT.Rows(0).Item("PRO_CODIGO_BARRA")
                 'oDetalle.COD_PROPCIOUNITARIO = Funciones.FormatoMoneda(poDT.Rows(0).Item("LPR_PRECIO"))
-                oDetalle.COD_PROCANTIDAD = wiCantidad
+                'oDetalle.COD_PROCANTIDAD = wiCantidad
                 oDetalle.COD_PRECIOCANTIDAD = Funciones.FormatoMoneda(wstrPrecio)
                 oDetalle.COD_PESABLE = poDT.Rows(0).Item("PRO_PESABLE")
 
@@ -398,7 +415,7 @@ Public Class frmVentas
 
         Finally
             oDetalle = Nothing
-            wiCantidad = 0
+            wdCantidad = 0
             wstrPrecio = ""
             woDt = Nothing
         End Try
@@ -410,7 +427,7 @@ Public Class frmVentas
         Try
 
             oDt = New DataTable
-            oDt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, pstrProducto, 0)
+            oDt = clsProductoDAO.getProducto(0, "", "", pstrProducto, "", 0, 0, 0, 0)
 
             If Not oDt Is Nothing Then
                 If accion = "buscar" Then
@@ -514,7 +531,7 @@ Public Class frmVentas
             .Add(DefinirColumna("COD_PRONOMBRE"))
             .Add(DefinirColumna("COD_PROCODIGO"))
             .Add(DefinirColumna("COD_PROPCIOUNITARIO"))
-            .Add(DefinirColumna("COD_PROCANTIDAD"))
+            .Add("COD_PROCANTIDAD", GetType(System.Decimal)) 'DefinirColumna("COD_PROCANTIDAD"))
             .Add(DefinirColumna("COD_PRECIOCANTIDAD"))
             .Add(DefinirColumna("COD_PESABLE"))
         End With
@@ -551,7 +568,7 @@ Public Class frmVentas
                 dr.Item("COD_PRONOMBRE") = campos.COD_PRONOMBRE
                 dr.Item("COD_PROCODIGO") = campos.COD_PROCODIGO
                 dr.Item("COD_PROPCIOUNITARIO") = Funciones.FormatoMoneda(campos.COD_PROPCIOUNITARIO)
-                dr.Item("COD_PROCANTIDAD") = CInt(campos.COD_PROCANTIDAD)
+                dr.Item("COD_PROCANTIDAD") = CDec(campos.COD_PROCANTIDAD)
                 dr.Item("COD_PRECIOCANTIDAD") = Funciones.FormatoMoneda(campos.COD_PRECIOCANTIDAD)
                 dr.Item("COD_PESABLE") = IIf(campos.COD_PESABLE = 0, "No", "Si")
 

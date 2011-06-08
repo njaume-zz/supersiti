@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Conexion>Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>
+  <!--<Conexion>Data Source=PICHITOSDESK-PC\SQLEXPRESS;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>-->
   <!--<Conexion>Data Source=PICHITOS-PC\;Initial Catalog=DES_SUPER;Integrated Security=True</Conexion>-->
   <DatosPropios>
     <RazonSocial>Autoservicio Tauro</RazonSocial>
@@ -20,5 +20,4 @@
     <TipoComprobante>20</TipoComprobante> <!--TICKET-->
     <PuertoCOM>11</PuertoCOM>
   </Venta> 
-  
 </Configuracion>
