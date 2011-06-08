@@ -59,10 +59,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core">
@@ -89,39 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClasesApp\clsImpresiones.vb" />
-    <Compile Include="Clases\clsCaja.vb" />
-    <Compile Include="Clases\clsCajaMovimientos.vb" />
-    <Compile Include="Clases\clsCajaTipoMovimiento.vb" />
-    <Compile Include="Clases\clsComprobante.vb" />
-    <Compile Include="Clases\clsComprobanteDetalle.vb" />
-    <Compile Include="Clases\clsFamilia.vb" />
-    <Compile Include="Clases\clsFormaPago.vb" />
-    <Compile Include="Clases\clsListaPrecio.vb" />
-    <Compile Include="Clases\clsRol.vb" />
-    <Compile Include="Clases\clsProducto.vb" />
-    <Compile Include="Clases\clsRubro.vb" />
-    <Compile Include="Clases\clsTasaIva.vb" />
-    <Compile Include="Clases\clsTipoComprobante.vb" />
-    <Compile Include="Clases\clsTiposPrecios.vb" />
-    <Compile Include="Clases\clsUnidadProducto.vb" />
-    <Compile Include="Clases\clsUsuario.vb" />
-    <Compile Include="Clases\DAO\clsCajaDAO.vb" />
-    <Compile Include="Clases\DAO\clsComprobanteDAO.vb" />
-    <Compile Include="Clases\DAO\clsComprobanteDetalleDAO.vb" />
-    <Compile Include="Clases\DAO\clsConexion.vb" />
-    <Compile Include="Clases\DAO\clsFamiliaDAO.vb" />
-    <Compile Include="Clases\clsModulo.vb" />
-    <Compile Include="Clases\DAO\clsFormaPagoDAO.vb" />
-    <Compile Include="Clases\DAO\clsListaPrecioDAO.vb" />
-    <Compile Include="Clases\DAO\clsModuloDAO.vb" />
-    <Compile Include="Clases\DAO\clsProductoDAO.vb" />
-    <Compile Include="Clases\DAO\clsRolDAO.vb" />
-    <Compile Include="Clases\DAO\clsRubroDAO.vb" />
-    <Compile Include="Clases\DAO\clsTasaIvaDAO.vb" />
-    <Compile Include="Clases\DAO\clsTipoComprobanteDAO.vb" />
-    <Compile Include="Clases\DAO\clsTiposPrecioDAO.vb" />
-    <Compile Include="Clases\DAO\clsUnidadProductoDAO.vb" />
-    <Compile Include="Clases\DAO\clsUsuarioDAO.vb" />
     <Compile Include="frmAdministraCaja.Designer.vb">
       <DependentUpon>frmAdministraCaja.vb</DependentUpon>
     </Compile>
@@ -156,6 +127,12 @@
       <DependentUpon>frmListaPrecios.vb</DependentUpon>
     </Compile>
     <Compile Include="frmListaPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNroComprobante.Designer.vb">
+      <DependentUpon>frmNroComprobante.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNroComprobante.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmVentas.vb">
@@ -207,6 +184,9 @@
     <EmbeddedResource Include="frmListaPrecios.resx">
       <DependentUpon>frmListaPrecios.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNroComprobante.resx">
+      <DependentUpon>frmNroComprobante.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentas.resx">
       <DependentUpon>frmVentas.vb</DependentUpon>
@@ -287,6 +267,7 @@
     <Content Include="Imagenes\509.png" />
     <Content Include="Imagenes\advancedsettings.png" />
     <Content Include="Imagenes\apply.png" />
+    <None Include="app.config" />
     <None Include="Base de Datos\Script Cierres.sql" />
     <None Include="Imagenes\Aprobar venta.png" />
     <Content Include="Imagenes\back1.png" />
@@ -394,6 +375,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos\CapaDatos.vbproj">
+      <Project>{3CA427D5-D0FB-469A-86E5-8F149AD64C9F}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio\CapaNegocio.vbproj">
+      <Project>{D105FCD4-773C-472F-A720-B57D941E3167}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

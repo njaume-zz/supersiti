@@ -1,4 +1,6 @@
-﻿Public Class frmListaPrecios
+﻿Imports CapaDatos.CapaDatos
+
+Public Class frmListaPrecios
 
 #Region "Variables"
     Dim o_dt As DataTable

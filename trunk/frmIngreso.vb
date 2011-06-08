@@ -1,4 +1,6 @@
-﻿Public Class frmIngreso
+﻿Imports CapaDatos.CapaDatos
+
+Public Class frmIngreso
 
 
 #Region "Métodos"

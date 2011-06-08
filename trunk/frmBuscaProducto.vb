@@ -1,4 +1,6 @@
-﻿Public Class frmBuscaProducto
+﻿Imports CapaDatos.CapaDatos
+
+Public Class frmBuscaProducto
 
     Dim o_dt As DataTable
     Dim strBuscar As String
@@ -157,7 +159,7 @@
         Try
 
             o_dt = New DataTable
-            o_dt = clsProductoDAO.getProducto(0, "", "", "", 0, 0, 0, "", 0)
+            o_dt = clsProductoDAO.getProducto(0, "", "", "", "", 0, 0, 0, 0)
             If Not o_dt Is Nothing Then
                 'Me.dgrProductos.DataSource = o_dt
                 'ConfigurarGrilla()

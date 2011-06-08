@@ -57,14 +57,14 @@ Partial Class frmVentas
         Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripStatusLabel10 = New System.Windows.Forms.ToolStripStatusLabel
         Me.toolstMenu = New System.Windows.Forms.ToolStrip
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtDescripcion = New System.Windows.Forms.TextBox
         Me.TSBBuscaProducto = New System.Windows.Forms.ToolStripButton
         Me.TSBBuscarPrecio = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.TSBAceptaVenta = New System.Windows.Forms.ToolStripButton
         Me.TSBCancelaVenta = New System.Windows.Forms.ToolStripButton
         Me.TSBEliminaItem = New System.Windows.Forms.ToolStripButton
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.txtDescripcion = New System.Windows.Forms.TextBox
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
@@ -199,6 +199,7 @@ Partial Class frmVentas
         'txtCantidad
         '
         Me.txtCantidad.Location = New System.Drawing.Point(497, 90)
+        Me.txtCantidad.MaxLength = 4
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(47, 20)
         Me.txtCantidad.TabIndex = 5
@@ -380,6 +381,29 @@ Partial Class frmVentas
         Me.toolstMenu.TabIndex = 14
         Me.toolstMenu.Text = "Iconos Menu"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(262, 70)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(126, 13)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "Descripción del Producto"
+        '
+        'txtDescripcion
+        '
+        Me.txtDescripcion.Enabled = False
+        Me.txtDescripcion.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.txtDescripcion.Location = New System.Drawing.Point(265, 90)
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.Size = New System.Drawing.Size(225, 20)
+        Me.txtDescripcion.TabIndex = 16
+        '
         'TSBBuscaProducto
         '
         Me.TSBBuscaProducto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -398,11 +422,6 @@ Partial Class frmVentas
         Me.TSBBuscarPrecio.Name = "TSBBuscarPrecio"
         Me.TSBBuscarPrecio.Size = New System.Drawing.Size(39, 39)
         Me.TSBBuscarPrecio.Text = "Lista de Precios"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 42)
         '
         'TSBAceptaVenta
         '
@@ -433,24 +452,6 @@ Partial Class frmVentas
         Me.TSBEliminaItem.Size = New System.Drawing.Size(39, 39)
         Me.TSBEliminaItem.Text = "TSBQuitarItem"
         Me.TSBEliminaItem.ToolTipText = "Quitar Item"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(262, 70)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(126, 13)
-        Me.Label6.TabIndex = 15
-        Me.Label6.Text = "Descripción del Producto"
-        '
-        'txtDescripcion
-        '
-        Me.txtDescripcion.Enabled = False
-        Me.txtDescripcion.ForeColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.txtDescripcion.Location = New System.Drawing.Point(265, 90)
-        Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(225, 20)
-        Me.txtDescripcion.TabIndex = 16
         '
         'MenuStrip1
         '
@@ -514,6 +515,7 @@ Partial Class frmVentas
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.Size = New System.Drawing.Size(245, 6)
+        Me.ToolStripMenuItem3.Visible = False
         '
         'tsmAnularTicket
         '
@@ -521,6 +523,7 @@ Partial Class frmVentas
         Me.tsmAnularTicket.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
         Me.tsmAnularTicket.Size = New System.Drawing.Size(248, 22)
         Me.tsmAnularTicket.Text = "Anular Ticket"
+        Me.tsmAnularTicket.Visible = False
         '
         'ToolStripSeparator2
         '
