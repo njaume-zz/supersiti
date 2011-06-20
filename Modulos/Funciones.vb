@@ -271,7 +271,7 @@ Module Funciones
             wszCompletar = wszCompletar & "0"
         Next
 
-        CompletaCeros = wszCompletar & pszValor
+        CompletaCeros = wszCompletar & pszValor.Replace(".", "").Replace(",", "")
     End Function
 
     ''' <summary>

@@ -292,6 +292,8 @@ Public Class frmFormasPagos
         ' ver de hacer un arraylist con el detalle
         Dim wiNroComprobante As Integer
         Dim strValida As String = ""
+        Dim strSalida As String
+
         Try
             oComprobante = New clsComprobante
             strValida = ValidaPago()
@@ -325,17 +327,21 @@ Public Class frmFormasPagos
                     frmVentas.ol_dt = Nothing
                     frmVentas.ol_DtProducto = Nothing
                     frmVentas.Inicializar()
-                    clsImpresiones.ImprimirTicket(Me.EpsonFis, oComprobante)
-                    MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    CerrarForm("Cerrar")
+                    strSalida = clsImpresiones.ImprimirTicket(Me.EpsonFis, oComprobante)
+                    If strSalida = "" Then
+                        MessageBox.Show("La venta se realizó de manera exitosa.-", ".:: VENTA REALIZADA ::.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        CerrarForm("Cerrar")
+                    Else
+                        MessageBox.Show("La venta NO pudo realizarse de manera exitosa.-", ".:: VENTA SIN REALIZARSE ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 Else
                     MessageBox.Show("Ocurrió un problema al guardar el comprobante. La VENTA NO FUE REALIZADA.-", ".:: ERROR GRAVE ::.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     LimpiarCampos()
                     CerrarForm("Cerrar")
                 End If
-            Else
-                MessageBox.Show(strValida, ".:: CAMPOS INCOMPLETOS ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
+                Else
+                    MessageBox.Show(strValida, ".:: CAMPOS INCOMPLETOS ::.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End If
 
         Catch ex As Exception
             Funciones.Manejador_Errores("btnAceptarVenta_Click", ex)
