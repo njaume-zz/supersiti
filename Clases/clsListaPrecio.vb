@@ -14,12 +14,12 @@ Public Class clsListaPrecio
     Public Sub New()
     End Sub
 
-    Public Sub New(ByVal lpr_id As system.int32, ByVal pro_id As system.int32, ByVal trp_id As system.int32, _
-                   ByVal lpr_precio As system.decimal, ByVal lpr_precioxcantidad As system.decimal, _
-                   ByVal lpr_estado As system.int32)
+    Public Sub New(ByVal lpr_id As System.Int32, ByVal pro_id As System.Int32, ByVal trp_id As System.Int32, _
+                   ByVal lpr_precio As System.Decimal, ByVal lpr_precioxcantidad As System.Decimal, _
+                   ByVal lpr_estado As System.Int32)
         _lpr_id = lpr_id
         _pro_id = pro_id
-        _tpr_id = tpr_id
+        _tpr_id = TPR_ID
         _lpr_precio = lpr_precio
         _lpr_precioxcantidad = lpr_precioxcantidad
         _lpr_estado = lpr_estado
@@ -27,53 +27,53 @@ Public Class clsListaPrecio
 
     Public Property LPR_ID() As Int32
         Get
-            Return _LPR_ID
+            Return _lpr_id
         End Get
         Set(ByVal Value As Int32)
-            _LPR_ID = Value
+            _lpr_id = Value
         End Set
     End Property
     Public Property PRO_ID() As Int32
         Get
-            Return _PRO_ID
+            Return _pro_id
         End Get
         Set(ByVal Value As Int32)
-            _PRO_ID = Value
+            _pro_id = Value
         End Set
     End Property
     Public Property TPR_ID() As Int32
         Get
-            Return _TPR_ID
+            Return _tpr_id
         End Get
         Set(ByVal Value As Int32)
-            _TPR_ID = Value
+            _tpr_id = Value
         End Set
     End Property
     Public Property LPR_PRECIO() As Decimal
         Get
-            Return _LPR_PRECIO
+            Return _lpr_precio
         End Get
         Set(ByVal Value As Decimal)
-            _LPR_PRECIO = Value
+            _lpr_precio = Value
         End Set
     End Property
     Public Property LPR_PRECIOXCANTIDAD() As Decimal
         Get
-            Return _LPR_PRECIOXCANTIDAD
+            Return _lpr_precioxcantidad
         End Get
         Set(ByVal Value As Decimal)
-            _LPR_PRECIOXCANTIDAD = Value
+            _lpr_precioxcantidad = Value
         End Set
     End Property
     Public Property LPR_ESTADO() As Int32
         Get
-            Return _LPR_ESTADO
+            Return _lpr_estado
         End Get
         Set(ByVal Value As Int32)
-            _LPR_ESTADO = Value
+            _lpr_estado = Value
         End Set
     End Property
-    
+
 #End Region
 End Class
 

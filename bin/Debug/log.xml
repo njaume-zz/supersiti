@@ -341,6 +341,30 @@ The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, wh
     <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
     <Ubicacion>Confimación de operación en caja - Retiro</Ubicacion>
     <Fecha>21/05/2011 21:38:42</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Cierre X</Ubicacion>
+    <Fecha>25/05/2011 10:45:41</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Cierre X</Ubicacion>
+    <Fecha>25/05/2011 11:29:08</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Cierre X</Ubicacion>
+    <Fecha>25/05/2011 11:39:11</Fecha>
+    <Excepcion>An error occurred creating the form. See Exception.InnerException for details.  The error is: Clase no registrada (Excepción de HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG))</Excepcion>
+    <Ubicacion>OK_Click</Ubicacion>
+    <Fecha>25/05/2011 13:29:41</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>RecuperaVentas</Ubicacion>
+    <Fecha>25/05/2011 16:01:38</Fecha>
+    <Excepcion>Object reference not set to an instance of an object.</Excepcion>
+    <Ubicacion>RecuperaCierres</Ubicacion>
+    <Fecha>25/05/2011 16:10:19</Fecha>
+    <Excepcion>Exception of type 'System.Exception' was thrown.</Excepcion>
+    <Ubicacion>Error al Confirmar acciones de Caja</Ubicacion>
+    <Fecha>25/05/2011 16:12:29</Fecha>
+    <Excepcion>Form that is already visible cannot be displayed as a modal dialog box. Set the form's visible property to false before calling showDialog.</Excepcion>
+    <Ubicacion>Confimación de operación en caja - Cierre X</Ubicacion>
+    <Fecha>25/05/2011 16:12:35</Fecha>
   </Eventos>
   <Eventos />
   <Usuario>A924in</Usuario>
@@ -550,4 +574,20 @@ The 'STR_NUEVO_V_COMPROBANTE' procedure attempted to return a status of NULL, wh
   <Usuario>A2137in</Usuario>
   <Eventos />
   <Usuario>A2138in</Usuario>
+  <Eventos />
+  <Usuario>A2545in</Usuario>
+  <Eventos />
+  <Usuario>A2529in</Usuario>
+  <Eventos />
+  <Usuario>A2539in</Usuario>
+  <Eventos />
+  <Usuario>25/05/2011 01:29:41 p.m.</Usuario>
+  <Eventos />
+  <Usuario>A251in</Usuario>
+  <Eventos />
+  <Usuario>A2510in</Usuario>
+  <Eventos />
+  <Usuario>A2512in</Usuario>
+  <Eventos />
+  <Usuario>A2512in</Usuario>
 </XMLErrores>

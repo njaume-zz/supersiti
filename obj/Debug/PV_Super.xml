@@ -6,7 +6,37 @@ PV_Super
 </name>
 </assembly>
 <members>
-<member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
+<member name="M:PV_Super.clsImpresiones.CierreZ(AxEPSON_Impresora_Fiscal.AxPrinterFiscal,System.Boolean)">
+	<summary>
+ Método que realiza el cierre Z
+ </summary>
+	<param name="poImpresora">Objeto Impresora</param>
+	<param name="pImprimir">Determina si se imprime o no el cierre</param>
+	<returns>Verdadero o Falso</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsImpresiones.ImprimirTicket(AxEPSON_Impresora_Fiscal.AxPrinterFiscal,PV_Super.clsComprobante)">
+	<summary>
+ Imprime Ticket de venta a Consumidor Final
+ </summary>
+	<param name="poImpresora">Objeto Impresora</param>
+	<param name="poComprobante">Objeto Comprobante con el detalle.</param>
+	<returns>True si se imprime bien, sino, false</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsImpresiones.AperturaCajon(AxEPSON_Impresora_Fiscal.AxPrinterFiscal)">
+	<summary>
+ Este método permite abrir el cajón según la caja
+ </summary>
+	<param name="poImpresora">Objeto Impresora</param>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsImpresiones.CancelaTicket(AxEPSON_Impresora_Fiscal.AxPrinterFiscal,PV_Super.clsComprobante)">
+	<summary>
+ Método que cancela un comprobante emitido
+ </summary>
+	<param name="poImpresora">Objeto Impresora</param>
+	<param name="poComprobante">Objeto Comprobante</param>
+	<returns>True o False según haya sucedido</returns>
+	<remarks></remarks>
+</member><member name="M:PV_Super.clsCajaDAO.InsertaCaja(PV_Super.clsCaja)">
 	<summary>
  Función que inserta una caja nueva
  </summary>
@@ -161,7 +191,7 @@ PV_Super
  Método que pasa los valores del formulario ventas al formulario Formas de Pago
  </summary>
 	<remarks></remarks>
-</member><member name="M:PV_Super.frmVentas.AgregarAGrilla(System.Data.DataTable)">
+</member><member name="M:PV_Super.frmVentas.AgregarAGrilla(System.Data.DataTable,System.Decimal)">
 	<summary>
  Método que relaciona el DataTable a la grilla de venta.
  </summary>
